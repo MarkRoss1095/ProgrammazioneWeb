@@ -14,10 +14,9 @@ var studentSchema = new Schema({
     matricola: { type: String, required: true, unique: true },
     codFacoltà: { type: String, ref: 'Facoltà', required: true },
     email: { type: String, required: true, unique: true },
-    emailUniversitaria: String,
     telefono: Number,
-    username: String,
-    password: String,
+    username: { type: String, required: true },
+    password: { type: String, required: true },
     
     carriera: [carriera.schema], //'array of subdocument' contenente la carriera degli studenti
     annoCorso: {type: Number, default:1}
