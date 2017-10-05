@@ -1,7 +1,7 @@
 // get an instance of mongoose and mongoose.Schema
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-//var Facoltà = require('./corsiLaurea');
+var Facoltà = require('./facolta');
 var carriera = require('./carriera');
 
 var studentSchema = new Schema({
@@ -12,7 +12,7 @@ var studentSchema = new Schema({
     indirizzo:{ type: String, required: true },
     dataDiNascita: { type: Date, required: true },
     matricola: { type: String, required: true, unique: true },
-    //codFacoltà: { type: String, ref: 'Facoltà', required: true },
+    codFacoltà: { type: String, ref: 'Facoltà', required: true },
     email: { type: String, required: true, unique: true },
     emailUniversitaria: String,
     telefono: Number,
