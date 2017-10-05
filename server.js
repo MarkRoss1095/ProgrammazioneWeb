@@ -29,6 +29,6 @@ app.use(require('./server/routes.js'));
 
 // listen (start app with node server.js) ======================================
     app.listen(8080,()=>{
-        console.log('server on su http://lochalhost:' + 8080);
+        console.log('server on su http://localhost:' + 8080);
     })
 

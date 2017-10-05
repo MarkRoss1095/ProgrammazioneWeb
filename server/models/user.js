@@ -5,10 +5,10 @@ var Facoltà = require('./facolta');
 var carriera = require('./carriera');
 
 var studentSchema = new Schema({
-    nome: { type: String, required: true },
-    cognome: { type: String, required: true },
-    stato: { type: String, required: true },
-    città: { type: String, required: true },
+    name: { type: String, required: true },
+    surname: { type: String, required: true },
+    state: { type: String, required: true },
+    city: { type: String, required: true },
     indirizzo:{ type: String, required: true },
     dataDiNascita: { type: Date, required: true },
     matricola: { type: String, required: true, unique: true },
@@ -17,14 +17,10 @@ var studentSchema = new Schema({
     telefono: Number,
     username: { type: String, required: true },
     password: { type: String, required: true },
-    
     carriera: [carriera.schema], //'array of subdocument' contenente la carriera degli studenti
     annoCorso: {type: Number, default:1}
-},
-    //toglie il campo __v dal db
-    {
-        versionKey: false
-    });
+})
+
 
 //-----STUDENTI-----
 var Student = mongoose.model('Student', studentSchema);
