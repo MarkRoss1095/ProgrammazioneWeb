@@ -66,7 +66,9 @@ newProf.save (function(err,prof){
         }
             res.json({success: false, msg: "errore"})
     } 
-    
+
+
+
     if (prof) {
         res.json ({success:true,msg:'Ok! Professor account has been created successfully'});
     }
