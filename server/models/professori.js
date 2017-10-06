@@ -16,7 +16,7 @@ var peopleSchema = new Schema({
     state: { type: String, required: true },
     city: { type: String, required: true },
     phone: { type: Number, required: true },
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
 },
 
 

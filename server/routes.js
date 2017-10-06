@@ -2,7 +2,7 @@ const   express= require('express'),
         router=express.Router(),
 /// CONTROLLER ///
 userController=require('./function/user');
-ProfController=require('./function/professori')
+ProfController=require('./function/professori');
 
 module.exports = router;
 
@@ -12,4 +12,5 @@ module.exports = router;
 
 router.post('/addStudent',userController.addStudent); //ok
 router.post('/addProf',ProfController.addProf);
-
+router.post('/loginProf', ProfController.loginProf);
+router.post('/loginStudent', userController.loginStudent);

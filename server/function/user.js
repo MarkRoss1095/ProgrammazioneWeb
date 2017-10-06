@@ -77,3 +77,31 @@ exports.addStudent = function(req,res,next) {
 };
 
 
+var jwt= require('jwt-simple');
+
+exports.loginStudent = function(req,res) {
+    User.findOne({
+        username: req.body.username
+    }, function(err, user) {
+        if (err) 
+            return res.json({success: false, msg: 'errore durante il login,riprovare'}); 
+        if (!user) {
+            return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
+        }else{
+
+
+        // check if password matches
+            user.comparePassword(req.body.password, function (err, isMatch) {
+                if (isMatch && !err) {
+                    // if user is found and password is right create a token
+                    var token = jwt.encode(user, process.env.SECRET);
+                    // return the information including token as JSON
+                 
+                    return res.json({success: true, token:'JWT ' + token});
+                }else{
+                    return  res.json({success: false, msg: 'Autenticazione fallita, password errata.'});
+                }
+            });
+        }
+    });
+};
