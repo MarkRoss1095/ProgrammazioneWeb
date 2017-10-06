@@ -2,6 +2,7 @@ const   express= require('express'),
         router=express.Router(),
 /// CONTROLLER ///
 userController=require('./function/user');
+ProfController=require('./function/professori')
 
 module.exports = router;
 
@@ -9,6 +10,6 @@ module.exports = router;
     //ROUTER FOR USER
 
 
-router.post('/addStudent',      userController.addStudent); //ok
-
+router.post('/addStudent',userController.addStudent); //ok
+router.post('/addProf',ProfController.addProf);
 
