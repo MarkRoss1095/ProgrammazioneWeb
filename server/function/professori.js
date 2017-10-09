@@ -1,9 +1,7 @@
 Prof=require('../models/professori');
 
-const existing=11000;
 
-
-exports.addProf=function(req,res,next){
+exports.addProf= function(req,res,next){
 
     if (!req.body.name || !req.body.surname) {
         return  res.json({state: false, message: 'name and surname are required'});
@@ -44,6 +42,7 @@ exports.addProf=function(req,res,next){
    else{ 
 
 var newProf=new Prof({
+id:req.body.id,
 name:req.body.name,
 surname:req.body.surname,
 email:req.body.email,
@@ -61,15 +60,10 @@ gender:req.body.gender
 
 newProf.save (function(err,prof){
     if (err) {
-        if(err=existing) {
-            res.json({success:false,msg:"account già esistente"})
-        }
             res.json({success: false, msg: "errore"})
     } 
 
-
-
-    if (prof) {
+    else {
         res.json ({success:true,msg:'Ok! Professor account has been created successfully'});
     }
 }) 
