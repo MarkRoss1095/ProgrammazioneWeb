@@ -82,7 +82,7 @@ newProf.save (function(err,prof){
 var jwt= require('jwt-simple');
 
 exports.loginProf = function(req,res) {
-   /*  Prof.findOne({
+     Prof.findOne({
         username: req.body.username
     }, function(err, user) {
         if (err) 
@@ -103,6 +103,6 @@ exports.loginProf = function(req,res) {
                 }
             });
         }
-    });  */ console.log("ciaoww")
+    });  
 };
 
