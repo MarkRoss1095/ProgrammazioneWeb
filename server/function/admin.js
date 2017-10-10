@@ -75,5 +75,4 @@ exports.loginAdmin = function(req,res) {
             });
         }
     }); 
-     console.log("ciaoww")
 }

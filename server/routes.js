@@ -15,4 +15,5 @@ router.post('/addProf',ProfController.addProf);
 router.post('/loginProf', ProfController.loginProf);
 router.post('/loginStudent', userController.loginStudent);
 router.post('/addAppello', ProfController.addAppello);
-
+router.post('/addFacolta',userController.addFacolta);
+router.post('/addCorso',userController.addCorso);

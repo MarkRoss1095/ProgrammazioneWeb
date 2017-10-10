@@ -1,19 +1,20 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Prof = require('./professori').model('Prof');
+var Prof = require('./professore')
+var Facolta =require('./facolta');
 
 var corsiSchema = new Schema({
-    nome: { type: String, required: true },
+    nome: { type: String, required: true, unique: true  },
     codice: { type: String, required: true, unique: true },
-    codFacoltà: { type: String, required: true, ref: 'Prof' },
-    matricolaProf: { type: String, required: true, ref: 'Prof' },
+    codFacolta: { type: String, required: true, ref: 'Facolta' },
     cfu: { type: Number, required: true },
-    anno:  { type: Number, required: true }
+    anno:  { type: Number, required: true },
+    usernameProf: { type: String, ref: 'Prof' }
 },
     {
         versionKey: false
     });
 
 //-----CORSI-----
-var Course = mongoose.model('Course', corsiSchema);
-module.exports = Course;
+var Corsi = mongoose.model('Corsi', corsiSchema);
+module.exports = Corsi;

@@ -10,17 +10,17 @@ var studentSchema = new Schema({
     state: { type: String, required: true },
     city: { type: String, required: true },
     address:{ type: String, required: true },
-    date: { type: Date, required: true },
+    bod: { type: Date, required: true },
     matricola: { type: String, required: true, unique: true },
-    codFacoltà: { type: String, ref: 'Facoltà', required: true },
+    codFacolta: { type: String, ref: 'Facoltà', required: true },
     email: { type: String, required: true, unique: true, validate: function(email) {
         return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
     } },
-    telefono:{ type: Number},
+    phone:{ type: Number},
     username: { type: String, required: true },
     password: { type: String, required: true },
     gender:{type: String, required: true , enum: ['F','M'] },
-    carriera: [carriera.schema], //'array of subdocument' contenente la carriera degli studenti
+   // carriera: [carriera.schema], //'array of subdocument' contenente la carriera degli studenti
     annoCorso: {type: Number, default:1}
 })
 

@@ -1,10 +1,13 @@
 
 //import models
-Prof=require('../models/professori');
+Prof=require('../models/professore');
 Appello=require('../models/appello');
 
+// variabili
 var key='test'
 var jwt= require('jwt-simple');
+
+// ALTRE FUNZIONI
 
 getToken = function (headers) {
     if (headers && headers.authorization) {
@@ -19,6 +22,7 @@ getToken = function (headers) {
         return null;
     }
 }
+// FUNZIONI PRINCIPALI
 
 exports.addProf= function(req,res,next){
 
@@ -58,63 +62,61 @@ exports.addProf= function(req,res,next){
         return  res.json({state: false, message: 'codicefacoltà is required'});
     }
 
-   else{ 
+    else{ 
 
-var newProf=new Prof({
-id:req.body.id,
-name:req.body.name,
-surname:req.body.surname,
-email:req.body.email,
-codFacoltà:req.body.codFacoltà,
-username:req.body.username,
-password:req.body.password,
-state:req.body.state,
-city:req.body.city,
-address:req.body.address,
-phone:req.body.phone,
-date:req.body.date,
-gender:req.body.gender
-})
+        var newProf=new Prof({
+            id:req.body.id,
+            name:req.body.name,
+            surname:req.body.surname,
+            email:req.body.email,
+            codFacoltà:req.body.codFacoltà,
+            username:req.body.username,
+            password:req.body.password,
+            state:req.body.state,
+            city:req.body.city,
+            address:req.body.address,
+            phone:req.body.phone,
+            date:req.body.date,
+            gender:req.body.gender
+        })
+        newProf.save(function(err,prof){
+            if (err) {
+                    res.json({success: false, msg:err})
+            } 
 
-
-newProf.save(function(err,prof){
-    if (err) {
-            res.json({success: false, msg:err})
-    } 
-
-    else {
-        res.json ({success:true,msg:'Ok! Professor account has been created successfully'});
-    }
-}) 
- }
-}
-
-var jwt= require('jwt-simple');
-
-exports.loginProf = function(req,res) {
-     Prof.findOne({
-        username: req.body.username
-    }, function(err, user) {
-        if (err) 
-            return res.json({success: false, msg: 'errore durante il login,riprovare'}); 
-        if (!user) {
-            return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
-        }else{
-        // check if password matches
-            user.comparePassword(req.body.password, function (err, isMatch) {
-                if (isMatch && !err) {
-                    // if user is found and password is right create a token
-                    var token = jwt.encode(user,process.env.SECRET );
-                    // return the information including token as JSON
-                 
-                    return res.json({success: true, token:'JWT ' + token});
-                }else{
-                    return  res.json({success: false, msg: 'Autenticazione fallita, password errata.'});
-                }
-            });
+            else {
+                res.json ({success:true,msg:'Ok! Professor account has been created successfully'});
+            }
+        }) 
         }
-    });  
-};
+        }
+
+        var jwt= require('jwt-simple');
+
+        exports.loginProf = function(req,res) {
+            Prof.findOne({
+                username: req.body.username
+            }, function(err, user) {
+                if (err) 
+                    return res.json({success: false, msg: 'errore durante il login,riprovare'}); 
+                if (!user) {
+                    return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
+                }else{
+                // check if password matches
+                    user.comparePassword(req.body.password, function (err, isMatch) {
+                        if (isMatch && !err) {
+                            // if user is found and password is right create a token
+                            var token = jwt.encode(user,process.env.SECRET );
+                            // return the information including token as JSON
+                        
+                            return res.json({success: true, token:'JWT ' + token});
+                        }else{
+                            return  res.json({success: false, msg: 'Autenticazione fallita, password errata.'});
+                        }
+                    });
+                }
+            });  
+        };
 
 exports.addAppello = function(req,res) {
     var token = getToken(req.headers);
