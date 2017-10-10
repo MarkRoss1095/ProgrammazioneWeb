@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');            // pull information from HTM
 
 // configuration =================
 
+
 var mongoose = require('mongoose');
  mongoose.connect('mongodb://localhost/ProgrammazioneWeb');
 var con = mongoose.connection;
