@@ -77,6 +77,8 @@ exports.addStudent = function(req,res,next) {
 };
 
 
+
+
 var jwt= require('jwt-simple');
 
 exports.loginStudent = function(req,res) {

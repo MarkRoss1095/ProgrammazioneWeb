@@ -16,7 +16,7 @@ var studentSchema = new Schema({
     email: { type: String, required: true, unique: true, validate: function(email) {
         return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
     } },
-    telefono: Number,
+    telefono:{ type: Number},
     username: { type: String, required: true },
     password: { type: String, required: true },
     gender:{type: String, required: true , enum: ['F','M'] },

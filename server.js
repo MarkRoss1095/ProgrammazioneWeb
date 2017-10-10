@@ -1,5 +1,4 @@
-    
-    
+require('dotenv').config();
     // import moduli node ========================
 var express  = require('express');
 var app      = express(); 
@@ -16,7 +15,7 @@ con.on('error', function (err){
 });
 
 con.once('open', function (){
-console.log('connessione al database neoscan riuscita!');
+console.log('connessione al database TEST riuscita!');
 });
 
 
