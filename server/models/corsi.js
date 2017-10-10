@@ -4,7 +4,7 @@ var Prof = require('./professore')
 var Facolta =require('./facolta');
 
 var corsiSchema = new Schema({
-    nome: { type: String, required: true, unique: true  },
+    nome: { type: String, required: true  },
     codice: { type: String, required: true, unique: true },
     codFacolta: { type: String, required: true, ref: 'Facolta' },
     cfu: { type: Number, required: true },

@@ -159,7 +159,7 @@ Student1.save(function (err) {
     //AGGIUNGI PROFESSORI
 var prof1 = new Prof({
     name: 'Marcello',
-    surname: 'Rosatii',
+    surname: 'Rosati',
     gender:'M',
     email: 'marcello.rosati@professore.it',
     username: 'marcello.rosati',
