@@ -2,12 +2,11 @@ require('dotenv').config();
 
 //import module 
 var express  = require('express');
-var app      = express(); 
+var app = express(); 
 var bodyParser = require('body-parser');            // pull information from HTML POST (express4)
 
 
 //connect to the database mongoose
-
 var mongoose = require('mongoose');
  mongoose.connect('mongodb://localhost/ProgrammazioneWeb');
 var connect = mongoose.connection;
@@ -29,7 +28,7 @@ app.use(bodyParser.json());
 // parse application/vnd.api+json as json                         
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
 
-app.use(express.static(__dirname + '/client')); 
+//app.use(express.static(__dirname + '/client')); 
 
 
 // routes for server file 
