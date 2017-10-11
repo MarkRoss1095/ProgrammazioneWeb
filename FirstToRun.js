@@ -924,7 +924,25 @@ Student1.save(function (err) {
     if (err) throw err;
 });
 
-
+var Student2 = new Student ({
+    name: 'Silvia',
+    surname: 'Nigrisoli',
+    gender: 'F',
+    email: 'silvia.nigrisoli@studenti.unicam.it',
+    username: 'silvia.nigrisoli',
+    password: createHash('silvietta'),
+    state: 'Italy',
+    city: 'Fermo',
+    address: 'Via campania 1',
+    phone:'3394678282',
+    bod:'14-02-1967',
+    annoCorso: '2',
+    codFacolta: 'L-31',
+    matricola: '0934576',
+});
+Student1.save(function (err) {
+    if (err) throw err;
+});
 
 /*
 //AGGIUNTA STUDENTI ANNI > 1

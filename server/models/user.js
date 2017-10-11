@@ -20,12 +20,12 @@ var studentSchema = new Schema({
     email: { type: String, required: true, unique: true, validate: function(email) {
         return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
     } },
-    phone: { type: Number},
+    phone: { type: Number,unique:true,required:true},
     username: { type: String, required: true },
     password: { type: String, required: true },
     gender: {type: String, required: true , enum: ['F','M'] },
    // carriera: [carriera.schema], //'array of subdocument' contenente la carriera degli studenti
-    annoCorso: {type: Number, default:1},
+    annoCorso: {type: String, enum: ['1','2','3','FuoriCorso']},
     carriera:[Corsi.schema]
 })
 
