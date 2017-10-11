@@ -919,6 +919,38 @@ var Student1 = new Student ({
     annoCorso: '1',
     codFacolta: 'L-31',
     matricola: '093456',
+    carriera: [{
+        codCorso: analisi.codice,
+        data: '2016-02-16',
+        esito: 28,
+        cfu: analisi.cfu
+    },
+    {
+        codCorso: logica.codice,
+        data: '2016-02-11',
+        esito: 23,
+        cfu: logica.cfu
+    },
+    {
+        codCorso: inglese.codice,
+        data: '2016-05-21',
+        esito: 27,
+        cfu: inglese.cfu
+    },
+    {
+        codCorso: algebra.codice,
+        data: '2016-09-04',
+        esito: 25,
+        cfu: algebra.cfu
+    },
+    {
+        codCorso: diritto.codice,
+        data: '2016-09-04',
+        esito: 25,
+        cfu: diritto.cfu
+    }
+
+]
 });
 Student1.save(function (err) {
     if (err) throw err;
@@ -944,6 +976,154 @@ Student1.save(function (err) {
     if (err) throw err;
 });
 
+
+//AGGIUNTA STUDENTI ALTRI ANNI
+var Student2 =new Student({
+
+name: 'Stefano',
+surname: 'Rosati',
+gender: 'M',
+email: 'stefano.rosati@studenti.unicam.it',
+username: 'stefano.rosati',
+password: createHash('stefano'),
+state: 'Italy',
+city: 'Grottammare',
+address: 'Via G.Leopardi 31',
+phone:'3345896571',
+bod:'13-11-2003',
+annoCorso: '2',
+codFacolta: 'L-35',
+matricola: '093458',
+    carriera: [{
+        codCorso: analisimath.codice,
+        data: '2016-12-20',
+        esito: 28,
+        cfu: analisimath.cfu
+    },
+    {
+        codCorso: geometria.codice,
+        data: '2017-02-16',
+        esito: 23,
+        cfu: geometria.cfu
+    },
+    {
+        codCorso: alg.codice,
+        data: '2016-06-21',
+        esito: 27,
+        cfu: alg.cfu
+    },
+    {
+        codCorso: analisimathII.codice,
+        data: '2017-09-15',
+        esito: 25,
+        cfu: analisimathII.cfu
+    },
+    {
+        codCorso: fisicaMath.codice,
+        data: '2016-09-18',
+        esito: 25,
+        cfu: fisicaMath.cfu
+    },
+    {
+        codCorso: probM.codice,
+        data: '2017-09-04',
+        esito: 25,
+        cfu: probM.cfu
+    }
+
+]
+
+
+});
+Student2.save(function (err) {
+    if (err) throw err;
+});
+
+var Student3 =new Student({
+    
+    name: 'Edoardo',
+    surname: 'Piergentili',
+    gender: 'M',
+    email: 'edoardo.piergentili@studenti.unicam.it',
+    username: 'edoardo.piergentili',
+    password: createHash('edo'),
+    state: 'Italy',
+    city: 'Sarnano',
+    address: 'Via Dei Campi 60',
+    phone:'3208759641',
+    bod:'18-10-1992',
+    annoCorso: '3',
+    codFacolta: 'L-27',
+    matricola: '093458',
+        carriera: [{
+            codCorso: fisica.codice,
+            data: '2016-12-16',
+            esito: 28,
+            cfu: fisica.cfu
+        },
+        {
+            codCorso: chimicaInorganica.codice,
+            data: '2017-02-11',
+            esito: 23,
+            cfu: chimicaInorganica.cfu
+        },
+        {
+            codCorso: chimicaAnalitica.codice,
+            data: '2016-05-21',
+            esito: 27,
+            cfu: chimicaAnalitica.cfu
+        },
+        {
+            codCorso: info.codice,
+            data: '2016-09-04',
+            esito: 25,
+            cfu: info.cfu
+        },
+        {
+            codCorso: analisiC.codice,
+            data: '2017-01-04',
+            esito: 25,
+            cfu: analisiC.cfu
+        },
+        {
+            codCorso: eco.codice,
+            data: '2017-01-18',
+            esito: 25,
+            cfu: eco.cfu
+        },
+        {
+            codCorso: chimicaAnaliticaII.codice,
+            data: '2018-02-25',
+            esito: 25,
+            cfu: chimicaAnaliticaII.cfu
+        },
+        {
+            codCorso: alimenti.codice,
+            data: '2018-09-08',
+            esito: 25,
+            cfu: alimenti.cfu
+        },
+        {
+            codCorso: molecolare.codice,
+            data: '2018-02-06',
+            esito: 25,
+            cfu: molecolare.cfu
+        },
+        {
+            codCorso: bio.codice,
+            data: '2017-05-26',
+            esito: 25,
+            cfu: bio.cfu
+        }
+    
+    
+    
+    ]
+    
+    });
+    Student2.save(function (err) {
+        if (err) throw err;
+    });
 /*
 //AGGIUNTA STUDENTI ANNI > 1
 //informatica
