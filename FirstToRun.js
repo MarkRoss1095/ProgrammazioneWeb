@@ -3,13 +3,13 @@
 var Facolta = require('./server/models/facolta');
 var Admin = require('./server/models/admin');
 var Prof = require('./server/models/professore'); 
-var Student = require ('./server/models/user');
+var Student = require ('./server/models/student');
 var Corsi = require('./server/models/corsi');
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost/ProgrammazioneWeb";
 
-/*  var studenti = require('./models/user');
+/*  var studenti = require('./models/student');
     var urlDb = require('./config');
 */
 

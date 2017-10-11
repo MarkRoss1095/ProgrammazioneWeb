@@ -1,4 +1,4 @@
-User=require('../models/user');
+User=require('../models/student');
 Facolta=require('../models/facolta');
 Corso=require('../models/corsi');
 
