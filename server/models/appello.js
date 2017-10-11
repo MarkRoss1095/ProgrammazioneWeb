@@ -27,6 +27,8 @@ var AppelloSchema = new Schema({
     aperto:{
         type:Boolean,default:true
     },
+        versionKey: false
+   
      
     });
 
