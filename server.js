@@ -3,7 +3,7 @@ require('dotenv').config();
 //import module 
 var express  = require('express');
 var app = express(); 
-var bodyParser = require('body-parser');            // pull information from HTML POST (express4)
+var bodyParser = require('body-parser');
 
 
 //connect to the database mongoose
@@ -11,9 +11,8 @@ var mongoose = require('mongoose');
  mongoose.connect('mongodb://localhost/ProgrammazioneWeb');
 var connect = mongoose.connection;
 
-
 connect.once('open', function (){
-    //message on the terminal, connection is ON
+    //message on the terminal: connection is ON
 console.log('*    Server connection is Up!      *');
 console.log('************************************')
 });
@@ -36,7 +35,7 @@ app.use(require('./server/routes.js'));
 
 // listen (start app with node server.js) 
     app.listen(8080,()=>{
-        console.log('************************************')
+        console.log('\n************************************')
         console.log('*Server on at http://localhost:' + 8080+'*');
     })
 
