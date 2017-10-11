@@ -128,34 +128,6 @@ admin1.save(function (err) {
     if (err) throw err;
 });
 
-
-//AGGIUNGI STUDENTI
-
-var Student1 = new Student ({
-    name: 'Sara',
-    surname: 'Fedeli',
-    gender: 'F',
-    email: 'sara.fedeli@studenti.unicam.it',
-    username: 'sara.fedeli',
-    password: createHash('saretta'),
-    state: 'Italy',
-    city: 'Fermo',
-    address: 'Via campania 1',
-    phone:'3394848282',
-    bod:'02-10-2001',
-    annoCorso: '1',
-    codFacolta: 'L-31',
-    matricola: '093456',
-
-});
-Student1.save(function (err) {
-    if (err) throw err;
-});
-
-
-
-
-
     //AGGIUNGI PROFESSORI
 var prof1 = new Prof({
     name: 'Marcello',
@@ -214,7 +186,7 @@ prof3.save(function (err) {
 
 //AGGIUNTI Corsi
     //informatica
-
+/* 
 var programmazione = new Corsi({
     nome: 'Programmazione',
     codice: 'I-01',
@@ -226,7 +198,7 @@ var programmazione = new Corsi({
 programmazione.save(function (err) {
     if (err) throw err;
 }); 
-    
+     */
 var analisi = new Corsi({
     nome: 'Analisi I',
     codice: 'I-02',
@@ -323,13 +295,13 @@ asd.save(function (err) {
     if (err) throw err;
 });
 
-var prg = new Corsi({
-    nome: 'Programmazione II',
+var prg = new Corsi({nome: 'Programmazione II',
     codice: 'I-10',
     codFacolta: informatica.codFacolta,
     usernameProf: '',
     cfu: 9,
     anno: 2
+    
 });
 prg.save(function (err) {
     if (err) throw err;
@@ -930,6 +902,27 @@ fineM.save(function (err) {
     if (err) throw err;
 });
  
+//AGGIUNGI STUDENTI
+
+var Student1 = new Student ({
+    name: 'Sara',
+    surname: 'Fedeli',
+    gender: 'F',
+    email: 'sara.fedeli@studenti.unicam.it',
+    username: 'sara.fedeli',
+    password: createHash('saretta'),
+    state: 'Italy',
+    city: 'Fermo',
+    address: 'Via campania 1',
+    phone:'3394848282',
+    bod:'02-10-2001',
+    annoCorso: '1',
+    codFacolta: 'L-31',
+    matricola: '093456',
+});
+Student1.save(function (err) {
+    if (err) throw err;
+});
 
 
 

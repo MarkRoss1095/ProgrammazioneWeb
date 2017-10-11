@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
 var Course = require('./corsi')
 
 var professoreSchema = new Schema({

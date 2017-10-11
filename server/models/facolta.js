@@ -5,7 +5,7 @@ var Corsi = require('./corsi');
 var facoltaSchema = new Schema({
     nome: { type: String, required: true,unique:true },
     codFacolta: { type: String, required: true, unique: true },
-    corsi: [{ type: String, ref: 'Corsi' }]
+    corsi: [ Corsi.schema ]
 },
     {
         versionKey: false

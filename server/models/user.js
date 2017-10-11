@@ -2,7 +2,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Facoltà = require('./facolta');
-var carriera = require('./carriera');
+var Carriera = require('./carriera');
+var Corsi =require('./corsi');
+
+/* var AppelliVerbalizzati = require('./appelliVerbalizzati');
+ */
 
 var studentSchema = new Schema({
     name: { type: String, required: true },
@@ -21,7 +25,8 @@ var studentSchema = new Schema({
     password: { type: String, required: true },
     gender:{type: String, required: true , enum: ['F','M'] },
    // carriera: [carriera.schema], //'array of subdocument' contenente la carriera degli studenti
-    annoCorso: {type: Number, default:1}
+    annoCorso: {type: Number, default:1},
+    carriera:[Corsi.schema]
 })
 
 
