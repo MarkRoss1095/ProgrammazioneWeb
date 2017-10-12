@@ -1140,7 +1140,7 @@ var Student4 =new Student({
         codCorso: molecolare.codice,
         data: '2017-03-31S',
         esito: 31,
-        cfu: moolecolare.cfu
+        cfu: molecolare.cfu
     }
 
 
