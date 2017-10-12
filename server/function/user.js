@@ -41,8 +41,7 @@ exports.addStudent = function(req,res,next) {
     if (!req.body.matricola) {
         return  res.json({state: false, message: 'matricola is required'});
     }else{ 
-
-
+        
     //if the are not error you can create a new student 
 
     var newStudent= new User({
