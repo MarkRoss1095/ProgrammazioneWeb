@@ -2,7 +2,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Facoltà = require('./facolta');
-var Carriera = require('./carriera');
 var Corsi =require('./corsi');
 var ExamPassed =require ('./esamisvolti');
 /* var AppelliVerbalizzati = require('./appelliVerbalizzati');
