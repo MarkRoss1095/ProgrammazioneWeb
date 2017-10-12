@@ -46,6 +46,161 @@ var createHash = function (password) {
 var informatica = new Facolta({
     nome: 'Informatica',
     codFacolta: 'L31',
+    corsi:  [
+        {
+            nome: 'Analisi I',
+            codice: 'I-02',
+            codFacolta: 'L31',
+            usernameProf: '',
+            cfu: 6,
+            anno: 1
+        },
+        {
+            nome: 'Logica Matematica',
+            codice: 'I-03',
+            codFacolta: 'L31',
+            usernameProf: '',
+            cfu: 6,
+            anno: 1
+        },
+        {
+            nome: 'Lingua Inglese (B1 or B2 level)',
+            codice: 'I-04',
+            codFacolta: 'L31',
+            usernameProf: '',
+            cfu: 6,
+            anno: 1
+        },
+        {
+            nome: 'Algebra Lineare',
+            codice: 'I-05',
+            codFacolta: 'L31',
+            usernameProf: '',
+            cfu: 6,
+            anno: 1
+    },
+    {
+        nome: 'Architettura degli Elaboratori',
+        codice: 'I-06',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 12,
+        anno: 1
+    },
+    {
+        nome: 'Diritto delle Nuove Tecnologie',
+        codice: 'I-07',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 6,
+        anno: 1
+    },
+    {
+        nome: 'Fondamenti di Informatica',
+        codice: 'I-08',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 6,
+        anno: 1
+    },
+    {
+        nome: 'Algoritmi e Strutture Dati',
+        codice: 'I-09',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 12,
+        anno: 2
+    },
+    {
+        nome: 'Programmazione II',
+        codice: 'I-10',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 9,
+        anno: 2
+    },
+    {
+        nome: 'Basi di Dati',
+        codice: 'I-11',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 9,
+        anno: 2
+    },
+    {
+        nome: 'Internet Reti e Sicurezza',
+        codice: 'I-12',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 9,
+        anno: 2
+    },
+    {
+        nome: 'Internet Reti e Sicurezza',
+        codice: 'I-12',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 9,
+        anno: 2
+    },
+    {
+        nome: 'Sistemi Operativi',
+        codice: 'I-13',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 9,
+        anno: 2
+    },
+    {
+        nome: 'Business and Management',
+        codice: 'I-15',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 6,
+        anno: 2
+    },
+    {
+        nome: 'Pogrammazione Web',
+        codice: 'I-16',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 6,
+        anno: 3
+    },
+    {
+        nome: 'Ingegneria del Software',
+        codice: 'I-17',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Project',
+        codice: 'I-18',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Stage',
+        codice: 'I-20',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Prova Finale',
+        codice: 'I-21',
+        codFacolta: 'L31',
+        usernameProf: '',
+        cfu: 12,
+        anno: 3
+    },
+]
+
 });
 informatica.save(function (err) {
     if (err) throw err;

@@ -29,7 +29,7 @@ var AppelloSchema = new Schema({
     },
         versionKey: false
    
-     
+       
     });
 
 module.exports = mongoose.model('Appello', AppelloSchema);
