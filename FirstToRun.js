@@ -920,10 +920,10 @@ var Student1 = new Student ({
     gender: 'F',
     annoCorso: '1',
     esamifatti: [{
-        codCorso: prg.codice,
-        data: '2016-12-16',
+        codCorso: diritto.codice,
+        data: '2017-12-16',
         esito: 28,
-        cfu: prg.cfu
+        cfu: diritto.cfu
     },
     {
         codCorso: fondamenti.codice,
@@ -964,6 +964,51 @@ Student1.save(function (err) {
     annoCorso: '2',
     codFacolta: 'L-31',
     matricola: '0934576',
+    esamifatti: [{
+        codCorso: prg.codice,
+        data: '2016-12-19',
+        esito: 30,
+        cfu: prg.cfu
+    },
+    {
+        codCorso: fondamenti.codice,
+        data: '2016-02-18',
+        esito: 30,
+        cfu: fondamenti.cfu
+    },
+    {
+        codCorso: algebra.codice,
+        data: '2017-05-21',
+        esito: 27,
+        cfu: algebra.cfu
+    },
+    {
+        codCorso: analisi.codice,
+        data: '2016-09-04',
+        esito: 26,
+        cfu: analisi.cfu
+    },
+    {
+        codCorso: architettura.codice,
+        data: '2017-10-06',
+        esito: 28,
+        cfu: architettura.cfu
+    },
+    {
+        codCorso: prg.codice,
+        data: '2017-09-04',
+        esito: 26,
+        cfu: prg.cfu
+    },
+    {
+        codCorso: asd.codice,
+        data: '2017-09-22',
+        esito: 27,
+        cfu: asd.cfu
+    }
+
+
+],
 });
 Student2.save(function (err) {
     if (err) throw err;
@@ -987,7 +1032,51 @@ bod: new Date(2003,11,13),
 annoCorso: '2',
 codFacolta: 'L-35',
 matricola: '093569',
-    
+esamifatti: [{
+    codCorso: analisimath.codice,
+    data: '2016-12-16',
+    esito: 18,
+    cfu: analisimath.cfu
+},
+{
+    codCorso: geometria.codice,
+    data: '2017-02-11',
+    esito: 23,
+    cfu: geometria.cfu
+},
+{
+    codCorso: alg.codice,
+    data: '2016-05-21',
+    esito: 22,
+    cfu: alg.cfu
+},
+{
+    codCorso: geo.codice,
+    data: '2017-09-04',
+    esito: 25,
+    cfu: geo.cfu
+},
+{
+    codCorso: analisimathII.codice,
+    data: '2017-10-10',
+    esito: 21,
+    cfu: analisimathII.cfu
+},
+{
+    codCorso: probM.codice,
+    data: '2017-11-27',
+    esito: 24,
+    cfu: probM.cfu
+},
+{
+    codCorso: inglM.codice,
+    data: '2016-02-11',
+    esito: 20,
+    cfu: inglM.cfu
+}
+
+
+],
 
 
 });
@@ -1011,6 +1100,53 @@ var Student4 =new Student({
     annoCorso: '3',
     codFacolta: 'L-27',
     matricola: '093458',
+    esamifatti: [{
+        codCorso: analisiC.codice,
+        data: '2015-12-16',
+        esito: 28,
+        cfu: analisiC.cfu
+    },
+    {
+        codCorso: fisica.codice,
+        data: '2015-02-20',
+        esito: 29,
+        cfu: fisica.cfu
+    },
+    {
+        codCorso: chimicaInorganica.codice,
+        data: '2016-05-15',
+        esito: 27,
+        cfu: algebra.cfu
+    },
+    {
+        codCorso: chimicaOrganica.codice,
+        data: '2016-09-08',
+        esito: 25,
+        cfu: analisi.cfu
+    },
+    {
+        codCorso: eco.codice,
+        data: '2017-10-14',
+        esito: 26,
+        cfu: eco.cfu
+    },
+    {
+        codCorso: alimenti.codice,
+        data: '2017-12-16',
+        esito: 26,
+        cfu: alimenti.cfu
+    },
+    {
+        codCorso: molecolare.codice,
+        data: '2017-03-31S',
+        esito: 31,
+        cfu: moolecolare.cfu
+    }
+
+
+
+
+],
     
     });
     Student4.save(function (err) {
