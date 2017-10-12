@@ -208,7 +208,180 @@ informatica.save(function (err) {
 
 var matematica = new Facolta({
     nome: 'Matematica',
-    codFacolta: 'L35'
+    codFacolta: 'L35',
+    corsi:
+    [
+        {
+            nome: 'Analisi Matematica I',
+            codice: 'M-50',
+            codFacolta: 'L35',
+            usernameProf:'francesco.calise',
+            cfu: 12,
+            anno: 1
+        },
+        {
+            nome: 'Geometria I',
+            codice: 'M-51',
+            codFacolta: 'L35',
+            usernameProf:'',
+            cfu: 12,
+            anno: 1
+        },
+        {
+            nome: 'Algebra',
+            codice: 'M-52',
+            codFacolta: 'L35',
+            usernameProf:'',
+            cfu: 6,
+            anno: 1
+        },
+        {
+            nome: 'Fisica I',
+            codice: 'M-53',
+            codFacolta: 'L35',
+            usernameProf:'',
+            cfu: 6,
+            anno: 1
+    },
+    {
+        nome: 'Lingua Inglese (B1 or B2 level)',
+        codice: 'M-54',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 1
+    },
+    {
+        nome: 'Algebra e Logica',
+        codice: 'M-55',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 9,
+        anno: 1
+    },
+    {
+        nome: 'Programmazione',
+        codice: 'M-56',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 1
+    },
+    {
+        nome: 'Geometria II',
+        codice: 'M-57',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 12,
+        anno: 2
+    },
+    {
+        nome: 'Analisi Matematica II',
+        codice: 'M-58',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 12,
+        anno: 2
+    },
+    {
+        nome: 'Fisica Matematica',
+        codice: 'M-59',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 12,
+        anno: 2
+    },
+    {
+        nome: 'Probabilità',
+        codice: 'M-60',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 2
+    },
+    {
+        nome: 'Fisica Generale II',
+        codice: 'M-61',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 2
+    },
+    {
+        nome: 'Elementi di Matematica Computazionale',
+        codice: 'M-62',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 2
+    },
+    {
+        nome: 'Ricerca Operativa',
+        codice: 'M-63',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 2
+    },
+    {
+        nome: 'Laboratorio di Analisi Matematica III e Programmazione',
+        codice: 'M-64',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Matematica Finanziaria',
+        codice: 'M-65',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Tecniche di Ottimizzazione',
+        codice: 'M-66',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 3
+    },
+    {
+        nome: 'Analisi numerica',
+        codice: 'M-67',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 3
+    },
+    {
+        nome: 'Laboratorio di Fisica Termodinamica',
+        codice: 'M-68',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Stage',
+        codice: 'M-69',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 3
+    },
+    {
+        nome: 'Prova Finale',
+        codice: 'M-70',
+        codFacolta: 'L35',
+        usernameProf:'',
+        cfu: 6,
+        anno: 3
+    },
+]
+
+
 });
 matematica.save(function (err) {
     if (err) throw err;
@@ -216,7 +389,161 @@ matematica.save(function (err) {
 
 var chimica = new Facolta({
     nome: 'Chimica',
-    codFacolta: 'L27'
+    codFacolta: 'L27',
+    corsi:  [
+        {
+            nome: 'Analisi I',
+            codice: 'C-30',
+            codFacolta: 'L27',
+            usernameProf: 'alba.ciattaglia',
+            cfu: 12,
+            anno: 1
+        },
+        {
+            nome: 'Fisica I-II',
+            codice: 'C-31',
+            codFacolta: 'L27',
+            usernameProf:'',
+            cfu: 12,
+            anno: 1
+        },
+        {
+            nome: 'Chimica Inorganica',
+            codice: 'C-32',
+            codFacolta: 'L27',
+            usernameProf:'',
+            cfu: 12,
+            anno: 1
+        },
+        {
+            nome: 'Chimica Analitica I',
+            codice: 'C-33',
+            codFacolta: 'L27',
+            usernameProf:'',
+            cfu: 12,
+            anno: 1
+    },
+    {
+        nome: 'Informatica e Applicazioni Numeriche',
+        codice: 'C-34',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 10,
+        anno: 1
+    },
+    {
+        nome: 'Lingua Inglese (B1 or B2 level)',
+        codice: 'C-35',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 6,
+        anno: 1
+    },
+    {
+        nome: 'Chimica Organica I',
+        codice: 'C-36',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 10,
+        anno: 2
+    },
+    {
+        nome: 'Nozioni di Economia Generale',
+        codice: 'C-37',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 4,
+        anno: 2
+    },
+    {
+        nome: 'Chimica Fisica I',
+        codice: 'C-38',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 10,
+        anno: 2
+    },
+    {
+        nome: 'Chimica Fisica II',
+        codice: 'C-39',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 10,
+        anno: 2
+    },
+    {
+        nome: 'Chimica Inorganica',
+        codice: 'C-40',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 10,
+        anno: 2
+    },
+    {
+        nome: 'Biochimica ',
+        codice: 'C-41',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 10,
+        anno: 2
+    },
+    {
+        nome: 'Chimica Analitica II',
+        codice: 'C-42',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Chimica Organica II',
+        codice: 'C-43',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 12,
+        anno: 2
+    },
+    {
+        nome: 'Chimica dei Materiali',
+        codice: 'C-44',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 8,
+        anno: 2
+    },
+    {
+        nome: 'Chimica degli Alimenti ',
+        codice: 'C-45',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 6,
+        anno: 3
+    },
+    {
+        nome: 'Chimica Molecolare ',
+        codice: 'C-46',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 12,
+        anno: 3
+    },
+    {
+        nome: 'Stage',
+        codice: 'C-47',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 10,
+        anno: 3
+    },
+    {
+        nome: 'Prova Finale',
+        codice: 'C-48',
+        codFacolta: 'L27',
+        usernameProf:'',
+        cfu: 5,
+        anno: 3
+    },
+]
 });
 chimica.save(function (err) {
     if (err) throw err;
