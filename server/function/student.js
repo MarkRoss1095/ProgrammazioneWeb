@@ -111,43 +111,5 @@ exports.loginStudent = function(req,res) {
 
 
 
-/// TEST DATABASE ///
-exports.addFacolta = function(req,res){
 
-    var newFacolta= new Facolta({
-        nome:req.body.nome,
-        codFacolta:req.body.codFacolta,
-        
-    });
-    newFacolta.save (function(err,student){
-        if (err) {
-            res.json({success: false, msg: "errore"})
-        } 
-        
-        if (student) {
-            res.json ({success:true,msg:'ciccia'});
-        }
-    }) 
-}
-
-exports.addCorso = function(req,res){
-    
-        var newCorso= new Corso({
-            nome:req.body.nome,
-            codice:req.body.codice,
-            codFacolta:req.body.codFacolta,
-            cfu:req.body.cfu,
-            anno:req.body.anno,
-            
-        });
-        newCorso.save (function(err,student){
-            if (err) {
-                res.json({success: false, msg: err})
-            } 
-            
-            if (student) {
-                res.json ({success:true,msg:'ciccia'});
-            }
-        }) 
-    }
 
