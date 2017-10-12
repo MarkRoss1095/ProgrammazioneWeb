@@ -903,29 +903,53 @@ fineM.save(function (err) {
 });
  
 //AGGIUNGI STUDENTI
-/* 
+
 var Student1 = new Student ({
     name: 'Sara',
     surname: 'Fedeli',
-    gender: 'F',
-    email: 'sara.fedeli@studenti.unicam.it',
-    username: 'sara.fedeli',
-    password: createHash('saretta'),
     state: 'Italy',
     city: 'Fermo',
     address: 'Via campania 1',
-    phone:'3394848282',
-    bod:'02-10-2001',
-    annoCorso: '1',
-    codFacolta: 'L-31',
+    bod: new Date (2001,10,02),
     matricola: '093456',
-    
+    codFacolta: 'L-31',
+    email: 'sara.fedeli@studenti.unicam.it',
+    phone:'3394848282',
+    username: 'sara.fedeli',
+    password: createHash('saretta'),
+    gender: 'F',
+    annoCorso: '1',
+    esamifatti: [{
+        codCorso: prg.codice,
+        data: '2016-12-16',
+        esito: 28,
+        cfu: prg.cfu
+    },
+    {
+        codCorso: fondamenti.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: fondamenti.cfu
+    },
+    {
+        codCorso: algebra.codice,
+        data: '2017-05-21',
+        esito: 27,
+        cfu: algebra.cfu
+    },
+    {
+        codCorso: analisi.codice,
+        data: '2017-09-04',
+        esito: 25,
+        cfu: analisi.cfu
+    }],
+   
 });
 Student1.save(function (err) {
     if (err) throw err;
 });
 
-var Student2 = new Student ({
+ var Student2 = new Student ({
     name: 'Silvia',
     surname: 'Nigrisoli',
     gender: 'F',
@@ -936,18 +960,18 @@ var Student2 = new Student ({
     city: 'Fermo',
     address: 'Via campania 1',
     phone:'3394678282',
-    bod:'14-02-1967',
+    bod:new Date (1967,02,14),
     annoCorso: '2',
     codFacolta: 'L-31',
     matricola: '0934576',
 });
 Student2.save(function (err) {
     if (err) throw err;
-}); */
+});  
 
 
 //AGGIUNTA STUDENTI ALTRI ANNI
-/* var Student3 =new Student({
+var Student3 =new Student({
 
 name: 'Stefano',
 surname: 'Rosati',
@@ -959,7 +983,7 @@ state: 'Italy',
 city: 'Grottammare',
 address: 'Via G.Leopardi 31',
 phone:'3345896571',
-bod:'13-11-2003',
+bod: new Date(2003,11,13),
 annoCorso: '2',
 codFacolta: 'L-35',
 matricola: '093569',
@@ -983,7 +1007,7 @@ var Student4 =new Student({
     city: 'Sarnano',
     address: 'Via Dei Campi 60',
     phone:'3208759641',
-    bod:'18-10-1992',
+    bod: new Date (1992,10,16),
     annoCorso: '3',
     codFacolta: 'L-27',
     matricola: '093458',
@@ -991,7 +1015,7 @@ var Student4 =new Student({
     });
     Student4.save(function (err) {
         if (err) throw err;
-    }); */
+    });
 /*
 //AGGIUNTA STUDENTI ANNI > 1
 //informatica
