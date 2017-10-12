@@ -1,7 +1,4 @@
-var pwApp = angular.module('pwApp');
-
-
-
+var pwApp = angular.module('ProgWeb');
 
 pwApp.service('CurrentUserService', ['$q','$http', function ($q, $http) 
   {   // initialization

@@ -1,6 +1,5 @@
 // create the module and name it scotchApp
-var pwApp = angular.module('pwApp');
-
+var pwApp = angular.module('ProgWeb');
 
  // create the controller and inject Angular's $scope
   pwApp.controller('aboutController', function($scope) 
@@ -9,3 +8,4 @@ var pwApp = angular.module('pwApp');
         // create a message to display in our view
         $scope.message = 'questo è il corso di Programmazione Web';
     });
+    

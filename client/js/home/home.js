@@ -1,5 +1,5 @@
 // create the module and name it scotchApp
-var pwApp = angular.module('pwApp');
+var pwApp = angular.module('ProgWeb');
 
 
  // create the controller and inject Angular's $scope
