@@ -1,6 +1,10 @@
 # ProgrammazioneWeb
 
-COMANDI DA TERMINALE:
+
+#LINK TRELLO
+https://trello.com/b/AvB0wZyy/inizializzare-progetto-prog-web
+
+#COMANDI DA TERMINALE:
 - posizionarsi all'interno della cartella del progetto
 - digitare :
     - sudo service mongodb start //per arrivare il database
