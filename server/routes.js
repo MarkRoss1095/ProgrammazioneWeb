@@ -1,7 +1,7 @@
 const   express= require('express'),
         router=express.Router(),
 /// CONTROLLER ///
-userController=require('./function/student');
+userController=require('./function/user');
 ProfController=require('./function/professori');
 
 module.exports = router;
