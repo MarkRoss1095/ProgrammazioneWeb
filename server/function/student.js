@@ -117,10 +117,6 @@ exports.loginStudent = function(req,res) {
 };
 
 
-<<<<<<< HEAD
-
-
-=======
 /// TEST DATABASE ///
 exports.addFacolta = function(req,res){
 
@@ -159,5 +155,3 @@ exports.addCorso = function(req,res){
             }
         }) 
     }
->>>>>>> 8893087401ea2b16ceaa726f057b7e19b6a09b10
-
