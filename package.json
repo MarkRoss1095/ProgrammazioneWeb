@@ -97,7 +97,17 @@
     "stringmap": "^0.2.2"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^1.0.3"
+=======
+    "bcrypt": "^1.0.3",
+    "bcrypt-nodejs": "0.0.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "jwt-simple": "^0.5.1",
+    "moment-timezone": "^0.5.13",
+    "mongoose": "^4.12.3"
+>>>>>>> c50ec31b282c61f1d6bfb29752705d8d12af880c
   },
   "commitplease": {
     "style": "angular",
