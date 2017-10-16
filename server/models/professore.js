@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Course = require('./corsi')
+var bcrypt = require('bcrypt');
+
 
 var professoreSchema = new Schema({
 
@@ -25,7 +27,14 @@ var professoreSchema = new Schema({
         versionKey: false
     });
     
-    
+    professoreSchema.methods.comparePassword = function (passw, cb) {
+        bcrypt.compare(passw, this.password, function (err, isMatch) {
+            if (err) {
+                return cb(err);
+            }
+            cb(null, isMatch);
+        });
+    };
     
 //-----Professore-----
 var Professore = mongoose.model('Professore', professoreSchema);

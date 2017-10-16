@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Course = require('./corsi')
+var bcrypt = require('bcrypt');
+
 
 var adminSchema = new Schema({
 
@@ -24,6 +26,14 @@ var adminSchema = new Schema({
     });
   
     
+    adminSchema.methods.comparePassword = function (passw, cb) {
+        bcrypt.compare(passw, this.password, function (err, isMatch) {
+            if (err) {
+                return cb(err);
+            }
+            cb(null, isMatch);
+        });
+    };
 //-----AMMINISTRATORI-----
 var Admin = mongoose.model('Admin', adminSchema);
 module.exports = Admin;

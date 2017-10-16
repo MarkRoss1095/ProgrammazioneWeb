@@ -1,8 +1,9 @@
 const   express= require('express'),
         router=express.Router(),
 /// CONTROLLER ///
-userController=require('./function/user');
+userController=require('./function/student');
 ProfController=require('./function/professori');
+adminController=require('./function/admin');
 
 module.exports = router;
 
@@ -13,10 +14,12 @@ router.post('/addStudent',userController.addStudent); //ok
 router.post('/loginStudent', userController.loginStudent);
 router.post('/addFacolta',userController.addFacolta); //??
 router.post('/addCorso',userController.addCorso); //?? 
-
-    //route for admin
-    //router.post('/removeUser', ProfController.);
+//router.post('/modifyProfile', userController.);
     
+
+//route for admin
+//router.post('/removeUser', adminController.);
+router.post('/loginAdmin', adminController.loginAdmin);
 
 
 
