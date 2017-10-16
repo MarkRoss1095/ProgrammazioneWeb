@@ -80,7 +80,6 @@ exports.loginAdmin = function(req,res) {
         }
     }); 
 }
-<<<<<<< HEAD
 /// TEST DATABASE ///
 exports.addFacolta = function(req,res){
     
@@ -120,7 +119,7 @@ exports.addFacolta = function(req,res){
                 }
             }) 
         }
-=======
+
 
 ///######################################################## ALTRE FUNZIONI UTILIZZATE
 
@@ -139,4 +138,4 @@ getToken = function (headers) {
 
 
 
->>>>>>> 9993a0dedf577c66790573030ce9d603380d8a75
+
