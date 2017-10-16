@@ -5,10 +5,10 @@ var bcrypt = require('bcrypt');
 
 
 var professoreSchema = new Schema({
-    
+  // _id: {type:String, unique:true},
     nameP: { type: String, required: true},
     surname: { type: String, required: true },
-    codFacolta: {   type: String, ref: 'Facoltà',required:true},
+    codFacolta: { type: String, ref: 'Facoltà',required:true},
     gender:{type:String, required:true, enum:['M','F']},
     email: { type: String, required: true, unique: true, validate: function(email) {
         return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
@@ -20,7 +20,7 @@ var professoreSchema = new Schema({
     city: { type: String, required: true },
     phone: {type: Number, required: true },
     bod: {type: Date, required: true },
-   // corsi: [{ type: String, ref: 'Corsi' }]
+    corsi: [{ type: String, ref: 'Corsi' }]
 },
     //toglie il campo __v dal db
     {

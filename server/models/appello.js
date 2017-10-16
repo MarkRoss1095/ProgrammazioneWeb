@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var AppelloSchema = new Schema({
     
     prof_id:{
-        type:Number,
+        type:Object,
     },
     name_prof:{
         type:String
@@ -21,15 +21,14 @@ var AppelloSchema = new Schema({
     ora:{
         type:String
     },
+
     number_iscritti:{
         type:Number,default:0
     },
     aperto:{
-        type:Boolean,default:true
+        type:Boolean,default:true,required:true
     },
         versionKey: false
-   
-       
     });
 
 module.exports = mongoose.model('Appello', AppelloSchema);
