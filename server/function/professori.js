@@ -28,7 +28,7 @@ getToken = function (headers) {
 
 exports.addProf= function(req,res,next){
 
-    if (!req.body.name || !req.body.surname) {
+    if (!req.body.nameP || !req.body.surname) {
         return  res.json({state: false, message: 'name and surname are required'});
     }
 
@@ -51,34 +51,39 @@ exports.addProf= function(req,res,next){
         return  res.json({state: false, message: 'state and city are required'});
     }
   
-    if (!req.body.date) {
-        return  res.json({state: false, message: 'date is required'});
+    if (!req.body.bod) {
+        return  res.json({state: false, message: 'date of birthday is requireddd'});
     }
     
+
+    if (!req.body.city) {
+        return  res.json({state: false, message: 'city is required'});
+    }
   
     if (!req.body.address) {
         return  res.json({state: false, message: 'address is required'});
     }
 
-    if (!req.body.codFacoltà) {
-        return  res.json({state: false, message: 'codicefacoltà is required'});
+
+    if (!req.body.codFacolta) {
+        return  res.json({state: false, message: 'codicefacolta is required'});
     }
 
     else{ 
 
         var newProf=new Prof({
             id:req.body.id,
-            name:req.body.name,
+            nameP:req.body.nameP,
             surname:req.body.surname,
             email:req.body.email,
-            codFacoltà:req.body.codFacoltà,
+            codFacolta:req.body.codFacolta,
             username:req.body.username,
             password:req.body.password,
             state:req.body.state,
             city:req.body.city,
             address:req.body.address,
             phone:req.body.phone,
-            date:req.body.date,
+            bod:req.body.bod,
             gender:req.body.gender
         })
         newProf.save(function(err,prof){

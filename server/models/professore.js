@@ -5,8 +5,8 @@ var bcrypt = require('bcrypt');
 
 
 var professoreSchema = new Schema({
-
-    name: { type: String, required: true},
+    
+    nameP: { type: String, required: true},
     surname: { type: String, required: true },
     codFacolta: {   type: String, ref: 'Facoltà',required:true},
     gender:{type:String, required:true, enum:['M','F']},
@@ -20,7 +20,7 @@ var professoreSchema = new Schema({
     city: { type: String, required: true },
     phone: {type: Number, required: true },
     bod: {type: Date, required: true },
-    corsi: [{ type: String, ref: 'Corsi' }]
+   // corsi: [{ type: String, ref: 'Corsi' }]
 },
     //toglie il campo __v dal db
     {
