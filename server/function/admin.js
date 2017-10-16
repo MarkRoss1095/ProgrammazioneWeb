@@ -64,6 +64,8 @@ exports.loginAdmin = function(req,res) {
         if (!admin) {
             return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
         }else{
+
+            
         // check if password matches
             admin.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
