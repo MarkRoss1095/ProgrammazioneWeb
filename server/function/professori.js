@@ -3,13 +3,17 @@
 Prof=require('../models/professore');
 Appello=require('../models/appello');
 var bcrypt = require('bcrypt');
-
+var bCrypt = require('bcrypt-nodejs');
 // variabili
 var key='test'
 var jwt= require('jwt-simple');
 var moment =require('moment-timezone');
 
 // ALTRE FUNZIONI
+/**Funzione per criptare la password nel db */
+var createHash = function (password) {
+    return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+}
 
 getToken = function (headers) {
     if (headers && headers.authorization) {
@@ -78,7 +82,7 @@ exports.addProf= function(req,res,next){
             email:req.body.email,
             codFacolta:req.body.codFacolta,
             username:req.body.username,
-            password:req.body.password,
+            password:createHash(req.body.password),
             state:req.body.state,
             city:req.body.city,
             address:req.body.address,
@@ -98,7 +102,6 @@ exports.addProf= function(req,res,next){
         }
         }
 
-        var jwt= require('jwt-simple');
 
         exports.loginProf = function(req,res) {
             Prof.findOne({
@@ -110,7 +113,6 @@ exports.addProf= function(req,res,next){
                     return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
                 }else{
                 // check if password matches
-                console.log("la password è", username)
                     prof.comparePassword(req.body.password,function(err, isMatch) {
                        
                         if (isMatch && !err) {
@@ -144,7 +146,7 @@ exports.addAppello = function(req,res) {
                 if(!prof)
                     return res.json({succes:false,msg:'account non trovato'});
                 if(prof) {
-                        Prof.findOne({
+                        Appello.findOne({
                             id:decoded._id,
                         }).exec(function (err,prof){
                             if(err)
@@ -413,7 +415,7 @@ exports.mostraAppelli = function (req,res){
 }
 var jwt= require('jwt-simple');
 
-
+/* 
 exports.addAppello = function(req,res) {
     var token = getToken(req.headers);
         if (token) {
@@ -437,7 +439,7 @@ exports.addAppello = function(req,res) {
                         }).exec(function (err,prof){
                             if(err)
                                 return res.json({success:false,msg:'non è stato possibile trovare il profilo del professore'}); */
-                            if(prof){
+                         /*   if(prof){
                                 var time=req.body.data;
                                 var time2=req.body.ora;
 
@@ -475,14 +477,14 @@ exports.addAppello = function(req,res) {
                    /* }else{
                         return res.json({success:false,msg:'non sei un professore'});
                     }  */ 
-            }
-        })
+                //  }
+    /*     })
     }else{
         return res.json({succes:false,msg:'token non valido'});
     }
-}
+}  */
 
-
+/*
 exports.loginProf = function(req,res) {
         Prof.findOne({
             username:req.body.username
@@ -510,4 +512,4 @@ exports.loginProf = function(req,res) {
             }
         });
     };
-    
+    */
