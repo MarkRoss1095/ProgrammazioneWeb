@@ -13,6 +13,10 @@ var professoreSchema = new Schema({
     email: { type: String, required: true, unique: true, validate: function(email) {
         return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
     } },
+    ruolo: {
+        type: String,
+        enum: ['student','admin','prof','user'],
+        default: 'prof' },
     username: {type: String, required: true,unique:true},
     password: {type:String, required: true },
     state: {type: String, required: true },

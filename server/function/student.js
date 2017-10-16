@@ -2,12 +2,19 @@ User=require('../models/student');
 Facolta=require('../models/facolta');
 Corso=require('../models/corsi');
 var bcrypt = require('bcrypt');
-
+var bCrypt = require('bcrypt-nodejs');
 var jwt= require('jwt-simple');
 
 const existing=11000;
 
 // FUNCTION //
+
+/**Funzione per criptare la password nel db */
+var createHash = function (password) {
+    return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+}
+
+
 exports.addStudent = function(req,res,next) {
     if (!req.body.name || !req.body.surname) {
         return  res.json({state: false, message: 'name and surname are required'});
@@ -49,7 +56,7 @@ exports.addStudent = function(req,res,next) {
 
     var newStudent= new User({
         username: req.body.username, 
-        password: req.body.password,
+        password: createHash(req.body.password),
         email:req.body.email,
         name:req.body.name,
         surname:req.body.surname,
@@ -110,6 +117,47 @@ exports.loginStudent = function(req,res) {
 };
 
 
+<<<<<<< HEAD
 
 
+=======
+/// TEST DATABASE ///
+exports.addFacolta = function(req,res){
+
+    var newFacolta= new Facolta({
+        nome:req.body.nome,
+        codFacolta:req.body.codFacolta,
+    });
+
+    newFacolta.save (function(err,student){
+        if (err) {
+            res.json({success: false, msg: "errore"})
+        } 
+        
+        if (student) {
+            res.json ({success:true,msg:'ciccia'});
+        }
+    }) 
+}
+
+exports.addCorso = function(req,res){
+        var newCorso= new Corso({
+            nome:req.body.nome,
+            codice:req.body.codice,
+            codFacolta:req.body.codFacolta,
+            cfu:req.body.cfu,
+            anno:req.body.anno,
+            
+        });
+        newCorso.save (function(err,student){
+            if (err) {
+                res.json({success: false, msg: err})
+            } 
+            
+            if (student) {
+                res.json ({success:true,msg:'ciccia'});
+            }
+        }) 
+    }
+>>>>>>> 8893087401ea2b16ceaa726f057b7e19b6a09b10
 

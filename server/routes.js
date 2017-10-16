@@ -28,8 +28,10 @@ router.post('/loginAdmin', adminController.loginAdmin);
 router.post('/addProf',ProfController.addProf);
 router.post('/loginProf', ProfController.loginProf);
 router.post('/addAppello', ProfController.addAppello);
+
 //router.post('/addCorso', ProfController.);
 //router.post('/closeAppello', ProfController.);
-//router.post('/modifyAppello', ProfController.);
-//router.post('/removeAppello', ProfController.);
+router.put('/editAppello', ProfController.editAppello); //done
+
+router.delete('/removeAppello', ProfController.deleteAppello);
 //router.post('/modifyProfile', ProfController.);

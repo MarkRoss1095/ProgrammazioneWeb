@@ -2,6 +2,7 @@ Admin = require('../models/admin');
 Prof  = require('../models/professore');
 var bcrypt = require('bcrypt');
 var jwt= require('jwt-simple');
+var bCrypt = require('bcrypt-nodejs');
 
 
 exports.addAdmin = function(req, res, next){
@@ -33,7 +34,7 @@ exports.addAdmin = function(req, res, next){
             surname:req.body.surname,
             email:req.body.email,
             username:req.body.username,
-            password:req.body.password,
+            password:createHash(req.body.password),
             state:req.body.state,
             city:req.body.city,
             address:req.body.address,
@@ -138,4 +139,4 @@ getToken = function (headers) {
 
 
 
-
+//fare funzione aggiungi corso ad un professore
