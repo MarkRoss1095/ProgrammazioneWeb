@@ -28,7 +28,7 @@ exports.addStudent = function(req,res,next) {
         return  res.json({state: false, message: 'state and city are required'});
     }
   
-    if (!req.body.date) {
+    if (!req.body.bod) {
         return  res.json({state: false, message: 'date is required'});
     }
     
@@ -37,7 +37,7 @@ exports.addStudent = function(req,res,next) {
         return  res.json({state: false, message: 'address is required'});
     }
 
-    if (!req.body.codFacoltà) {
+    if (!req.body.codFacolta) {
         return  res.json({state: false, message: 'codicefacoltà is required'});
     }
 
@@ -56,11 +56,11 @@ exports.addStudent = function(req,res,next) {
         state:req.body.state,
         city:req.body.city,
         address:req.body.address,
-        date:req.body.date,
+        bod:req.body.bod,
         gender:req.body.gender,
         matricola:req.body.matricola,
-        codFacoltà:req.body.codFacoltà,
-        number:req.body.number,
+        codFacolta:req.body.codFacolta,
+        phone:req.body.phone,
     });
 
 
