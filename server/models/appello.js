@@ -3,13 +3,10 @@ var Schema = mongoose.Schema;
 
 var AppelloSchema = new Schema({
     
-    prof_id:{
-        type:Object,
+    username_prof:{
+        type:String,required:true
     },
-    name_prof:{
-        type:String
-    },
-    corso:{
+    codFacolta:{
         type:String,required:true
     },
     esame:{
@@ -19,14 +16,18 @@ var AppelloSchema = new Schema({
         type:String,required:true
     },
     ora:{
-        type:String
+        type:String,required:true
     },
 
     number_iscritti:{
         type:Number,default:0
     },
+
+    elenco_studenti:
+        [{ type: String, ref: 'Studenti' }]
+,
     aperto:{
-        type:Boolean,default:true,required:true
+        type:Boolean,default:true,required:true,
     },
         versionKey: false
     });
