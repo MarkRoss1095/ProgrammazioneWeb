@@ -1,6 +1,9 @@
 User=require('../models/student');
 Facolta=require('../models/facolta');
 Corso=require('../models/corsi');
+var bcrypt = require('bcrypt');
+
+var jwt= require('jwt-simple');
 
 const existing=11000;
 
@@ -77,27 +80,24 @@ exports.addStudent = function(req,res,next) {
 
 };
 
-
-
-
-var jwt= require('jwt-simple');
-
 exports.loginStudent = function(req,res) {
+
     User.findOne({
-        username: req.body.username
-    }, function(err, user) {
+        username:req.body.username
+    },
+     function(err, student) {
         if (err) 
             return res.json({success: false, msg: 'errore durante il login,riprovare'}); 
-        if (!user) {
+        if (!student) {
             return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
+        
         }else{
-
-
+            
         // check if password matches
-            user.comparePassword(req.body.password, function (err, isMatch) {
+            student.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
                     // if user is found and password is right create a token
-                    var token = jwt.encode(user, process.env.SECRET);
+                    var token = jwt.encode(student, process.env.SECRET);
                     // return the information including token as JSON
                  
                     return res.json({success: true, token:'JWT ' + token});

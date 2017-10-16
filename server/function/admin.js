@@ -1,6 +1,8 @@
-Admin = require('..models/admin');
+Admin = require('../models/admin');
+Prof  = require('../models/professore');
+var bcrypt = require('bcrypt');
+var jwt= require('jwt-simple');
 
-const existing = 11000;
 
 exports.addAdmin = function(req, res, next){
     if (!req.body.name || !req.body.surname) {
@@ -56,17 +58,19 @@ var jwt = require('jwt-simple');
 exports.loginAdmin = function(req,res) {
        Admin.findOne({
         username: req.body.username
-    }, function(err, user) {
+    }, function(err, admin) {
         if (err) 
             return res.json({success: false, msg: 'errore durante il login,riprovare'}); 
-        if (!user) {
+        if (!admin) {
             return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
         }else{
+
+            
         // check if password matches
-            user.comparePassword(req.body.password, function (err, isMatch) {
+            admin.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
                     // if user is found and password is right create a token
-                    var token = jwt.encode(user, process.env.SECRET);
+                    var token = jwt.encode(admin, process.env.SECRET);
                     // return the information including token as JSON
                     return res.json({success: true, token:'JWT ' + token});
                 }else{
@@ -76,6 +80,7 @@ exports.loginAdmin = function(req,res) {
         }
     }); 
 }
+<<<<<<< HEAD
 /// TEST DATABASE ///
 exports.addFacolta = function(req,res){
     
@@ -115,3 +120,23 @@ exports.addFacolta = function(req,res){
                 }
             }) 
         }
+=======
+
+///######################################################## ALTRE FUNZIONI UTILIZZATE
+
+getToken = function (headers) {
+    if (headers && headers.authorization) {
+      var parted = headers.authorization.split(' ');
+      if (parted.length === 2) {
+        return parted[1];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  } 
+
+
+
+>>>>>>> 9993a0dedf577c66790573030ce9d603380d8a75

@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var Facoltà = require('./facolta');
 var Corsi =require('./corsi');
 var ExamPassed =require ('./esamisvolti');
+var bcrypt = require('bcrypt');
 
 var studentSchema = new Schema({
     name: { type: String, required: true },
@@ -27,6 +28,15 @@ var studentSchema = new Schema({
 
 })
 
+ 
+studentSchema.methods.comparePassword = function (passw, cb) {
+    bcrypt.compare(passw, this.password, function (err, isMatch) {
+        if (err) {
+            return cb(err);
+        }
+        cb(null, isMatch);
+    });
+};
 
 //-----STUDENTI-----
 var Student = mongoose.model('Student', studentSchema);
