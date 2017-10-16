@@ -612,7 +612,7 @@ admin1.save(function (err) {
 
     //AGGIUNGI PROFESSORI
 var prof1 = new Prof({
-    name: 'Marcello',
+    nameP: 'Marcello',
     surname: 'Rosati',
     gender:'M',
     email: 'marcello.rosati@professore.it',
@@ -630,7 +630,7 @@ prof1.save(function (err) {
 });
 
 var prof2 = new Prof({
-    name: 'alba',
+    nameP: 'alba',
     surname: 'ciattaglia',
     gender:'F',
     email: 'alba.ciattaglia@professore.it',
@@ -648,7 +648,7 @@ prof2.save(function (err) {
 });
 
 var prof3 = new Prof({
-    name: 'francesco',
+    nameP: 'francesco',
     surname: 'calise',
     gender:'M',
     email: 'francesco.calise@professore.it',
@@ -668,19 +668,19 @@ prof3.save(function (err) {
 
 //AGGIUNTI Corsi
     //informatica
-/* 
+
 var programmazione = new Corsi({
     nome: 'Programmazione',
     codice: 'I-01',
     codFacolta: informatica.codFacolta,
-    usernameProf: prof1.username,
+    usernameProf: 'marcello.rosati',
     cfu: 12,
     anno: 1
 });
 programmazione.save(function (err) {
     if (err) throw err;
 }); 
-     */
+
 var analisi = new Corsi({
     nome: 'Analisi I',
     codice: 'I-02',

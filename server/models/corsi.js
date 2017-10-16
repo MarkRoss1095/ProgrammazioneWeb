@@ -9,7 +9,7 @@ var corsiSchema = new Schema({
     codFacolta: { type: String, required: true, ref: 'Facolta' },
     cfu: { type: Number, required: true },
     anno:  { type: Number, required: true, enum:[1,2,3] },
-    usernameProf: { type: String, ref: 'Prof' },
+    usernameProf: { type: String, ref: 'Prof'},
 },
     {
         versionKey: false

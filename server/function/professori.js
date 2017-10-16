@@ -7,7 +7,7 @@ var bcrypt = require('bcrypt');
 // variabili
 var key='test'
 var jwt= require('jwt-simple');
-
+var moment =require('moment-timezone');
 
 // ALTRE FUNZIONI
 
@@ -72,7 +72,7 @@ exports.addProf= function(req,res,next){
     else{ 
 
         var newProf=new Prof({
-            id:req.body.id,
+           // _id:req.body.id,
             nameP:req.body.nameP,
             surname:req.body.surname,
             email:req.body.email,
@@ -103,27 +103,33 @@ exports.addProf= function(req,res,next){
         exports.loginProf = function(req,res) {
             Prof.findOne({
                 username: req.body.username
-            }, function(err, user) {
+            }, function(err, prof) {
                 if (err) 
                     return res.json({success: false, msg: 'errore durante il login,riprovare'}); 
-                if (!user) {
+                if (!prof) {
                     return res.json({success: false, msg: 'Autenticazione fallita,account non trovato'});
                 }else{
                 // check if password matches
-                    user.comparePassword(req.body.password, function (err, isMatch) {
+                console.log("la password è", username)
+                    prof.comparePassword(req.body.password,function(err, isMatch) {
+                       
                         if (isMatch && !err) {
                             // if user is found and password is right create a token
-                            var token = jwt.encode(user,process.env.SECRET );
+                            var token = jwt.encode(prof,process.env.SECRET);
+                        
                             // return the information including token as JSON
                         
                             return res.json({success: true, token:'JWT ' + token});
                         }else{
+                            
                             return  res.json({success: false, msg: 'Autenticazione fallita, password errata.'});
                         }
                     });
                 }
             });  
         };
+
+
 
 exports.addAppello = function(req,res) {
     var token = getToken(req.headers);
@@ -132,12 +138,12 @@ exports.addAppello = function(req,res) {
             var decoded = jwt.decode(token, process.env.SECRET);
             Prof.findOne({
                 _id:decoded._id,
-            }).exec(function (err,account){
+            }).exec(function (err,prof){
                 if (err) 
                     return res.json({success:false,msg: err});
-                if(!account)
+                if(!prof)
                     return res.json({succes:false,msg:'account non trovato'});
-                if(account) {
+                if(prof) {
                         Prof.findOne({
                             id:decoded._id,
                         }).exec(function (err,prof){
@@ -161,7 +167,7 @@ exports.addAppello = function(req,res) {
                                             var newAppello =new Appello({
                                         
                                                prof_id:prof.id,
-                                                name_prof:prof.name +' ' + prof.surname,
+                                                name_prof:prof.nameP +' ' + prof.surname,
                                                 corso:prof.corso, 
                                                 esame:prof.insegnamenti,
                                                 data:x,
@@ -405,50 +411,59 @@ exports.mostraAppelli = function (req,res){
         })    
     }        
 }
-/*exports.addAppello = function(req,res) {
+var jwt= require('jwt-simple');
+
+
+exports.addAppello = function(req,res) {
     var token = getToken(req.headers);
         if (token) {
-            var decoded = jwt.decode(token, process.env.SECRET);
-            Account.findOne({
+            var decoded = jwt.decode(token,process.env.SECRET);
+
+            Prof.findOne({
                 _id:decoded._id,
-            }).exec(function (err,account){
+            }).exec(function (err,prof){
                 if (err) 
                     return res.json({success:false,msg:'token non valido'});
-                if(!account)
+                if(!prof)
+                console.log(token)
+
+
                     return res.json({succes:false,msg:'account non trovato'});
-                if(account) {
-                    if (account.role=='prof'){
-                        Prof.findOne({
-                            account_id:decoded._id,
+
+                if(prof) {
+
+                        /* Appello.findOne({
+                           prof_id:decoded._id,
                         }).exec(function (err,prof){
                             if(err)
-                                return res.json({success:false,msg:'non è stato possibile trovare il profilo del professore'});
+                                return res.json({success:false,msg:'non è stato possibile trovare il profilo del professore'}); */
                             if(prof){
-                                var timestamp=req.body.data;
-                                var date=moment.tz(timestamp,"Europe/Amsterdam");
-                                var date=date.format().toString();
-                                var x = date.substr(0, 10);
-                                var y = date.substring(11, 16);
+                                var time=req.body.data;
+                                var time2=req.body.ora;
 
                                 Appello.findOne({
-                                    esame:prof.insegnamenti,
-                                    data:x,
-                                    ora:y,
-                                }).exec(function(err,verify){
+                                    esame:prof.corsi,
+                                    data:time,
+                                    ora:time2,
+                                   
+                                })
+                                
+                                .exec(function(err,verify){
+                                    
                                     if(err) 
                                         return res.json({err});
                                     if(!verify){
                                             var newAppello =new Appello({
-                                                prof_id:prof.account_id,
-                                                name_prof:prof.firstname +' ' + prof.lastname,
+                                                prof_id:prof.decoded._id,
+                                                name_prof:prof.nameP +' ' + prof.surname,
                                                 corso:prof.corso, 
                                                 esame:prof.insegnamenti,
-                                                data:x,
-                                                ora:y,
+                                                data:time,
+                                                ora:time2,
                                             })
                                             newAppello.save(function(err,appello){
                                                 if (err)
-                                                    return res.json({success:false,msg:'errore druante la creazione dell\'appello'});
+                                                    return res.json({success:false,msg:'errore durante la creazione dell\'appello'});
                                                 if (appello)
                                                    return res.json({succes:true,msg:'appello creato'});
                                             })    
@@ -456,16 +471,16 @@ exports.mostraAppelli = function (req,res){
                                             return res.json({succes:false,msg:'appello già esistente'});
                                     })
                             }
-                        })
-                    }else{
+                        //})
+                   /* }else{
                         return res.json({success:false,msg:'non sei un professore'});
-                    }   
+                    }  */ 
             }
         })
     }else{
         return res.json({succes:false,msg:'token non valido'});
     }
-}*/
+}
 
 
 exports.loginProf = function(req,res) {
