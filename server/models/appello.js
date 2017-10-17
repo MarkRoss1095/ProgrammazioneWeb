@@ -22,7 +22,7 @@ var AppelloSchema = new Schema({
     number_iscritti:{
         type:Number,default:0
     },
-
+        //elenco degli studenti iscritti a questo appello
     elenco_studenti:
         [{ type: String, ref: 'Studenti' }]
 ,

@@ -216,7 +216,7 @@ exports.deleteAppello = function (req,res){
                                 if(!appello)
                                     return res.json({success:false,msg:'appello non esistente'});
                                 if(appello){
-                                    deleteAllElenco(appello._id);
+                                   // deleteAllElenco(appello._id);
                                     deleteAppello(appello._id);
                                     return res.json({success:true,msg:'appello cancellato'});
                                 }    
@@ -230,6 +230,16 @@ exports.deleteAppello = function (req,res){
                                    
     }  else{return res.json({success: false, msg: 'token non valido'})      
 }
+}
+
+
+deleteAppello = function (prof) {
+    Appello.remove({
+        _id : prof
+    }, function(err) {
+        if (err)
+            res.status(400).send({success:false,msg:'errore durante la cancellazione dell\'elenco, contattare un amministratore'});
+	});
 }
 
 exports.editAppello = function (req,res){
