@@ -74,7 +74,9 @@ exports.addFacolta = function(req,res){
             }
         }) 
 }
-    
+
+
+//funzionante
 exports.deleteProf = function (req,res){
     var token = getToken(req.headers);
             if (token) {
@@ -178,6 +180,7 @@ removeprof = function (prof) {
             res.status(400).send({success:false,msg:'errore durante la cancellazione del professore, contattare un amministratore'});
 	});
 }
+
 //funzionante
 exports.loginAdmin = function(req,res) {
        Admin.findOne({
@@ -215,7 +218,7 @@ exports.addFacolta = function(req,res){
         
         newFacolta.save (function(err,facolta){
             if (err) {
-                res.json({success: false, msg: "errore"})
+                res.json({success: false, msg: err})
             } 
             
             if (facolta) {
@@ -224,6 +227,7 @@ exports.addFacolta = function(req,res){
         }) 
 }
     
+//funzionante
 exports.addCorso = function(req,res) {
         
             var newCorso= new Corso({
@@ -231,14 +235,13 @@ exports.addCorso = function(req,res) {
                 codice:req.body.codice,
                 codFacolta:req.body.codFacolta,
                 cfu:req.body.cfu,
-                anno:req.body.anno,
-                
+                anno:req.body.anno, 
             });
+
             newCorso.save (function(err,student){
                 if (err) {
                     res.json({success: false, msg: err})
                 } 
-                
                 if (student) {
                     res.json ({success:true,msg:'corso creato'});
                 }

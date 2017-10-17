@@ -9,7 +9,7 @@ module.exports = router;
 
 
 // ROUTE 
-    //ROUTER FOR USER = student
+//ROUTER FOR USER = student
 router.post('/addStudent',userController.addStudent); //ok
 router.post('/loginStudent', userController.loginStudent);
 //router.post('/addFacolta',userController.addFacolta); //??
@@ -22,6 +22,9 @@ router.post('/addCorso',userController.addCorso); //??
 router.post('/loginAdmin', adminController.loginAdmin);
 router.delete('/deleteStudent',adminController.deleteStudent);
 router.delete('/deleteProf',adminController.deleteProf);
+router.post('/addFacolta',adminController.addFacolta);
+
+
 
 //ROUTE FOR PROF
 router.post('/addProf',ProfController.addProf);
