@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Course = require('./corsi')
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
+//var bCrypt = require('bcrypt');
+
+
 var professoreSchema = new Schema({
   // _id: {type:String, unique:true},
     nameP: { type: String, required: true},
