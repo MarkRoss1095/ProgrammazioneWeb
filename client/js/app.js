@@ -1,17 +1,19 @@
 var app = angular.module('ProgWeb', ['ngRoute']);
 
-app.config(function($routeProvider){
-$routeProvider.when("/",{
+app .config(function ($routeProvider,$locationProvider) {
+    $locationProvider.hashPrefix('');
+    $routeProvider.when('/',{
     templateUrl: "view/home.html"
 })
-.when("/about",{
+.when('/about',{
     templateUrl: "view/about.html"
 })
-.when("/contact",{
+.when('/contact',{
     templateUrl: "view/contact.html"
 })
-.when("/login",{
+.when('/login',{
     templateUrl: "view/login.html"
 })
 .otherwise({redirectTo: '/'})
+
 })
