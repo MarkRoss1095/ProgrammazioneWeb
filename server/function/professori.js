@@ -187,6 +187,7 @@ exports.addAppello = function(req,res) {
             return res.json({succes:false,msg:"problemi col token"});
 }
 
+//funzionante
 exports.deleteAppello = function (req,res){
     var token = getToken(req.headers);
     
@@ -217,7 +218,7 @@ exports.deleteAppello = function (req,res){
                                     return res.json({success:false,msg:'appello non esistente'});
                                 if(appello){
                                    // deleteAllElenco(appello._id);
-                                    deleteAppello(appello._id);
+                                    remove(appello._id);
                                     return res.json({success:true,msg:'appello cancellato'});
                                 }    
                             })
@@ -231,8 +232,8 @@ exports.deleteAppello = function (req,res){
 }
 }
 
-
-deleteAppello = function (prof) {
+//function richiamata all'interno di deleteAppello
+remove = function (prof) {
     Appello.remove({
         _id : prof
     }, function(err) {
@@ -241,6 +242,7 @@ deleteAppello = function (prof) {
 	});
 }
 
+//funzionante
 exports.editAppello = function (req,res){
     var token = getToken(req.headers);
     if (token) {
@@ -287,29 +289,25 @@ exports.editAppello = function (req,res){
     }        
 }
 
-
+//funzionante
 exports.chiudiAppello = function (req,res){
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
         Prof.findOne({   
                 _id:decoded._id,
-         }).exec(function (err,account){
+         }).exec(function (err,prof){
             if (err) 
-                return res.json({success:false,msg:'token non valido'});
-             else {
-                if (account.role=='prof'){
-                    Prof.findOne({
-                        account_id:decoded._id,
-                    }).exec(function (err,prof){
-                        if(err)
-                            return res.json({success:false,msg:'non è stato possibile trovare il profilo del professore'});
-                        else{
+                return res.json({success:false,msg: 'il token non è valido'});
+            if(!prof)
+                return res.json({succes:false,msg:'account non trovato'});
+            if(prof) {
+                if(prof.ruolo =='prof'){
                             Appello.findOneAndUpdate({
                                 _id:req.body.id
                             },{
                                 $set:{
-                                    aperto:false,
+                                    aperto: false,
                                 }
                             },{new: true},function(err,appello){
                                 if(err)
@@ -320,8 +318,8 @@ exports.chiudiAppello = function (req,res){
                                     return res.json({success:true,msg:'appello chiuso'});
                                 }    
                             })
-                        }
-                    }) 
+                        
+                   
                 }else{
                     return res.json({success:false,msg:'non sei un professore'});
                 }

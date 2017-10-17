@@ -12,7 +12,7 @@ module.exports = router;
     //ROUTER FOR USER = student
 router.post('/addStudent',userController.addStudent); //ok
 router.post('/loginStudent', userController.loginStudent);
-router.post('/addFacolta',userController.addFacolta); //??
+//router.post('/addFacolta',userController.addFacolta); //??
 router.post('/addCorso',userController.addCorso); //?? 
 //router.post('/modifyProfile', userController.);
     
@@ -20,18 +20,14 @@ router.post('/addCorso',userController.addCorso); //??
 //route for admin
 //router.post('/removeUser', adminController.);
 router.post('/loginAdmin', adminController.loginAdmin);
+router.delete('/deleteStudent',adminController.deleteStudent);
+router.delete('/deleteProf',adminController.deleteProf);
 
-
-
-    //ROUTE FOR PROF
-
+//ROUTE FOR PROF
 router.post('/addProf',ProfController.addProf);
 router.post('/loginProf', ProfController.loginProf);
 router.post('/addAppello', ProfController.addAppello);
-
-//router.post('/addCorso', ProfController.);
-//router.post('/closeAppello', ProfController.);
 router.put('/editAppello', ProfController.editAppello); //done
-
-router.delete('/removeAppello', ProfController.deleteAppello);
+router.put('/chiudiAppello', ProfController.chiudiAppello);
+router.delete('/removeAppello', ProfController.deleteAppello); //done
 //router.post('/modifyProfile', ProfController.);

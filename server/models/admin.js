@@ -19,6 +19,10 @@ var adminSchema = new Schema({
     city: { type: String, required: true },
     phone: {type: Number, required: true },
     bod: {type: Date, required: true },
+    ruolo: {
+        type: String,
+        enum: ['student','admin','prof','user'],
+        default: 'admin' },
 },
     //toglie il campo __v dal db
     {

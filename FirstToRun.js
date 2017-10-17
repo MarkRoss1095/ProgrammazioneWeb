@@ -9,10 +9,6 @@ var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost/ProgrammazioneWeb";
 
-/*  var studenti = require('./models/student');
-    var urlDb = require('./config');
-*/
-
 
 /* // FUNZIONE PER CANCELLARE UNA COLLEZIONE
 MongoClient.connect(url, function(err, db) {
@@ -604,7 +600,8 @@ var admin1 = new Admin({
     address:'via casa dei pazzi,22',
     city:'manicomio',
     phone:'3333333333',
-    bod:'05-01-1995'
+    bod:'05-01-1995',
+    ruolo:'admin'
 });
 admin1.save(function (err) {
     if (err) throw err;
