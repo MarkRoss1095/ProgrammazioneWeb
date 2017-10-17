@@ -226,8 +226,7 @@ exports.deleteAppello = function (req,res){
                             return res.json({success:false, msg:'professore non esistente'})
                         }
                     }
-                    }) 
-                                   
+                    })                
     }  else{return res.json({success: false, msg: 'token non valido'})      
 }
 }
