@@ -15,8 +15,6 @@ var jwt = require('jwt-simple');
 var bCrypt = require('bcrypt-nodejs');
 var bcrypt = require('bcrypt-nodejs');
 
-
-
 //function to hash passwords
 var createHash = function (password) {
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
