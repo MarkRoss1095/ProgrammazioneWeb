@@ -590,18 +590,10 @@ prof1.save(function (err) {
     //AGGIUNTI AMMINISTRATORI
     
 var admin1 = new Admin({
-    name: 'Arianna',
-    surname: 'Fedeli',
-    gender:'F',
-    email: 'arianna.fedeli@admin.it',
+    
     username: 'arianna.fedeli',
     password: createHash('ari'),
-    state:'Italia',
-    address:'via casa dei pazzi,22',
-    city:'manicomio',
-    phone:'3333333333',
-    bod:'05-01-1995',
-    ruolo:'admin'
+    ruolo:'admin',
 });
 admin1.save(function (err) {
     if (err) throw err;
@@ -621,6 +613,7 @@ var prof1 = new Prof({
     phone:'3333333333',
     bod:'02-02-1994',
     codFacolta:'L31',
+    ruolo:'prof',
 });
 prof1.save(function (err) {
     if (err) throw err;
@@ -639,6 +632,7 @@ var prof2 = new Prof({
     phone:'314141',
     bod:'1996-07-29',
     codFacolta:'L35',
+    ruolo:'prof',
 });
 prof2.save(function (err) {
     if (err) throw err;
@@ -657,6 +651,7 @@ var prof3 = new Prof({
     phone:'314141',
     bod:'1996-07-29',
     codFacolta:'L27',
+    ruolo:'prof',
 });
 prof3.save(function (err) {
     if (err) throw err;
@@ -1398,11 +1393,13 @@ var Student1 = new Student ({
     password: createHash('saretta'),
     gender: 'F',
     annoCorso: '1',
+    ruolo:'student',
     esamifatti: [{
         codCorso: diritto.codice,
         data: '2017-12-16',
         esito: 28,
         cfu: diritto.cfu
+        
     },
     {
         codCorso: fondamenti.codice,
@@ -1443,6 +1440,7 @@ Student1.save(function (err) {
     annoCorso: '2',
     codFacolta: 'L-31',
     matricola: '0934576',
+    ruolo:'student',
     esamifatti: [{
         codCorso: prg.codice,
         data: '2016-12-19',
@@ -1579,6 +1577,7 @@ var Student4 =new Student({
     annoCorso: '3',
     codFacolta: 'L-27',
     matricola: '093458',
+    ruolo:'student',
     esamifatti: [{
         codCorso: analisiC.codice,
         data: '2015-12-16',
