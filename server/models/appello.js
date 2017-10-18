@@ -6,6 +6,7 @@ var AppelloSchema = new Schema({
     username_prof:{
         type:String,required:true
     },
+    
     codFacolta:{
         type:String,required:true
     },
@@ -29,7 +30,9 @@ var AppelloSchema = new Schema({
     aperto:{
         type:Boolean,default:true,required:true,
     },
-        versionKey: false
-    });
+},
+{
+    versionKey: false
+});
 
 module.exports = mongoose.model('Appello', AppelloSchema);
