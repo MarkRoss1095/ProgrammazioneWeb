@@ -6,7 +6,7 @@ var Facolta =require('./facolta');
 var corsiSchema = new Schema({
     nome: { type: String, required: true  },
     codice: { type: String, required: true, unique: true },
-    codFacolta: { type: String, required: true, ref: 'Facolta' },
+    codFacolta: {type: String, required: true, ref:'Facolta'},
     cfu: { type: Number, required: true },
     anno:  { type: Number, required: true, enum:[1,2,3] },
     usernameProf: { type: String, ref: 'Prof'},
