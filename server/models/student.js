@@ -13,7 +13,7 @@ var studentSchema = new Schema({
     state: { type: String, required: true },
     city: { type: String, required: true },
     address:{ type: String, required: true },
-    bod: { type: Date, required: true },
+    bod: { type: Date, /* required: true  */},
     matricola: { type: String, required: true, unique: true },
     codFacolta: { type: String, ref: 'Facoltà', required: true },
     email: { type: String, required: true, unique: true, validate: function(email) {
@@ -22,7 +22,7 @@ var studentSchema = new Schema({
     phone: { type: Number, unique:true,required:true},
     username: { type: String, required: true },
     password: { type: String, required: true },
-    gender: {type: String, required: true , enum: ['F','M'] },
+    gender: {type: String, /* required:true, */ enum: ['F','M'] },
     annoCorso: {type: String, enum: ['1','2','3','FuoriCorso']},
     esamifatti:[ExamPassed.schema],
     pianoDiStudio:[Corsi.schema],
