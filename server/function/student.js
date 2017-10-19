@@ -68,7 +68,7 @@ exports.addStudent = function (req, res, next) {
             /* bod: req.body.bod, */
             /* gender: req.body.gender, */
             matricola: req.body.matricola,
-            codFacolta: req.body.codFacolta,
+           /*  codFacolta: req.body.codFacolta, */
             phone: req.body.phone,
         });
 
