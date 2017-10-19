@@ -14,6 +14,9 @@ app .config(function ($routeProvider,$locationProvider) {
 .when('/login',{
     templateUrl: "view/login.html"
 })
+.when('/registration',{
+    templateUrl: "view/registration.html"
+})
 .otherwise({redirectTo: '/'})
 
 })
