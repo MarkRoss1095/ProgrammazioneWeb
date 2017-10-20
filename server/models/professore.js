@@ -16,7 +16,7 @@ var professoreSchema = new Schema({
     } },
     ruolo: {
         type: String,
-        enum: ['student','admin','prof','user'],
+        enum: ['student','admin','prof'],
         default: 'prof' },
     username: {type: String, required: true,unique:true},
     password: {type:String, required: true },

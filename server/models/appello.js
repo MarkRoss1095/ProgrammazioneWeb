@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Studenti = require('./student')
+var Elenco = require('./elencostudenti')
+
 
 var AppelloSchema = new Schema({
     
@@ -20,13 +23,11 @@ var AppelloSchema = new Schema({
         type:String,required:true
     },
 
-    number_iscritti:{
+     iscritti:{
         type:Number,default:0
-    },
+    }, 
+   
         //elenco degli studenti iscritti a questo appello
-    elenco_studenti:
-        [{ type: String, ref: 'Studenti' }]
-,
     aperto:{
         type:Boolean,default:true,required:true,
     },
