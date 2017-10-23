@@ -10,9 +10,6 @@ var key = 'test'
 var jwt = require('jwt-simple');
 var moment = require('moment-timezone');
 
-var iscritti = new Array(Student);  //studenti che si sono iscritti ad un appello
-
-
 
 // ALTRE FUNZIONI
 /**Funzione per criptare la password nel db */
@@ -112,6 +109,9 @@ exports.loginProf = function (req, res) {
     Prof.findOne({
         username: req.body.username
     }, function (err, prof) {
+        if (!req.body.username) {
+            return res.json({ state: false, message: 'username is required' });
+        }
         if (err)
             return res.json({ success: false, msg: 'errore durante il login,riprovare' });
         if (!prof) {
@@ -119,8 +119,11 @@ exports.loginProf = function (req, res) {
         } else {
             // check if password matches
             prof.comparePassword(req.body.password, function (err, isMatch) {
-
+                if (!req.body.password) {
+                    return res.json({ state: false, message: 'password is required' });
+                }
                 if (isMatch && !err) {
+
                     // if user is found and password is right create a token
                     var token = jwt.encode(prof, process.env.SECRET);
 
@@ -163,6 +166,14 @@ exports.addAppello = function (req, res) {
                             data:x,
                             ora:y,
                         }).exec(function(err,verify){
+
+                            if (!req.body.esame) {
+                                return res.json({ state: false, message: 'esame is required' });
+                            }
+                            if (!req.body.data) {
+                                return res.json({ state: false, message: 'data is required' });
+                            }
+
                             if(err) 
                                 return res.json({msg:'errore durante la verifica dell\' esistenzà dell\' appello'});
                             if(!verify){
@@ -320,7 +331,9 @@ exports.editAppello = function (req, res) {
                     var date = date.format().toString();
                     var x = date.substr(0, 10); // THIS IS DATA
                     var y = date.substring(11, 16); // THIS IS ORA + M
-
+                    if (!req.body.data) {
+                        return res.json({ state: false, message: 'data is required' });
+                    }
 
                     Appello.findOneAndUpdate({
                         _id: req.body.id,
@@ -422,6 +435,21 @@ exports.modifyDatiP = function (req,res){
                             { new: true },
 
                             function (err, prof) {
+                                if (!req.body.email) {
+                                    return res.json({ state: false, message: 'email is required' });
+                                }
+                                if (!req.body.phone) {
+                                    return res.json({ state: false, message: 'phone is required' });
+                                }
+                                if (!req.body.address) {
+                                    return res.json({ state: false, message: 'address is required' });
+                                }
+                                if (!req.body.city) {
+                                    return res.json({ state: false, message: 'city is required' });
+                                }
+                                if (!req.body.state) {
+                                    return res.json({ state: false, message: 'state is required' });
+                                }
                                 if (err)
                                     return res.json({ success: false, msg: 'errore durante la riceca del professore' + err });
                                 if (!prof)

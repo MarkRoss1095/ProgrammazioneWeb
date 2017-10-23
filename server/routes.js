@@ -11,7 +11,7 @@ adminController=require('./function/admin');
 module.exports = router;
 
 // ROUTE 
-    //ROUTER FOR USER = studentd
+    //ROUTER FOR USER = student
 router.post('/addStudent',userController.addStudent); //lo studente può registrarsi
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login
 router.get('/mostraCorsi',userController.mostraCorsi);  //lo studente può vedere tutti i corsi disponibili
