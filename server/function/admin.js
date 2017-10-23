@@ -1,21 +1,11 @@
 Admin = require('../models/admin');
-
 Prof  = require('../models/professore');
 Student = require ('../models/student');
-
-var bcrypt = require('bcrypt-nodejs');
-var jwt= require('jwt-simple');
-
-Prof = require('../models/professore');
 Corso = require('../models/corsi');
-Student = require('../models/student');
 Facolta = require('../models/facolta');
 
 var jwt = require('jwt-simple');
 var bCrypt = require('bcrypt-nodejs');
-var bcrypt = require('bcrypt-nodejs');
-
-
 
 //function to hash passwords
 var createHash = function (password) {
@@ -104,8 +94,7 @@ exports.addAnotherAdmin = function (req, res, next) {
     }
 }
 
-
-
+//funzionante
 exports.addFacolta = function(req,res){
     
         var newFacolta= new Facolta({
@@ -299,8 +288,11 @@ exports.addCorso = function(req,res) {
  }
 
 
-//funzionante
-exports.deleteProf = function (req, res) {
+
+
+ //funzionante
+
+ exports.deleteProf = function (req, res) {
     var token = getToken(req.headers);
 
     if (token) {
@@ -556,7 +548,6 @@ exports.populateFacolta = function (req, res, codFacolta) {
         });
     }
 }
-
 
 //funzionante
 exports.deleteAppello = function (req, res) {
