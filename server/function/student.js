@@ -29,26 +29,25 @@ exports.addStudent = function (req, res, next) {
     if (!req.body.email) {
         return res.json({ state: false, message: 'email is required' });
     }
-    if (!req.body.gender) {
+     if (!req.body.gender) {
         return res.json({ state: false, message: 'gender is required' });
-    }
+    } 
 
     if (!req.body.state || !req.body.city) {
         return res.json({ state: false, message: 'state and city are required' });
     }
-
-    if (!req.body.bod) {
+  if (!req.body.bod) {
         return res.json({ state: false, message: 'date is required' });
-    }
+    } 
 
 
     if (!req.body.address) {
         return res.json({ state: false, message: 'address is required' });
     }
-
+ 
     if (!req.body.codFacolta) {
         return res.json({ state: false, message: 'codicefacoltà is required' });
-    }
+    } 
 
     if (!req.body.matricola) {
         return res.json({ state: false, message: 'matricola is required' });
@@ -65,10 +64,10 @@ exports.addStudent = function (req, res, next) {
             state: req.body.state,
             city: req.body.city,
             address: req.body.address,
-            /* bod: req.body.bod, */
-            /* gender: req.body.gender, */
+             bod: req.body.bod, 
+             gender: req.body.gender, 
             matricola: req.body.matricola,
-           /*  codFacolta: req.body.codFacolta, */
+           codFacolta: req.body.codFacolta,
             phone: req.body.phone,
         });
 
