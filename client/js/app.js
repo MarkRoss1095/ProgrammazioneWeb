@@ -5,20 +5,12 @@ app .config(function ($routeProvider,$locationProvider) {
     $routeProvider.when('/',{
     templateUrl: "view/home.html"
 })
-.when('/about',{
-    templateUrl: "view/about.html"
-})
-.when('/contact',{
-    templateUrl: "view/contact.html"
-})
+
 .when('/login',{
     templateUrl: "view/login.html"
 })
-.when('/registration',{
+.when('/registrazione',{
     templateUrl: "view/registration.html"
-})
-.when('/homeStudent',{
-    templateUrl: "view/PaginaStudente.html"
 })
 
 .otherwise({redirectTo: '/'})
