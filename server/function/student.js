@@ -119,6 +119,7 @@ exports.loginStudent = function (req, res) {
                         // return the information including token as JSON
 
                         return res.json({ success: true, token: 'JWT ' + token });
+        
                     } else {
                         return res.json({ success: false, msg: 'Autenticazione fallita, password errata.' });
                     }
