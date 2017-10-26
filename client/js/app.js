@@ -1,18 +1,32 @@
-var app = angular.module('ProgWeb', ['ngRoute']);
+var app = angular.module('ProgWeb', ['ngRoute'],);
 
-app .config(function ($routeProvider,$locationProvider) {
+//STO DEFINENDO LE ROUTE PER ANGULAR //
+app.config(function ($routeProvider,$locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider.when('/',{
-    templateUrl: "view/home.html"
-})
+    templateUrl: "view/home.html",
+    controller: "homeCtrl"
+}) 
 
-.when('/login',{
-    templateUrl: "view/login.html"
+.when('/about',{
+    templateUrl: "view/about.html"
 })
-.when('/registrazione',{
+.when('/contact',{
+    templateUrl: "view/contact.html"
+})
+.when('/login',{
+    templateUrl: "view/login.html",
+    controller:"homeCtrl"
+})
+.when('/registration',{
     templateUrl: "view/registration.html"
 })
-
+.when('/homestudente',{
+    templateUrl: "view/PaginaStudente.html"
+})
 .otherwise({redirectTo: '/'})
 
 })
+
+
+  
