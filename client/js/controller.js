@@ -2,7 +2,7 @@ angular.module('ProgWeb')
 
 // DICHIARAZIONE DEI CONTROLLER
 
-.controller('homeCtrl', function($scope,$http,AuthService) {
+.controller('HomeCtrl', function($scope,$http,AuthService) {
     $scope.user = {
       username: '',
       password: ''
@@ -16,5 +16,37 @@ angular.module('ProgWeb')
             })
         
     }
+    
+  })
+
+  .controller('RegStudentCtrl', function($scope,$http,AuthService,$location,$window) {
+    $scope.user = {
+        username: '',
+        password: '',
+        email: '',
+        name: '',
+        surname: '',
+        state: '',
+        city: '',
+        andress:'',
+        bod:'',
+        gender:'',
+        matricola:'',
+        codfacolta:'',
+        phone:'',
+
+     };
+    
+     $scope.addStudent = function() {    
+        AuthService.registerstudent($scope.user).then(function(msg) {
+            $location.path("home")
+            $window.alert(msg)
+        },function(errMsg) {
+          $window.alert(errMsg)
+          })
+        
+      }
+    
+    
     
   })

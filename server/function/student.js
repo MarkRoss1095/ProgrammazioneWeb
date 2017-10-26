@@ -24,6 +24,7 @@ exports.addStudent = function (req, res, next) {
     }
 
     if (!req.body.password || !req.body.username) {
+
         return res.json({ state: false, message: 'username and password are required' });
     }
 
@@ -54,6 +55,16 @@ exports.addStudent = function (req, res, next) {
         return res.json({ state: false, message: 'matricola is required' });
     } else {
 
+        Student.findOne({
+            username: req.body.username
+        },
+            function (err, student) {
+                if (err)
+                    return res.json({ success: false, msg: 'errore durante  la registrazione,riprovare' });
+                if (student) {
+                    return res.json({ success: false, msg: 'Username già esistente' });
+    
+                } else {
         //if the are not error you can create a new student 
 
         var newStudent = new Student({
@@ -85,7 +96,8 @@ exports.addStudent = function (req, res, next) {
                 res.json({ success: true, msg: 'Ok! Student account has been created successfully' });
             }
         })
-    }
+        }
+})}
 
 };
 

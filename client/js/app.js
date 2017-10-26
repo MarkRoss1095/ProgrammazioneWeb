@@ -1,32 +1,33 @@
-var app = angular.module('ProgWeb', ['ngRoute'],);
+var app = angular.module('ProgWeb', ['ngRoute']);
 
-//STO DEFINENDO LE ROUTE PER ANGULAR //
-app.config(function ($routeProvider,$locationProvider) {
-    $locationProvider.hashPrefix('');
-    $routeProvider.when('/',{
-    templateUrl: "view/home.html",
-    controller: "homeCtrl"
-}) 
+app.config(function ($routeProvider) {
 
-.when('/about',{
-    templateUrl: "view/about.html"
-})
-.when('/contact',{
-    templateUrl: "view/contact.html"
-})
-.when('/login',{
-    templateUrl: "view/login.html",
-    controller:"homeCtrl"
-})
-.when('/registration',{
-    templateUrl: "view/registration.html"
-})
-.when('/homestudente',{
-    templateUrl: "view/PaginaStudente.html"
-})
-.otherwise({redirectTo: '/'})
+    $routeProvider
+
+        .when('/', {
+            templateUrl: "view/home.html"
+        })
+
+        .when('/login', {
+            templateUrl: "view/login.html"
+        })
+        .when('/registrazione', {
+            templateUrl: "view/registration.html",
+            controller:"RegStudentCtrl"
+        })
+
+        .otherwise({ redirectTo: '/' })
 
 })
 
 
-  
+.run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
+    $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+      if (!AuthService.isAuthenticated()) {
+        if (next.name !== '/' ) {
+          event.preventDefault();
+          $state.go('/');
+        }
+      }
+    });
+  });

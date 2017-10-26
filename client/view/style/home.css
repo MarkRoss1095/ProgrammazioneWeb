@@ -1,0 +1,18 @@
+body {
+    position: relative;
+}
+
+#home {
+    padding-top: 50px;
+    height: 700px;
+}
+
+#contact {
+    padding-top: 50px;
+    height: 700px;
+}
+
+#about {
+    padding-top: 50px;
+    height: 700px;
+}

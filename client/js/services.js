@@ -35,9 +35,10 @@ angular.module('ProgWeb')
 
 
    // DA RIVEDERE//
-    var register = function(user) {
+   
+   var register = function(user) {
       return $q(function(resolve, reject) {
-        $http.post(API_ENDPOINT.url + '/addUser', user).then(function(result) {
+        $http.post(API_ENDPOINT.url + '/addAnotherAdmin', user).then(function(result) {
           if (result.data.success) {
             resolve(result.data.msg);
           } else {
@@ -45,21 +46,22 @@ angular.module('ProgWeb')
           }
         });
       });
-    };
+    }; 
   
     var registerstudent = function(user) {
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/addStudent', user).then(function(result) {
           if (result.data.success) {
-            resolve(result.data.msg);
+            resolve(result.data.message);
           } else {
-            reject(result.data.msg);
+            reject(result.data.message);
           }
         });
       });
     };
   
-    var registerprof = function(user) {
+
+        var registerprof = function(user) {
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/addProf', user).then(function(result) {
           if (result.data.success) {
@@ -70,7 +72,8 @@ angular.module('ProgWeb')
         });
       });
     };
-   
+    
+
     var login = function(user) {
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/loginStudent', user).then(function(result) {
