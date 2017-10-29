@@ -74,9 +74,35 @@ angular.module('ProgWeb')
     };
     
 
-    var login = function(user) {
+    var loginAdmin = function(user) {
+      return $q(function(resolve, reject) {
+        $http.post(API_ENDPOINT.url + '/loginAdmin', user).then(function(result) {
+          if (result.data.success) {
+            storeUserCredentials(result.data.token);
+            resolve(result.data.success);
+          } else {
+            reject(result.data.msg);
+          }
+        });
+      });
+    };
+
+    var loginStudent = function(user) {
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/loginStudent', user).then(function(result) {
+          if (result.data.success) {
+            storeUserCredentials(result.data.token);
+            resolve(result.data.success);
+          } else {
+            reject(result.data.msg);
+          }
+        });
+      });
+    };
+
+    var loginProf = function(user) {
+      return $q(function(resolve, reject) {
+        $http.post(API_ENDPOINT.url + '/loginProf', user).then(function(result) {
           if (result.data.success) {
             storeUserCredentials(result.data.token);
             resolve(result.data.success);
@@ -95,7 +121,9 @@ angular.module('ProgWeb')
     loadUserCredentials();
   
     return {
-      login: login,
+      loginStudent: loginStudent,
+      loginProf: loginProf,
+      loginAdmin: loginAdmin,
       register: register,
       logout: logout,
       registerprof:registerprof,

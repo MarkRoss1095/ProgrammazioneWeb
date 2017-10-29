@@ -19,12 +19,12 @@ var createHash = function (password) {
 
 //funzionante
 exports.addStudent = function (req, res, next) {
+
     if (!req.body.name || !req.body.surname) {
         return res.json({ state: false, message: 'name and surname are required' });
     }
 
     if (!req.body.password || !req.body.username) {
-
         return res.json({ state: false, message: 'username and password are required' });
     }
 
@@ -55,16 +55,6 @@ exports.addStudent = function (req, res, next) {
         return res.json({ state: false, message: 'matricola is required' });
     } else {
 
-        Student.findOne({
-            username: req.body.username
-        },
-            function (err, student) {
-                if (err)
-                    return res.json({ success: false, msg: 'errore durante  la registrazione,riprovare' });
-                if (student) {
-                    return res.json({ success: false, msg: 'Username già esistente' });
-    
-                } else {
         //if the are not error you can create a new student 
 
         var newStudent = new Student({
@@ -76,10 +66,10 @@ exports.addStudent = function (req, res, next) {
             state: req.body.state,
             city: req.body.city,
             address: req.body.address,
-             bod: req.body.bod, 
-             gender: req.body.gender, 
+            bod: req.body.bod, 
+            gender: req.body.gender, 
             matricola: req.body.matricola,
-           codFacolta: req.body.codFacolta,
+            codFacolta: req.body.codFacolta,
             phone: req.body.phone,
         });
 
@@ -87,17 +77,16 @@ exports.addStudent = function (req, res, next) {
         newStudent.save(function (err, student) {
             if (err) {
                 if (err = existing) {
-                    res.json({ success: false, msg: "account già esistente" })
+                    res.json({ success: false, message: "account già esistente" })
                 }
-                res.json({ success: false, msg: "errore" })
+                res.json({ success: false, message: "errore" })
             }
 
             if (student) {
-                res.json({ success: true, msg: 'Ok! Student account has been created successfully' });
+                res.json({ success: true, message: 'Ok! Student account has been created successfully' });
             }
         })
-        }
-})}
+    }
 
 };
 

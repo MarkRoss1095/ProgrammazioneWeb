@@ -1,52 +1,83 @@
 angular.module('ProgWeb')
 
-// DICHIARAZIONE DEI CONTROLLER
+    // DICHIARAZIONE DEI CONTROLLER
 
-.controller('HomeCtrl', function($scope,$http,AuthService) {
-    $scope.user = {
-      username: '',
-      password: ''
-    };
-    
-    $scope.login = function() {
-        AuthService.login($scope.user).then(function(msg) {
-            console.log(msg)}
-            ,function(errmsg){
-                console.log(errmsg)
+    .controller('HomeCtrl', function ($scope, $http, AuthService) {
+
+
+
+
+    })
+
+    .controller('registrazioneCtrl', function ($scope, $http, AuthService, $state, $window) {
+        $scope.user = {
+            username: '',
+            password: '',
+            email: '',
+            name: '',
+            surname: '',
+            state: '',
+            city: '',
+            andress: '',
+            bod: '',
+            gender: '',
+            matricola: '',
+            codfacolta: '',
+            phone: '',
+
+        };
+
+        $scope.addStudent = function () {
+            AuthService.registerstudent($scope.user).then(function (msg) {
+                $state.go("/")
+                $window.alert(msg)
+            }, function (errMsg) {
+                $window.alert(errMsg)
             })
-        
-    }
-    
-  })
 
-  .controller('RegStudentCtrl', function($scope,$http,AuthService,$location,$window) {
-    $scope.user = {
-        username: '',
-        password: '',
-        email: '',
-        name: '',
-        surname: '',
-        state: '',
-        city: '',
-        andress:'',
-        bod:'',
-        gender:'',
-        matricola:'',
-        codfacolta:'',
-        phone:'',
+        }
 
-     };
-    
-     $scope.addStudent = function() {    
-        AuthService.registerstudent($scope.user).then(function(msg) {
-            $location.path("home")
-            $window.alert(msg)
-        },function(errMsg) {
-          $window.alert(errMsg)
-          })
-        
-      }
-    
-    
-    
-  })
+
+
+    })
+
+    .controller('loginCtrl', function ($scope, $http, AuthService, $state, $window) {
+        $scope.user = {
+            username: '',
+            password: '',
+            role: '',
+        };
+
+        $scope.login = function () {
+            if ( $scope.user.role !== 'prof' && $scope.user.role !== 'student' && $scope.user.role !== 'admin') {
+                $window.alert('Selezionare ruolo')
+            } else {
+
+                if ($scope.user.role == 'student') {
+                    AuthService.loginStudent($scope.user).then(function (msg) {
+                        $state.go("/home")
+                        $window.alert('Login effettuato')
+                    }, function (errmsg) {
+                        $window.alert(errmsg)
+                    })
+                }
+            }
+            if ($scope.user.role == 'prof') {
+                AuthService.loginProf($scope.user).then(function (msg) {
+                    $state.go("/home")
+                    $window.alert('Login effettuato')
+                }, function (errmsg) {
+                    $window.alert(errmsg)
+                })
+            }
+            if ($scope.user.role == 'admin') {
+                AuthService.loginProf($scope.user).then(function (msg) {
+                    $state.go("/home")
+                    $window.alert('Login effettuato')
+                }, function (errmsg) {
+                    $window.alert(errmsg)
+                })
+            }
+
+        }
+    })

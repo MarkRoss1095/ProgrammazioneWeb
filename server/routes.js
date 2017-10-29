@@ -34,10 +34,10 @@ router.delete('/deleteCorso', adminController.deleteCorso); //l'admin può elimi
 router.delete('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
 router.delete('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
 router.delete('/removeAppello', adminController.deleteAppello); //l'admin può rimuovere un appello
-router.post('/addProf',    ProfController.addProf); //il prof può registrarsi
+
 
 //ROUTE FOR PROF
-
+router.post('/addProf',    ProfController.addProf); //il prof può registrarsi
 router.post('/loginProf',  ProfController.loginProf); //il  prof può loggarsi
 router.post('/addAppello', ProfController.addAppello); //il prof può aggiungere un appello
 router.put('/chiudiAppello', ProfController.chiudiAppello); //prof può chiudere un appello
