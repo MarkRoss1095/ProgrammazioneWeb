@@ -592,6 +592,27 @@ exports.deleteAppello = function (req, res) {
 }
 
 
+exports.showProfileAdmin = function (req, res) {
+    var token = getToken(req.headers);
+
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (admin) 
+                return res.json({admin})    
+            })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+}
+
+
 
 
 

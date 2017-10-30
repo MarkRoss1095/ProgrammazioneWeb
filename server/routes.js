@@ -27,6 +27,8 @@ router.post('/showAppelli', userController.showAppelli)//mostra tutti gli appell
 router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti gli username dei professori in modo da poterli ricercare in seguito
 
 //route for admin
+router.get('/showProfileAdmin',adminController.showProfileAdmin);
+
 router.post('/addAnotherAdmin',adminController.addAnotherAdmin); //l'admin può creare o aggiungere un altro admin
 router.post('/loginAdmin', adminController.loginAdmin); //l'admin può loggarsi
 router.post('/addCorso',   adminController.addCorso); //l'admin può aggiungere un corso

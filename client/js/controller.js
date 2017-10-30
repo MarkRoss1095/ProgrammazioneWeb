@@ -101,7 +101,7 @@ angular.module('ProgWeb')
                 })
             }
             if ($scope.user.role == 'admin') {
-                AuthService.loginProf($scope.user).then(function (msg) {
+                AuthService.loginAdmin($scope.user).then(function (msg) {
                     $state.go("/inside_home")
                     $window.alert('Login effettuato')
                 }, function (errmsg) {

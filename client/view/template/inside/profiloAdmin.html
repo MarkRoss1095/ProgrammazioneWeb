@@ -1,14 +1,70 @@
 
-<div ng-include src="'./view/template/inside/inside_navbar.html '"></div>
-
-    <div id="home" class="container-fluid" align="center">
-        <h1>sono un admin </h1>
-        <br>
-        <br>
-        <div align="center">
-            <img src="./img/2.jpg">
+ <nav class="navbar navbar-inverse navbar-fixed-top" style="position:relative;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="/">UNIGINEVRA</a>
+        </div>
+        <div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="/">Home</a>
+                    </li>
+                    <li>
+                        <a ui-sref="">CORSI</a>
+                    </li>
+                    <li>
+                        <a ui-sref="">Delete Prof/Sudent/Appello</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li>
+                        <a ui-sref="/logout">
+                            <span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-    
-    
-
+</nav>
+<div class="tab-content col-md-10 col-xs-12">
+    <div id="1" class="tab-pane active">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div>
+                <h1 class="text-center   text-capitalize">Benvenuto
+                    <%= user.nome %>!</h1>
+                <hr/>
+                <div>
+                    <ul class="list-group text-center">
+                        <li class="list-group-item"><strong> Nome: </strong>
+                            <%= user.nome %>
+                        </li>
+                        <li class="list-group-item"><strong> Cognome:</strong>
+                            <%= user.cognome %>
+                        </li>
+                        <li class="list-group-item"><strong>Matricola:</strong>
+                            <%= user.matricola %>
+                        </li>
+                        <li class="list-group-item"><strong>Username:</strong>
+                            <%= user.username %>
+                        </li>
+                        <li class="list-group-item"><strong>Email:</strong>
+                            <%= user.email %>
+                        </li>
+                        <li class="list-group-item"><strong>Email Universitaria:</strong>
+                            <%= user.emailUniversitaria %>
+                        </li>
+                        <li class="list-group-item"><strong>Anno Corso:</strong>
+                            <%= user.annoCorso %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
