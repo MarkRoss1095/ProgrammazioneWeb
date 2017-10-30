@@ -30,26 +30,50 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 url: '/contact',
                 templateUrl: '../view/template/outside/contact.html'
             })
-            .state('/home', {
+            .state('/inside_home', {
                 url: '/home',
-                templateUrl: '../view/template/home.html',
-                controller:'homeCtrl'
+                templateUrl: '../view/template/inside/home.html',
+                controller:'HomeCtrl'
             })
-            
+            .state('/inside_about', {
+                url: '/about',
+                templateUrl: '../view/template/inside/about.html'
+            })
+            .state('/inside_contact', {
+                url: '/contact',
+                templateUrl: '../view/template/inside/contact.html'
+            })
+            .state('/profiloStudente', {
+                url: '/student',
+                templateUrl: '../view/template/inside/profiloStudente.html',
+                controller:''
+            })
+            .state('/profiloAdmin', {
+                url: '/admin',
+                templateUrl: '../view/template/inside/profiloAdmin.html'
+            })
+            .state('/profiloProf', {
+                url: '/prof',
+                templateUrl: '../view/template/inside/profiloProf.html'
+            })
 
 
 
     });
 
-    //da verificarne l'utilizzo
+/*     //da verificarne l'utilizzo
 
     app.run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
+        console.log(AuthService.isAuthenticated())
         $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+        
           if (!AuthService.isAuthenticated()) {
-            if (next.name !== '/' && next.name !== '/login' && next.name !== '/registrazione' && next.name !== '/about' && next.name !== '/contact') {
+              console.log('2')
+            if (next.name !== '/' && next.name !== '/login' && next.name !== '/registrazione' && next.name !== '/outside_about' && next.name !== '/outside_contact') {
               event.preventDefault();
               $state.go('/');
             }
           }
         });
-      });
+      }); 
+*/

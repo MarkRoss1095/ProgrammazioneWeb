@@ -6,11 +6,13 @@ router=express.Router(),
 userController=require('./function/student');
 ProfController=require('./function/professori');
 adminController=require('./function/admin');
+controller=require('./function/controller');
 
 
 module.exports = router;
 
 // ROUTE 
+router.get('/showProfile',controller.showProfile);
     //ROUTER FOR USER = studentd
 router.post('/addStudent',userController.addStudent); //lo studente può registrarsi
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login

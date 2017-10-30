@@ -7,29 +7,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="/">UNIGINEVRA</a>
+            <a class="navbar-brand" ui-sref="/inside_home">UNIGINEVRA</a>
         </div>
         <div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a ui-sref="/">Home</a>
+                        <a ui-sref="/inside_home">Home</a>
                     </li>
                     <li>
-                        <a ui-sref="/outside_contact">Contact</a>
+                        <a ui-sref="/inside_contact">Contact</a>
                     </li>
                     <li>
-                        <a ui-sref="/outside_about">About</a>
+                        <a ui-sref="/inside_about">About</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a ui-sref="/registrazione">
-                            <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                        <button type="submit" class="btn btn-lg btn-info" ng-click="showProfile()">Profilo</button>
                     </li>
                     <li>
                         
-                        <button type="submit" class="btn btn-lg btn-info" ng-click="addStudent()">Logout</button>
+                        <button type="submit" class="btn btn-lg btn-info" ng-click="logout()">Logout</button>
                     </li>
                 </ul>
             </div>

@@ -2,10 +2,40 @@ angular.module('ProgWeb')
 
     // DICHIARAZIONE DEI CONTROLLER
 
-    .controller('HomeCtrl', function ($scope, $http, AuthService) {
+    .controller('HomeCtrl', function ($scope, AuthService, $state, $http, $window) {
+
+        $scope.logout = function () {
+            AuthService.logout();
+            $window.alert('logout effettuato')
+            $state.go('/');
+        };
+        
+        //Funzione per verificare a chi appartiene il profilo loggato
+
+        $scope.showProfile = function () {
+            $http.get('/showProfile').then(success, error);
+            function success(currentaccount) {
+                
+                if (currentaccount.data.msg == 'student') {
+                    $state.go('/profiloStudente')
+                }
+                if (currentaccount.data.msg == 'admin') {
+                    $state.go('/profiloAdmin')
+                }
+                if (currentaccount.data.msg == 'prof') {
+                    $state.go('/profiloProf')
+                }
+            }
+            function error(currentaccount) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'success ' + currentaccount.data.success,
+                    template: currentaccount.data.msg
+                });
+            }
+        };
 
 
-
+    
 
     })
 
@@ -49,13 +79,13 @@ angular.module('ProgWeb')
         };
 
         $scope.login = function () {
-            if ( $scope.user.role !== 'prof' && $scope.user.role !== 'student' && $scope.user.role !== 'admin') {
+            if ($scope.user.role !== 'prof' && $scope.user.role !== 'student' && $scope.user.role !== 'admin') {
                 $window.alert('Selezionare ruolo')
             } else {
 
                 if ($scope.user.role == 'student') {
                     AuthService.loginStudent($scope.user).then(function (msg) {
-                        $state.go("/home")
+                        $state.go("/inside_home")
                         $window.alert('Login effettuato')
                     }, function (errmsg) {
                         $window.alert(errmsg)
@@ -64,7 +94,7 @@ angular.module('ProgWeb')
             }
             if ($scope.user.role == 'prof') {
                 AuthService.loginProf($scope.user).then(function (msg) {
-                    $state.go("/home")
+                    $state.go("/inside_home")
                     $window.alert('Login effettuato')
                 }, function (errmsg) {
                     $window.alert(errmsg)
@@ -72,7 +102,7 @@ angular.module('ProgWeb')
             }
             if ($scope.user.role == 'admin') {
                 AuthService.loginProf($scope.user).then(function (msg) {
-                    $state.go("/home")
+                    $state.go("/inside_home")
                     $window.alert('Login effettuato')
                 }, function (errmsg) {
                     $window.alert(errmsg)
