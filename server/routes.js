@@ -13,7 +13,9 @@ module.exports = router;
 
 // ROUTE 
 router.get('/showProfile',controller.showProfile);
-    //ROUTER FOR USER = studentd
+router.get('/showCorsi',controller.showCorsi);
+
+    //ROUTER FOR USER = studente
 router.post('/addStudent',userController.addStudent); //lo studente può registrarsi
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login
 router.get('/mostraCorsi',userController.mostraCorsi);  //lo studente può vedere tutti i corsi disponibili
@@ -35,8 +37,8 @@ router.post('/addCorso',   adminController.addCorso); //l'admin può aggiungere 
 router.post('/populateFacolta',adminController.populateFacolta); //l'admin può popolare le facoltà 
 router.put('/modifyCorso', adminController.modifyCorso); //l'admin può modificare un corso
 router.delete('/deleteCorso', adminController.deleteCorso); //l'admin può eliminare un corso
-router.delete('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
-router.delete('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
+router.post('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
+router.post('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
 router.delete('/removeAppello', adminController.deleteAppello); //l'admin può rimuovere un appello
 
 

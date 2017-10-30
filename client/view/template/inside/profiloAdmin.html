@@ -1,70 +1,150 @@
+<div ng-include src="'./view/template/inside/inside_navbar_profile.html '">
+</div>
+<link rel="stylesheet" href="./view/style/profileAdmin.css">
 
- <nav class="navbar navbar-inverse navbar-fixed-top" style="position:relative;">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" ui-sref="/">UNIGINEVRA</a>
-        </div>
-        <div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a ui-sref="/">Home</a>
-                    </li>
-                    <li>
-                        <a ui-sref="">CORSI</a>
-                    </li>
-                    <li>
-                        <a ui-sref="">Delete Prof/Sudent/Appello</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    
-                    <li>
-                        <a ui-sref="/logout">
-                            <span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                    </li>
-                </ul>
+
+<section class="mbr-section mbr-section__container article" id="header3-1" data-rv-view="3" style=" padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="mbr-section-title display-2">Benvenuto</h3>
+                <h3 class="mbr-section-title display-2">{{currentuser.username}}</h3>
             </div>
         </div>
     </div>
-</nav>
-<div class="tab-content col-md-10 col-xs-12">
-    <div id="1" class="tab-pane active">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <div>
-                <h1 class="text-center   text-capitalize">Benvenuto
-                    <%= user.nome %>!</h1>
-                <hr/>
-                <div>
-                    <ul class="list-group text-center">
-                        <li class="list-group-item"><strong> Nome: </strong>
-                            <%= user.nome %>
-                        </li>
-                        <li class="list-group-item"><strong> Cognome:</strong>
-                            <%= user.cognome %>
-                        </li>
-                        <li class="list-group-item"><strong>Matricola:</strong>
-                            <%= user.matricola %>
-                        </li>
-                        <li class="list-group-item"><strong>Username:</strong>
-                            <%= user.username %>
-                        </li>
-                        <li class="list-group-item"><strong>Email:</strong>
-                            <%= user.email %>
-                        </li>
-                        <li class="list-group-item"><strong>Email Universitaria:</strong>
-                            <%= user.emailUniversitaria %>
-                        </li>
-                        <li class="list-group-item"><strong>Anno Corso:</strong>
-                            <%= user.annoCorso %>
-                        </li>
-                    </ul>
+</section>
+
+<section style="padding-top: 120px; padding-bottom: 120px;">
+        
+    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-xs-center">
+                    <h3 class="mbr-section-title display-2">Aggiungi admin</h3>
                 </div>
             </div>
         </div>
     </div>
+    <div class="mbr-section mbr-section-nopadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
+
+                    <div class="row row-sm-offset">
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="form1-2-name">Username</label>
+                                <input type="text" name="name" ng-model="admin.username" placeholder="Enter username Here.." class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="form1-2-name">Password</label>
+                                <input type="text" name="name" ng-model="admin.password" placeholder="Enter password here " class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-info" ng-click="addAdmin()">Aggiungi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+
+    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-xs-center">
+                    <h3 class="mbr-section-title display-2">Rimuovi Professore</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mbr-section mbr-section-nopadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
+
+                    <div class="row row-sm-offset">
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="form1-2-name">Username</label>
+                                <input type="text" name="name" ng-model="prof.username" placeholder="Enter username Here.." class="form-control">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-info" ng-click="deleteProf(prof)">Rimuovi Professore</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="padding-top: 120px;">
+        
+
+<section>
+        
+            <div class="mbr-section mbr-section__container mbr-section__container--middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-xs-center">
+                            <h3 class="mbr-section-title display-2">Rimuovi studente</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mbr-section mbr-section-nopadding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
+        
+                            <div class="row row-sm-offset">
+        
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="form1-2-name">Username</label>
+                                        <input type="text" name="name" ng-model="studente.username" placeholder="Enter username Here.." class="form-control">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-info" ng-click="deleteStudente(studente)">Rimuovi Studente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="assets/web/assets/jquery/jquery.min.js"></script>
+<script src="assets/tether/tether.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/smooth-scroll/smooth-scroll.js"></script>
+<script src="assets/viewport-checker/jquery.viewportchecker.js"></script>
+<script src="assets/theme/js/script.js"></script>
+<script src="assets/formoid/formoid.min.js"></script>
+
+
+<input name="animation" type="hidden">

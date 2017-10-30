@@ -50,11 +50,17 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
             })
             .state('/profiloAdmin', {
                 url: '/admin',
-                templateUrl: '../view/template/inside/profiloAdmin.html'
+                templateUrl: '../view/template/inside/profiloAdmin.html',
+                controller:'profiloAdminCtrl'
             })
             .state('/profiloProf', {
                 url: '/prof',
                 templateUrl: '../view/template/inside/profiloProf.html'
+            })
+            .state('/inside_corso', {
+                url: '/corsi',
+                templateUrl: '../view/template/inside/corso.html',
+                controller:'corsoCtrl'
             })
 
 

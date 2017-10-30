@@ -310,7 +310,6 @@ exports.deleteProf = function (req, res) {
                 if (admin.ruolo == 'admin') {
 
                     Prof.findOne({
-                        _id: req.body.id,
                         username: req.body.username
                     }).exec(function (err, done) {
                         if (err)
@@ -351,7 +350,6 @@ exports.deleteStudent = function (req, res) {
                 if (admin.ruolo == 'admin') {
 
                     Student.findOne({
-                        _id: req.body.id,
                         username: req.body.username
                     }).exec(function (err, done) {
                         if (err)

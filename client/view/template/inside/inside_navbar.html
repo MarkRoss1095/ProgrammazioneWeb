@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="/inside_home">UNIGINEVRA</a>
+            <a class="navbar-brand" >UNIGINEVRA</a>
         </div>
         <div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -23,14 +23,21 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    
                     <li>
-                        <button type="submit" class="btn btn-lg btn-info" ng-click="showProfile()">Profilo</button>
+                        <a ng-click="showProfile()">
+                            <span class="glyphicon glyphicon-log-out" ></span> Profilo</a>
                     </li>
+                
+                    
                     <li>
-                        
-                        <button type="submit" class="btn btn-lg btn-info" ng-click="logout()">Logout</button>
+                        <a ng-click="logout()">
+                            <span class="glyphicon glyphicon-log-out" ></span> Logout</a>
                     </li>
+                
                 </ul>
+
+
             </div>
         </div>
     </div>

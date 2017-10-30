@@ -36,7 +36,7 @@ angular.module('ProgWeb')
 
    // DA RIVEDERE//
    
-   var register = function(user) {
+   var registerAdmin = function(user) {
       return $q(function(resolve, reject) {
         $http.post(API_ENDPOINT.url + '/addAnotherAdmin', user).then(function(result) {
           if (result.data.success) {
@@ -124,7 +124,7 @@ angular.module('ProgWeb')
       loginStudent: loginStudent,
       loginProf: loginProf,
       loginAdmin: loginAdmin,
-      register: register,
+      registerAdmin: registerAdmin,
       logout: logout,
       registerprof:registerprof,
       registerstudent:registerstudent,
