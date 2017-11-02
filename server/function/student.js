@@ -597,6 +597,25 @@ exports.confermaVoto = function (req, res) {
 }
 
 
+exports.showProfileStudent = function (req, res) {
+    var token = getToken(req.headers);
+
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, student) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!student)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (student)
+                return res.json({ student })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+}
 
 
 

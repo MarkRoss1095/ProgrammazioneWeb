@@ -46,7 +46,7 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
             .state('/profiloStudente', {
                 url: '/student',
                 templateUrl: '../view/template/inside/profiloStudente.html',
-                controller:''
+                controller:'profiloStudentCtrl'
             })
             .state('/profiloAdmin', {
                 url: '/admin',
@@ -80,7 +80,7 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
             .state('editcorso', {
                 url: '/editcorso',
                 templateUrl: '../view/template/inside/editcorso.html',
-                controller:'corsoCtrl'
+                controller:'editCorsoCtrl'
             })
 
 

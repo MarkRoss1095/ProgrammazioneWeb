@@ -4,6 +4,7 @@ Student = require('../models/student');
 Corso = require('../models/corsi');
 Facolta = require('../models/facolta');
 
+var currentcorso;
 var jwt = require('jwt-simple');
 var bCrypt = require('bcrypt-nodejs');
 
@@ -597,7 +598,8 @@ exports.searchCorso = function (req, res) {
                     if (!corso)
                         return res.json({ success: false, msg: 'corso non trovato' });
                     if (corso)
-                        return res.json({ success: false, msg: corso });
+                     currentcorso = corso;
+                        return res.json({ success: false, msg: 'corso trovato' });
 
 
 
@@ -610,7 +612,35 @@ exports.searchCorso = function (req, res) {
 }
 
 
+exports.viewCorso = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (admin)
+                Corso.findOne({
+                    _id: currentcorso._id
+                }).exec(function (err, corso) {
+                    if (err){
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso'  });
+                    }
+                    if (!corso)
+                        return res.json({ success: false, msg: 'corso non trovato' });
+                    if (corso)
+                        return res.json({ success: false, msg: corso });
+                })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
 
+}
 
 
 

@@ -16,6 +16,7 @@ router.get('/showProfile',controller.showProfile);
 router.get('/showCorsi',controller.showCorsi);
 
     //ROUTER FOR USER = studente
+router.get('/showProfileStudent',userController.showProfileStudent)//da fare
 router.post('/addStudent',userController.addStudent); //lo studente può registrarsi
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login
 router.get('/mostraCorsi',userController.mostraCorsi);  //lo studente può vedere tutti i corsi disponibili
@@ -40,6 +41,7 @@ router.delete('/deleteCorso', adminController.deleteCorso); //l'admin può elimi
 router.post('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
 router.post('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
 router.delete('/removeAppello', adminController.deleteAppello); //l'admin può rimuovere un appello
+router.get('/viewCorso', adminController.viewCorso);
 
 
 //ROUTE FOR PROF

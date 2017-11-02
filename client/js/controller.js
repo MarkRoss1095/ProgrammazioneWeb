@@ -218,8 +218,8 @@ angular.module('ProgWeb')
 
         /* FINE NAVBAR */
 
-        
-     
+
+
         $http.get('/showCorsi').then(success, error);
         function success(corso) {
             $scope.corso = corso.data.msg
@@ -229,26 +229,27 @@ angular.module('ProgWeb')
 
         };
         $scope.newCorso = function () {
-            $state.go('newcorso')            
+            $state.go('newcorso')
         }
         $scope.addCorso = function (newcorso) {
-           /* funzione per aggiunger il corso */ 
-           $http.post("/addCorso", newcorso).then(success, err)
-           function success(success) {
-               $window.alert(success.data.msg)
-               $state.go('corsoInformatica')
-           }
-           function err(err) {
-               $window.alert(err)
-           }          
+            /* funzione per aggiunger il corso */
+            $http.post("/addCorso", newcorso).then(success, err)
+            function success(success) {
+                $window.alert(success.data.msg)
+                $state.go('corsoInformatica')
+            }
+            function err(err) {
+                $window.alert(err)
+            }
         }
-        
+
 
         $scope.editCorso = function (search) {
+            console.log(search.nome)
             $http.post("/searchCorso", search).then(success, err)
             function success(success) {
-                $scope.edit=success.data.msg;
-                
+               $state.go('editcorso')
+/* 
                 function Main($scope) {
                     $scope.edit.nome;
                     $scope.edit.codice;
@@ -256,19 +257,46 @@ angular.module('ProgWeb')
                     $scope.edit.cfu;
                     $scope.edit.usernameProfessore;
                     $scope.edit.anno;
-                  }
+                }
 
-                  console.log($scope.edit)
-                  
-                $state.go('editcorso')
+                console.log($scope.edit)
+ */
+               
             }
             function err(err) {
                 $window.alert(err)
-            }          
-         }
+            }
+           // $state.go('/user-detail/' + search._id);
+        }
 
+
+
+
+
+
+        
         $scope.deleteCorso = function () {
 
         }
     })
-    
+
+    .controller('editCorsoCtrl', function ($scope, $http, AuthService, $state, $window, ) {
+        $scope.currentcorso ={
+            nome:'',
+            anno:'',
+            cfu:'',
+            codfacolta:'',
+            usernameProf:'',
+        }
+        $http.get('/viewCorso').then(success, error);
+        function success(currentcorso) {
+            $scope.currentcorso=currentcorso.data.msg
+
+        }
+        function error(err) {
+            $window.alert('corso non trovato')
+           
+        };
+
+    })
+        
