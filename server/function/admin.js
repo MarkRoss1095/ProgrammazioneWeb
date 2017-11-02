@@ -268,27 +268,6 @@ exports.addFacolta = function (req, res) {
     })
 }
 
-//funzionante
-exports.addCorso = function (req, res) {
-
-    var newCorso = new Corso({
-        nome: req.body.nome,
-        codice: req.body.codice,
-        codFacolta: req.body.codFacolta,
-        cfu: req.body.cfu,
-        anno: req.body.anno,
-    });
-
-    newCorso.save(function (err, student) {
-        if (err) {
-            res.json({ success: false, msg: err })
-        }
-        if (student) {
-            res.json({ success: true, msg: 'corso creato' });
-        }
-    })
-}
-
 
 
 
@@ -378,34 +357,21 @@ exports.addCorso = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
-
         Admin.findOne({
             _id: decoded._id,
         }).exec(function (err, admin) {
-            /* if (admin)
- 
-                return res.json({ success: false, msg: 'il token non è valido' }); */
 
             if (!admin)
                 return res.json({ success: false, msg: 'account non trovato' });
 
             if (admin) {
                 if (admin.ruolo == 'admin') {
-
                     Corso.findOne({
-                        nome: req.body.nome,
-                        codFacolta: req.body.codFacolta,
                         codice: req.body.codice,
-                        cfu: req.body.cfu,
-                        anno: req.body.anno,
-                        usernameProf: req.body.usernameProf
-
                     }).exec(function (err, verify) {
                         if (err)
                             return res.json({ msg: 'errore' });
-
                         if (!verify) {
-                            console.log(verify)
                             var newCorso = new Corso({
                                 nome: req.body.nome,
                                 codFacolta: req.body.codFacolta,
@@ -416,7 +382,7 @@ exports.addCorso = function (req, res) {
                             })
                             newCorso.save(function (err, corso) {
                                 if (err)
-                                    return res.json({ success: false, msg: 'errore durante la creazione dell\'appello' });
+                                    return res.json({ success: false, msg: err });
                                 if (corso)
                                     return res.json({ succes: true, msg: 'corso creato' });
                             })
@@ -602,13 +568,47 @@ exports.showProfileAdmin = function (req, res) {
                 return res.json({ success: false, msg: 'il token non è valido' });
             if (!admin)
                 return res.json({ succes: false, msg: 'account non trovato' });
-            if (admin) 
-                return res.json({admin})    
-            })
+            if (admin)
+                return res.json({ admin })
+        })
     } else {
         return res.json({ success: false, msg: 'token non valido' })
     }
 }
+
+exports.searchCorso = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (admin)
+                Corso.findOne({
+                    _id: req.body._id
+                }).exec(function (err, corso) {
+                    if (err){
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso'  });
+                    }
+                    if (!corso)
+                        return res.json({ success: false, msg: 'corso non trovato' });
+                    if (corso)
+                        return res.json({ success: false, msg: corso });
+
+
+
+                })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+
+}
+
 
 
 

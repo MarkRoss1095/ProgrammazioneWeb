@@ -218,16 +218,8 @@ angular.module('ProgWeb')
 
         /* FINE NAVBAR */
 
-        function Main($scope) {
-            $scope.corso.nome;
-            $scope.corso.codFacolta;
-            $scope.corso.codice;
-            $scope.corso.cfu;
-            $scope.corso.anno;
-            $scope.corso.usernameProf;
-        }
         
-
+     
         $http.get('/showCorsi').then(success, error);
         function success(corso) {
             $scope.corso = corso.data.msg
@@ -239,23 +231,44 @@ angular.module('ProgWeb')
         $scope.newCorso = function () {
             $state.go('newcorso')            
         }
-        $scope.addCorso = function (corso) {
+        $scope.addCorso = function (newcorso) {
            /* funzione per aggiunger il corso */ 
-           $http.post("/addCorso", corso).then(success, err)
+           $http.post("/addCorso", newcorso).then(success, err)
            function success(success) {
                $window.alert(success.data.msg)
+               $state.go('corsoInformatica')
            }
            function err(err) {
                $window.alert(err)
            }          
         }
-        $scope.editCorso = function ($index) {
-
-        }
-
         
+
+        $scope.editCorso = function (search) {
+            $http.post("/searchCorso", search).then(success, err)
+            function success(success) {
+                $scope.edit=success.data.msg;
+                
+                function Main($scope) {
+                    $scope.edit.nome;
+                    $scope.edit.codice;
+                    $scope.edit.codfacolta;
+                    $scope.edit.cfu;
+                    $scope.edit.usernameProfessore;
+                    $scope.edit.anno;
+                  }
+
+                  console.log($scope.edit)
+                  
+                $state.go('editcorso')
+            }
+            function err(err) {
+                $window.alert(err)
+            }          
+         }
 
         $scope.deleteCorso = function () {
 
         }
     })
+    

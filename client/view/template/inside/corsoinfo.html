@@ -14,7 +14,6 @@
     <form ng-submit="submitCorso()">
         <table id="mytable" class="table table-bordered well">
             <thead>
-                <th style="width:5%">Index</th>
                 <th style="width:5%;">Nome</th>
                 <th style="width:10%;">CodFacolta</th>
                 <th style="width:15%;">Codice Corso</th>
@@ -28,37 +27,26 @@
 
 
                 <tr ng-repeat="corso in corso| filter:informatica | filter:'L31' | orderBy:'anno' | orderBy:'codice' ">
-                    <td>{{$index+1}}</td>
+                    <td>{{corso.nome}}</td>
+                    <td>{{corso.codFacolta}}</td>
+                    <td>{{corso.codice}}</td>
+                    <td>{{corso.cfu}}</td>
+                    <td>{{corso.anno}}</td>
+                    <td>{{corso.usernameProf}}</td>
+                    <td>
+                        <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="editCorso(corso)">Edit</button>
 
-                    <td>
-                        <input name="corso.nome{{$index}}" ng-model="corso.nome" ng-disabled="!enabledEdit[{{$index}}]" /> </td>
-                    <td>
-                        <input name="corso.codFacolta{{$index}}" ng-model="corso.codFacolta" ng-disabled="!enabledEdit[{{$index}}]" /> </td>
-                    <td>
-                        <input name="corso.codice{{$index}}" ng-model="corso.codice" ng-disabled="!enabledEdit[{{$index}}]" /> </td>
-                    <td>
-                        <input name="corso.cfu{{$index}}" ng-model="corso.cfu" ng-disabled="!enabledEdit[{{$index}}]" /> </td>
-                    <td>
-                        <input name="corso.anno{{$index}}" ng-model="corso.anno" ng-disabled="!enabledEdit[{{$index}}]" /> </td>
-                    <td>
-                        <input name="corso.usernameProf{{$index}}" ng-model="corso.usernameProf" ng-disabled="!enabledEdit[{{$index}}]" /> </td>
-
-
-                    <td>
-                            <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="editCorso($index)">Edit</button>
-                            
                     </td>
                     <td>
-                            <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteCorso($index)">Remove</button>
-                            
+                        <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteCorso($index)">Remove</button>
+
                     </td>
 
                 </tr>
             </tbody>
         </table>
-        <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
     <div class="clearfix"></div>
-    
+
 
 </div>

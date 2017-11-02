@@ -77,6 +77,11 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/inside/nuovocorso.html',
                 controller:'corsoCtrl'
             })
+            .state('editcorso', {
+                url: '/editcorso',
+                templateUrl: '../view/template/inside/editcorso.html',
+                controller:'corsoCtrl'
+            })
 
 
 

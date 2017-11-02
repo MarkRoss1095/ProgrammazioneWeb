@@ -30,7 +30,7 @@ router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti g
 
 //route for admin
 router.get('/showProfileAdmin',adminController.showProfileAdmin);
-
+router.post('/searchCorso',adminController.searchCorso);
 router.post('/addAnotherAdmin',adminController.addAnotherAdmin); //l'admin può creare o aggiungere un altro admin
 router.post('/loginAdmin', adminController.loginAdmin); //l'admin può loggarsi
 router.post('/addCorso',   adminController.addCorso); //l'admin può aggiungere un corso
