@@ -1,16 +1,17 @@
 <div ng-include src="'./view/template/inside/inside_navbar_profile.html '"></div>
-
+<div class="container">
 <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
         <div id="testo"><h3>Sei interessato a:</h3></div>
             <div id="input">    
-                <input type="text" ng-model="prova" placeholder="stai cercando..."/>
+                <input type="text" ng-model="informatica" placeholder="stai cercando..."/>
         </div>
     </div> 
 
-<div class="container">
-    <div class="row col-md-6 col-md-offset-2 ">
+
+    <div class="row col-md-6 col-md-offset-2 custyle">
         <table class="table table-striped table-bordered well">
             <thead>
+                    <a href="#" class="btn btn-success"><b>+</b> Add new Corso</a>
                 <tr>
                     <th>Nome</th>
                     <th>CodFacolta</th>
@@ -18,24 +19,24 @@
                     <th>Cfu</th>
                     <th>Anno del corso</th>
                     <th>Nome Professore</th>
-                    <th class="text-center">Edit</th>    
-                    <th class="text-center">Remove</th>                  
+                    <th >Edit</th>      
+                    <th >Remove</th>       
                 </tr>
             </thead>
-            <tbody id="MyTable">
-                <tr ng-repeat="corso in corso| filter:prova" >
+            <tbody>
+                <tr ng-repeat="corso in corso| filter:informatica | filter:'L31'  " >
                     <td>{{corso.nome}}</td>
-                    <td>{{corso.CodFacolta}}</td>
-                    <td>{{corso.Codice}}</td>
+                    <td>{{corso.codFacolta}}</td>
+                    <td>{{corso.codice}}</td>
                     <td>{{corso.cfu}}</td>
                     <td>{{corso.anno}}</td>
                     <td>{{corso.usernameProf}}</td>
-                    <td class="text-center"><a href="#" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
-                    <td class="text-center"><a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                    <td><a href="#" class="btn btn-info btn-sm" ="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> </td>
+                    <td>  <a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                                      
                 </tr>
             </tbody>
         </table>
-
     </div>
-   
 </div>
+

@@ -57,9 +57,19 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 url: '/prof',
                 templateUrl: '../view/template/inside/profiloProf.html'
             })
-            .state('/inside_corso', {
-                url: '/corsi',
-                templateUrl: '../view/template/inside/corso.html',
+            .state('/inside_mat', {
+                url: '/corsoMatematica',
+                templateUrl: '../view/template/inside/corsomat.html',
+                controller:'corsoCtrl'
+            })
+            .state('/inside_info', {
+                url: '/corsoInformatica',
+                templateUrl: '../view/template/inside/corsoinfo.html',
+                controller:'corsoCtrl'
+            })
+            .state('/inside_chim', {
+                url: '/corsoChimica',
+                templateUrl: '../view/template/inside/corsochim.html',
                 controller:'corsoCtrl'
             })
 

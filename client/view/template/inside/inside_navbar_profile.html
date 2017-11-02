@@ -8,28 +8,40 @@
             </button>
             <a class="navbar-brand">UNIGINEVRA</a>
         </div>
-        <div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a ui-sref="/inside_home">Home</a>
-                    </li>
-                    <li>
-                        <a ui-sref="/inside_corso">CORSI</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a ng-click="showProfile()">
-                            <span class="glyphicon glyphicon-log-out"></span> Profilo</a>
-                    </li>
-                    
-                    <li>
-                        <a ng-click="logout()">
-                            <span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                    </li>
-                </ul>
-            </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a ui-sref="/inside_home">Home</a>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" ui-sref="">Corsi</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref="/inside_info">Informatica</a>
+                        </li>
+                        <li>
+                            <a ui-sref="/inside_mat">Matematica</a>
+                        </li>
+                        <li>
+                            <a ui-sref="/inside_chim">Chimica</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ng-click="showProfile()">
+                        <span class="glyphicon glyphicon-user"></span> Profilo</a>
+                </li>
+
+                <li>
+                    <a ng-click="logout()">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
         </div>
     </div>
+   
 </nav>

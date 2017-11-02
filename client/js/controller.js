@@ -233,6 +233,18 @@ angular.module('ProgWeb')
             $window.alert('profilo non trovato, rifare il login')
           
         };
+        
+$scope.editcorso = function(){
 
+}
 
+$scope.addcorso= function(){
+
+}
+
+$scope.deletecorso = function(){
+
+}
+
+$scope.removeAppello = function(){}
     })        
