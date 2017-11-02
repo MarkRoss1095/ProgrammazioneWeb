@@ -72,6 +72,11 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/inside/corsochim.html',
                 controller:'corsoCtrl'
             })
+            .state('newcorso', {
+                url: '/newcorso',
+                templateUrl: '../view/template/inside/nuovocorso.html',
+                controller:'corsoCtrl'
+            })
 
 
 

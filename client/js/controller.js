@@ -188,8 +188,8 @@ angular.module('ProgWeb')
 
     })
     .controller('corsoCtrl', function ($scope, $http, AuthService, $state, $window, ) {
-
-       $scope.showProfile = function () {
+        /* funzioni per la navabar */
+        $scope.showProfile = function () {
             $http.get('/showProfile').then(success, error);
             function success(currentaccount) {
 
@@ -216,35 +216,46 @@ angular.module('ProgWeb')
             $state.go('/');
         };
 
-       
+        /* FINE NAVBAR */
+
         function Main($scope) {
             $scope.corso.nome;
             $scope.corso.codFacolta;
             $scope.corso.codice;
             $scope.corso.cfu;
             $scope.corso.anno;
-            $scope.corso.usernameProf   ;
-          }
+            $scope.corso.usernameProf;
+        }
+        
+
         $http.get('/showCorsi').then(success, error);
         function success(corso) {
             $scope.corso = corso.data.msg
-            }
+        }
         function error(corso) {
             $window.alert('profilo non trovato, rifare il login')
-          
+
         };
+        $scope.newCorso = function () {
+            $state.go('newcorso')            
+        }
+        $scope.addCorso = function (corso) {
+           /* funzione per aggiunger il corso */ 
+           $http.post("/addCorso", corso).then(success, err)
+           function success(success) {
+               $window.alert(success.data.msg)
+           }
+           function err(err) {
+               $window.alert(err)
+           }          
+        }
+        $scope.editCorso = function ($index) {
+
+        }
+
         
-$scope.editcorso = function(){
 
-}
+        $scope.deleteCorso = function () {
 
-$scope.addcorso= function(){
-
-}
-
-$scope.deletecorso = function(){
-
-}
-
-$scope.removeAppello = function(){}
-    })        
+        }
+    })
