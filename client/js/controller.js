@@ -106,7 +106,22 @@ angular.module('ProgWeb')
         }
     })
     .controller('profiloAdminCtrl', function ($scope, $http, AuthService, $state, $window, ) {
+        $scope.user = {
+            username: '',
+            password: '',
+            email: '',
+            nameP: '',
+            surname: '',
+            state: '',
+            city: '',
+            andress: '',
+            bod: '',
+            gender: '',
+           
+            codfacolta: '',
+            phone: '',
 
+        };
         $http.get('/showProfileAdmin').then(success, error);
         function success(user) {
             $scope.currentuser = user.data.admin;
@@ -163,7 +178,16 @@ angular.module('ProgWeb')
                 $window.alert(err)
             }
         };
-
+$scope.addProf=function(){
+    AuthService.registerprof($scope.user).then(function (msg) {
+    
+        $window.alert(msg)
+        $window.location.reload()
+      
+    }, function (errMsg) {
+        $window.alert(errMsg)
+    })
+}
         $scope.showProfile = function () {
             $http.get('/showProfile').then(success, error);
             function success(currentaccount) {
@@ -234,9 +258,11 @@ angular.module('ProgWeb')
         $scope.addCorso = function (newcorso) {
             /* funzione per aggiunger il corso */
             $http.post("/addCorso", newcorso).then(success, err)
+            $window.history.back()
+            console.log(newcorso)
             function success(success) {
                 $window.alert(success.data.msg)
-                $state.go('corsoInformatica')
+              
             }
             function err(err) {
                 $window.alert(err)
@@ -245,7 +271,6 @@ angular.module('ProgWeb')
 
 
         $scope.editCorso = function (search) {
-            console.log(search.nome)
             $http.post("/searchCorso", search).then(success, err)
             function success(success) {
                $state.go('editcorso')
@@ -275,7 +300,19 @@ angular.module('ProgWeb')
 
 
         
-        $scope.deleteCorso = function () {
+        $scope.deleteCorso = function (corso) {
+            $http.post("/deleteCorso", corso).then(success, err)
+            function success(success) {
+                $window.alert(success.data.msg)
+
+            setTimeout(function() {
+                 window.location.reload()},6000);
+                
+                console.log(corso)
+            }
+            function err(err) {
+                $window.alert(err)
+            }
 
         }
     })
@@ -298,5 +335,155 @@ angular.module('ProgWeb')
            
         };
 
+        $scope.update = function (updatecorso) {
+            /* funzione per aggiunger il corso */
+            console.log($scope.currentcorso)
+            $http.put("/modifyCorso",updatecorso).then(success, err)
+            function success(success) {
+                updatecorso=$scope.currentcorso
+              $window.alert(success.data.msg)
+                
+               console.log(updatecorso)
+               $window.history.back()
+                /* $state.go('/inside_info') */
+            }
+            function err(err) {
+                $window.alert(err)
+            }
+        }
+
     })
+
+
+    .controller('profiloProfCtrl', function ($scope, $http,$filter, AuthService, $state, $window ) {
+     
+        $scope.currentprof = {
+            username: '',
+            password: '',
+            email: '',
+            nameP: '',
+            surname: '',
+            state: '',
+            city: '',
+            andress: '',
+            bod: '',
+            gender: '',
+            codfacolta: '',
+            phone: '',
+          
+        };
+
+        $scope.prof = {
+            username: '',
+            password: '',
+            email: '',
+            nameP: '',
+            surname: '',
+            state: '',
+            city: '',
+            andress: '',
+            bod: '',
+            gender: '',
+           
+            codfacolta: '',
+            phone: '',
+          
+        };
+        $scope.sblocca=function(){
+            document.getElementById("name");
+        }
+        
+        $scope.modifyDatiP = function (updatecorso) {
+            /* funzione per aggiunger il corso */
+            console.log($scope.currentprof)
+            $http.put("/modifyDatiP",updateprof).then(success, err)
+            function success(success) {
+                updateprof=$scope.currentprof
+              $window.alert(success.data.msg)
+                
+               console.log(updatecorso)
+               $window.location.reload()
+                /* $state.go('/inside_info') */
+            }
+            function err(err) {
+                $window.alert(err)
+            }
+        }
+       
+                $http.get('/showProfileProf').then(success, error);
+                function success(user) {
+                
+                    $scope.currentprof = user.data.prof;
+                    console.log(user.data.prof)
+                }
+
+                function error(user) {
+                    $window.alert('Errore durante la ricerca del profilo è pregato di rifare il login')
+                    $state.go("/login")
+                    AuthService.logout();
+        
+                }
+        
+               
+        
+        
+        
+                $scope.logout = function () {
+                    AuthService.logout();
+                    $window.alert('logout effettuato')
+                    $state.go('/');
+                };
+        
+               /*  $scope.addAdmin = function () {
+                    AuthService.registerAdmin($scope.admin).then(function (msg) {
+                        $window.alert('admin creato')
+                    }, function (errMsg) {
+                        $window.alert(errMsg)
+                    })
+        
+                }
+        
+                $scope.deleteProf = function (prof) {
+                    $http.post("/deleteProf", prof).then(success, err)
+                    function success(success) {
+                        $window.alert(success.data.msg)
+                    }
+                    function err(err) {
+                        $window.alert(err)
+                    }
+                };
+                $scope.deleteStudente = function (studente) {
+                    $http.post("/deleteStudent", studente).then(success, err)
+                    function success(success) {
+                        $window.alert(success.data.msg)
+                    }
+                    function err(err) {
+                        $window.alert(err)
+                    }
+                }; */
+        
+                $scope.showProfile = function () {
+                    $http.get('/showProfile').then(success, error);
+                    function success(currentaccount) {
+        
+                        if (currentaccount.data.msg == 'student') {
+                            $state.go('/profiloStudente')
+                        }
+                        if (currentaccount.data.msg == 'admin') {
+                            $state.go('/profiloAdmin')
+                        }
+                        if (currentaccount.data.msg == 'prof') {
+                            $state.go('/profiloProf')
+                        }
+        
+                    }
+                    function error(currentaccount) {
+                        $window.alert('profilo non trovato, rifare il login')
+                        $state.go('/login')
+                        AuthService.logout();
+                    };
+                }
+        
+        
+            })
         

@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <button type="button" style="float:right;" class="btn btn-info " ng-click="newCorso()">Nuovo Corso</button>
+    <button type="button" style="float:right;" class="btn btn-info " ng-click="newCorso(corso)">Nuovo Corso</button>
 
     <form ng-submit="submitCorso()">
         <table id="mytable" class="table table-bordered well">
@@ -38,7 +38,7 @@
 
                     </td>
                     <td>
-                        <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteCorso($index)">Remove</button>
+                        <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteCorso(corso)">Remove</button>
 
                     </td>
 
@@ -50,7 +50,7 @@
 
 
 </div>
-<div class="container">
+<!-- <div class="container">
         <h1 class="well">edit corso</h1>
         <div class="col-lg-12 well">
             <div class="row">
@@ -100,6 +100,4 @@
                     <div class="row">
                         <button type="submit" "class="btn btn-lg btn-info" ng-click="editCorso(corso)">Submit</button>
                     </div>
-    
-                </div>
-            </div>
+     -->

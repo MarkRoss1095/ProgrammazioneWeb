@@ -612,7 +612,7 @@ var prof1 = new Prof({
     address:'via casa dei pazzi,22',
     city:'manicomio',
     phone:'3333333333',
-    bod:'02-02-1994',
+    bod:'1994-02-02',
     codFacolta:'L31',
     ruolo:'prof',
 });

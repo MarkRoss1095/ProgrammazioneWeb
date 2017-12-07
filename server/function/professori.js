@@ -36,77 +36,7 @@ getToken = function (headers) {
 // FUNZIONI PRINCIPALI
 
 //funzionante
-exports.addProf = function (req, res, next) {
 
-    if (!req.body.nameP || !req.body.surname) {
-        return res.json({ state: false, message: 'name and surname are required' });
-    }
-
-    if (!req.body.password || !req.body.username) {
-        return res.json({ state: false, message: 'username and password are required' });
-    }
-
-    if (!req.body.email) {
-        return res.json({ state: false, message: 'email is required' });
-    }
-    if (!req.body.gender) {
-        return res.json({ state: false, message: 'gender is required' });
-    }
-
-    if (!req.body.phone) {
-        return res.json({ state: false, message: 'phone is required' });
-    }
-
-    if (!req.body.state || !req.body.city) {
-        return res.json({ state: false, message: 'state and city are required' });
-    }
-
-    if (!req.body.bod) {
-        return res.json({ state: false, message: 'date of birthday is requireddd' });
-    }
-
-
-    if (!req.body.city) {
-        return res.json({ state: false, message: 'city is required' });
-    }
-
-    if (!req.body.address) {
-        return res.json({ state: false, message: 'address is required' });
-    }
-
-
-    if (!req.body.codFacolta) {
-        return res.json({ state: false, message: 'codicefacolta is required' });
-    }
-
-    else {
-
-        var newProf = new Prof({
-            // _id:req.body.id,
-            nameP: req.body.nameP,
-            surname: req.body.surname,
-            email: req.body.email,
-            codFacolta: req.body.codFacolta,
-            username: req.body.username,
-            password: createHash(req.body.password),
-            state: req.body.state,
-            city: req.body.city,
-            address: req.body.address,
-            phone: req.body.phone,
-            bod: req.body.bod,
-            gender: req.body.gender
-        })
-        newProf.save(function (err, prof) {
-            if (err) {
-                res.json({ success: false, msg: err })
-            }
-
-            else {
-                res.json({ success: true, msg: 'Ok! Professor account has been created successfully' });
-            }
-        })
-    }
-}
 //funzionante
 exports.loginProf = function (req, res) {
     Prof.findOne({
@@ -620,7 +550,25 @@ exports.mostraAppelli = function (req, res) {
                 })    
             }        
         }
-
+        exports.showProfileProf = function (req, res) {
+            var token = getToken(req.headers);
+        
+            if (token) {
+                var decoded = jwt.decode(token, process.env.SECRET);
+                Prof.findOne({
+                    _id: decoded._id,
+                }).exec(function (err, prof) {
+                    if (err)
+                        return res.json({ success: false, msg: 'il token non è valido' });
+                    if (!prof)
+                        return res.json({ success: false, msg: 'account non trovato' });
+                    if (prof)
+                        return res.json({ prof })
+                })
+            } else {
+                return res.json({ success: false, msg: 'token non valido' })
+            }
+        }
 
 //FUNZIONANTE
 exports.iscrittiAppello = function (req,res){
@@ -635,7 +583,7 @@ exports.iscrittiAppello = function (req,res){
                 return res.json({success:false,msg:'token non valido'});
              if(prof) {
                 if (prof.ruolo=='prof'){
-                    Prof.findOne({
+                    prof.findOne({
                         account_id:decoded._id,
                     }).exec(function (err,prof){
                         if(err)

@@ -55,7 +55,8 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
             })
             .state('/profiloProf', {
                 url: '/prof',
-                templateUrl: '../view/template/inside/profiloProf.html'
+                templateUrl: '../view/template/inside/profiloProf.html',
+                controller:'profiloProfCtrl'
             })
             .state('/inside_mat', {
                 url: '/corsoMatematica',
@@ -66,6 +67,11 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 url: '/corsoInformatica',
                 templateUrl: '../view/template/inside/corsoinfo.html',
                 controller:'corsoCtrl'
+            })
+            .state('/inside_appelli', {
+                url: '/Appelli',
+                templateUrl: '../view/template/inside/appelli.html',
+                controller:''
             })
             .state('/inside_chim', {
                 url: '/corsoChimica',

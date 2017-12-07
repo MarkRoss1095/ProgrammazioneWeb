@@ -1,14 +1,243 @@
 
-<div ng-include src="'./view/template/inside/inside_navbar.html '"></div>
 
-    <div id="home" class="container-fluid" align="center">
-        <h1>sono un prof</h1>
-        <br>
-        <br>
-        <div align="center">
-            <img src="./img/2.jpg">
+<div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '">
+</div>
+<!-- <link rel="stylesheet" href="./view/style/profileAdmin.css"> -->
+
+
+<section class="mbr-section mbr-section__container article" id="header3-1" data-rv-view="3" style=" padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="mbr-section-title display-2">Benvenuto</h3>
+                <h3 class="mbr-section-title display-2">{{currentprof.username}}</h3>
+            </div>
         </div>
     </div>
-    
-    
+</section>
+ <div class="container">
+    <h1 class="well">I miei Dati</h1>
+    <div class="col-lg-12 well">
+        <div class="row">
+            <form class="register"></form>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label>First Name</label>
+                        <input disabled type="text" name="nameP" ng-model="currentprof.nameP"  class="form-control">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Last Name</label>
+                        <input disabled type="text" name="surname" ng-model="currentprof.surname"  class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Date of Birth</label>
+                    <input disabled type="text" name="bod" ng-model="currentprof.bod" class="form-control">
+                </div>
 
+
+                <div class=" col-sm-4 form-group">
+                    <label>Facolta</label>
+
+                    <select disabled class="form-control" ng-model="currentprof.codFacolta">
+                        <option value="L31">Informatica</option>
+                        <option value="L35">Matematica</option>
+                        <option value="L27">Chimica</option>
+                        <option selected value="">Scegli...</option>
+
+                    </select>
+                </div>
+
+
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-4 form-group">
+                        <label>State</label>
+                        <input disabled type="text" name="state" ng-model="currentprof.state"  class="form-control">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label>City</label>
+                        <input disabled type="text" name="city" ng-model="currentprof.city"  class="form-control">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label>Address </label>
+                        <input disabled type="text" name="address" ng-model="currentprof.address" class="form-control">
+                    </div>
+                    <div class=" col-sm-4 form-group">
+                        <label>Sesso</label>
+    
+                        <select disabled class="form-control" ng-model="currentprof.gender">
+                            <option value="M">Maschio</option>
+                            <option value="F">Femmina</option>
+                            <option selected value="">Scegli...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label>Phone Number</label>
+                        <input disabled type="text" name="phone" ng-model="currentprof.phone"  class="form-control">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label>Email Address</label>
+                        <input disabled type="text" name="email" ng-model="currentprof.email"  class="form-control">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input disabled type="text" name="username" ng-model="currentprof.username" class="form-control">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input disabled type="password" name="password" ng-model="currentprof.password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-lg btn-info"ng-click="sblocca()">edit</button>
+                <button disabled type="submit" class="btn btn-lg btn-info" ng-click="modifyDatiP()">save</button>
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div> 
+ <!--
+<section style="padding-top: 120px; padding-bottom: 120px;">
+        
+    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-xs-center">
+                    <h3 class="mbr-section-title display-2">Aggiungi admin</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mbr-section mbr-section-nopadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
+
+                    <div class="row row-sm-offset">
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="form1-2-name">Username</label>
+                                <input type="text" name="name" ng-model="admin.username" ="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="form1-2-name">Password</label>
+                                <input type="text" name="name" ng-model="admin.password" ="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-info" ng-click="addAdmin()">Aggiungi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+<!-- <section>
+
+    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-xs-center">
+                    <h3 class="mbr-section-title display-2">Rimuovi Professore</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mbr-section mbr-section-nopadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
+
+                    <div class="row row-sm-offset">
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="form1-2-name">Username</label>
+                                <input type="text" name="name" ng-model="prof.username" ="form-control">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-info" ng-click="deleteProf(prof)">Rimuovi Professore</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="padding-top: 120px;">
+         -->
+
+<!-- <section>
+        
+            <div class="mbr-section mbr-section__container mbr-section__container--middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-xs-center">
+                            <h3 class="mbr-section-title display-2">Rimuovi studente</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mbr-section mbr-section-nopadding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
+        
+                            <div class="row row-sm-offset">
+        
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="form1-2-name">Username</label>
+                                        <input type="text" name="name" ng-model="studente.username" ="form-control">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-info" ng-click="deleteStudente(studente)">Rimuovi Studente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="assets/web/assets/jquery/jquery.min.js"></script>
+<script src="assets/tether/tether.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/smooth-scroll/smooth-scroll.js"></script>
+<script src="assets/viewport-checker/jquery.viewportchecker.js"></script>
+<script src="assets/theme/js/script.js"></script>
+<script src="assets/formoid/formoid.min.js"></script>
+
+
+<input name="animation" type="hidden">

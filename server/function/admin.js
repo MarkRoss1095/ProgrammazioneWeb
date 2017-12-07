@@ -415,6 +415,7 @@ exports.modifyCorso = function (req, res) {
         }).exec(function (err, admin) {
             if (err)
                 return res.json({ success: false, msg: 'il token non è valido' });
+            console.log(err)
             if (!admin)
                 return res.json({ succes: false, msg: 'account non trovato' });
             else {
@@ -422,21 +423,24 @@ exports.modifyCorso = function (req, res) {
                     if (admin.ruolo == 'admin') {
 
                         Corso.findOneAndUpdate({
-                            _id: req.body.id,
+                            _id: req.body._id,
                         },
                             {
                                 $set: {
                                     cfu: req.body.cfu,
                                     usernameProf: req.body.usernameProf,
+                                    anno: req.body.anno,
+                                    nome: req.body.nome,
+                                    codFacolta: req.body.codFacolta,
+                                    codice: req.body.codice
                                 }
                             },
                             { new: true },
-
                             function (err, corso) {
                                 if (err)
                                     return res.json({ success: false, msg: 'errore durante la riceca del corso' + err });
-                                if (!corso)
-                                    return res.json({ success: false, msg: 'corso non esistente' });
+                               /*  if (!corso)
+                                    return res.json({ success: false, msg: 'corso non esistente' }); */
                                 if (corso) {
                                     return res.json({ success: true, msg: 'corso modificato' });
                                 }
@@ -469,8 +473,8 @@ exports.deleteCorso = function (req, res) {
                 if (admin.ruolo == 'admin') {
 
                     Corso.findOne({
-                        _id: req.body.id,
-                        codice: req.body.codice
+                        _id: req.body._id,
+
                     })
                         .exec(function (err, done) {
                             if (err)
@@ -556,6 +560,77 @@ exports.deleteAppello = function (req, res) {
     }
 }
 
+exports.addProf = function (req, res, next) {
+    
+        if (!req.body.nameP || !req.body.surname) {
+            return res.json({ state: false, message: 'name and surname are required' });
+        }
+    
+        if (!req.body.password || !req.body.username) {
+            return res.json({ state: false, message: 'username and password are required' });
+        }
+    
+        if (!req.body.email) {
+            return res.json({ state: false, message: 'email is required' });
+        }
+        if (!req.body.gender) {
+            return res.json({ state: false, message: 'gender is required' });
+        }
+    
+        if (!req.body.phone) {
+            return res.json({ state: false, message: 'phone is required' });
+        }
+    
+        if (!req.body.state || !req.body.city) {
+            return res.json({ state: false, message: 'state and city are required' });
+        }
+    
+        if (!req.body.bod) {
+            return res.json({ state: false, message: 'date of birthday is requireddd' });
+        }
+    
+    
+        if (!req.body.city) {
+            return res.json({ state: false, message: 'city is required' });
+        }
+    
+        if (!req.body.address) {
+            return res.json({ state: false, message: 'address is required' });
+        }
+    
+    
+        if (!req.body.codFacolta) {
+            return res.json({ state: false, message: 'codicefacolta is required' });
+        }
+    
+        else {
+    
+            var newProf = new Prof({
+                // _id:req.body.id,
+                nameP: req.body.nameP,
+                surname: req.body.surname,
+                email: req.body.email,
+                codFacolta: req.body.codFacolta,
+                username: req.body.username,
+                password: createHash(req.body.password),
+                state: req.body.state,
+                city: req.body.city,
+                address: req.body.address,
+                phone: req.body.phone,
+                bod: req.body.bod,
+                gender: req.body.gender
+            })
+            newProf.save(function (err, prof) {
+                if (err) {
+                    res.json({ success: false, msg: err })
+                }
+    
+                else {
+                    res.json({ success: true, msg: 'Ok! Professor account has been created successfully' });
+                }
+            })
+        }
+    }
 
 exports.showProfileAdmin = function (req, res) {
     var token = getToken(req.headers);
@@ -592,14 +667,14 @@ exports.searchCorso = function (req, res) {
                 Corso.findOne({
                     _id: req.body._id
                 }).exec(function (err, corso) {
-                    if (err){
-                        return res.json({ success: false, msg: 'errore durante la ricerca del corso'  });
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
                     }
                     if (!corso)
                         return res.json({ success: false, msg: 'corso non trovato' });
                     if (corso)
-                     currentcorso = corso;
-                        return res.json({ success: false, msg: 'corso trovato' });
+                        currentcorso = corso;
+                    return res.json({ success: false, msg: 'corso trovato' });
 
 
 
@@ -627,8 +702,8 @@ exports.viewCorso = function (req, res) {
                 Corso.findOne({
                     _id: currentcorso._id
                 }).exec(function (err, corso) {
-                    if (err){
-                        return res.json({ success: false, msg: 'errore durante la ricerca del corso'  });
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
                     }
                     if (!corso)
                         return res.json({ success: false, msg: 'corso non trovato' });

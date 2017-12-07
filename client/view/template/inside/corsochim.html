@@ -12,7 +12,7 @@
         <div class="row col-md-6 col-md-offset-2 custyle">
             <table class="table table-striped table-bordered well">
                 <thead>
-                        <a href="#" class="btn btn-success"><b>+</b>  Add new Corso</a>
+                        <a ng-click="newCorso(corso)" class="btn btn-success"><b>+</b>  Add new Corso</a>
                     <tr>
                         <th>Nome</th>
                         <th>CodFacolta</th>
@@ -32,8 +32,8 @@
                         <td>{{corso.cfu}}</td>
                         <td>{{corso.anno}}</td>
                         <td>{{corso.usernameProf}}</td>
-                        <td><a href="#" class="btn btn-info btn-sm" ="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> </td>
-                        <td>  <a href="#" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                        <td><a class="btn btn-info btn-sm" ><span class="glyphicon glyphicon-edit" ng-click="editCorso(corso)"></span> Edit</a> </td>
+                        <td>  <a  class="btn btn-danger btn-sm" ng-click="deleteCorso(corso)"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                           
                     </tr>
                 </tbody>
