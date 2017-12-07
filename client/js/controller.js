@@ -390,10 +390,22 @@ $scope.addProf=function(){
           
         };
         $scope.sblocca=function(){
-            document.getElementById("name");
+            document.getElementById("nameP").disabled=false;
+            document.getElementById("surname").disabled=false;
+            document.getElementById("bod").disabled=false;
+            document.getElementById("CodFacolta").disabled=false;
+            document.getElementById("state").disabled=false;
+            document.getElementById("city").disabled=false;
+            document.getElementById("address").disabled=false;
+            document.getElementById("gender").disabled=false;
+            document.getElementById("phone").disabled=false;
+            document.getElementById("email").disabled=false;
+           
+            document.getElementById("button1").disabled=false;
+            document.getElementById("button2").disabled=true;
         }
         
-        $scope.modifyDatiP = function (updatecorso) {
+        $scope.modifyDatiP = function (updateprof) {
             /* funzione per aggiunger il corso */
             console.log($scope.currentprof)
             $http.put("/modifyDatiP",updateprof).then(success, err)
@@ -401,8 +413,8 @@ $scope.addProf=function(){
                 updateprof=$scope.currentprof
               $window.alert(success.data.msg)
                 
-               console.log(updatecorso)
-               $window.location.reload()
+               console.log(updateprof)
+            /*    $window.location.reload() */
                 /* $state.go('/inside_info') */
             }
             function err(err) {
