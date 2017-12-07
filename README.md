@@ -2,8 +2,7 @@
 PROGETTO DI PROGRAMMAZIONE WEB 
 - Fedeli Arianna Matr. 093529
 - Rosati Marcello Matr. 093335
-- Caselli Giorgio Matr.
-- Stacchietti Federico Matr. 093338
+
 
 #LINK TRELLO
 https://trello.com/b/AvB0wZyy/inizializzare-progetto-prog-web

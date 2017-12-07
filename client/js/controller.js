@@ -424,9 +424,10 @@ $scope.addProf=function(){
        
                 $http.get('/showProfileProf').then(success, error);
                 function success(user) {
-                
+                    
                     $scope.currentprof = user.data.prof;
-                    console.log(user.data.prof)
+                     $scope.currentprof.bod = user.data.prof.bod.substring(0,10)
+               
                 }
 
                 function error(user) {

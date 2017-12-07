@@ -13,7 +13,7 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/outside/home.html'
             })
            .state('/registrazione', {
-                url: '/singup',
+                url: '/signup',
                 templateUrl: '../view/template/outside/registration.html',
                 controller:'registrazioneCtrl'
             })
