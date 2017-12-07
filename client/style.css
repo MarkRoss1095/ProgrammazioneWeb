@@ -4,24 +4,49 @@
     }
 }
 
+
+
+
 /* Space out content a bit */
-body {
+/* body {
   padding-top: 0px;
   padding-bottom: 20px;
-}
+} */
 
-.map-responsive{
-    overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
-}
-.map-responsive iframe{
-    left:0;
-    top:0;
-    height:90%;
-    width:90%;
-    position:absolute;
-}
+/* html, body, .container{ height: 100%; margin: 0; padding: 0; }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    }
+
+ */
 
 
+ html, body {  height: 100%; }
+ 
+ .container {
+     min-height: 100%;
+     height: auto !important;
+     height: 100%;
+     margin: 0 auto -100px; 
+ }
+ 
+ .footer, #push {
+     background-color: grey;
+     height: 100px; 
+ }
+
+ .bordi{
+    border-radius: 50px;
+ }
+
+ .immagine{
+     text-align: center;
+ }
+ 
+  .form-group{
+    text-align:center;
+ } 
