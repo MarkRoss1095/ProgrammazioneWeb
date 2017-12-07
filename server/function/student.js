@@ -19,38 +19,39 @@ var createHash = function (password) {
 
 //funzionante
 exports.addStudent = function (req, res, next) {
-    if (!req.body.name || !req.body.surname) {
+
+    if (!req.body.name || !req.body.surname || req.body.name=="" || req.body.surname=="" ) {
         return res.json({ state: false, message: 'name and surname are required' });
     }
 
-    if (!req.body.password || !req.body.username) {
+    if (!req.body.password || !req.body.username || req.body.username=="" || req.body.password=="") {
         return res.json({ state: false, message: 'username and password are required' });
     }
 
-    if (!req.body.email) {
+    if (!req.body.email|| req.body.email=="" ) {
         return res.json({ state: false, message: 'email is required' });
     }
-     if (!req.body.gender) {
+     if (!req.body.gender || req.body.gender=="" ) {
         return res.json({ state: false, message: 'gender is required' });
     } 
 
-    if (!req.body.state || !req.body.city) {
+    if (!req.body.state || !req.body.city|| req.body.city=="" || req.body.state==""  ) {
         return res.json({ state: false, message: 'state and city are required' });
     }
-  if (!req.body.bod) {
+  if (!req.body.bod || req.body.bod=="" ) {
         return res.json({ state: false, message: 'date is required' });
     } 
 
 
-    if (!req.body.address) {
+    if (!req.body.address || req.body.address=="" ) {
         return res.json({ state: false, message: 'address is required' });
     }
- 
-    if (!req.body.codFacolta) {
+  
+    if (!req.body.codFacolta || req.body.codFacolta=="" ) {
         return res.json({ state: false, message: 'codicefacoltà is required' });
     } 
 
-    if (!req.body.matricola) {
+    if (!req.body.matricola || req.body.matricola=="" ) {
         return res.json({ state: false, message: 'matricola is required' });
     } else {
 
@@ -65,10 +66,10 @@ exports.addStudent = function (req, res, next) {
             state: req.body.state,
             city: req.body.city,
             address: req.body.address,
-             bod: req.body.bod, 
-             gender: req.body.gender, 
+            bod: req.body.bod, 
+            gender: req.body.gender, 
             matricola: req.body.matricola,
-           codFacolta: req.body.codFacolta,
+            codFacolta: req.body.codFacolta,
             phone: req.body.phone,
         });
 
@@ -76,13 +77,13 @@ exports.addStudent = function (req, res, next) {
         newStudent.save(function (err, student) {
             if (err) {
                 if (err = existing) {
-                    res.json({ success: false, msg: "account già esistente" })
+                    res.json({ success: false, message: "account già esistente" })
                 }
-                res.json({ success: false, msg: "errore" })
+                res.json({ success: false, message: "errore" })
             }
 
             if (student) {
-                res.json({ success: true, msg: 'Ok! Student account has been created successfully' });
+                res.json({ success: true, message: 'Ok! Student account has been created successfully' });
             }
         })
     }
@@ -645,6 +646,25 @@ exports.confermaVoto = function (req, res) {
 }
 
 
+exports.showProfileStudent = function (req, res) {
+    var token = getToken(req.headers);
+
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, student) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!student)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (student)
+                return res.json({ student })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+}
 
 
 

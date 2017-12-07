@@ -4,6 +4,7 @@ var Facolta = require('./server/models/facolta');
 var Admin = require('./server/models/admin');
 var Prof = require('./server/models/professore'); 
 var Student = require ('./server/models/student');
+
 var Corsi = require('./server/models/corsi');
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
@@ -198,7 +199,7 @@ var informatica = new Facolta({
 ]
 
 });
-informatica.save(function (err) {
+informatica.save(function (err,ok) {
     if (err) throw err;
 });
 
@@ -611,7 +612,7 @@ var prof1 = new Prof({
     address:'via casa dei pazzi,22',
     city:'manicomio',
     phone:'3333333333',
-    bod:'02-02-1994',
+    bod:'1994-02-02',
     codFacolta:'L31',
     ruolo:'prof',
 });
@@ -1632,4 +1633,4 @@ var Student4 =new Student({
     });
     
 //Mi disconnetto dal database
-mongoose.connection.close();
+//mongoose.connection.close();

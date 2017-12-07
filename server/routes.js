@@ -6,12 +6,17 @@ router=express.Router(),
 userController=require('./function/student');
 ProfController=require('./function/professori');
 adminController=require('./function/admin');
+controller=require('./function/controller');
 
 
 module.exports = router;
 
 // ROUTE 
-    //ROUTER FOR USER = student
+router.get('/showProfile',controller.showProfile);
+router.get('/showCorsi',controller.showCorsi);
+
+    //ROUTER FOR USER = studente
+router.get('/showProfileStudent',userController.showProfileStudent)//da fare
 router.post('/addStudent',userController.addStudent); //lo studente può registrarsi
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login
 router.get('/mostraCorsi',userController.mostraCorsi);  //lo studente può vedere tutti i corsi disponibili
@@ -25,19 +30,24 @@ router.post('/showAppelli', userController.showAppelli)//mostra tutti gli appell
 router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti gli username dei professori in modo da poterli ricercare in seguito
 
 //route for admin
+router.post('/addProf',adminController.addProf);
+router.get('/showProfileAdmin',adminController.showProfileAdmin);
+router.post('/searchCorso',adminController.searchCorso);
 router.post('/addAnotherAdmin',adminController.addAnotherAdmin); //l'admin può creare o aggiungere un altro admin
 router.post('/loginAdmin', adminController.loginAdmin); //l'admin può loggarsi
 router.post('/addCorso',   adminController.addCorso); //l'admin può aggiungere un corso
-router.post('/populateFacolta',adminController.populateFacolta); //l'admin può popolare le facoltà 
+/* router.post('/populateFacolta',adminController.populateFacolta); */ //l'admin può popolare le facoltà DAAA FAREEE
 router.put('/modifyCorso', adminController.modifyCorso); //l'admin può modificare un corso
-router.delete('/deleteCorso', adminController.deleteCorso); //l'admin può eliminare un corso
-router.delete('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
-router.delete('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
-router.delete('/removeAppello', adminController.deleteAppello); //l'admin può rimuovere un appello
+router.post('/deleteCorso', adminController.deleteCorso); //l'admin può eliminare un corso
+router.post('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
+router.post('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
+router.delete('/removeAppello', adminController.deleteAppello); //l'admin può rimuovere un appello DA FAREEE
+router.get('/viewCorso', adminController.viewCorso);
 
 
 //ROUTE FOR PROF
-router.post('/addProf',    ProfController.addProf); //il prof può registrarsi
+router.get('/showProfileProf',ProfController.showProfileProf);
+/* router.post('/addProf',    ProfController.addProf); //il prof può registrarsi */
 router.post('/loginProf',  ProfController.loginProf); //il  prof può loggarsi
 router.post('/addAppello', ProfController.addAppello); //il prof può aggiungere un appello
 router.put('/chiudiAppello', ProfController.chiudiAppello); //prof può chiudere un appello
@@ -45,4 +55,3 @@ router.put('/editAppello', ProfController.editAppello); //prof può modiciare i 
 router.put('/modifyDatiP',  ProfController.modifyDatiP); //il prof può modificare i suoi dati personali
 router.post('/showIscritti',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello
 router.post('/mostraAppelli', ProfController.mostraAppelli)//mostra tutti gli appelli del prof 
-

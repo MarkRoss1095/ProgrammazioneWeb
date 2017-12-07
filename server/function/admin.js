@@ -1,9 +1,10 @@
 Admin = require('../models/admin');
-Prof  = require('../models/professore');
-Student = require ('../models/student');
+Prof = require('../models/professore');
+Student = require('../models/student');
 Corso = require('../models/corsi');
 Facolta = require('../models/facolta');
 
+var currentcorso;
 var jwt = require('jwt-simple');
 var bCrypt = require('bcrypt-nodejs');
 
@@ -61,17 +62,14 @@ exports.addAnotherAdmin = function (req, res, next) {
                             if (err)
                                 return res.json({ msg: 'errore durante la verifica dell\' esistenzà dell\' appello' });
                             if (!verify) {
+                                if (!req.body.password || !req.body.username || req.body.username == "" || req.body.password == "") {
+                                    return res.json({ state: false, message: 'username and password are required' });
+                                }
 
                                 var newAdmin = new Admin({
-                                    /* name: req.body.name,
-                                    surname: req.body.surname,
-                                    email: req.body.email, */
+
                                     username: req.body.username,
                                     password: createHash(req.body.password),
-                                    /* state: req.body.state,
-                                    city: req.body.city,
-                                    address: req.body.address,
-                                    phone: req.body.phone, */
                                 })
                                 newAdmin.save(function (err, admin) {
                                     if (err) {
@@ -95,128 +93,130 @@ exports.addAnotherAdmin = function (req, res, next) {
 }
 
 //funzionante
-exports.addFacolta = function(req,res){
-    
-        var newFacolta= new Facolta({
-            nome:req.body.nome,
-            codFacolta:req.body.codFacolta,
-        });
-    
-        newFacolta.save (function(err,student){
-            if (err) {
-                res.json({success: false, msg: "errore"})
-            } 
-            
-            if (student) {
-                res.json ({success:true,msg:'ciccia'});
+exports.addFacolta = function (req, res) {
+
+    var newFacolta = new Facolta({
+        nome: req.body.nome,
+        codFacolta: req.body.codFacolta,
+    });
+
+    newFacolta.save(function (err, student) {
+        if (err) {
+            res.json({ success: false, msg: "errore" })
+        }
+
+        if (student) {
+            res.json({ success: true, msg: 'ciccia' });
+        }
+    })
+}
+
+
+//funzionante
+exports.deleteProf = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        //ricerca un admin con quell'id
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'admin non trovato' });
+            if (admin) {
+                if (admin.ruolo == 'admin') {
+
+                    Prof.findOne({
+
+                        _id: req.body.id,
+                        username: req.body.username
+
+                    }).exec(function (err, prof) {
+                        if (err)
+                            return res.json({ success: false, msg: 'errore durante la ricerca dello studente' });
+                        if (!prof)
+                            return res.json({ success: false, msg: 'professore non esistente' });
+                        if (prof) {
+                            // deleteAllElenco(appello._id);
+                            removeprof(prof._id);
+                            return res.json({ success: true, msg: 'professore cancellato dal sistema!' });
+                        }
+                    })
+                }
+
+                else {
+                    return res.json({ success: false, msg: 'admin non esistente' })
+                }
             }
-        }) 
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
 }
 
 
 //funzionante
-exports.deleteProf = function (req,res){
+exports.deleteStudent = function (req, res) {
     var token = getToken(req.headers);
-            if (token) {
-                var decoded = jwt.decode(token, process.env.SECRET);
-                //ricerca un admin con quell'id
-                Admin.findOne({
-                    _id:decoded._id,
-                }).exec(function (err,admin){
-                    if (err) 
-                        return res.json({success:false,msg: 'il token non è valido'});
-                    if(!admin)
-                        return res.json({succes:false,msg:'admin non trovato'});
-                    if(admin) {
-                        if(admin.ruolo =='admin'){
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        //ricerca un admin con quell'id
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'admin non trovato' });
+            if (admin) {
+                if (admin.ruolo == 'admin') {
 
-                            Prof.findOne({
+                    Student.findOne({
 
-                                _id:req.body.id,
-                                username: req.body.username
+                        _id: req.body.id,
+                        username: req.body.username
 
-                            }).exec(function(err,prof){
-                                if(err)
-                                    return res.json({success:false,msg:'errore durante la ricerca dello studente'});
-                                if(!prof)
-                                    return res.json({success:false,msg:'professore non esistente'});
-                                if(prof){
-                                   // deleteAllElenco(appello._id);
-                                    removeprof(prof._id);
-                                    return res.json({success:true,msg:'professore cancellato dal sistema!'});
-                                }    
-                            })
+                    }).exec(function (err, student) {
+                        if (err)
+                            return res.json({ success: false, msg: 'errore durante la ricerca dello studente' });
+                        if (!student)
+                            return res.json({ success: false, msg: 'studente non esistente' });
+                        if (student) {
+                            // deleteAllElenco(appello._id);
+                            remove(student._id);
+                            return res.json({ success: true, msg: 'studente cancellato dal sistema!' });
                         }
+                    })
+                }
 
-                        else {
-                            return res.json({success:false, msg:'admin non esistente'})
-                        }
-                    }
-                    })                
-    }  else{return res.json({success: false, msg: 'token non valido'})      
-}
-}
-
-
-//funzionante
-exports.deleteStudent = function (req,res){
-    var token = getToken(req.headers);
-            if (token) {
-                var decoded = jwt.decode(token, process.env.SECRET);
-                //ricerca un admin con quell'id
-                Admin.findOne({
-                    _id:decoded._id,
-                }).exec(function (err,admin){
-                    if (err) 
-                        return res.json({success:false,msg: 'il token non è valido'});
-                    if(!admin)
-                        return res.json({succes:false,msg:'admin non trovato'});
-                    if(admin) {
-                        if(admin.ruolo =='admin'){
-
-                            Student.findOne({
-
-                                _id:req.body.id,
-                                username: req.body.username
-
-                            }).exec(function(err,student){
-                                if(err)
-                                    return res.json({success:false,msg:'errore durante la ricerca dello studente'});
-                                if(!student)
-                                    return res.json({success:false,msg:'studente non esistente'});
-                                if(student){
-                                   // deleteAllElenco(appello._id);
-                                    remove(student._id);
-                                    return res.json({success:true,msg:'studente cancellato dal sistema!'});
-                                }    
-                            })
-                        }
-
-                        else {
-                            return res.json({success:false, msg:'admin non esistente'})
-                        }
-                    }
-                    })                
-    }  else{return res.json({success: false, msg: 'token non valido'})      
-}
+                else {
+                    return res.json({ success: false, msg: 'admin non esistente' })
+                }
+            }
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
 }
 
 remove = function (student) {
     Student.remove({
-        _id : student
-    }, function(err) {
+        _id: student
+    }, function (err) {
         if (err)
-            res.status(400).send({success:false,msg:'errore durante la cancellazione dello studente, contattare un amministratore'});
-	});
+            res.status(400).send({ success: false, msg: 'errore durante la cancellazione dello studente, contattare un amministratore' });
+    });
 }
 
 removeprof = function (prof) {
     Prof.remove({
-        _id : prof
-    }, function(err) {
+        _id: prof
+    }, function (err) {
         if (err)
-            res.status(400).send({success:false,msg:'errore durante la cancellazione del professore, contattare un amministratore'});
-	});
+            res.status(400).send({ success: false, msg: 'errore durante la cancellazione del professore, contattare un amministratore' });
+    });
 }
 
 
@@ -247,52 +247,31 @@ exports.loginAdmin = function (req, res) {
     });
 }
 /// TEST DATABASE ///
-exports.addFacolta = function(req,res){
-    
-        var newFacolta= new Facolta({
-            nome:req.body.nome,
-            codFacolta:req.body.codFacolta,
-            
-        });
-        
-        newFacolta.save (function(err,facolta){
-            if (err) {
-                res.json({success: false, msg: err})
-            } 
-            
-            if (facolta) {
-                res.json ({success:true,msg:'facolta inserita'});
-            }
-        }) 
+exports.addFacolta = function (req, res) {
+
+    var newFacolta = new Facolta({
+        nome: req.body.nome,
+        codFacolta: req.body.codFacolta,
+
+    });
+
+    newFacolta.save(function (err, facolta) {
+        if (err) {
+            res.json({ success: false, msg: err })
+        }
+
+        if (facolta) {
+            res.json({ success: true, msg: 'facolta inserita' });
+        }
+    })
 }
-    
+
+
+
+
 //funzionante
-exports.addCorso = function(req,res) {
-        
-            var newCorso= new Corso({
-                nome:req.body.nome,
-                codice:req.body.codice,
-                codFacolta:req.body.codFacolta,
-                cfu:req.body.cfu,
-                anno:req.body.anno, 
-            });
 
-            newCorso.save (function(err,student){
-                if (err) {
-                    res.json({success: false, msg: err})
-                } 
-                if (student) {
-                    res.json ({success:true,msg:'corso creato'});
-                }
-            }) 
- }
-
-
-
-
- //funzionante
-
- exports.deleteProf = function (req, res) {
+exports.deleteProf = function (req, res) {
     var token = getToken(req.headers);
 
     if (token) {
@@ -308,7 +287,6 @@ exports.addCorso = function(req,res) {
                 if (admin.ruolo == 'admin') {
 
                     Prof.findOne({
-                        _id: req.body.id,
                         username: req.body.username
                     }).exec(function (err, done) {
                         if (err)
@@ -349,7 +327,6 @@ exports.deleteStudent = function (req, res) {
                 if (admin.ruolo == 'admin') {
 
                     Student.findOne({
-                        _id: req.body.id,
                         username: req.body.username
                     }).exec(function (err, done) {
                         if (err)
@@ -378,34 +355,21 @@ exports.addCorso = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
-
         Admin.findOne({
             _id: decoded._id,
         }).exec(function (err, admin) {
-            /* if (admin)
- 
-                return res.json({ success: false, msg: 'il token non è valido' }); */
 
             if (!admin)
                 return res.json({ success: false, msg: 'account non trovato' });
 
             if (admin) {
                 if (admin.ruolo == 'admin') {
-
                     Corso.findOne({
-                        nome: req.body.nome,
-                        codFacolta: req.body.codFacolta,
                         codice: req.body.codice,
-                        cfu: req.body.cfu,
-                        anno: req.body.anno,
-                        usernameProf: req.body.usernameProf
-
                     }).exec(function (err, verify) {
                         if (err)
                             return res.json({ msg: 'errore' });
-
                         if (!verify) {
-                            console.log(verify)
                             var newCorso = new Corso({
                                 nome: req.body.nome,
                                 codFacolta: req.body.codFacolta,
@@ -416,7 +380,7 @@ exports.addCorso = function (req, res) {
                             })
                             newCorso.save(function (err, corso) {
                                 if (err)
-                                    return res.json({ success: false, msg: 'errore durante la creazione dell\'appello' });
+                                    return res.json({ success: false, msg: err });
                                 if (corso)
                                     return res.json({ succes: true, msg: 'corso creato' });
                             })
@@ -448,6 +412,7 @@ exports.modifyCorso = function (req, res) {
         }).exec(function (err, admin) {
             if (err)
                 return res.json({ success: false, msg: 'il token non è valido' });
+            console.log(err)
             if (!admin)
                 return res.json({ succes: false, msg: 'account non trovato' });
             else {
@@ -455,21 +420,24 @@ exports.modifyCorso = function (req, res) {
                     if (admin.ruolo == 'admin') {
 
                         Corso.findOneAndUpdate({
-                            _id: req.body.id,
+                            _id: req.body._id,
                         },
                             {
                                 $set: {
                                     cfu: req.body.cfu,
                                     usernameProf: req.body.usernameProf,
+                                    anno: req.body.anno,
+                                    nome: req.body.nome,
+                                    codFacolta: req.body.codFacolta,
+                                    codice: req.body.codice
                                 }
                             },
                             { new: true },
-
                             function (err, corso) {
                                 if (err)
                                     return res.json({ success: false, msg: 'errore durante la riceca del corso' + err });
-                                if (!corso)
-                                    return res.json({ success: false, msg: 'corso non esistente' });
+                                /*  if (!corso)
+                                     return res.json({ success: false, msg: 'corso non esistente' }); */
                                 if (corso) {
                                     return res.json({ success: true, msg: 'corso modificato' });
                                 }
@@ -502,8 +470,8 @@ exports.deleteCorso = function (req, res) {
                 if (admin.ruolo == 'admin') {
 
                     Corso.findOne({
-                        _id: req.body.id,
-                        codice: req.body.codice
+                        _id: req.body._id,
+
                     })
                         .exec(function (err, done) {
                             if (err)
@@ -587,6 +555,153 @@ exports.deleteAppello = function (req, res) {
     } else {
         return res.json({ success: false, msg: 'token non valido' })
     }
+}
+
+exports.addProf = function (req, res, next) {
+
+    if (!req.body.name || !req.body.surname || req.body.name == "" || req.body.surname == "") {
+        return res.json({ state: false, message: 'name and surname are required' });
+    }
+
+    if (!req.body.password || !req.body.username || req.body.username == "" || req.body.password == "") {
+        return res.json({ state: false, message: 'username and password are required' });
+    }
+
+    if (!req.body.email || req.body.email == "") {
+        return res.json({ state: false, message: 'email is required' });
+    }
+    if (!req.body.gender || req.body.gender == "") {
+        return res.json({ state: false, message: 'gender is required' });
+    }
+
+    if (!req.body.state || !req.body.city || req.body.city == "" || req.body.state == "") {
+        return res.json({ state: false, message: 'state and city are required' });
+    }
+    if (!req.body.bod || req.body.bod == "") {
+        return res.json({ state: false, message: 'date is required' });
+    }
+
+
+    if (!req.body.address || req.body.address == "") {
+        return res.json({ state: false, message: 'address is required' });
+    }
+
+    if (!req.body.codFacolta || req.body.codFacolta == "") {
+        return res.json({ state: false, message: 'codicefacoltà is required' });
+    }
+
+    else {
+
+        var newProf = new Prof({
+            // _id:req.body.id,
+            nameP: req.body.nameP,
+            surname: req.body.surname,
+            email: req.body.email,
+            codFacolta: req.body.codFacolta,
+            username: req.body.username,
+            password: createHash(req.body.password),
+            state: req.body.state,
+            city: req.body.city,
+            address: req.body.address,
+            phone: req.body.phone,
+            bod: req.body.bod,
+            gender: req.body.gender
+        })
+        newProf.save(function (err, prof) {
+            if (err) {
+                res.json({ success: false, msg: err })
+            }
+
+            else {
+                res.json({ success: true, msg: 'Ok! Professor account has been created successfully' });
+            }
+        })
+    }
+}
+
+exports.showProfileAdmin = function (req, res) {
+    var token = getToken(req.headers);
+
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (admin)
+                return res.json({ admin })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+}
+
+exports.searchCorso = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (admin)
+                Corso.findOne({
+                    _id: req.body._id
+                }).exec(function (err, corso) {
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
+                    }
+                    if (!corso)
+                        return res.json({ success: false, msg: 'corso non trovato' });
+                    if (corso)
+                        currentcorso = corso;
+                    return res.json({ success: false, msg: 'corso trovato' });
+
+
+
+                })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+
+}
+
+
+exports.viewCorso = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Admin.findOne({
+            _id: decoded._id,
+        }).exec(function (err, admin) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!admin)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (admin)
+                Corso.findOne({
+                    _id: currentcorso._id
+                }).exec(function (err, corso) {
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
+                    }
+                    if (!corso)
+                        return res.json({ success: false, msg: 'corso non trovato' });
+                    if (corso)
+                        return res.json({ success: false, msg: corso });
+                })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+
 }
 
 
