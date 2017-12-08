@@ -338,15 +338,21 @@ exports.modifyDatiP = function (req,res){
                     if (prof.ruolo == 'prof') {
                             
                         Prof.findOneAndUpdate({
-                            _id: req.body.id,
+                            _id: req.body._id,
                         },
                             {
                                 $set: {
+                                    
                                     email: req.body.email,
                                     phone: req.body.phone,
                                     address:req.body.address,
                                     city:req.body.city,
                                     state:req.body.state,
+                                  
+                                   
+                                    codFacolta:req.body.codFacolta,
+                                    gender:req.body.gender,
+
                                 }
                             },
                             { new: true },
@@ -355,7 +361,7 @@ exports.modifyDatiP = function (req,res){
                                 if (err)
                                     return res.json({ success: false, msg: 'errore durante la riceca del professore' + err });
                                 if (!prof)
-                                    return res.json({ success: false, msg: 'professore non esistente' });
+                                    return res.json({ success: false, msg: 'professore non esistente' }); 
                                 if (prof) {
                                     return res.json({ success: true, msg: 'professore modificato' });
 

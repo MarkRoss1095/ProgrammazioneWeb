@@ -13,7 +13,7 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/outside/home.html'
             })
            .state('/registrazione', {
-                url: '/singup',
+                url: '/signup',
                 templateUrl: '../view/template/outside/registration.html',
                 controller:'registrazioneCtrl'
             })
@@ -71,7 +71,7 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
             .state('/inside_appelli', {
                 url: '/Appelli',
                 templateUrl: '../view/template/inside/appelli.html',
-                controller:''
+                controller:'AppCtrl'
             })
             .state('/inside_chim', {
                 url: '/corsoChimica',
