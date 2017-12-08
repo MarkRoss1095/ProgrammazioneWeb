@@ -1,25 +1,44 @@
 <div ng-include src="'./view/template/outside/outside_navbar.html '">
 </div>
 
-<div class="container">
-	
-		<div class="form-group">
-			<label for="sel1"> accedi come (select one):</label>
-			<select class="form-control" ng-model="user.role" name="sel1" id="sel1">
-				<option id="admin" value="admin">Admin</option>
-				<option id="student" value="student">Student</option>
-				<option id="prof" value="prof">Prof</option>
 
-			</select>
+<div class="immagine" text-align="center">
+	<img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/96/contact-icon.png">
+</div>
 
+
+
+<div class="container ">
+<div class="col-md-4"></div>
+	<div class="form-group col-md-4">
+		<label for="sel1">Accedi come... </label>
+		<select class="form-control" ng-model="user.role" name="sel1" placeholder="Accedi come.." id="sel1">
+			<option id="admin" value="admin">Admin</option>
+			<option id="student" value="student">Student</option>
+			<option id="prof" value="prof">Professor</option>
+
+		</select>
+
+	</div>
+
+
+	<div class="row omb_row-sm-offset-3 omb_loginOr">
+		<div class="col-xs-12 col-sm-6">
+			<hr class="omb_hrOr">
+			<span class="omb_spanOr"></span>
 		</div>
+	</div>
 
-		<div class="row omb_row-sm-offset-3 omb_loginOr">
-			<div class="col-xs-12 col-sm-6">
-				<hr class="omb_hrOr">
-				<span class="omb_spanOr"></span>
-			</div>
-		</div>
+	<div class="row omb_row-sm-offset-3">
+		<div class="col-xs-12 col-md-6">
+			<form>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa fa-user"></i>
+					</span>
+					<input type="text" class="form-control" name="username" placeholder="username" ng-model="user.username">
+				</div>
+				<span class="help-block"></span>
 
 		<div class="row omb_row-sm-offset-3">
 			<div class="col-xs-12 col-sm-6">
@@ -47,6 +66,25 @@
 				</p>
 			</div>
 
+				<br>
+				<button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()">Submit</button>
+			</form>
+			<p>new user?
+				<a ui-serf="registrazione" style="color:black">create new account</a>
+			</p>
 		</div>
-	
+
+	</div>
+
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

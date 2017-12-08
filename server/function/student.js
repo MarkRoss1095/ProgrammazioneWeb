@@ -20,38 +20,38 @@ var createHash = function (password) {
 //funzionante
 exports.addStudent = function (req, res, next) {
 
-    if (!req.body.name || !req.body.surname) {
+    if (!req.body.name || !req.body.surname || req.body.name=="" || req.body.surname=="" ) {
         return res.json({ state: false, message: 'name and surname are required' });
     }
 
-    if (!req.body.password || !req.body.username) {
+    if (!req.body.password || !req.body.username || req.body.username=="" || req.body.password=="") {
         return res.json({ state: false, message: 'username and password are required' });
     }
 
-    if (!req.body.email) {
+    if (!req.body.email|| req.body.email=="" ) {
         return res.json({ state: false, message: 'email is required' });
     }
-     if (!req.body.gender) {
+     if (!req.body.gender || req.body.gender=="" ) {
         return res.json({ state: false, message: 'gender is required' });
     } 
 
-    if (!req.body.state || !req.body.city) {
+    if (!req.body.state || !req.body.city|| req.body.city=="" || req.body.state==""  ) {
         return res.json({ state: false, message: 'state and city are required' });
     }
-  if (!req.body.bod) {
+  if (!req.body.bod || req.body.bod=="" ) {
         return res.json({ state: false, message: 'date is required' });
     } 
 
 
-    if (!req.body.address) {
+    if (!req.body.address || req.body.address=="" ) {
         return res.json({ state: false, message: 'address is required' });
     }
- 
-    if (!req.body.codFacolta) {
+  
+    if (!req.body.codFacolta || req.body.codFacolta=="" ) {
         return res.json({ state: false, message: 'codicefacoltà is required' });
     } 
 
-    if (!req.body.matricola) {
+    if (!req.body.matricola || req.body.matricola=="" ) {
         return res.json({ state: false, message: 'matricola is required' });
     } else {
 
@@ -97,6 +97,9 @@ exports.loginStudent = function (req, res) {
         username: req.body.username
     },
         function (err, student) {
+            if (!req.body.username) {
+                return res.json({ state: false, message: 'password is required' });
+            }
 
             if (err)
                 return res.json({ success: false, msg: 'errore durante il login,riprovare' });
@@ -107,6 +110,10 @@ exports.loginStudent = function (req, res) {
 
                 // check if password matches
                 student.comparePassword(req.body.password, function (err, isMatch) {
+                    if (!req.body.password) {
+                        return res.json({ state: false, message: 'password is required' });
+                    }
+                
                     if (isMatch && !err) {
                         // if user is found and password is right create a token
                         var token = jwt.encode(student, process.env.SECRET);
@@ -156,7 +163,6 @@ exports.PianoDiStudi = function (req, res) {
         }).exec(function (err, done) {
 
             Corso.find({
-                //_id: req.body.id,
                 codFacolta: req.body.codFacolta
             }).exec(function (err, done) {
                 if (err)
@@ -209,6 +215,12 @@ exports.ricercaProf = function (req, res) {
             nameP: req.body.nameP,
             surname: req.body.surname,
         }).exec(function (err, prof) {
+            if (!req.body.nameP) {
+                return res.json({ state: false, message: 'name is required' });
+            }
+            if (!req.body.surname) {
+                return res.json({ state: false, message: 'surname is required' });
+            }
             if (err)
                 return res.json({ success: false, msg: 'errore durante la ricerca del prof' });
             if (!prof)
@@ -244,7 +256,7 @@ exports.modifyDati = function (req, res) {
                         if (student.ruolo == 'student') {
 
                             Student.findOneAndUpdate({
-                                _id: req.body.id,
+                                _id: decode._id,
                             },
                                 {
                                     $set: {
@@ -258,6 +270,21 @@ exports.modifyDati = function (req, res) {
                                 { new: true },
 
                                 function (err, student) {
+                                    if (!req.body.email) {
+                                        return res.json({ state: false, message: 'email is required' });
+                                    }
+                                    if (!req.body.phone) {
+                                        return res.json({ state: false, message: 'phone is required' });
+                                    }
+                                    if (!req.body.address) {
+                                        return res.json({ state: false, message: 'address is required' });
+                                    }
+                                    if (!req.body.city) {
+                                        return res.json({ state: false, message: 'city is required' });
+                                    }
+                                    if (!req.body.state) {
+                                        return res.json({ state: false, message: 'state is required' });
+                                    }
                                     if (err)
                                         return res.json({ success: false, msg: 'errore durante la riceca dello studente' + err });
                                     if (!student)
@@ -328,6 +355,25 @@ exports.iscrivitiAppello = function (req, res) {
                                             })
 
                                             NewElenco.save(function (err, elenco) {
+                                                if (!req.body.matricola) {
+                                                    return res.json({ state: false, message: 'matricola is required' });
+                                                }
+                                                if (!req.body.name) {
+                                                    return res.json({ state: false, message: 'name is required' });
+                                                }
+                                                if (!req.body.surname) {
+                                                    return res.json({ state: false, message: 'surname is required' });
+                                                }
+                                                if (!req.body.esame) {
+                                                    return res.json({ state: false, message: 'esame is required' });
+                                                }
+                                                if (!req.body.data) {
+                                                    return res.json({ state: false, message: 'data is required' });
+                                                }
+                                                if (!req.body.ora) {
+                                                    return res.json({ state: false, message: 'ora is required' });
+                                                }
+                                               
                                                 if (err)
                                                     return res.json({ success: false, msg: 'errore' });
                                                 if (elenco) {
@@ -439,6 +485,9 @@ exports.showAppelli = function (req, res) {
                 Prof.findOne({
                     username: req.body.username
                 }).exec(function (err, prof) {
+                    if (!req.body.username) {
+                        return res.json({ state: false, message: 'username is required. Usually is name.surname' });
+                    }
                     if (err) return res.json({ msg: 'professore non esistente' })
                     else {
                         var o = prof
