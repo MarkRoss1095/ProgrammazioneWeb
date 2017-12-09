@@ -492,42 +492,7 @@ exports.mostraAppelli = function (req, res) {
                 }
            
         }
-    exports.mostraAppelli = function (req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, process.env.SECRET);
-
-                    Prof.findOne({
-                        _id: decoded._id,
-                    }).exec(function (err, prof) {
-                        var o=prof
-                      
-                        if (err)
-                            return res.json({ success: false, msg: 'non è stato possibile trovare il profilo del professore' });
-                        else {
-                            Appello.find({
-                                _id: req.body._id, //per prendere l'id dell'appello
-                                username_prof: prof.username,
-                            }).exec(function (err, appello) {
-                                if (err)
-                                    return res.json({ success: false, msg: 'errore durante la riceca dell\'appello' });
-                                if (!appello)
-                                    return res.json({ success: false, msg: 'appello non esistente' });
-                                if (appello) {
-                    
-                                    return res.json({ success: true, msg:'appelli: ' +o });
-                                }
-                            })
-                        }
-                    })
-            
-                } else {
-                    return res.json({ success: false, msg: 'non sei un professore' });
-                }
-           
-        }
-    
-
+   
         exports.votiprovvisoriAppello = function (req,res){
             var token = getToken(req.headers);
             if (token) {

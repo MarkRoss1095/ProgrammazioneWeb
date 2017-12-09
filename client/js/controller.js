@@ -83,6 +83,7 @@ angular.module('ProgWeb')
                         $window.alert('Login effettuato')
                     }, function (errmsg) {
                         $window.alert(errmsg)
+                        window.location.reload()
                     })
                 }
             }
@@ -92,6 +93,7 @@ angular.module('ProgWeb')
                     $window.alert('Login effettuato')
                 }, function (errmsg) {
                     $window.alert(errmsg)
+                    window.location.reload()
                 })
             }
             if ($scope.user.role == 'admin') {
@@ -100,6 +102,7 @@ angular.module('ProgWeb')
                     $window.alert('Login effettuato')
                 }, function (errmsg) {
                     $window.alert(errmsg)
+                    window.location.reload()
                 })
             }
 
@@ -334,6 +337,31 @@ $scope.addProf=function(){
             $window.alert('corso non trovato')
            
         };
+        $scope.logout = function () {
+            AuthService.logout();
+            $window.alert('logout effettuato')
+            $state.go('/');
+        };
+        $scope.showProfile = function () {
+            $http.get('/showProfile').then(success, error);
+            function success(currentaccount) {
+
+                if (currentaccount.data.msg == 'student') {
+                    $state.go('/profiloStudente')
+                }
+                if (currentaccount.data.msg == 'admin') {
+                    $state.go('/profiloAdmin')
+                }
+                if (currentaccount.data.msg == 'prof') {
+                    $state.go('/profiloProf')
+                }
+            }
+            function error(currentaccount) {
+                $window.alert('profilo non trovato, rifare il login')
+                $state.go('/login')
+                AuthService.logout();
+            };
+        }
 
         $scope.update = function (updatecorso) {
             /* funzione per aggiunger il corso */
@@ -443,33 +471,7 @@ $scope.addProf=function(){
                     $state.go('/');
                 };
         
-               /*  $scope.addAdmin = function () {
-                    AuthService.registerAdmin($scope.admin).then(function (msg) {
-                        $window.alert('admin creato')
-                    }, function (errMsg) {
-                        $window.alert(errMsg)
-                    })
-        
-                }
-        
-                $scope.deleteProf = function (prof) {
-                    $http.post("/deleteProf", prof).then(success, err)
-                    function success(success) {
-                        $window.alert(success.data.msg)
-                    }
-                    function err(err) {
-                        $window.alert(err)
-                    }
-                };
-                $scope.deleteStudente = function (studente) {
-                    $http.post("/deleteStudent", studente).then(success, err)
-                    function success(success) {
-                        $window.alert(success.data.msg)
-                    }
-                    function err(err) {
-                        $window.alert(err)
-                    }
-                }; */
+              
         
                 $scope.showProfile = function () {
                     $http.get('/showProfile').then(success, error);
@@ -495,4 +497,59 @@ $scope.addProf=function(){
         
         
             })
+            .controller('AppCtrl', function ($scope, $http, AuthService, $state, $window ) {
+                $scope.currentappello ={
+                    username_prof:'',
+                    CodFacolta:'',
+                    esame:'',
+                    data:'',
+                    ora:'',
+                    iscritti:'',
+                    aperto:'',
+                   
+                    
+                }
+
+                $scope.logout = function () {
+                    AuthService.logout();
+                    $window.alert('logout effettuato')
+                    $state.go('/');
+                };
+
+                $scope.showProfile = function () {
+                    $http.get('/showProfile').then(success, error);
+                    function success(currentaccount) {
         
+                        if (currentaccount.data.msg == 'student') {
+                            $state.go('/profiloStudente')
+                        }
+                        if (currentaccount.data.msg == 'admin') {
+                            $state.go('/profiloAdmin')
+                        }
+                        if (currentaccount.data.msg == 'prof') {
+                            $state.go('/profiloProf')
+                        }
+                    }
+                    function error(currentaccount) {
+                        $window.alert('profilo non trovato, rifare il login')
+                        $state.go('/login')
+                        AuthService.logout();
+                    };
+                }
+
+
+                $http.get('/mostraAppelli').then(success, error);
+                function success(appello) {
+                    $scope.appello = appello.data.msg
+                }
+                function error(appello) {
+                    $window.alert(error)
+        
+                };
+
+
+
+
+
+            })
+                

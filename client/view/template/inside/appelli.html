@@ -1,6 +1,4 @@
-<div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '">
-</div>
-
+<div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
 <div class="container">
     <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
         <div id="testo">
@@ -11,43 +9,45 @@
         </div>
     </div>
 
-    <button type="button" style="float:right;" class="btn btn-info " ng-click="newCorso(corso)">Nuovo Corso</button>
+    <button type="button" style="float:right;" class="btn btn-info " ng-click="newAppello(appello)">Nuovo Appello</button>
 
-    <form ng-submit="submitCorso()">
         <table id="mytable" class="table table-bordered well">
             <thead>
-                <th style="width:5%;">Nome</th>
+                <th style="width:5%;">Prof</th>
                 <th style="width:10%;">CodFacolta</th>
-                <th style="width:15%;">Codice Corso</th>
-                <th style="width:2%;">CFU</th>
-                <th style="width:10%;">Anno del corso</th>
-                <th style="width:15%;">Nome professore</th>
+                <th style="width:15%;">esame</th>
+                <th style="width:2%;">data</th>
+                <th style="width:10%;">ora</th>
+                <th style="width:15%;"> n iscritti</th>
+                <th style="width:15%;">stato</th>
                 <th style="width:15%;">Edit</th>
                 <th style="width:15%;">Remove</th>
             </thead>
             <tbody>
 
 
-                <tr ng-repeat="corso in corso| filter:informatica | filter:'L31' | orderBy:'anno' | orderBy:'codice' ">
-                    <td>{{corso.nome}}</td>
-                    <td>{{corso.codFacolta}}</td>
-                    <td>{{corso.codice}}</td>
-                    <td>{{corso.cfu}}</td>
-                    <td>{{corso.anno}}</td>
-                    <td>{{corso.usernameProf}}</td>
+                <tr ng-repeat="appello in appellos "> <!-- | filter:username_prof | orderBy:'data' | orderBy:'ora' -->
+                    <td>{{appello.username_prof}}</td>
+                    <td>{{appello.codFacolta}}</td>
+                    <td>{{appello.esame}}</td>
+                    <td>{{appello.data}}</td>
+                    <td>{{appello.ora}}</td>
+                    <td>{{appello.iscritti}}</td>
+                    <td>{{appello.aperto}}</td>
+                   
                     <td>
-                        <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="editCorso(corso)">Edit</button>
+                        <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="editCorso(appello)">Edit</button>
 
                     </td>
                     <td>
-                        <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteCorso(corso)">Remove</button>
+                        <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteCorso(appello)">Remove</button>
 
                     </td>
 
                 </tr>
             </tbody>
         </table>
-    </form>
+   
     <div class="clearfix"></div>
 
 

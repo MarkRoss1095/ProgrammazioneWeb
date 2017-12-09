@@ -706,26 +706,6 @@ exports.viewCorso = function (req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //funzioni esterne richiamate all'interno dei metodi 
 deleteA = function (appello) {
     Appello.remove({

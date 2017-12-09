@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Course = require('./corsi')
+var Corsi = require('./corsi');
 var bcrypt = require('bcrypt-nodejs');
 //var bCrypt = require('bcrypt');
 
@@ -25,13 +25,11 @@ var professoreSchema = new Schema({
     city: { type: String, required: true },
     phone: {type: Number, required: true },
     bod: {type: Date, required: true },
-    corsi: [{ type: String, ref: 'Corsi' }]
+    corsi: [Corsi] //da rivedere ompaniono 0 corsi non va bene
 },
-    //toglie il campo __v dal db
     {
         versionKey: false
     });
-    
     professoreSchema.methods.comparePassword = function (passw, cb) {
         bcrypt.compare(passw, this.password, function (err, isMatch) {
             if (err) {

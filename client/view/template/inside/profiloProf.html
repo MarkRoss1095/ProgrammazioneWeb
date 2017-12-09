@@ -1,41 +1,39 @@
-
-
 <div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '">
 </div>
 <!-- <link rel="stylesheet" href="./view/style/profileAdmin.css"> -->
 
 
 <section class="mbr-section mbr-section__container article" id="header3-1" data-rv-view="3" style=" padding-top: 20px; padding-bottom: 20px;">
-    <div class="container">
+    
         <div class="row">
             <div class="col-xs-12">
                 <h3 class="mbr-section-title display-2">Benvenuto</h3>
                 <h3 class="mbr-section-title display-2">{{currentprof.username}}</h3>
             </div>
         </div>
-    </div>
+   
 </section>
- <div class="container">
+<div class="container">
     <h1 class="well">I miei Dati</h1>
     <div class="col-lg-12 well">
         <div class="row">
-            <form class="register"></form>
+            <form class="register">
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label>First Name</label>
-                        <input disabled type="text" name="nameP" id ="nameP" ng-model="currentprof.nameP"  class="form-control">
+                        <input disabled type="text" name="nameP" id="nameP" ng-model="currentprof.nameP" class="form-control">
                     </div>
                     <div class="col-sm-6 form-group">
                         <label>Last Name</label>
-                        <input disabled type="text" name="surname" id="surname" ng-model="currentprof.surname"  class="form-control">
+                        <input disabled type="text" name="surname" id="surname" ng-model="currentprof.surname" class="form-control">
                     </div>
                 </div>
                 <!--  <div class="col-sm-4 form-group">
                     <label>Date of Birth</label>
                     <input disabled type="text" name="bod" id="bod" ng-model="currentprof.bod" class="form-control">
                 </div> -->
- 
+
                 <div class=" col-sm-4 form-group">
                     <label>Facolta</label>
 
@@ -53,19 +51,19 @@
 
                     <div class="col-sm-4 form-group">
                         <label>State</label>
-                        <input disabled type="text" id="state"name="state" ng-model="currentprof.state"  class="form-control">
+                        <input disabled type="text" id="state" name="state" ng-model="currentprof.state" class="form-control">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>City</label>
-                        <input disabled type="text" id="city" name="city" ng-model="currentprof.city"  class="form-control">
+                        <input disabled type="text" id="city" name="city" ng-model="currentprof.city" class="form-control">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>Address </label>
-                        <input disabled type="text" id ="address"name="address" ng-model="currentprof.address" class="form-control">
+                        <input disabled type="text" id="address" name="address" ng-model="currentprof.address" class="form-control">
                     </div>
                     <div class=" col-sm-4 form-group">
                         <label>Gender</label>
-    
+
                         <select disabled class="form-control" id="gender" ng-model="currentprof.gender">
                             <option value="M">Maschio</option>
                             <option value="F">Femmina</option>
@@ -76,24 +74,24 @@
                 <div class="row">
                     <div class="col-sm-4 form-group">
                         <label>Phone Number</label>
-                        <input disabled type="number" name="phone" id="phone" ng-model="currentprof.phone"  class="form-control">
+                        <input disabled type="number" name="phone" id="phone" ng-model="currentprof.phone" class="form-control">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label>Email Address</label>
-                        <input disabled type="email" name="email" id="email" ng-model="currentprof.email"  class="form-control">
+                        <input disabled type="email" name="email" id="email" ng-model="currentprof.email" class="form-control">
                     </div>
 
                 </div>
-                
-                <button type="submit" id="button2" class="btn btn-lg btn-info"ng-click="sblocca()">edit</button>
+
+                <button type="submit" id="button2" class="btn btn-lg btn-info" ng-click="sblocca()">edit</button>
                 <button disabled type="submit" id="button1" class="btn btn-lg btn-info" ng-click="modifyDatiP(currentprof)">save</button>
             </div>
 
             </form>
         </div>
     </div>
-</div> 
- <!--
+</div>
+<!--
 <section style="padding-top: 120px; padding-bottom: 120px;">
         
     <div class="mbr-section mbr-section__container mbr-section__container--middle">

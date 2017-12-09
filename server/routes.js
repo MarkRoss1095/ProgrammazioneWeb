@@ -54,4 +54,4 @@ router.put('/chiudiAppello', ProfController.chiudiAppello); //prof può chiudere
 router.put('/editAppello', ProfController.editAppello); //prof può modiciare i dati di un appello
 router.put('/modifyDatiP',  ProfController.modifyDatiP); //il prof può modificare i suoi dati personali
 router.post('/showIscritti',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello
-router.post('/mostraAppelli', ProfController.mostraAppelli)//mostra tutti gli appelli del prof 
+router.get('/mostraAppelli', ProfController.mostraAppelli)//mostra tutti gli appelli del prof 
