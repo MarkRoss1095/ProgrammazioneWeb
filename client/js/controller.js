@@ -277,18 +277,7 @@ $scope.addProf=function(){
             $http.post("/searchCorso", search).then(success, err)
             function success(success) {
                $state.go('editcorso')
-/* 
-                function Main($scope) {
-                    $scope.edit.nome;
-                    $scope.edit.codice;
-                    $scope.edit.codfacolta;
-                    $scope.edit.cfu;
-                    $scope.edit.usernameProfessore;
-                    $scope.edit.anno;
-                }
 
-                console.log($scope.edit)
- */
                
             }
             function err(err) {
@@ -308,8 +297,8 @@ $scope.addProf=function(){
             function success(success) {
                 $window.alert(success.data.msg)
 
-            setTimeout(function() {
-                 window.location.reload()},6000);
+           
+                 window.location.reload()
                 
                 console.log(corso)
             }
@@ -499,13 +488,11 @@ $scope.addProf=function(){
             })
             .controller('AppCtrl', function ($scope, $http, AuthService, $state, $window ) {
                 $scope.currentappello ={
-                    username_prof:'',
-                    CodFacolta:'',
+                    
                     esame:'',
                     data:'',
                     ora:'',
-                    iscritti:'',
-                    aperto:'',
+                   
                    
                     
                 }
@@ -537,18 +524,48 @@ $scope.addProf=function(){
                     };
                 }
 
-
+             
                 $http.get('/mostraAppelli').then(success, error);
                 function success(appello) {
                     $scope.appello = appello.data.msg
+           console.log(appello.data.msg)
                 }
                 function error(appello) {
-                    $window.alert(error)
+                    $window.alert(err)
         
                 };
 
+                $scope.addAppello = function (newappello) {
+                    /* funzione per aggiunger il corso */
+                    $http.post("/addAppello", newappello).then(success, err)
+                  
+                    console.log(newappello)
+                    function success(success) {
+                        $window.alert(success.data.msg)
+                        $window.location.reload()
+                      
+                    }
+                    function err(err) {
+                        $window.alert(err)
+                    }
+                   
+                }
 
-
+                $scope.deleteAppello = function (currentappello) {
+                    $http.post("/deleteAppello", currentappello).then(success, err)
+                    function success(success) {
+                        $window.alert(success.data.msg)
+        
+                    setTimeout(function() {
+                         window.location.reload()},6000);
+                        
+                        console.log(currentappello)
+                    }
+                    function err(err) {
+                        $window.alert(err)
+                    }
+        
+                }
 
 
             })

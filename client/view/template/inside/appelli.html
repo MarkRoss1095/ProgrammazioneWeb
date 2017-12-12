@@ -1,39 +1,72 @@
 <div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
 <div class="container">
+        <div class="container">
+                <h1 class="ciao">new Corso</h1>
+                <div class="col-lg-12 ">
+                    <div class="row">
+            
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+            
+            
+                                    <label>Esame</label>
+                                    <input type="text" name="nome" ng-model="newappello.esame" placeholder="Enter the name of course Here.." class="form-control">
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Data</label>
+                                    <input type="data" name="data" ng-model="newappello.data" placeholder="Enter the date of the exam Here.." class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 ">
+                                    <label>Ora</label>
+                                    <input type="text" name="ora" ng-model="newappello.ora" placeholder="Enter the time of the exam Here.." class="form-control">
+                              
+                              
+                                      
+                    
+                                    </div>
+                                    <div class="col-sm-6 ">
+                                    <button type="submit" class=" btn btn-lg btn-info" ng-click="addAppello(newappello)"> Submit </button></div>
+                                   </div>
+                    
+            
+ <br><br>
+<hr>
+
+
     <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
         <div id="testo">
             <h3>Sei interessato a:</h3>
         </div>
         <div id="input">
-            <input type="text" ng-model="informatica" placeholder="stai cercando..." />
+            <input type="text" ng-model="data" placeholder="stai cercando..." />
         </div>
     </div>
 
-    <button type="button" style="float:right;" class="btn btn-info " ng-click="newAppello(appello)">Nuovo Appello</button>
-
+   
         <table id="mytable" class="table table-bordered well">
             <thead>
-                <th style="width:5%;">Prof</th>
-                <th style="width:10%;">CodFacolta</th>
-                <th style="width:15%;">esame</th>
-                <th style="width:2%;">data</th>
+                
+                <th style="width:20%;">esame</th>
+                <th style="width:10%;">data</th>
                 <th style="width:10%;">ora</th>
-                <th style="width:15%;"> n iscritti</th>
-                <th style="width:15%;">stato</th>
-                <th style="width:15%;">Edit</th>
-                <th style="width:15%;">Remove</th>
+                <th style="width:10%;">iscritti</th>
+                <th style="width:10%;">aperto</th>
+                <th style="width:5%;">Edit</th>
+                <th style="width:5%;">Remove</th>
             </thead>
             <tbody>
 
 
-                <tr ng-repeat="appello in appellos "> <!-- | filter:username_prof | orderBy:'data' | orderBy:'ora' -->
-                    <td>{{appello.username_prof}}</td>
-                    <td>{{appello.codFacolta}}</td>
-                    <td>{{appello.esame}}</td>
-                    <td>{{appello.data}}</td>
-                    <td>{{appello.ora}}</td>
-                    <td>{{appello.iscritti}}</td>
-                    <td>{{appello.aperto}}</td>
+                <tr ng-repeat="appellos in appello "> <!-- | filter:username_prof | orderBy:'data' | orderBy:'ora' -->
+                    <td>{{appellos.esame}}</td>
+                    <td>{{appellos.data}}</td>
+                    <td>{{appellos.ora}}</td>
+                    <td>{{appellos.iscritti}}</td>
+                    <td>{{appellos.aperto}}</td>
+                 
                    
                     <td>
                         <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="editCorso(appello)">Edit</button>

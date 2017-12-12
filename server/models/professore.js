@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Corsi = require('./corsi');
+
 var bcrypt = require('bcrypt-nodejs');
 //var bCrypt = require('bcrypt');
 
 
 var professoreSchema = new Schema({
-  // _id: {type:String, unique:true},
+  
     nameP: { type: String, required: true},
     surname: { type: String, required: true },
     codFacolta: { type: String, ref: 'Facoltà',required:true},
@@ -25,7 +26,8 @@ var professoreSchema = new Schema({
     city: { type: String, required: true },
     phone: {type: Number, required: true },
     bod: {type: Date, required: true },
-    corsi: [Corsi] //da rivedere ompaniono 0 corsi non va bene
+  
+  
 },
     {
         versionKey: false

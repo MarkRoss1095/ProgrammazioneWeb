@@ -45,6 +45,14 @@ var informatica = new Facolta({
     codFacolta: 'L31',
     corsi:  [
         {
+            nome: 'Programmazione',
+            codice: 'I-01',
+            codFacolta: 'L31' ,
+            usernameProf: 'marcello.rosati',
+            cfu: 12,
+            anno: 1
+        },
+        {
             nome: 'Analisi I',
             codice: 'I-02',
             codFacolta: 'L31',
@@ -207,7 +215,8 @@ var matematica = new Facolta({
     nome: 'Matematica',
     codFacolta: 'L35',
     corsi:
-    [
+    [  
+      
         {
             nome: 'Analisi Matematica I',
             codice: 'M-50',
@@ -615,6 +624,16 @@ var prof1 = new Prof({
     bod:'1994-02-02',
     codFacolta:'L31',
     ruolo:'prof',
+    corsi:[
+        {
+            nome: 'Programmazione',
+            codice: 'I-01',
+            codFacolta: informatica.codFacolta,
+         
+            cfu: 12,
+            anno: 1
+        }
+    ]
 });
 prof1.save(function (err) {
     if (err) throw err;
@@ -634,6 +653,16 @@ var prof2 = new Prof({
     bod:'1996-07-29',
     codFacolta:'L35',
     ruolo:'prof',
+    corsi:[
+        {
+            nome: 'Analisi I',
+            codice: 'C-30',
+            codFacolta: 'L27',
+         
+            cfu: 12,
+            anno: 1
+        }
+    ]
 });
 prof2.save(function (err) {
     if (err) throw err;
@@ -653,6 +682,14 @@ var prof3 = new Prof({
     bod:'1996-07-29',
     codFacolta:'L27',
     ruolo:'prof',
+    corsi:[{
+        nome: 'Analisi Matematica I',
+        codice: 'M-50',
+        codFacolta: 'L35',
+        
+        cfu: 12,
+        anno: 1
+    }]
 });
 prof3.save(function (err) {
     if (err) throw err;
@@ -666,7 +703,7 @@ var programmazione = new Corsi({
     nome: 'Programmazione',
     codice: 'I-01',
     codFacolta: informatica.codFacolta,
-    usernameProf: 'marcello.rosati',
+    usernameProf: prof1.username,
     cfu: 12,
     anno: 1
 });

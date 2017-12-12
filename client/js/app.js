@@ -88,8 +88,7 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/inside/editcorso.html',
                 controller:'editCorsoCtrl'
             })
-
-
+           
 
     });
 

@@ -35,5 +35,5 @@ var AppelloSchema = new Schema({
 {
     versionKey: false
 });
-
-module.exports = mongoose.model('Appello', AppelloSchema);
+var Appello = mongoose.model('Appello', AppelloSchema);
+module.exports = Appello
