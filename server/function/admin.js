@@ -496,7 +496,7 @@ exports.deleteCorso = function (req, res) {
 }
 
 //unisce facoltà e corsi FUNZIONE DA VERIFICARE
-exports.populateFacolta = function (req, res, codFacolta) {
+/* exports.populateFacolta = function (req, res, codFacolta) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
@@ -516,7 +516,7 @@ exports.populateFacolta = function (req, res, codFacolta) {
         });
     }
 }
-
+ */
 //funzionante
 exports.deleteAppello = function (req, res) {
     var token = getToken(req.headers);
@@ -720,7 +720,7 @@ deleteC = function (corso) {
         _id: corso
     }, function (err) {
         if (err)
-            res.status(400).send({ success: false, msg: 'errore durante la cancellazione del prof, contattare un amministratore' });
+            res.status(400).send({ success: false, msg: 'errore durante la cancellazione del corso, contattare un amministratore' });
     });
 }
 

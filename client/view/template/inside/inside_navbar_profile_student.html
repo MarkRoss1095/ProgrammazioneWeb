@@ -1,0 +1,48 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" style="position:relative;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">UNIGINEVRA</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a ui-sref="/inside_home">Home</a>
+                </li>
+
+                <li>
+                    <a ui-sref="/inside_pianodistudi">Piano di Studi</a>
+                </li>
+                <li>
+                    <a ui-sref="/inside_appelli_stud">Appelli</a>
+                </li>
+                <li>
+                    <a ui-sref="/inside_ricerche">Ricerche</a>
+                </li>
+               
+               
+               
+
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ng-click="showProfile()">
+                        <span class="glyphicon glyphicon-user"></span> Profilo</a>
+                </li>
+
+                <li>
+                    <a ng-click="logout()">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>

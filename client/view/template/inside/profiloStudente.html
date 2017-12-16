@@ -1,14 +1,123 @@
+<div ng-include src="'./view/template/inside/inside_navbar_profile_student.html '">
+</div>
+<!-- <link rel="stylesheet" href="./view/style/profileAdmin.css"> -->
 
-<div ng-include src="'./view/template/inside/inside_navbar.html '"></div>
 
-    <div id="home" class="container-fluid" align="center">
-        <h1>Sono uno studente</h1>
-        <br>
-        <br>
-        <div align="center">
-            <img src="./img/2.jpg">
+<section class="mbr-section mbr-section__container article" id="header3-1" data-rv-view="3" style=" padding-top: 20px; padding-bottom: 20px;">
+    
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="mbr-section-title display-1">Benvenuto</h1>
+                <h3 class="mbr-section-title display-2">{{currentstudent.username}}</h3>
+            </div>
+        </div>
+   
+</section>
+<hr>
+<div class="container">
+        <h1 class="well">I miei Dati</h1>
+        <div class="col-lg-12 well">
+            <div class="row">
+                <form class="register">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label>First Name</label>
+                            <input disabled type="text" name="nameP" id="name" ng-model="currentstudent.name" class="form-control">
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label>Last Name</label>
+                            <input disabled type="text" name="surname" id="surname" ng-model="currentstudent.surname" class="form-control">
+                        </div>
+                    </div>
+                    <!--  <div class="col-sm-4 form-group">
+                        <label>Date of Birth</label>
+                        <input disabled type="text" name="bod" id="bod" ng-model="currentstudent.bod" class="form-control">
+                    </div> -->
+                    <div class="row">
+                    <div class=" col-sm-4 form-group">
+                        <label>Facolta</label>
+    
+                        <select disabled id="CodFacolta" class="form-control" ng-model="currentstudent.codFacolta">
+                            <option value="L31">Informatica</option>
+                            <option value="L35">Matematica</option>
+                            <option value="L27">Chimica</option>
+                            <option selected value="">Scegli...</option>
+    
+                        </select>
+                    </div>
+    
+                  
+    
+    
+                        <div class="col-sm-4 form-group">
+                            <label>State</label>
+                            <input disabled type="text" id="state" name="state" ng-model="currentstudent.state" class="form-control">
+                        </div>
+                        <div class="col-sm-4 form-group">
+                                <label>Matricola</label>
+                                <input disabled type="string" name="matricola" id="matricola" ng-model="currentstudent.matricola" placeholder="Enter Matricola Here.." class="form-control">
+                            </div>
+            
+                        <div class="col-sm-4 form-group">
+                            <label>City</label>
+                            <input disabled type="text" id="city" name="city" ng-model="currentstudent.city" class="form-control">
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label>Address </label>
+                            <input disabled type="text" id="address" name="address" ng-model="currentstudent.address" class="form-control">
+                        </div>
+                        <div class=" col-sm-4 form-group">
+                            <label>Gender</label>
+    
+                            <select disabled class="form-control" id="gender" ng-model="currentstudent.gender">
+                                <option value="M">Maschio</option>
+                                <option value="F">Femmina</option>
+                                <option selected value="">Scegli...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            <label>Phone Number</label>
+                            <input disabled type="number" name="phone" id="phone" ng-model="currentstudent.phone" class="form-control">
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label>Email Address</label>
+                            <input disabled type="email" name="email" id="email" ng-model="currentstudent.email" class="form-control">
+                        </div>
+    
+                    </div>
+    
+                    <button type="submit" id="button2" class="btn btn-lg btn-info" ng-click="sblocca()">edit</button>
+                    <button disabled type="submit" id="button1" class="btn btn-lg btn-info" ng-click="modifyDati(currentstudent)">save</button>
+                </div>
+    
+                </form>
+            </div>
         </div>
     </div>
-    
-    
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <script src="assets/web/assets/jquery/jquery.min.js"></script>
+<script src="assets/tether/tether.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/smooth-scroll/smooth-scroll.js"></script>
+<script src="assets/viewport-checker/jquery.viewportchecker.js"></script>
+<script src="assets/theme/js/script.js"></script>
+<script src="assets/formoid/formoid.min.js"></script>
+
+
+<input name="animation" type="hidden"> -->

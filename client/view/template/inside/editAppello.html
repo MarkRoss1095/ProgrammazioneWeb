@@ -1,0 +1,47 @@
+<div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
+
+<div class="container">
+    <h1 class="ciao">Edit Appello</h1>
+
+    <div class="row">
+        <div class="col-sm-6 form-group">
+
+
+            <label>Esame</label>
+            <input type="text" name="nome" ng-model="currentappello.esame" placeholder="Enter the name of course Here.." class="form-control">
+        </div>
+        <div class="col-sm-2 form-group">
+            <label>Data</label>
+            <input type="text" name="data" ng-model="currentappello.data" placeholder="Enter the date of the exam Here.." class="form-control">
+        </div>   
+    </div>
+    <div class="row">
+        <div class="col-sm-2 ">
+            <label>Ora</label>
+            <input type="text" name="ora" ng-model="currentappello.ora" placeholder="Enter the time of the exam Here.." class="form-control">
+        </div>
+        <div class="col-sm-4 ">
+                <label>stato Appello</label>
+            <input type="text" name="aperto" ng-model="currentappello.aperto" disabled class="form-control">
+
+        </div>
+        <div class="col-sm-2 ">
+                <label>Iscritti</label>
+            <input type="text" name="iscritti" ng-model="currentappello.iscritti" disabled class="form-control">
+
+        </div>
+    </div>
+    <br>
+
+    <button type="submit" class=" btn btn-lg btn-info" ng-click="chiudiappello(currentappello)"> ChiudiAppello </button>
+    <button type="submit" class=" btn btn-lg btn-info" ng-click=""> ShowIscritti </button>
+    <button type="submit" class=" btn btn-lg btn-info" ng-click="update(currentappello)"> Submit </button>
+
+
+
+    <br>
+    <br>
+    <hr>
+
+
+</div>

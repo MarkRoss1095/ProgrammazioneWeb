@@ -26,8 +26,8 @@ router.post('/ricercaProf',userController.ricercaProf); //studente può cercare 
 router.put('/modifyDati',userController.modifyDati); //lo studente può modificare i suoi dati personali 
 router.put('/iscrivitiAppello', userController.iscrivitiAppello); //lo studente può registrarsi ad un appello
 router.delete('/cancellaPrenotazione',userController.cancellaPrenotazione); //lo studente può cancellare la sua prenotazione all'appello
-router.post('/showAppelli', userController.showAppelli)//mostra tutti gli appelli del prof 
 router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti gli username dei professori in modo da poterli ricercare in seguito
+router.get('/mostraAppelli', userController.mostraAppelli)//mostra tutti gli appelli del prof 
 
 //route for admin
 router.post('/addProf',adminController.addProf);
@@ -41,17 +41,19 @@ router.put('/modifyCorso', adminController.modifyCorso); //l'admin può modifica
 router.post('/deleteCorso', adminController.deleteCorso); //l'admin può eliminare un corso
 router.post('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
 router.post('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
-router.delete('/removeAppello', adminController.deleteAppello); //l'admin può rimuovere un appello DA FAREEE
 router.get('/viewCorso', adminController.viewCorso);
 
 
 //ROUTE FOR PROF
 router.get('/showProfileProf',ProfController.showProfileProf);
-/* router.post('/addProf',    ProfController.addProf); //il prof può registrarsi */
+
 router.post('/loginProf',  ProfController.loginProf); //il  prof può loggarsi
 router.post('/addAppello', ProfController.addAppello); //il prof può aggiungere un appello
 router.put('/chiudiAppello', ProfController.chiudiAppello); //prof può chiudere un appello
 router.put('/editAppello', ProfController.editAppello); //prof può modiciare i dati di un appello
 router.put('/modifyDatiP',  ProfController.modifyDatiP); //il prof può modificare i suoi dati personali
-router.post('/showIscritti',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello
-router.get('/mostraAppelli', ProfController.mostraAppelli)//mostra tutti gli appelli del prof 
+router.post('/showIscritti',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello DAAAAAAAA FARAEEEEEE PERCHE PRIMA DEVO FARE LO STUDENTE
+router.post('/deleteAppello', ProfController.deleteAppello); //l'admin può rimuovere un appello 
+router.post('/searchAppello', ProfController.searchAppello);
+router.get('/viewAppello', ProfController.viewAppello);
+router.get('/showAppelli', ProfController.showAppelli)//mostra tutti gli appelli del prof 

@@ -655,10 +655,10 @@ var prof2 = new Prof({
     ruolo:'prof',
     corsi:[
         {
-            nome: 'Analisi I',
-            codice: 'C-30',
-            codFacolta: 'L27',
-         
+            nome: 'Analisi Matematica I',
+            codice: 'M-50',
+            codFacolta: 'L35',
+            
             cfu: 12,
             anno: 1
         }
@@ -682,14 +682,16 @@ var prof3 = new Prof({
     bod:'1996-07-29',
     codFacolta:'L27',
     ruolo:'prof',
-    corsi:[{
-        nome: 'Analisi Matematica I',
-        codice: 'M-50',
-        codFacolta: 'L35',
-        
+    corsi:[
+    {
+        nome: 'Analisi I',
+        codice: 'C-30',
+        codFacolta: 'L27',
+     
         cfu: 12,
         anno: 1
-    }]
+    }
+]
 });
 prof3.save(function (err) {
     if (err) throw err;
@@ -1424,7 +1426,7 @@ var Student1 = new Student ({
     address: 'Via campania 1',
     bod: new Date (2001,10,02),
     matricola: '093456',
-    codFacolta: 'L-31',
+    codFacolta: 'L31',
     email: 'sara.fedeli@studenti.unicam.it',
     phone:'3394848282',
     username: 'sara.fedeli',
@@ -1476,7 +1478,7 @@ Student1.save(function (err) {
     phone:'3394678282',
     bod:new Date (1967,02,14),
     annoCorso: '2',
-    codFacolta: 'L-31',
+    codFacolta: 'L31',
     matricola: '0934576',
     ruolo:'student',
     esamifatti: [{
@@ -1545,7 +1547,7 @@ address: 'Via G.Leopardi 31',
 phone:'3345896571',
 bod: new Date(2003,11,13),
 annoCorso: '2',
-codFacolta: 'L-35',
+codFacolta: 'L35',
 matricola: '093569',
 esamifatti: [{
     codCorso: analisimath.codice,
@@ -1613,7 +1615,7 @@ var Student4 =new Student({
     phone:'3208759641',
     bod: new Date (1992,10,16),
     annoCorso: '3',
-    codFacolta: 'L-27',
+    codFacolta: 'L27',
     matricola: '093458',
     ruolo:'student',
     esamifatti: [{

@@ -12,8 +12,9 @@
 			
 	<div class="col-md-4"></div>
 	<div class="form-group col-md-4">
-		<label for="sel1">Accedi come... </label>
-		<select class="form-control" ng-model="user.role" name="sel1" placeholder="Accedi come.." id="sel1">
+		<label for="sel1">LOGIN</label>
+		<select class="form-control" ng-model="user.role" name="sel1" id="sel1">
+				<option id="choose" disabled selected hidden value="">Accedi Come</option>
 			<option id="admin" value="admin">Admin</option>
 			<option id="student" value="student">Student</option>
 			<option id="prof" value="prof">Professor</option>
