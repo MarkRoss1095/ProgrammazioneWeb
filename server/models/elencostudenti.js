@@ -20,7 +20,7 @@ var ElencoSchema = new Schema({
        type:String,
    },
    voto_provvisorio:{
-       type:String ,enum : ['non suff', '18','19','20','21','22','23','24','25','26','27','28','29','30','30 e lode'],default:null,
+       type:String ,enum : ['null','non suff', '18','19','20','21','22','23','24','25','26','27','28','29','30','30 e lode'],default:'null',
    },
    conferma:{
        type:Boolean,default:false
@@ -29,7 +29,7 @@ var ElencoSchema = new Schema({
        type:Boolean,default:false,
    },
    voto_definitivo:{
-    type:String ,enum: ['18','19','20','21','22','23','24','25','26','27','28','29','30','30 e lode'], default:null,
+    type:String ,enum: ['null','18','19','20','21','22','23','24','25','26','27','28','29','30','30 e lode'], default:'null',
 },
    data:{
        type:String

@@ -20,38 +20,38 @@ var createHash = function (password) {
 //funzionante
 exports.addStudent = function (req, res, next) {
 
-    if (!req.body.name || !req.body.surname || req.body.name=="" || req.body.surname=="" ) {
+    if (!req.body.name || !req.body.surname || req.body.name == "" || req.body.surname == "") {
         return res.json({ state: false, message: 'name and surname are required' });
     }
 
-    if (!req.body.password || !req.body.username || req.body.username=="" || req.body.password=="") {
+    if (!req.body.password || !req.body.username || req.body.username == "" || req.body.password == "") {
         return res.json({ state: false, message: 'username and password are required' });
     }
 
-    if (!req.body.email|| req.body.email=="" ) {
+    if (!req.body.email || req.body.email == "") {
         return res.json({ state: false, message: 'email is required' });
     }
-     if (!req.body.gender || req.body.gender=="" ) {
+    if (!req.body.gender || req.body.gender == "") {
         return res.json({ state: false, message: 'gender is required' });
-    } 
+    }
 
-    if (!req.body.state || !req.body.city|| req.body.city=="" || req.body.state==""  ) {
+    if (!req.body.state || !req.body.city || req.body.city == "" || req.body.state == "") {
         return res.json({ state: false, message: 'state and city are required' });
     }
-  if (!req.body.bod || req.body.bod=="" ) {
+    if (!req.body.bod || req.body.bod == "") {
         return res.json({ state: false, message: 'date is required' });
-    } 
+    }
 
 
-    if (!req.body.address || req.body.address=="" ) {
+    if (!req.body.address || req.body.address == "") {
         return res.json({ state: false, message: 'address is required' });
     }
-  
-    if (!req.body.codFacolta || req.body.codFacolta=="" ) {
-        return res.json({ state: false, message: 'codicefacoltà is required' });
-    } 
 
-    if (!req.body.matricola || req.body.matricola=="" ) {
+    if (!req.body.codFacolta || req.body.codFacolta == "") {
+        return res.json({ state: false, message: 'codicefacoltà is required' });
+    }
+
+    if (!req.body.matricola || req.body.matricola == "") {
         return res.json({ state: false, message: 'matricola is required' });
     } else {
 
@@ -66,8 +66,8 @@ exports.addStudent = function (req, res, next) {
             state: req.body.state,
             city: req.body.city,
             address: req.body.address,
-            bod: req.body.bod, 
-            gender: req.body.gender, 
+            bod: req.body.bod,
+            gender: req.body.gender,
             matricola: req.body.matricola,
             codFacolta: req.body.codFacolta,
             phone: req.body.phone,
@@ -113,14 +113,14 @@ exports.loginStudent = function (req, res) {
                     if (!req.body.password) {
                         return res.json({ state: false, message: 'password is required' });
                     }
-                
+
                     if (isMatch && !err) {
                         // if user is found and password is right create a token
                         var token = jwt.encode(student, process.env.SECRET);
                         // return the information including token as JSON
 
                         return res.json({ success: true, token: 'JWT ' + token });
-        
+
                     } else {
                         return res.json({ success: false, msg: 'Autenticazione fallita, password errata.' });
                     }
@@ -142,15 +142,15 @@ exports.mostraCorsi = function (req, res) {
             if (err)
                 return res.json({ success: false, msg: 'non è stato possibile trovare il profilo dello studente' });
             else if (stu.ruolo == 'student') {
-                
+
                 Corso.find({}, function (err, corso) {
                     if (err) {
-                      
+
                         return res.json({ msg: '' + err })
                     }
                     else
-                  
-                        return res.json({msg: corso })
+
+                        return res.json({ msg: corso })
                 })
             }
         }
@@ -165,29 +165,68 @@ exports.PianoDiStudi = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
-        /** Ricerca dei corsi in base alla facoltà = equivale a cercare il piano di studio */
         Student.findOne({
+            _id: decoded._id,
 
-            codFacolta: req.body.codFacolta
-        }).exec(function (err, done) {
+        }).exec(function (err, prof) {
+            if (err)
 
-            Corso.find({
-                codFacolta: req.body.codFacolta
-            }).exec(function (err, done) {
-                if (err)
-                    return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
-                if (!done)
-                    return res.json({ success: false, msg: 'corso non esistente' });
-                if (done) {
-                    return res.json({ success: true, msg:  done })
-                }
-            })
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!prof)
+                return res.json({ success: true, msg: 'non sei un student' });
+            if (prof) {
+                var use = prof.codFacolta
+                Corso.find({
+                    codFacolta: use
+                }).exec(function (err, corso) {
+                    if (err)
+                        return res.json({ success: false, msg: 'il token non è valido' });
+                    if (!corso)
+                        return res.json({ success: true, msg: 'admin' });
+                    if (corso) {
+                        return res.json({ success: true, msg: corso })
+                    }
+                })
+            }
         })
-    }
-    else {
-        return res.json({ msg: 'token non valido' })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
     }
 }
+
+exports.valori = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, stu) {
+            if (err)
+                return res.json({ success: false, msg: 'non è stato possibile trovare il profilo dello studente' });
+            if (!stu)
+                return res.json({ success: false, msg: 'appello non trovato' });
+            if (stu) {
+                console.log(stu.esamifatti)
+                var a = stu.esamifatti;
+                var  tuttiivoti = new Array[i]
+                if (a.esito !== "null") {
+                    //qui ci sono gli esami che lo studente ha passato
+                    var b = stu.esamifatti.lenght //vedo quanti sono e faccio la media
+                   for(i=0;i<b;i++){
+                    var sommavoti = stu.esamifatti //QUESTI SONO I SINGOLI VOTI
+                   tuttiivoti[i]=sommavoti //   QUI CI SONO I VOTI SINGOLI PER OGNI ESAMI
+                   }
+                   var media = sommavoti /b; //QUESTA È LA MEDIA aritmetica DEI VOTI 
+
+
+
+                }
+            }
+        }
+            )
+    }
+}
+
 
 //funzionante
 exports.ricercaCorso = function (req, res) {
@@ -235,7 +274,7 @@ exports.ricercaProf = function (req, res) {
             if (!prof)
                 return res.json({ success: false, msg: 'prof non esistente' });
             if (prof) {
-              
+
                 return res.json({ success: true, msg: prof })
             }
         })
@@ -268,7 +307,7 @@ exports.modifyDati = function (req, res) {
                             },
                                 {
                                     $set: {
-                                        gender:req.body.gender,
+                                        gender: req.body.gender,
                                         email: req.body.email,
                                         phone: req.body.phone,
                                         address: req.body.address,
@@ -339,59 +378,59 @@ exports.iscrivitiAppello = function (req, res) {
                                 if (!appello)
                                     return res.json({ success: false, msg: 'appello non esistente o chiuso.' + err });
                                 if (appello) {
-                                    var appelloid =req.body._id /* ="59e8bed242f6fce9d8b89c20" */
-                                    var accountid =student.matricola /* = "093456" */
+                                    var appelloid = req.body._id /* ="59e8bed242f6fce9d8b89c20" */
+                                    var accountid = student.matricola /* = "093456" */
                                     Elenco.findOne({
                                         appelloid: req.body._id,
                                         accountid: student.matricola,
 
                                     }).exec(function (err, elenco) {
-                                        console.log( "uno" +appelloid, req.body._id, accountid, student.matricola)
+                                        console.log("uno" + appelloid, req.body._id, accountid, student.matricola)
                                         if (err)
                                             return res.json({ success: false, msg: 'errore durante la ricerca' });
                                         if (elenco)
                                             return res.json({ success: false, msg: 'sei già iscritto' });
                                         if (!elenco) {
                                             var NewElenco = new Elenco({
-                                                appello_id: appello.id,
-                                                account_id: student.matricola,
+                                                appelloid: appello.id,
+                                                accountid: student.matricola,
                                                 nome: student.name,
                                                 cognome: student.surname,
                                                 esame: appello.esame,
                                                 data: appello.data,
                                                 ora: appello.ora,
-                                                voto_provvisorio: null,
+                                                voto_provvisorio: 'null',
                                                 conferma: false,
                                                 accettato: false,
-                                                voto_definitivo: null,
+                                                voto_definitivo: 'null',
                                             })
-                                        console.log(NewElenco)
+                                            console.log(NewElenco)
                                             NewElenco.save(function (err, elenco) {
-                                                if (!req.body.matricola) {
-                                                    return res.json({ state: false, message: 'matricola is required' });
-                                                }
-                                                if (!req.body.name) {
-                                                    return res.json({ state: false, message: 'name is required' });
-                                                }
-                                                if (!req.body.surname) {
-                                                    return res.json({ state: false, message: 'surname is required' });
-                                                }
-                                                if (!req.body.esame) {
-                                                    return res.json({ state: false, message: 'esame is required' });
-                                                }
-                                                if (!req.body.data) {
-                                                    return res.json({ state: false, message: 'data is required' });
-                                                }
-                                                if (!req.body.ora) {
-                                                    return res.json({ state: false, message: 'ora is required' });
-                                                }
-                                               
+                                                /*  if (!req.body.matricola) {
+                                                     return res.json({ success: false, message: 'matricola is required' });
+                                                 }
+                                                 if (!req.body.name) {
+                                                     return res.json({ success: false, message: 'name is required' });
+                                                 }
+                                                 if (!req.body.surname) {
+                                                     return res.json({ success: false, message: 'surname is required' });
+                                                 }
+                                                 if (!req.body.esame) {
+                                                     return res.json({ success: false, message: 'esame is required' });
+                                                 }
+                                                 if (!req.body.data) {
+                                                     return res.json({ success: false, message: 'data is required' });
+                                                 }
+                                                 if (!req.body.ora) {
+                                                     return res.json({ success: false, message: 'ora is required' });
+                                                 }
+                                                 */
                                                 if (err)
-                                                    return res.json({ success: false, msg: 'errore non è stato possibile salvare il nuovo elenco' });
-                                               if(elenco){
-                                                   return res.json ({ success : false , msg: "sei già iscritto"})
-                                               }
+                                                    return res.json({ success: false, msg: err + 'errore non è stato possibile salvare il nuovo elenco' });
                                                 if (!elenco) {
+                                                    return res.json({ success: false, msg: "sei iscritto all'appello" })
+                                                }
+                                                if (elenco) {
                                                     var n = appello.iscritti + 1;
                                                     console.log("ciaooo")
                                                     Appello.findOneAndUpdate({
@@ -409,7 +448,7 @@ exports.iscrivitiAppello = function (req, res) {
                                                             if (!appello)
                                                                 return res.json({ success: false, msg: 'appello non trovato' });
                                                             if (appello)
-                                                                return res.json({ success: true, msg: 'iscrizione riuscita' });
+                                                                return res.json({ success: true, msg: 'Iscrizione riuscita con successo!' });
                                                         })
                                                 }
                                             })
@@ -433,37 +472,37 @@ exports.iscrivitiAppello = function (req, res) {
 //FUNZIONANTE
 exports.mostraAppelli = function (req, res) {
     var token = getToken(req.headers);
-    
-        if (token) {
-            var decoded = jwt.decode(token, process.env.SECRET);
-            Student.findOne({
-                _id: decoded._id,
-            }).exec(function (err, student) {
-                if (err)
-                    return res.json({ success: false, msg: 'il token non è valido' });
-                if (!student)
-                    return res.json({ success: false, msg: 'account non trovato' });
-                if (student){
-                   
+
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, student) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!student)
+                return res.json({ success: false, msg: 'account non trovato' });
+            if (student) {
+
                 Appello.find({
-                    
-                    
+
+
                 }).exec(function (err, appello) {
                     if (err)
                         return res.json({ success: false, msg: 'il token non è valido' });
                     if (!appello)
                         return res.json({ succes: true, msg: 'appello' });
                     if (appello) {
-                        return res.json({ succes: true, msg:appello})
+                        return res.json({ succes: true, msg: appello })
                     }
                 })
             }
-         })
-        } else {
-                return res.json({ success: false, msg: 'token non valido' })
-        }
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
 }
-   
+
 
 exports.cancellaPrenotazione = function (req, res) {
     var token = getToken(req.headers);
@@ -525,15 +564,15 @@ exports.showUsernameProf = function (req, res) {
             if (err)
                 return res.json({ success: false, msg: 'non è stato possibile trovare il profilo dello studente' });
             else if (stu.ruolo == 'student') {
-                
+
                 Prof.find({}, function (err, prof) {
                     if (err) {
-                      
+
                         return res.json({ msg: '' + err })
                     }
                     else
-                  
-                        return res.json({msg: prof })
+
+                        return res.json({ msg: prof })
                 })
             }
         }

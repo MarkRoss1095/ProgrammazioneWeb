@@ -1,3 +1,5 @@
+import { arch } from 'os';
+
 //script per popolare il database
 
 var Facolta = require('./server/models/facolta');
@@ -1435,6 +1437,7 @@ var Student1 = new Student ({
     annoCorso: '1',
     ruolo:'student',
     esamifatti: [{
+        nome:diritto.nome,
         codCorso: diritto.codice,
         data: '2017-12-16',
         esito: 28,
@@ -1442,18 +1445,21 @@ var Student1 = new Student ({
         
     },
     {
+        nome:fondamenti.nome,
         codCorso: fondamenti.codice,
         data: '2017-02-11',
         esito: 23,
         cfu: fondamenti.cfu
     },
     {
+        nome:algebra.nome,
         codCorso: algebra.codice,
         data: '2017-05-21',
         esito: 27,
         cfu: algebra.cfu
     },
     {
+        nome:analisi.nome,
         codCorso: analisi.codice,
         data: '2017-09-04',
         esito: 25,
@@ -1488,30 +1494,34 @@ Student1.save(function (err) {
         cfu: prg.cfu
     },
     {
+        nome:fondamenti.nome,
         codCorso: fondamenti.codice,
         data: '2016-02-18',
         esito: 30,
         cfu: fondamenti.cfu
     },
     {
+        nome:algebra.nome,
         codCorso: algebra.codice,
         data: '2017-05-21',
         esito: 27,
         cfu: algebra.cfu
     },
     {
+        nome:analisi.nome,
         codCorso: analisi.codice,
         data: '2016-09-04',
         esito: 26,
         cfu: analisi.cfu
     },
     {
+        nome:architettura.nome,
         codCorso: architettura.codice,
         data: '2017-10-06',
         esito: 28,
         cfu: architettura.cfu
     },
-    {
+    {   nome:prg.nome,
         codCorso: prg.codice,
         data: '2017-09-04',
         esito: 26,
