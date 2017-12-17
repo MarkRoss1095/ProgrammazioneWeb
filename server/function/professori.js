@@ -245,21 +245,25 @@ exports.showAppelli = function (req, res) {
         var decoded = jwt.decode(token, process.env.SECRET);
         Prof.findOne({
             _id: decoded._id,
+         
         }).exec(function (err, prof) {
             if (err)
+         
                 return res.json({ success: false, msg: 'il token non è valido' });
             if (!prof)
-                return res.json({ succes: true, msg: 'non sei un admin' });
+                return res.json({ success: true, msg: 'non sei un prof' });
             if (prof) {
+                var use= prof.username
                 Appello.find({
-                    
+                   username_prof:use
                 }).exec(function (err, appello) {
                     if (err)
-                        return res.json({ success: false, msg: 'il token non è valido' });
+                        return res.json({ success: false, msg: 'il token non è valido2' });
                     if (!appello)
-                        return res.json({ succes: true, msg: 'admin' });
+                        return res.json({ success: true, msg: 'admin' });
                     if (appello) {
-                        return res.json({ succes: true, msg: appello })
+                        console.log(use)
+                        return res.json({ success: true, msg: appello })
                     }
                 })
             }

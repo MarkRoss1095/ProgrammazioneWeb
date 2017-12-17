@@ -339,16 +339,24 @@ exports.iscrivitiAppello = function (req, res) {
                                 if (!appello)
                                     return res.json({ success: false, msg: 'appello non esistente o chiuso.' + err });
                                 if (appello) {
+                                    
                                     Elenco.findOne({
-                                        appello_id: appello._id,
+                                        appello_id: req.body._id,
                                         account_id: student.matricola,
 
                                     }).exec(function (err, elenco) {
+                                        console.log(appello_id, req.body._id, account_id, student.matricola)
                                         if (err)
+                                        console.log('ciao1')
+                                        
                                             return res.json({ success: false, msg: 'errore durante la ricerca' });
                                         if (elenco)
+                                        console.log('ciao2')
+                                        
                                             return res.json({ success: false, msg: 'sei già iscritto' });
                                         if (!elenco) {
+                                            console.log('ciao3')
+                                            
                                             var NewElenco = new Elenco({
                                                 appello_id: appello.id,
                                                 account_id: student.matricola,
@@ -362,7 +370,7 @@ exports.iscrivitiAppello = function (req, res) {
                                                 accettato: false,
                                                 voto_definitivo: null,
                                             })
-
+console.log(NewElenco)
                                             NewElenco.save(function (err, elenco) {
                                                 if (!req.body.matricola) {
                                                     return res.json({ state: false, message: 'matricola is required' });
@@ -383,7 +391,8 @@ exports.iscrivitiAppello = function (req, res) {
                                                     return res.json({ state: false, message: 'ora is required' });
                                                 }
                                                
-                                                if (err)
+                                                if (err) 
+                                                console.log('ciao4')
                                                     return res.json({ success: false, msg: 'errore' });
                                                 if (elenco) {
                                                     var n = appello.iscritti + 1;
@@ -394,7 +403,7 @@ exports.iscrivitiAppello = function (req, res) {
                                                     },
                                                         {
                                                             $set: {
-                                                                number_iscritti: n
+                                                                iscritti: n
                                                             }
                                                         }, { new: true }, function (err, appello) {
                                                             if (err) {

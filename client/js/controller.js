@@ -529,13 +529,14 @@ $scope.addProf=function(){
                 }
 
             
-                $http.get('/showAppelli').then(success, error);
+                $http.get('/showAppelli').then(success, err);
                 function success(appello) {
                
                     $scope.appello = appello.data.msg
-               
+                   
+                    
                 }
-                function error(appello) {
+                function err(err) {
                     $window.alert(err)
         
                 };
@@ -878,7 +879,7 @@ $scope.addProf=function(){
                     console.log(piano)
                     console.log($scope.piano)
                                }
-                function error(appello) {
+                function error(error) {
                     $window.alert(error)
         
                 };

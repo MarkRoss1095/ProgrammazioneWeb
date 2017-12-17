@@ -5,7 +5,7 @@ var ElencoSchema = new Schema({
 
 
    appello_id:{
-       type:String,required:true,ref:'Appello'  //id dell'appello
+       type:Number,required:true,ref:'Appello'  //id dell'appello
    },
    account_id:{
        type:String,required:true   // matricola studente
