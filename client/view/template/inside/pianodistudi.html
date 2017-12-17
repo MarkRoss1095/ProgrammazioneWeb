@@ -25,14 +25,14 @@
     </thead>
     <tbody>
 
+      
+        <tr ng-repeat="piano in corso ">
+            <td>{{piano.nome}}</td>
+            <td>{{piano.codice}}</td>
+            <td>{{piano.cfu}}</td>
+            <td>{{piano.anno}}</td>
+            <td>{{piano.usernameProf}}</td>
 
-        <tr ng-repeat="piano in piano ">
-            <!-- | filter:username_prof | orderBy:'data' | orderBy:'ora' -->
-            <td>{{pianos.nome}}</td>
-            <td>{{pianos.codice}}</td>
-            <td>{{pianos.cfu}}</td>
-            <td>{{pianos.anno}}</td>
-            <td>{{pianos.usernameProf}}</td>
 
 
         </tr>

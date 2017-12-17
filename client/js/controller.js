@@ -873,11 +873,9 @@ $scope.addProf=function(){
 
                     
                 $http.post('/PianoDiStudi').then(success, error);
-                function success(piano) {
+                function success(corso) {
                 
-                    $scope.piano = piano.data.msg
-                    console.log(piano)
-                    console.log($scope.piano)
+                    $scope.corso = corso.data.msg
                                }
                 function error(error) {
                     $window.alert(error)
@@ -885,7 +883,7 @@ $scope.addProf=function(){
                 };
 
                 })
-//////////////////////////////////////////////////////////////////////
+                
                 .controller('RicercheCtrl', function ($scope, $http, AuthService, $state, $window, ) {
                     
                       $scope.logout = function () {

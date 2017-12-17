@@ -165,28 +165,33 @@ exports.PianoDiStudi = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
-        /** Ricerca dei corsi in base alla facoltà = equivale a cercare il piano di studio */
         Student.findOne({
-
-            codFacolta: req.body.codFacolta
-        }).exec(function (err, done) {
-
-            Corso.find({
-                codFacolta: req.body.codFacolta
-            }).exec(function (err, done) {
-                if (err)
-                    return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
-                if (!done)
-                    return res.json({ success: false, msg: 'corso non esistente' });
-                if (done) {
-                    return res.json({ success: true, msg:  done })
-                }
-            })
-        })
-    }
-    else {
-        return res.json({ msg: 'token non valido' })
-    }
+            _id: decoded._id,
+         
+        }).exec(function (err, prof) {
+            if (err)
+         
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!prof)
+                return res.json({ success: true, msg: 'non sei un student' });
+            if (prof) {
+                var use= prof.codFacolta
+                Corso.find({
+                   codFacolta:use
+                }).exec(function (err, corso) {
+                    if (err)
+                        return res.json({ success: false, msg: 'il token non è valido' });
+                    if (!corso)
+                        return res.json({ success: true, msg: 'admin' });
+                    if (corso) {
+                        return res.json({ success: true, msg: corso })
+                    }
+                })
+            }
+         })
+        } else {
+                return res.json({ success: false, msg: 'token non valido' })
+        }
 }
 
 //funzionante
@@ -353,45 +358,45 @@ exports.iscrivitiAppello = function (req, res) {
                                             return res.json({ success: false, msg: 'sei già iscritto' });
                                         if (!elenco) {
                                             var NewElenco = new Elenco({
-                                                appello_id: appello.id,
-                                                account_id: student.matricola,
+                                                appelloid: appello.id,
+                                                accountid: student.matricola,
                                                 nome: student.name,
                                                 cognome: student.surname,
                                                 esame: appello.esame,
                                                 data: appello.data,
                                                 ora: appello.ora,
-                                                voto_provvisorio: null,
+                                                voto_provvisorio:'null',
                                                 conferma: false,
                                                 accettato: false,
-                                                voto_definitivo: null,
+                                                voto_definitivo: 'null',
                                             })
                                         console.log(NewElenco)
                                             NewElenco.save(function (err, elenco) {
-                                                if (!req.body.matricola) {
-                                                    return res.json({ state: false, message: 'matricola is required' });
+                                               /*  if (!req.body.matricola) {
+                                                    return res.json({ success: false, message: 'matricola is required' });
                                                 }
                                                 if (!req.body.name) {
-                                                    return res.json({ state: false, message: 'name is required' });
+                                                    return res.json({ success: false, message: 'name is required' });
                                                 }
                                                 if (!req.body.surname) {
-                                                    return res.json({ state: false, message: 'surname is required' });
+                                                    return res.json({ success: false, message: 'surname is required' });
                                                 }
                                                 if (!req.body.esame) {
-                                                    return res.json({ state: false, message: 'esame is required' });
+                                                    return res.json({ success: false, message: 'esame is required' });
                                                 }
                                                 if (!req.body.data) {
-                                                    return res.json({ state: false, message: 'data is required' });
+                                                    return res.json({ success: false, message: 'data is required' });
                                                 }
                                                 if (!req.body.ora) {
-                                                    return res.json({ state: false, message: 'ora is required' });
+                                                    return res.json({ success: false, message: 'ora is required' });
                                                 }
-                                               
+                                                */
                                                 if (err)
-                                                    return res.json({ success: false, msg: 'errore non è stato possibile salvare il nuovo elenco' });
-                                               if(elenco){
-                                                   return res.json ({ success : false , msg: "sei già iscritto"})
+                                                    return res.json({ success: false, msg: err+'errore non è stato possibile salvare il nuovo elenco' });
+                                               if(!elenco){
+                                                   return res.json ({ success : false , msg: "sei iscritto all'appello"})
                                                }
-                                                if (!elenco) {
+                                                if (elenco) {
                                                     var n = appello.iscritti + 1;
                                                     console.log("ciaooo")
                                                     Appello.findOneAndUpdate({
@@ -409,7 +414,7 @@ exports.iscrivitiAppello = function (req, res) {
                                                             if (!appello)
                                                                 return res.json({ success: false, msg: 'appello non trovato' });
                                                             if (appello)
-                                                                return res.json({ success: true, msg: 'iscrizione riuscita' });
+                                                                return res.json({ success: true, msg: 'Iscrizione riuscita con successo!' });
                                                         })
                                                 }
                                             })
