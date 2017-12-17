@@ -4,10 +4,10 @@ var Appello =require('./appello');
 var ElencoSchema = new Schema({
 
 
-   appello_id:{
-       type:Number,required:true,ref:'Appello'  //id dell'appello
+   appelloid:{
+       type:String,required:true,  //id dell'appello
    },
-   account_id:{
+   accountid:{
        type:String,required:true   // matricola studente
    },
    esame:{
