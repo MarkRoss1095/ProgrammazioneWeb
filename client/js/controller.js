@@ -527,12 +527,12 @@ $scope.addProf=function(){
                         AuthService.logout();
                     };
                 }
-
-            
-                $http.get('/showAppelli').then(success, err);
-                function success(appello) {
+                $http.get('/ShowAppelliProf').then(success, err);
+                function success(corso) {
                
-                    $scope.appello = appello.data.msg
+                    $scope.corso = corso.data.msg
+
+                   console.log($scope.corso)
                    
                     
                 }
@@ -540,7 +540,20 @@ $scope.addProf=function(){
                     $window.alert(err)
         
                 };
+                $scope.MostraAppelli = function (appello) {
+                  $http.get('/showAppelli').then(success, err);
+                function success(appello) {
+               
+                    $scope.appello = appello.data.msg
 
+                   document.getElementById("mostraApp").disabled =true
+                    
+                }
+                function err(err) {
+                    $window.alert(err)
+        
+                }; 
+            }
                 $scope.addAppello = function (newappello) {
                     /* funzione per aggiunger il corso */
                     $http.post("/addAppello", newappello).then(success, err)

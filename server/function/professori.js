@@ -238,6 +238,39 @@ exports.editAppello = function (req,res){
         })
     }
 }
+exports.ShowAppelliProf = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Prof.findOne({
+            _id: decoded._id,
+         
+        }).exec(function (err, prof) {
+            if (err)
+         
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!prof)
+                return res.json({ success: true, msg: 'non sei un prof' });
+            if (prof) {
+                var use= prof.username
+                Corso.find({
+                   usernameProf:use
+                }).exec(function (err, corso) {
+                    if (err)
+                        return res.json({ success: false, msg: 'il token non è valido2' });
+                    if (!corso)
+                        return res.json({ success: true, msg: 'admin' });
+                    if (corso) {
+                     
+                        return res.json({ success: true, msg: corso })
+                    }
+                })
+            }
+         })
+        } else {
+                return res.json({ success: false, msg: 'token non valido' })
+        }
+}
 
 exports.showAppelli = function (req, res) {
     var token = getToken(req.headers);

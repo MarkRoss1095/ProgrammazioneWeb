@@ -28,7 +28,6 @@ router.put('/iscrivitiAppello', userController.iscrivitiAppello); //lo studente 
 router.delete('/cancellaPrenotazione',userController.cancellaPrenotazione); //lo studente può cancellare la sua prenotazione all'appello
 router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti gli username dei professori in modo da poterli ricercare in seguito
 router.get('/mostraAppelli', userController.mostraAppelli)//mostra tutti gli appelli del prof 
-
 //route for admin
 router.post('/addProf',adminController.addProf);
 router.get('/showProfileAdmin',adminController.showProfileAdmin);
@@ -46,6 +45,7 @@ router.get('/viewCorso', adminController.viewCorso);//per vedere un determinato 
 
 //ROUTE FOR PROF
 router.get('/showProfileProf',ProfController.showProfileProf);
+router.get('/ShowAppelliProf', ProfController.ShowAppelliProf)
 
 router.post('/loginProf',  ProfController.loginProf); //il  prof può loggarsi
 router.post('/addAppello', ProfController.addAppello); //il prof può aggiungere un appello
