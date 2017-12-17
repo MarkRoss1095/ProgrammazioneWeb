@@ -533,8 +533,7 @@ $scope.addProf=function(){
                 function success(appello) {
                
                     $scope.appello = appello.data.msg
-                 console.log($scope.appello)
-                console.log(appello.data.msg)
+               
                 }
                 function error(appello) {
                     $window.alert(err)
@@ -602,6 +601,9 @@ $scope.addProf=function(){
                  $http.get('/viewAppello').then(success, error);
                 function success(currentappello) {
                     $scope.currentappello=currentappello.data.msg
+                    if ($scope.currentappello.aperto==false){
+                        document.getElementById("chiudi").disabled=true;
+                    }
         
                 }
                 function error(err) {
@@ -808,7 +810,31 @@ $scope.addProf=function(){
                     $window.alert(error)
         
                 };
-
+                $scope.iscrivitiAppello = function (currentappello) {
+                    
+                     $http.post("/searchAppello", currentappello).then(success, err)
+                     function success(success) {
+                         console.log(currentappello)
+                         $http.put("/iscrivitiAppello",currentappello).then(success, err)
+                         function success(success) {
+                             currentappello=$scope.currentappello
+                           $window.alert(success.data.msg)
+                             
+                          
+                            /* $window.history.back() */
+                             
+                         }
+                         function err(err) {
+                             $window.alert(err)
+                         }
+         
+                        
+                     }
+                     function err(err) {
+                         $window.alert(err)
+                     }
+                    
+                 }
 
 
 
@@ -918,5 +944,5 @@ $scope.addProf=function(){
                       };
                                         }
 
-
+                                        
                     })

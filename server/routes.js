@@ -32,7 +32,7 @@ router.get('/mostraAppelli', userController.mostraAppelli)//mostra tutti gli app
 //route for admin
 router.post('/addProf',adminController.addProf);
 router.get('/showProfileAdmin',adminController.showProfileAdmin);
-router.post('/searchCorso',adminController.searchCorso);
+router.post('/searchCorso',adminController.searchCorso);//per vedere quale corso ho preso
 router.post('/addAnotherAdmin',adminController.addAnotherAdmin); //l'admin può creare o aggiungere un altro admin
 router.post('/loginAdmin', adminController.loginAdmin); //l'admin può loggarsi
 router.post('/addCorso',   adminController.addCorso); //l'admin può aggiungere un corso
@@ -41,7 +41,7 @@ router.put('/modifyCorso', adminController.modifyCorso); //l'admin può modifica
 router.post('/deleteCorso', adminController.deleteCorso); //l'admin può eliminare un corso
 router.post('/deleteProf', adminController.deleteProf); //l'admin può eliminare un prof
 router.post('/deleteStudent', adminController.deleteStudent); // l'admin può elminare uno studente
-router.get('/viewCorso', adminController.viewCorso);
+router.get('/viewCorso', adminController.viewCorso);//per vedere un determinato corso
 
 
 //ROUTE FOR PROF
@@ -54,6 +54,6 @@ router.put('/editAppello', ProfController.editAppello); //prof può modiciare i 
 router.put('/modifyDatiP',  ProfController.modifyDatiP); //il prof può modificare i suoi dati personali
 router.post('/showIscritti',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello DAAAAAAAA FARAEEEEEE PERCHE PRIMA DEVO FARE LO STUDENTE
 router.post('/deleteAppello', ProfController.deleteAppello); //l'admin può rimuovere un appello 
-router.post('/searchAppello', ProfController.searchAppello);
-router.get('/viewAppello', ProfController.viewAppello);
+router.post('/searchAppello', ProfController.searchAppello);//per trovare quale appello ho preso
+router.get('/viewAppello', ProfController.viewAppello);//per mostrare quel determinato appello
 router.get('/showAppelli', ProfController.showAppelli)//mostra tutti gli appelli del prof 

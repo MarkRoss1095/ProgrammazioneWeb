@@ -239,8 +239,36 @@ exports.editAppello = function (req,res){
     }
 }
 
-
-//funzionante
+exports.showAppelli = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Prof.findOne({
+            _id: decoded._id,
+        }).exec(function (err, prof) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!prof)
+                return res.json({ succes: true, msg: 'non sei un admin' });
+            if (prof) {
+                Appello.find({
+                    
+                }).exec(function (err, appello) {
+                    if (err)
+                        return res.json({ success: false, msg: 'il token non è valido' });
+                    if (!appello)
+                        return res.json({ succes: true, msg: 'admin' });
+                    if (appello) {
+                        return res.json({ succes: true, msg: appello })
+                    }
+                })
+            }
+         })
+        } else {
+                return res.json({ success: false, msg: 'token non valido' })
+        }
+}
+/* //funzionante
 exports.showAppelli = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
@@ -262,10 +290,9 @@ exports.showAppelli = function (req, res) {
                     }
                     if (err) return res.json({ msg: 'professore non esistente' })
                     else {
-                      /*   var o = prof
- */
+   
                         Appello.find({
-                            //_id: req.body._id, //per prendere l'id dell'appello
+                           
                             username_prof:req.body.username,
                           
                         }).exec(function (err, appello) {
@@ -287,7 +314,7 @@ exports.showAppelli = function (req, res) {
         return res.json({ success: false, msg: 'non sei un professore' });
     }
 }
-
+ */
 exports.chiudiAppello = function (req, res) {
     var token = getToken(req.headers);
     if (token) {

@@ -30,7 +30,6 @@
     
     
                 <tr ng-repeat="appellos in appello ">
-                    <!-- | filter:username_prof | orderBy:'data' | orderBy:'ora' -->
                     <td>{{appellos.esame}}</td>
                     <td>{{appellos.username_prof}}</td>
                     <td>{{appellos.data}}</td>
@@ -40,11 +39,11 @@
     
    
                     <td>
-                        <button [disabled]="!aperto" class="btn btn-primary glyphicon glyphicon-plu" ng-click="editAppello(appellos)">iscriviti</button>
+                        <button id="iscriviti" class="btn btn-primary glyphicon glyphicon-plu" ng-click="iscrivitiAppello(appellos)">iscriviti</button>
     
                     </td>
                     <td>
-                        <button [disabled]="!aperto" class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteAppello(appellos)">Remove</button>
+                        <button  id="cancella" class="btn btn-danger glyphicon glyphicon-remove" ng-click="cancellaPrenotazione(appellos)">Remove</button>
     
                     </td>
     

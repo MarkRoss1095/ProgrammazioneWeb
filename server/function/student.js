@@ -330,7 +330,7 @@ exports.iscrivitiAppello = function (req, res) {
                     if (student) {
                         if (student.ruolo == 'student') {
                             Appello.findOne({
-                                _id: req.body.id,
+                                _id: req.body._id,
                                 //codFacolta: student.codFacolta,
                                 aperto: true,
                             }).exec(function (err, appello) {

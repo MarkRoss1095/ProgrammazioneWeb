@@ -41,7 +41,7 @@
             <h3>Sei interessato a:</h3>
         </div>
         <div id="input">
-            <input type="text" ng-model="esame" placeholder="stai cercando..." />
+            <input type="text" ng-model="apello" placeholder="stai cercando..." />
         </div>
     </div>
 
@@ -60,7 +60,7 @@
         <tbody>
 
 
-            <tr ng-repeat="appellos in appello ">
+            <tr ng-repeat="appellos in appello| filter:apello ">
                 <!-- | filter:username_prof | orderBy:'data' | orderBy:'ora' -->
                 <td>{{appellos.esame}}</td>
                 <td>{{appellos.data}}</td>
