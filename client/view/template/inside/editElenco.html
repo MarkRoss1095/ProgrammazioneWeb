@@ -12,7 +12,7 @@
         </div>
         <div class="col-sm-4 ">
                 <label>Voto Provvisorio</label>
-            <input type="text" name="aperto" ng-model="currentelenco.voto_provvisorio" disabled class="form-control">
+            <input type="text" name="aperto" ng-model="currentelenco.voto_provvisorio"  class="form-control">
 
         </div>
         <div class="col-sm-2 ">
@@ -46,7 +46,7 @@
    
     <br>
 
-    <button type="submit" id="chiudi" class=" btn btn-lg btn-info" ng-click="confermaVoto(currentelenco)"> ConfermaVoto </button>
+    <button type="submit" id="conferma" class=" btn btn-lg btn-info" ng-click="confermaVoto(currentelenco)"> ConfermaVoto </button>
 
     <button type="submit" id="submit" class=" btn btn-lg btn-info" ng-click="updateElenco(currentelenco)"> EditVoto </button>
     <br>

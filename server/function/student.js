@@ -383,13 +383,12 @@ exports.iscrivitiAppello = function (req, res) {
                                     Elenco.findOne({
                                         appelloid: req.body._id,
                                         accountid: student.matricola,
-
+                                        accettato:false
                                     }).exec(function (err, elenco) {
-                                        console.log("uno" + appelloid, req.body._id, accountid, student.matricola)
                                         if (err)
                                             return res.json({ success: false, msg: 'errore durante la ricerca' });
                                         if (elenco)
-                                            return res.json({ success: false, msg: 'sei già iscritto' });
+                                            return res.json({ success: false, msg: 'sei già iscritto o hai gia accettato il voto' });
                                         if (!elenco) {
                                             var NewElenco = new Elenco({
                                                 appelloid: appello.id,
@@ -404,7 +403,6 @@ exports.iscrivitiAppello = function (req, res) {
                                                 accettato: false,
                                                 voto_definitivo: 'null',
                                             })
-                                            console.log(NewElenco)
                                             NewElenco.save(function (err, elenco) {
                                                 /*  if (!req.body.matricola) {
                                                      return res.json({ success: false, message: 'matricola is required' });
@@ -432,7 +430,7 @@ exports.iscrivitiAppello = function (req, res) {
                                                 }
                                                 if (elenco) {
                                                     var n = appello.iscritti + 1;
-                                                    console.log("ciaooo")
+                                                   
                                                     Appello.findOneAndUpdate({
                                                         _id: req.body._id
                                                     },
@@ -520,28 +518,56 @@ exports.cancellaPrenotazione = function (req, res) {
                 if (student) {
                     if (student.ruolo == 'student') {
                         Appello.findOne({ //cerco un appello con id passato
-                            _id: req.body.id,
+                            _id: req.body._id,
                             //  codFacolta: student.codFacolta,
-                            // aperto: true,
+                             aperto: true,
+
                         }).exec(function (err, appello) {
                             if (err)
                                 return res.json({ success: false, msg: 'errore durante la ricerca dell\'appello' });
                             if (!appello)
-                                return res.json({ success: false, msg: 'appello non esistente.' });
+                                return res.json({ success: false, msg: 'appello non esistente o chiuso.' });
                             if (appello) {
                                 Elenco.findOne({
-                                    appello_id: appello._id,
-                                    account_id: student.matricola,
+                                    appelloid: req.body._id,
+                                    accountid: student.matricola,
+                                    accettato:false
                                 }).exec(function (err, elenco) {
                                     if (err)
                                         return res.json({ success: false, msg: 'errore durante la ricerca' });
                                     if (!elenco)
-                                        return res.json({ success: false, msg: 'non puoi cancellarti sei non sei iscritto' });
+                                        return res.json({ success: false, msg: 'non puoi cancellarti sei non sei iscritto o hai gia accettato il voto' });
                                     if (elenco) {
                                         removeEl(elenco._id)
                                         //  removeA(student.matricola)
-                                        return res.json({ success: true, msg: 'prenotazione cancellata' });
+                                       
+                                     var n = appello.iscritti - 1 ;
+                                     Appello.findOneAndUpdate({
+                                         _id: req.body._id
+                                     },
+                                         {
+                                             $set: {
+                                                 iscritti: n
+                                             }
+                                         }, { new: true }, function (err, appello) {
+                                             if (err) {
+                                                 // deleteElenco(elenco._id)
+                                                 return res.json({ success: false, msg: 'errore durante l\'iscrizione' });
+                                             }
+                                             if (!appello)
+                                                 return res.json({ success: false, msg: 'appello non trovato' });
+                                             if (appello)
+                                                 return res.json({ success: true, msg: 'cancellazione riuscita con successo!' });
+                                         })
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                                     }
+
                                 }
                                     )
                             }

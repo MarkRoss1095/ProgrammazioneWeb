@@ -694,7 +694,8 @@ $scope.addProf=function(){
                         $window.alert(err)
                     }
                 }
-$scope.showIscritti=function(){
+$scope.showIscritti=function(currentappello){
+    if ($scope.currentappello.iscritti !==0){
                 $http.get('/IscrittiAppello').then(success, error);
                 function success(iscritti) {
                     $scope.iscritti=iscritti.data.msg
@@ -705,6 +706,10 @@ $scope.showIscritti=function(){
                     $window.alert(err)                   
                 }
             }
+            else{
+                $window.alert("non ci sono iscritti")
+            }
+        }
             })
             ////////////////////////////////////////////////////////////////////////////////////
             .controller('IscrittiCtrl', function ($scope, $http, AuthService, $state, $window, ) {
@@ -725,8 +730,10 @@ $scope.showIscritti=function(){
                  $http.get('/viewElenco').then(success, error);
                 function success(currentelenco) {
                     $scope.currentelenco=currentelenco.data.msg
-                    console.log($scope.currentelenco)
-        
+                    if ($scope.currentelenco.accettato == false){
+                        document.getElementById("conferma").disabled=true
+                    }
+        console.log($scope.currentelenco)
                 }
                 function error(err) {
                     $window.alert(err)                   
@@ -757,7 +764,22 @@ $scope.showIscritti=function(){
                     };
                 }
         
-        
+                $scope.updateElenco = function (updateelenco) {
+                    /* funzione per aggiunger il corso */
+                   
+                    $http.put("/editElenco",updateelenco).then(success, err)
+                    function success(success) {
+                        updateelenco=$scope.currentelenco
+                      $window.alert(success.data.msg)
+                        
+                     
+                       $window.history.back()
+                        /* $state.go('/inside_info') */
+                    }
+                    function err(err) {
+                        $window.alert(err)
+                    }
+                }
             })
             ///////////////////////////////////////////////////////////////////////////////////
             .controller('profiloStudentCtrl', function ($scope, $http,$filter, AuthService, $state, $window  ) {
@@ -907,6 +929,32 @@ $scope.showIscritti=function(){
                      function success(success) {
                          console.log(currentelenco)
                          $http.put("/iscrivitiAppello",currentelenco).then(success, err)
+                         function success(success) {
+                             currentelenco=$scope.currentelenco
+                             $window.location.reload()
+                           $window.alert(success.data.msg)
+                             
+                          
+                            /* $window.history.back() */
+                             
+                         }
+                         function err(err) {
+                             $window.alert(err)
+                         }
+         
+                        
+                     }
+                     function err(err) {
+                         $window.alert(err)
+                     }
+                    
+                 }
+                 $scope.cancellaIscrizione = function (currentelenco) {
+                    
+                     $http.post("/searchAppello", currentelenco).then(success, err)
+                     function success(success) {
+                         console.log(currentelenco)
+                         $http.post("/cancellaPrenotazione",currentelenco).then(success, err)
                          function success(success) {
                              currentelenco=$scope.currentelenco
                              $window.location.reload()

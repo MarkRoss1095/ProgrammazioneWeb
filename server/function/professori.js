@@ -420,7 +420,53 @@ exports.modifyDatiP = function (req,res){
         })
     }
 }
+exports.editElenco = function (req,res){
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        //trova admin con quell'id
+        Prof.findOne({
+            _id: decoded._id,
+        }).exec(function (err, prof) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+         
+            if (!prof)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            else {
+                if (prof) {
+                    if (prof.ruolo == 'prof') {
 
+                        Elenco.findOneAndUpdate({
+                            _id: req.body._id,
+                        },
+                            {
+                                $set: {
+                                    voto_provvisorio:req.body.voto_provvisorio
+                                }
+                            },
+                            { new: true },
+                            function (err, elenco) {
+                                if (err)
+                                    return res.json({ success: false, msg: 'errore durante la riceca del appello' + err });
+                                /*  if (!corso)
+                                     return res.json({ success: false, msg: 'corso non esistente' }); */
+                                if (elenco) { 
+                                    
+                                   return res.json({ success: true, msg: 'appello modificato' }); 
+
+                                }
+                            })
+                    } else {
+                        return res.json({ success: false, msg: 'non sei un prof' });
+                    }
+
+                }
+            }
+
+        })
+    }
+}
 
 
 
@@ -581,11 +627,11 @@ exports.modifyDatiP = function (req,res){
                                 return res.json({ success: false, msg: 'errore durante la ricerca dell appello' });
                             }
                             if (!elenco)
-                                return res.json({ success: false, msg: 'appello non trovato' });
+                                return res.json({ success: false, msg: 'elenco non trovato' });
                             if (elenco)
                                 currentelenco = elenco;
                                
-                            return res.json({ success: false, msg: 'appello trovato' });
+                            return res.json({ success: false, msg: 'elenco trovato' });
         
         
         
@@ -609,6 +655,7 @@ exports.modifyDatiP = function (req,res){
                     if (!prof)
                         return res.json({ succes: false, msg: 'account non trovato' });
                     if (prof)
+                 
                         Elenco.findOne({
                             _id: currentelenco._id
                         }).exec(function (err, elenco) {
@@ -618,9 +665,6 @@ exports.modifyDatiP = function (req,res){
                             if (!elenco)
                                 return res.json({ success: false, msg: 'appello non trovato' });
                             if (elenco)
-                    
-                   
-
                                 return res.json({ success: false, msg: elenco });
                         })
                 })
@@ -642,12 +686,7 @@ exports.iscrittiAppello = function (req,res){
                 return res.json({success:false,msg:'token non valido'});
              if(prof) {
                 if (prof.ruolo=='prof'){
-                   /*  Prof.findOne({
-                        accountid:decoded._id,
-                    }).exec(function (err,prof){
-                        if(err)
-                            return res.json({success:false,msg:'non è stato possibile trovare il profilo del professore'});
-                        else{ */
+                  
                             Appello.findOne({
                              _id:currentappello._id
                             }).exec(function(err,appello){
