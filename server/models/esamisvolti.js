@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var Esame = require('./esame');
 
 var esamisvolti = new Schema({
+    nome: {type:String},
     codCorso: { type: String },
     data: { type: String },
     esito: { type: Number, min: 18, max: 31 },

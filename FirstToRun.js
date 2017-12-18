@@ -1,5 +1,5 @@
-import { arch } from 'os';
-
+/* import { arch } from 'os';
+ */
 //script per popolare il database
 
 var Facolta = require('./server/models/facolta');
@@ -1527,7 +1527,7 @@ Student1.save(function (err) {
         esito: 26,
         cfu: prg.cfu
     },
-    {
+    { nome:asd.nome,
         codCorso: asd.codice,
         data: '2017-09-22',
         esito: 27,
@@ -1560,42 +1560,43 @@ annoCorso: '2',
 codFacolta: 'L35',
 matricola: '093569',
 esamifatti: [{
+    nome:analisimath.nome,
     codCorso: analisimath.codice,
     data: '2016-12-16',
     esito: 18,
     cfu: analisimath.cfu
 },
-{
+{ nome:geometria.nome,
     codCorso: geometria.codice,
     data: '2017-02-11',
     esito: 23,
     cfu: geometria.cfu
 },
-{
+{ nome:alg.nome,
     codCorso: alg.codice,
     data: '2016-05-21',
     esito: 22,
     cfu: alg.cfu
 },
-{
+{ nome:geo.nome,
     codCorso: geo.codice,
     data: '2017-09-04',
     esito: 25,
     cfu: geo.cfu
 },
-{
+{ nome:analisimathII.nome,
     codCorso: analisimathII.codice,
     data: '2017-10-10',
     esito: 21,
     cfu: analisimathII.cfu
 },
-{
+{ nome:probM.nome,
     codCorso: probM.codice,
     data: '2017-11-27',
     esito: 24,
     cfu: probM.cfu
 },
-{
+{ nome:inglM.nome,
     codCorso: inglM.codice,
     data: '2016-02-11',
     esito: 20,
@@ -1634,37 +1635,42 @@ var Student4 =new Student({
         esito: 28,
         cfu: analisiC.cfu
     },
-    {
+    { nome:fisica.nome,
         codCorso: fisica.codice,
         data: '2015-02-20',
         esito: 29,
         cfu: fisica.cfu
     },
     {
+        nome:chimicaInorganica.nome,
         codCorso: chimicaInorganica.codice,
         data: '2016-05-15',
         esito: 27,
         cfu: algebra.cfu
     },
     {
+        nome:chimicaOrganica.nome,
         codCorso: chimicaOrganica.codice,
         data: '2016-09-08',
         esito: 25,
         cfu: analisi.cfu
     },
     {
+        nome:eco.nome,
         codCorso: eco.codice,
         data: '2017-10-14',
         esito: 26,
         cfu: eco.cfu
     },
     {
+        nome:alimenti.nome,
         codCorso: alimenti.codice,
         data: '2017-12-16',
         esito: 26,
         cfu: alimenti.cfu
     },
     {
+        nome:molecolare.nome,
         codCorso: molecolare.codice,
         data: '2017-03-31S',
         esito: 31,
