@@ -756,11 +756,7 @@ exports.confermaVoto = function (req, res) {
                             if (!elenco)
                                 return res.json({ success: false, msg: 'iscrizione non trovato' });
                             if (elenco) {
-                                var voto = elenco.voto_provvisorio == null
-                                var nulla = !null;
-                                if (voto == true)
-                                    return res.json({ success: false, msg: 'non è ancora stato caricato nessun voto' });
-                                if (voto == false) {
+                               
                                     Elenco.findOneAndUpdate({
                                         accountid: currentaccount.matricola,
                                         appelloid: appello._id,
@@ -784,7 +780,7 @@ exports.confermaVoto = function (req, res) {
                                         //IL MODELLO DEGLI ESAMI PASSATI DELLO STUDENTE
                                         //CON QUELLO CHE HA APPENA VERBALIZZATO
                                     )
-                                }
+                                
                             }
                         })
                 })

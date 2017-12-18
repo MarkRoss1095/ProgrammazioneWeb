@@ -5,7 +5,7 @@ var Facolta = require('./server/models/facolta');
 var Admin = require('./server/models/admin');
 var Prof = require('./server/models/professore'); 
 var Student = require ('./server/models/student');
-
+var ExamPassed =require('./server/models/esamisvolti')
 var Corsi = require('./server/models/corsi');
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
@@ -1440,7 +1440,8 @@ var Student1 = new Student ({
         codCorso: diritto.codice,
         data: '2017-12-16',
         esito: 28,
-        cfu: diritto.cfu
+        cfu: diritto.cfu,
+        matricolastud:Student1.matricola
         
     },
     {
@@ -1448,21 +1449,27 @@ var Student1 = new Student ({
         codCorso: fondamenti.codice,
         data: '2017-02-11',
         esito: 23,
-        cfu: fondamenti.cfu
+        cfu: fondamenti.cfu,
+        matricolastud:Student1.matricola
+        
     },
     {
         nome:algebra.nome,
         codCorso: algebra.codice,
         data: '2017-05-21',
         esito: 27,
-        cfu: algebra.cfu
+        cfu: algebra.cfu,
+        matricolastud:Student1.matricola
+        
     },
     {
         nome:analisi.nome,
         codCorso: analisi.codice,
         data: '2017-09-04',
         esito: 25,
-        cfu: analisi.cfu
+        cfu: analisi.cfu,
+        matricolastud:Student1.matricola
+        
     }],
    
 });
@@ -1486,51 +1493,53 @@ Student1.save(function (err) {
     codFacolta: 'L31',
     matricola: '0934576',
     ruolo:'student',
-    esamifatti: [{
-        codCorso: prg.codice,
-        data: '2016-12-19',
-        esito: 30,
-        cfu: prg.cfu
-    },
+    esamifatti: [
     {
         nome:fondamenti.nome,
         codCorso: fondamenti.codice,
         data: '2016-02-18',
         esito: 30,
-        cfu: fondamenti.cfu
+        cfu: fondamenti.cfu,
+        matricolastud:Student2.matricola
+        
     },
     {
         nome:algebra.nome,
         codCorso: algebra.codice,
         data: '2017-05-21',
         esito: 27,
-        cfu: algebra.cfu
+        cfu: algebra.cfu,
+        matricolastud:Student2.matricola
     },
     {
         nome:analisi.nome,
         codCorso: analisi.codice,
         data: '2016-09-04',
         esito: 26,
-        cfu: analisi.cfu
+        cfu: analisi.cfu,
+        matricolastud:Student2.matricola
     },
     {
         nome:architettura.nome,
         codCorso: architettura.codice,
         data: '2017-10-06',
         esito: 28,
-        cfu: architettura.cfu
+        cfu: architettura.cfu,
+        matricolastud:Student2.matricola
     },
     {   nome:prg.nome,
         codCorso: prg.codice,
         data: '2017-09-04',
         esito: 26,
-        cfu: prg.cfu
+        cfu: prg.cfu,
+        matricolastud:Student2.matricola
     },
-    {
+    {nome:asd.nome,
         codCorso: asd.codice,
         data: '2017-09-22',
         esito: 27,
-        cfu: asd.cfu
+        cfu: asd.cfu,
+        matricolastud:Student2.matricola
     }
 
 
@@ -1559,46 +1568,55 @@ annoCorso: '2',
 codFacolta: 'L35',
 matricola: '093569',
 esamifatti: [{
+    nome:analisimath.nome,
     codCorso: analisimath.codice,
     data: '2016-12-16',
     esito: 18,
-    cfu: analisimath.cfu
+    cfu: analisimath.cfu,
+    matricolastud:Student3.matricola
 },
-{
+{nome:geometria.nome,
     codCorso: geometria.codice,
     data: '2017-02-11',
     esito: 23,
-    cfu: geometria.cfu
+    cfu: geometria.cfu,
+    matricolastud:Student3.matricola
 },
-{
+{nome:alg.nome,
     codCorso: alg.codice,
     data: '2016-05-21',
     esito: 22,
-    cfu: alg.cfu
+    cfu: alg.cfu,
+    matricolastud:Student3.matricola
 },
-{
+{nome:geo.nome,
     codCorso: geo.codice,
     data: '2017-09-04',
     esito: 25,
-    cfu: geo.cfu
+    cfu: geo.cfu,
+    matricolastud:Student3.matricola
 },
-{
+{ nome:analisimathII.nome,
     codCorso: analisimathII.codice,
     data: '2017-10-10',
     esito: 21,
-    cfu: analisimathII.cfu
+    cfu: analisimathII.cfu,
+    matricolastud:Student3.matricola
 },
 {
+    nome:probM.nome,
     codCorso: probM.codice,
     data: '2017-11-27',
     esito: 24,
-    cfu: probM.cfu
+    cfu: probM.cfu,
+    matricolastud:Student3.matricola
 },
-{
+{   nome:inglM.nome,
     codCorso: inglM.codice,
     data: '2016-02-11',
     esito: 20,
-    cfu: inglM.cfu
+    cfu: inglM.cfu,
+    matricolastud:Student3.matricola
 }
 
 
@@ -1628,46 +1646,62 @@ var Student4 =new Student({
     matricola: '093458',
     ruolo:'student',
     esamifatti: [{
+        nome:analisiC.nome,
         codCorso: analisiC.codice,
         data: '2015-12-16',
         esito: 28,
-        cfu: analisiC.cfu
+        cfu: analisiC.cfu,
+        matricolastud:Student4.matricola
     },
     {
+        nome:fisica.nome,
+        
         codCorso: fisica.codice,
         data: '2015-02-20',
         esito: 29,
-        cfu: fisica.cfu
+        cfu: fisica.cfu,
+        matricolastud:Student4.matricola
     },
     {
+        nome:chimicaInorganica.nome,
+        
         codCorso: chimicaInorganica.codice,
         data: '2016-05-15',
         esito: 27,
-        cfu: algebra.cfu
+        cfu: algebra.cfu,
+        matricolastud:Student4.matricola
     },
-    {
+    {        nome:chimicaOrganica.nome,
+        
         codCorso: chimicaOrganica.codice,
         data: '2016-09-08',
         esito: 25,
-        cfu: analisi.cfu
+        cfu: analisi.cfu,
+        matricolastud:Student4.matricola
     },
-    {
+    {        nome:eco.nome,
+        
         codCorso: eco.codice,
         data: '2017-10-14',
         esito: 26,
-        cfu: eco.cfu
+        cfu: eco.cfu,
+        matricolastud:Student4.matricola
     },
-    {
+    {        nome:alimenti.nome,
+        
         codCorso: alimenti.codice,
         data: '2017-12-16',
         esito: 26,
-        cfu: alimenti.cfu
+        cfu: alimenti.cfu,
+        matricolastud:Student4.matricola
     },
-    {
+    {        nome:molecolare.nome,
+        
         codCorso: molecolare.codice,
         data: '2017-03-31S',
         esito: 31,
-        cfu: molecolare.cfu
+        cfu: molecolare.cfu,
+        matricolastud:Student4.matricola
     }
 
 
@@ -1679,6 +1713,217 @@ var Student4 =new Student({
     Student4.save(function (err) {
         if (err) throw err;
     });
+    //esami Fatti
+
+    var dir = new ExamPassed({
+        nome:diritto.nome,
+        codCorso: diritto.codice,
+        data: '2017-12-16',
+        esito: 28,
+        cfu: diritto.cfu,
+        matricolastud:Student1.matricola
+        
+    });
+    dir.save(function (err) {
+        if (err) throw err;
+    });
+    var fond = new ExamPassed({
+        nome:fondamenti.nome,
+        codCorso: fondamenti.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: fondamenti.cfu,
+        matricolastud:Student1.matricola
+        
+    });
+    fond.save(function (err) {
+        if (err) throw err;
+    });
+    var alg = new ExamPassed({
+        nome:algebra.nome,
+        codCorso: algebra.codice,
+        data: '2017-05-21',
+        esito: 27,
+        cfu: algebra.cfu,
+        matricolastud:Student1.matricola
+        
+    });
+    alg.save(function (err) {
+        if (err) throw err;
+    });
+    var anal = new ExamPassed({
+        nome:analisi.nome,
+        codCorso: analisi.codice,
+        data: '2017-09-04',
+        esito: 25,
+        cfu: analisi.cfu,
+        matricolastud:Student1.matricola
+        
+    });
+    anal.save(function (err) {
+        if (err) throw err;
+    });   
+    var fond1 = new ExamPassed({
+        nome:fondamenti.nome,
+        codCorso: fondamenti.codice,
+        data: '2016-02-18',
+        esito: 30,
+        cfu: fondamenti.cfu,
+        matricolastud:Student2.matricola
+    });
+    fond1.save(function (err) {
+        if (err) throw err;
+    });
+    var alg1 = new ExamPassed({
+        nome:algebra.nome,
+        codCorso: algebra.codice,
+        data: '2017-05-21',
+        esito: 27,
+        cfu: algebra.cfu,
+        matricolastud:Student2.matricola
+        
+    });
+    alg1.save(function (err) {
+        if (err) throw err;
+    });
+    var anal1 = new ExamPassed({
+        nome:analisi.nome,
+        codCorso: analisi.codice,
+        data: '2016-09-04',
+        esito: 26,
+        cfu: analisi.cfu,
+        matricolastud:Student2.matricola
+        
+    });
+    anal1.save(function (err) {
+        if (err) throw err;
+    });   
+    var arch = new ExamPassed({
+        nome:architettura.nome,
+        codCorso: architettura.codice,
+        data: '2017-10-06',
+        esito: 28,
+        cfu: architettura.cfu,
+        matricolastud:Student2.matricola
+        
+    });
     
+    arch.save(function (err) {
+        if (err) throw err;
+    });  
+
+     var prg = new ExamPassed({
+        nome:prg.nome,
+        codCorso: prg.codice,
+        data: '2017-09-04',
+        esito: 26,
+        cfu: prg.cfu,
+        matricolastud:Student2.matricola
+        
+    });
+    prg.save(function (err) {
+        if (err) throw err;
+    });   
+    var asd = new ExamPassed({
+        nome:asd.nome,
+        codCorso: asd.codice,
+        data: '2017-09-22',
+        esito: 27,
+        cfu: asd.cfu,
+        matricolastud:Student2.matricola
+        
+    });
+    asd.save(function (err) {
+        if (err) throw err;
+    });  
+  /*   var analM = new ExamPassed({
+        nome:analisimath.nome,
+        codCorso: analisimath.codice,
+        data: '2016-12-16',
+        esito: 18,
+        cfu: analisimath.cfu
+        
+    });
+    analM.save(function (err) {
+        if (err) throw err;
+    });   
+    var geo = new ExamPassed({
+        nome:geometria.nome,
+        codCorso: geometria.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: geometria.cfu
+        
+    });
+    geo.save(function (err) {
+        if (err) throw err;
+    });
+    var geo = new ExamPassed({
+        nome:geometria.nome,
+        codCorso: geometria.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: geometria.cfu
+        
+    });
+    geo.save(function (err) {
+        if (err) throw err;
+    });
+    var geo = new ExamPassed({
+        nome:geometria.nome,
+        codCorso: geometria.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: geometria.cfu
+        
+    });
+    geo.save(function (err) {
+        if (err) throw err;
+    });
+    var geo = new ExamPassed({
+        nome:geometria.nome,
+        codCorso: geometria.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: geometria.cfu
+        
+    });
+    geo.save(function (err) {
+        if (err) throw err;
+    });
+    var geo = new ExamPassed({
+        nome:geometria.nome,
+        codCorso: geometria.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: geometria.cfu
+        
+    });
+    geo.save(function (err) {
+        if (err) throw err;
+    });
+    var geo = new ExamPassed({
+        nome:geometria.nome,
+        codCorso: geometria.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: geometria.cfu
+        
+    });
+    geo.save(function (err) {
+        if (err) throw err;
+    });
+    var geo = new ExamPassed({
+        nome:geometria.nome,
+        codCorso: geometria.codice,
+        data: '2017-02-11',
+        esito: 23,
+        cfu: geometria.cfu
+        
+    });
+    geo.save(function (err) {
+        if (err) throw err;
+    });
+     */
 //Mi disconnetto dal database
 //mongoose.connection.close();
