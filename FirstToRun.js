@@ -1,4 +1,3 @@
-import { arch } from 'os';
 
 //script per popolare il database
 
@@ -58,7 +57,7 @@ var informatica = new Facolta({
             nome: 'Analisi I',
             codice: 'I-02',
             codFacolta: 'L31',
-            usernameProf: '',
+            usernameProf: 'marcello.rosati',
             cfu: 6,
             anno: 1
         },
@@ -66,7 +65,7 @@ var informatica = new Facolta({
             nome: 'Logica Matematica',
             codice: 'I-03',
             codFacolta: 'L31',
-            usernameProf: '',
+            usernameProf: 'marcello.rosati',
             cfu: 6,
             anno: 1
         },
@@ -74,7 +73,7 @@ var informatica = new Facolta({
             nome: 'Lingua Inglese (B1 or B2 level)',
             codice: 'I-04',
             codFacolta: 'L31',
-            usernameProf: '',
+            usernameProf: 'marcello.rosati',
             cfu: 6,
             anno: 1
         },
@@ -719,7 +718,7 @@ var analisi = new Corsi({
     nome: 'Analisi I',
     codice: 'I-02',
     codFacolta: informatica.codFacolta,
-    usernameProf: '',
+    usernameProf: prof1.username,
     cfu: 6,
     anno: 1
 });
@@ -731,7 +730,7 @@ var logica = new Corsi({
     nome: 'Logica Matematica',
     codice: 'I-03',
     codFacolta: informatica.codFacolta,
-    usernameProf: '',
+    usernameProf: prof1.username,
     cfu: 6,
     anno: 1
 });
@@ -743,7 +742,7 @@ var inglese = new Corsi({
     nome: 'Lingua Inglese (B1 or B2 level)',
     codice: 'I-04',
     codFacolta: informatica.codFacolta,
-    usernameProf: '',
+    usernameProf: prof1.username,
     cfu: 6,
     anno: 1
 });
