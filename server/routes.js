@@ -62,3 +62,5 @@ router.post('/deleteAppello', ProfController.deleteAppello); //l'admin può rimu
 router.post('/searchAppello', ProfController.searchAppello);//per trovare quale appello ho preso
 router.get('/viewAppello', ProfController.viewAppello);//per mostrare quel determinato appello
 router.get('/showAppelli', ProfController.showAppelli)//mostra tutti gli appelli del prof 
+router.post('/searchCorsoForProf',ProfController.searchCorsoForProf);
+router.get('/viewcorso2', ProfController.viewcorso2);//per vedere un determinato corso

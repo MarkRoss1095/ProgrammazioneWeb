@@ -123,7 +123,11 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/inside/andamento.html',
                 controller: 'AndamentoCtrl'
             })
-
+            .state('/inside_addappelli', {
+                url: '/AddAppelli',
+                templateUrl: '../view/template/inside/AddAppello.html',
+                controller:'AddAppCtrl'
+            })
     });
 
 /*     //da verificarne l'utilizzo

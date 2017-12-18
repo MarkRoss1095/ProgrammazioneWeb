@@ -121,10 +121,11 @@ exports.addAppello = function (req, res) {
                                     codFacolta:decoded.codFacolta,
                                 })
                                 newAppello.save(function(err,appello){
+                        
                                     if (err)
                                         return res.json({success:false,msg:'errore durante la creazione dell\'appello'});
                                     if (appello)
-                                        return res.json({succes:true,msg:'appello creato'});
+                                        return res.json({succes:true,msg: appello});
                                 })    
                             }if(verify)
                                 return res.json({succes:false,msg:'appello già esistente'});
@@ -239,6 +240,68 @@ exports.editAppello = function (req,res){
 
         })
     }
+}
+exports.searchCorsoForProf = function (req, res) {
+    
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Prof.findOne({
+            _id: decoded._id,
+        }).exec(function (err, prof) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!prof)
+                return res.json({ success: false, msg: 'account nonnnnnnn trovato' });
+            if (prof)
+                Corso.findOne({
+                    _id: req.body._id
+                }).exec(function (err, corso) {
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
+                    }
+                    if (!corso)
+                        return res.json({ success: false, msg: 'corso non trovato47856' });
+                    if (corso)
+                        currentcorso = corso;
+                    return res.json({ success: false, msg: 'corso trovato' });
+
+                })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+
+}
+exports.viewcorso2 = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Prof.findOne({
+            _id: decoded._id,
+        }).exec(function (err, prof) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!prof)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (prof)
+                Corso.findOne({
+                    _id:currentcorso._id
+                }).exec(function (err, corso) {
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca dell appello' });
+                    }
+                    if (!corso)
+                        return res.json({ success: false, msg: 'appello non trovato' });
+                    if (corso)
+                    console.log(corso)
+                        return res.json({ success: false, msg: corso });
+                })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+
 }
 exports.ShowAppelliProf = function (req, res) {
     var token = getToken(req.headers);
@@ -546,6 +609,7 @@ exports.editElenco = function (req,res){
                 return res.json({ success: false, msg: 'token non valido' })
             }
         }
+        
         exports.searchAppello = function (req, res) {
             var token = getToken(req.headers);
             if (token) {

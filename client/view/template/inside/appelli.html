@@ -1,45 +1,42 @@
 <div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
 
 <div class="container">
-    <h1 class="ciao">Add a new Appello</h1>
-
-    <div class="row">
-        <div class="col-sm-6 form-group">
-
-            <label>Exam Name</label>
-             <select ng-model="corso" class = "form-control">
-                <option ng-model="newappello.esame" ng-repeat= "corsi in corso track by $name" value="{{corsi.nome}}"  >{{corsi.nome}}</option>
-            </select>
-
-
-            {{corso}}
-          <!--    <input type="text" name="nome" ng-model="newappello.esame" placeholder="Enter the name of course Here.." class="form-control">
-       -->  </div>
-        <div class="col-sm-6 form-group">
-            <label>Data</label>
-            <input type="date" name="data" ng-model="newappello.data" placeholder="Enter the date of the exam Here.." class="form-control">
+  
+    <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
+        <div id="testo">
+            <h3>Sei interessato a:</h3>
+        </div>
+        <div id="input">
+            <input type="text" ng-model="apello" placeholder="stai cercando..." />
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6 ">
-            <label>Ora</label>
-            <input type="time" name="ora" ng-model="newappello.ora" placeholder="Enter the time of the exam Here.." class="form-control">
+ 
+    <table id="mytable" class="table table-bordered well">
+        <thead>
+
+            <th style="width:20%;">nome</th>
+            <th style="width:10%;">codice</th>
+            <th style="width:10%;">nuovoappello</th>
+        </thead>
+        <tbody>
+
+                
+            <tr ng-repeat="appellos in corso  ">
+             
+                <td>{{appellos.nome}}</td>
+                <td>{{appellos.codice}}</td>
+              
 
 
+                <td>
+                    <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="searchCorsoForProf(appellos)">new</button>
 
+                </td>
 
-        </div>
-        <div class="col-sm-6 ">
-            <button type="submit" class=" btn btn-lg btn-info" ng-click="addAppello(newappello)"> Submit </button>
-        </div>
-    </div>
-
-
-    <br>
-    <br>
-    <hr>
-
-
+            </tr>
+        </tbody>
+    </table>
+<hr>
 
     <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
         <div id="testo">
@@ -86,8 +83,8 @@
             </tr>
         </tbody>
     </table>
-
   
-
-
-</div>
+       
+    
+    
+        

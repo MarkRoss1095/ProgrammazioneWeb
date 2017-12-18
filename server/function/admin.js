@@ -658,7 +658,7 @@ exports.searchCorso = function (req, res) {
                         return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
                     }
                     if (!corso)
-                        return res.json({ success: false, msg: 'corso non trovato' });
+                        return res.json({ success: false, msg: 'corso non trovato22222' });
                     if (corso)
                         currentcorso = corso;
                     return res.json({ success: false, msg: 'corso trovato' });
@@ -684,7 +684,7 @@ exports.viewCorso = function (req, res) {
             if (err)
                 return res.json({ success: false, msg: 'il token non è valido' });
             if (!admin)
-                return res.json({ succes: false, msg: 'account non trovato' });
+                return res.json({ succes: false, msg: 'account non trovatooooo' });
             if (admin)
                 Corso.findOne({
                     _id: currentcorso._id
@@ -693,7 +693,7 @@ exports.viewCorso = function (req, res) {
                         return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
                     }
                     if (!corso)
-                        return res.json({ success: false, msg: 'corso non trovato' });
+                        return res.json({ success: false, msg: 'corso non trovato111111' });
                     if (corso)
                         return res.json({ success: false, msg: corso });
                 })

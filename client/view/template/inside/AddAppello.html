@@ -1,0 +1,32 @@
+<div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
+<h1 class="ciao">Add a new Appello</h1>
+
+<div id="add" class="row">
+<div class="col-sm-6 form-group">
+
+    <label>Exam Name</label>
+
+
+      <input type="text" name="nome" ng-model="currentcorso.nome" placeholder="Enter the name of course Here.." class="form-control">
+ </div>
+<div class="col-sm-6 form-group">
+    <label>Data</label>
+    <input type="date" name="data" ng-model="newappello.data" placeholder="Enter the date of the exam Here.." class="form-control">
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6 ">
+    <label>Ora</label>
+    <input type="time" name="ora" ng-model="newappello.ora" placeholder="Enter the time of the exam Here.." class="form-control">
+
+
+
+
+</div>
+<div class="col-sm-6 ">
+    <button type="submit" class=" btn btn-lg btn-info" ng-click="addAppello(newappello)"> Submit </button>
+</div>
+</div>
+
+
+</div>
