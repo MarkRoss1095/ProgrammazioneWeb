@@ -107,10 +107,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             templateUrl: '../view/template/inside/ricerche.html',
             controller: 'RicercheCtrl'
         })
-        .state('/inside_carriera', {
-            url: '/carriera',
-            templateUrl: '../view/template/inside/carriera.html',
-            controller: 'CarrieraCtrl'
+        .state('/inside_andamento', {
+            url: '/andamento',
+            templateUrl: '../view/template/inside/andamento.html',
+            controller: 'AndamentoCtrl'
         })
 
         .state('/inside_appelli_stud', {

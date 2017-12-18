@@ -1,0 +1,27 @@
+<div ng-include src="'./view/template/inside/inside_navbar_profile_student.html '">
+</div>
+<div class="container grafici">
+
+    <!-- 
+//QUI SI STAMPERA' LA CARRIERA
+ -->
+
+    <button id="prof" type="button" style="float:right;" class="btn btn-success " ng-click="grafico2()">Show graphs</button>
+    <br>
+    <hr>
+    <h3>In questa sezione potrai visualizzare dei grafici realitivi al tuo corso di studi.</h3>
+    <!-- //QUI SI STAMPERANNO I GRAFICI -->
+    <div class="container">
+        <div class="col-md-9 ">
+            <canvas id="myChart2">Grafico andamento degli esami</canvas>
+        </div>
+        <br>
+        <div class="col-md-8 ">
+            <canvas id="myChart"> Grafico conseguimento CFU </canvas>
+        </div>
+        <br>
+        <div class="col-md-8">
+            <canvas id="myChart5">Grafico a torta per tutti gli esami conseguiti</canvas>
+        </div>
+    </div>
+</div>

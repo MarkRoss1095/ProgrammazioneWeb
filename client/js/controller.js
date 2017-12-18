@@ -1,3 +1,5 @@
+/* import { ENETUNREACH } from "constants";
+ */
 angular.module('ProgWeb')
 
     ///////////////////////////////////////////////////// DICHIARAZIONE DEI CONTROLLER
@@ -947,7 +949,7 @@ angular.module('ProgWeb')
     })
 
 
-    .controller('CarrieraCtrl', function ($scope, $http, $filter, AuthService, $state, $window) {
+    .controller('AndamentoCtrl', function ($scope, $http, $filter, AuthService, $state, $window) {
         $scope.logout = function () {
             AuthService.logout();
             $window.alert('logout effettuato')
@@ -978,38 +980,99 @@ angular.module('ProgWeb')
 
         $http.get('/valori').then(success, error);
         function success(student) {
-
             $scope.student = student.data.msg[0]
             $scope.student2 = student.data.msg[1]
             $scope.student3 = student.data.msg[2]
             $scope.student4 = new Array()
             $scope.lungh = (student.data.msg.length) - 3
             var i;
-            var len = student.data.msg.length - 1
-            for (i = 0; i < len; i++) {
-                $scope.student4[i] = student.data.msg[i]
+            $scope.boh2 = function () {
+             
+                for (i = 0; i < $scope.lungh; i++) {
+                    $scope.student4[i] = student.data.msg[i + 2] //QUI HO I SINGOLI VOTI CONSEGUITI 
+                }
+                
+                return $scope.student4
             }
-            console.log($scope.student4)
+           
 
-            var ctx = document.getElementById("myChart");
-            var ctx = document.getElementById("myChart").getContext('2d');
-            
-            var myChart = new Chart(ctx, {
-              type: 'pie',
-              data: {
-                labels: ["CFU CONSEGUITI", "CFU DA CONSEGUIRE", ],
-                datasets: [{
-                  backgroundColor: [
-                    "#f1c40f",
-                    "#e74c3c",
-                  ],
-                  data: [ $scope.student3, 180-$scope.student3]
-                }]
-              }
-            });
+            $http.get('/valori2').then(success, error);
+            function success(ciao) {
+                $scope.etichett = new Array()
+                var leng = ciao.data.msg.length
+                $scope.boh = function () {
+                    var i;
+                    for (i = 0; i < leng; i++) {
+                        $scope.etichett[i] = ciao.data.msg[i]
+                    }console.log($scope.etichett) 
+                    return $scope.etichett
+                }
+            }
+            function error(corso) {
+                $window.alert(error)
+            };
+
+            $scope.grafico2 = function () {
+                var ctx2 = document.getElementById("myChart2").getContext("2d");
+                var myChart2 = new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: $scope.boh(),
+                        datasets: [{
+                            label: 'ANDAMENTO ESAMI',
+                            data: $scope.boh2(),
+                            backgroundColor: "rgba(153,255,51,0.7)"
+                        }]
+                    }
+                });
+
+                
+                var ctx = document.getElementById("myChart");
+                var ctx = document.getElementById("myChart").getContext('2d');
+    
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ["CFU CONSEGUITI", "CFU DA CONSEGUIRE",],
+                        datasets: [{
+                            backgroundColor: [
+                                "#f1c40f",
+                                "#e74c3c",
+                            ],
+                            data: [$scope.student3, 180 - $scope.student3]
+                        }]
+                    }
+                });
+
+                var ctx5 = document.getElementById("myChart5").getContext('2d');
+                var myChart5 = new Chart(ctx5, {
+                  type: 'pie',
+                  data: {
+                    labels:$scope.boh(),
+                    datasets: [{
+                      backgroundColor: [
+                        "#2ecc71",
+                        "#3498db",
+                        "#95a5a6",
+                        "#9b59b6",
+                        "#f1c40f",
+                        "#e74c3c",
+                        "#34495e"
+                      ],
+                      data: $scope.boh2()
+                    }]
+                  }
+                });
+
+                
+            }
         }
+
         function error(corso) {
             $window.alert(error)
 
         };
+
+
+
     })
