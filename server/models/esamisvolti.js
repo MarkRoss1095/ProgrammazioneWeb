@@ -4,7 +4,7 @@ var Esame = require('./esame');
 var Student =require('./student')
 
 var esamisvolti = new Schema({
-    nome:{type:String},
+    nome: {type:String},
     codCorso: { type: String },
     data: { type: String },
     esito: { type: Number, min: 18, max: 31 },

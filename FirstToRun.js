@@ -1,4 +1,3 @@
-
 //script per popolare il database
 
 var Facolta = require('./server/models/facolta');
@@ -1703,9 +1702,6 @@ var Student4 =new Student({
         cfu: molecolare.cfu,
         matricolastud:Student4.matricola
     }
-
-
-
 
 ],
     

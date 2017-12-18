@@ -1096,7 +1096,7 @@ $scope.showIscritti=function(currentappello){
 
                                         
                     })
-                     ////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
         .controller('AndamentoCtrl', function ($scope, $http, $filter, AuthService, $state, $window) {
             $scope.logout = function () {
                 AuthService.logout();
