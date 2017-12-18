@@ -491,7 +491,7 @@ $scope.addProf=function(){
 
             /////////////////////////////////////////////////////////////////////////////
             .controller('AppCtrl', function ($scope, $http, AuthService, $state, $window ) {
-                $scope.currentappello ={
+                $scope.currentelenco ={
                     username_prof:'', //aggiunto username_prof dopo
                     esame:'',
                     data:'',
@@ -571,12 +571,12 @@ $scope.addProf=function(){
                    
                 }
 
-                $scope.deleteAppello = function (currentappello) {
-                    $http.post("/deleteAppello", currentappello).then(success, err)
+                $scope.deleteAppello = function (currentelenco) {
+                    $http.post("/deleteAppello", currentelenco).then(success, err)
                     function success(success) {
                         $window.alert(success.data.msg)
         
-                        console.log(currentappello)
+                        console.log(currentelenco)
                       $window.location.reload()
                       
                       
@@ -654,7 +654,7 @@ $scope.addProf=function(){
                    
                     $http.put("/editAppello",updateappello).then(success, err)
                     function success(success) {
-                        updateappello=$scope.currentappello
+                        updateappello=$scope.currentelenco
                       $window.alert(success.data.msg)
                         
                      
@@ -670,7 +670,7 @@ $scope.addProf=function(){
                    
                     $http.put("/chiudiAppello",chiudiappello).then(success, err)
                     function success(success) {
-                        chiudiappello=$scope.currentappello
+                        chiudiappello=$scope.currentelenco
                       $window.alert(success.data.msg)
                         
                      
@@ -681,8 +681,85 @@ $scope.addProf=function(){
                         $window.alert(err)
                     }
                 }
+
+                $scope.editElenco = function (search) {
+                    $http.post("/searchElenco", search).then(success, err)
+                    function success(success) {
+                        console.log(search)
+                       $state.go('/inside_edit_elenco') 
+        
+                       
+                    }
+                    function err(err) {
+                        $window.alert(err)
+                    }
+                }
+$scope.showIscritti=function(){
+                $http.get('/IscrittiAppello').then(success, error);
+                function success(iscritti) {
+                    $scope.iscritti=iscritti.data.msg
+                    document.getElementById("iscritti").disabled=true
+                   
+                }
+                function error(err) {
+                    $window.alert(err)                   
+                }
+            }
             })
             ////////////////////////////////////////////////////////////////////////////////////
+            .controller('IscrittiCtrl', function ($scope, $http, AuthService, $state, $window, ) {
+                $scope.currentelenco ={
+                    
+                    esame:'',
+                    nome:'',
+                    cognome:'',
+                    voto_provvisorio:'',
+                    voto_definitivo:'',
+                    accettato:'',
+                    conferma:'',
+                
+                   
+                    
+                }
+        
+                 $http.get('/viewElenco').then(success, error);
+                function success(currentelenco) {
+                    $scope.currentelenco=currentelenco.data.msg
+                    console.log($scope.currentelenco)
+        
+                }
+                function error(err) {
+                    $window.alert(err)                   
+                }; 
+                $scope.logout = function () {
+                    AuthService.logout();
+                    $window.alert('logout effettuato')
+                    $state.go('/');
+                };
+                $scope.showProfile = function () {
+                    $http.get('/showProfile').then(success, error);
+                    function success(currentaccount) {
+        
+                        if (currentaccount.data.msg == 'student') {
+                            $state.go('/profiloStudente')
+                        }
+                        if (currentaccount.data.msg == 'admin') {
+                            $state.go('/profiloAdmin')
+                        }
+                        if (currentaccount.data.msg == 'prof') {
+                            $state.go('/profiloProf')
+                        }
+                    }
+                    function error(currentaccount) {
+                        $window.alert('profilo non trovato, rifare il login')
+                        $state.go('/login')
+                        AuthService.logout();
+                    };
+                }
+        
+        
+            })
+            ///////////////////////////////////////////////////////////////////////////////////
             .controller('profiloStudentCtrl', function ($scope, $http,$filter, AuthService, $state, $window  ) {
            
                 $scope.currentstudent = {
@@ -779,7 +856,7 @@ $scope.addProf=function(){
 
             /////////////////////////////////////////////////////////////
             .controller('AppelliStudCtrl', function ($scope, $http,$filter, AuthService, $state, $window  ) {             
-                   $scope.currentappello ={
+                   $scope.currentelenco ={
                     
                     iscritti:""
                    
@@ -824,14 +901,15 @@ $scope.addProf=function(){
                     $window.alert(error)
         
                 };
-                $scope.iscrivitiAppello = function (currentappello) {
+                $scope.iscrivitiAppello = function (currentelenco) {
                     
-                     $http.post("/searchAppello", currentappello).then(success, err)
+                     $http.post("/searchAppello", currentelenco).then(success, err)
                      function success(success) {
-                         console.log(currentappello)
-                         $http.put("/iscrivitiAppello",currentappello).then(success, err)
+                         console.log(currentelenco)
+                         $http.put("/iscrivitiAppello",currentelenco).then(success, err)
                          function success(success) {
-                             currentappello=$scope.currentappello
+                             currentelenco=$scope.currentelenco
+                             $window.location.reload()
                            $window.alert(success.data.msg)
                              
                           

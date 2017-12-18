@@ -113,7 +113,11 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/inside/appellistud.html',
                 controller:'AppelliStudCtrl'
             })
-           
+            .state('/inside_edit_elenco', {
+                url: '/EditIscritti',
+                templateUrl: '../view/template/inside/editElenco.html',
+                controller:'IscrittiCtrl'
+            })
 
     });
 

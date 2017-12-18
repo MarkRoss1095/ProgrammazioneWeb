@@ -198,7 +198,7 @@ exports.editAppello = function (req,res){
         }).exec(function (err, prof) {
             if (err)
                 return res.json({ success: false, msg: 'il token non è valido' });
-            console.log(err)
+         
             if (!prof)
                 return res.json({ succes: false, msg: 'account non trovato' });
             else {
@@ -224,8 +224,10 @@ exports.editAppello = function (req,res){
                                     return res.json({ success: false, msg: 'errore durante la riceca del appello' + err });
                                 /*  if (!corso)
                                      return res.json({ success: false, msg: 'corso non esistente' }); */
-                                if (appello) {
-                                    return res.json({ success: true, msg: 'appello modificato' });
+                                if (appello) { 
+                                    
+                                   return res.json({ success: true, msg: 'appello modificato' }); 
+
                                 }
                             })
                     } else {
@@ -295,7 +297,7 @@ exports.showAppelli = function (req, res) {
                     if (!appello)
                         return res.json({ success: true, msg: 'admin' });
                     if (appello) {
-                        console.log(use)
+                       
                         return res.json({ success: true, msg: appello })
                     }
                 })
@@ -305,53 +307,7 @@ exports.showAppelli = function (req, res) {
                 return res.json({ success: false, msg: 'token non valido' })
         }
 }
-/* //funzionante
-exports.showAppelli = function (req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, process.env.SECRET);
 
-        Prof.findOne({
-            _id: decoded._id,
-        }).exec(function (err, prof) {
-            if (err)
-                return res.json({ success: false, msg: 'non è stato possibile trovare il profilo del professore' });
-            else {
-                Prof.findOne({
-                   
-                    username: req.body.username
-                    
-                }).exec(function (err, prof) {
-                    if (!req.body.username) {
-                        return res.json({ state: false, message: 'username is required. Usually is name.surname' });
-                    }
-                    if (err) return res.json({ msg: 'professore non esistente' })
-                    else {
-   
-                        Appello.find({
-                           
-                            username_prof:req.body.username,
-                          
-                        }).exec(function (err, appello) {
-                            
-                            if (err)
-                                return res.json({ success: false, msg: 'errore durante la riceca dell\'appello' });
-                            if (!appello)
-                                return res.json({ success: false, msg: 'appello non esistente' });
-                            if (appello) {
-                                return res.json({ success: true, msg: appello });
-                            }
-                        })
-                    }
-                })
-            }
-        })
-
-    } else {
-        return res.json({ success: false, msg: 'non sei un professore' });
-    }
-}
- */
 exports.chiudiAppello = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
@@ -466,55 +422,7 @@ exports.modifyDatiP = function (req,res){
 }
 
 
-//da modellare ancora
-exports.showIscritti = function (req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, process.env.SECRET);
-        Prof.findOne({
-            _id: decoded._id,
-        }).exec(function (err, done) {
-            if (err)
-                return res.json({ success: false, msg: 'token non valido' });
-            else {
-                if (done.ruolo == 'prof') {
-                    Prof.findOne({
-                        _id: decoded._id,
-                    }).exec(function (err, prof) {
-                        if (err)
-                            return res.json({ success: false, msg: 'non è stato possibile trovare il profilo del professore' });
-                        else {
-                            Appello.findOne({
-                                _id: req.body.id
-                            }).exec(function (err, appello) {
-                                if (err)
-                                    return res.json({ success: false, msg: 'errore durante la riceca dell\'appello' });
-                                if (!appello)
-                                    return res.json({ success: false, msg: 'appello non esistente' });
-                                if (appello) {
-                                    iscritti.find({
-                                        appello_id: appello._id
-                                    }).exec(function (err, doc) {
-                                        if (err)
-                                            return res.json({ success: true, msg: 'errore durante la ricerca degli iscritti' });
-                                        if (!doc)
-                                            return res.json({ success: true, msg: 'elenco non trovato' });
-                                        if (doc) {
-                                       // if() return res.json({success:true,msg:'nessun iscritto all\'appello'})
-                                              return res.json({ success: true, msg: doc });
-                                     } })
 
-                                }
-                            })
-                        }
-                    })
-                } else {
-                    return res.json({ success: false, msg: 'non sei un professore' });
-                }
-            }
-        })
-    }
-}
 
 
         exports.votiprovvisoriAppello = function (req,res){
@@ -654,9 +562,73 @@ exports.showIscritti = function (req, res) {
             }
         
         }
+        exports.searchElenco = function (req, res) {
+            var token = getToken(req.headers);
+            if (token) {
+                var decoded = jwt.decode(token, process.env.SECRET);
+                Prof.findOne({
+                    _id: decoded._id,
+                }).exec(function (err, prof) {
+                    if (err)
+                        return res.json({ success: false, msg: 'il token non è valido' });
+                    if (!prof)
+                        return res.json({ succes: false, msg: 'account non trovato' });
+                    if (prof)
+                        Elenco.findOne({
+                            _id: req.body._id
+                        }).exec(function (err, elenco) {
+                            if (err) {
+                                return res.json({ success: false, msg: 'errore durante la ricerca dell appello' });
+                            }
+                            if (!elenco)
+                                return res.json({ success: false, msg: 'appello non trovato' });
+                            if (elenco)
+                                currentelenco = elenco;
+                               
+                            return res.json({ success: false, msg: 'appello trovato' });
         
         
+        
+                        })
+                })
+            } else {
+                return res.json({ success: false, msg: 'token non valido' })
+            }
+        
+        }
+        
+        exports.viewElenco = function (req, res) {
+            var token = getToken(req.headers);
+            if (token) {
+                var decoded = jwt.decode(token, process.env.SECRET);
+                Prof.findOne({
+                    _id: decoded._id,
+                }).exec(function (err, prof) {
+                    if (err)
+                        return res.json({ success: false, msg: 'il token non è valido' });
+                    if (!prof)
+                        return res.json({ succes: false, msg: 'account non trovato' });
+                    if (prof)
+                        Elenco.findOne({
+                            _id: currentelenco._id
+                        }).exec(function (err, elenco) {
+                            if (err) {
+                                return res.json({ success: false, msg: 'errore durante la ricerca dell appello' });
+                            }
+                            if (!elenco)
+                                return res.json({ success: false, msg: 'appello non trovato' });
+                            if (elenco)
+                    
+                   
 
+                                return res.json({ success: false, msg: elenco });
+                        })
+                })
+            } else {
+                return res.json({ success: false, msg: 'token non valido' })
+            }
+        
+        }
 //FUNZIONANTE
 exports.iscrittiAppello = function (req,res){
     var token = getToken(req.headers);
@@ -670,22 +642,25 @@ exports.iscrittiAppello = function (req,res){
                 return res.json({success:false,msg:'token non valido'});
              if(prof) {
                 if (prof.ruolo=='prof'){
-                    prof.findOne({
-                        account_id:decoded._id,
+                   /*  Prof.findOne({
+                        accountid:decoded._id,
                     }).exec(function (err,prof){
                         if(err)
                             return res.json({success:false,msg:'non è stato possibile trovare il profilo del professore'});
-                        else{
+                        else{ */
                             Appello.findOne({
-                                _id:req.body.id
+                             _id:currentappello._id
                             }).exec(function(err,appello){
                                 if(err)
                                     return res.json({success:false,msg:'errore durante la riceca dell\'appello'});
                                 if(!appello)
+                                
+                              
+                                
                                     return res.json({success:false,msg:'appello non esistente'});
                                 if(appello){
                                     Elenco.find({
-                                        appello_id:appello._id
+                                        appelloid:appello._id
                                     }).exec(function(err,doc){
                                         if (err)
                                             return res.json({success:true,msg:'errore durante la ricerca degli iscritti'});
@@ -698,11 +673,11 @@ exports.iscrittiAppello = function (req,res){
                                 }    
                             })
                         }
-                    }) 
+                    /* })  */
                 }
-                }else{
+               /*  }else{
                     return res.json({success:false,msg:'non sei un professore'});
-                }
+                } */
                                
         })    
     }        

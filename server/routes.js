@@ -46,13 +46,15 @@ router.get('/viewCorso', adminController.viewCorso);//per vedere un determinato 
 //ROUTE FOR PROF
 router.get('/showProfileProf',ProfController.showProfileProf);
 router.get('/ShowAppelliProf', ProfController.ShowAppelliProf)
+router.post('/searchElenco', ProfController.searchAppello);//per trovare quale appello ho preso
+router.get('/viewElenco', ProfController.viewAppello);//per mostrare quel determinato appello
 
 router.post('/loginProf',  ProfController.loginProf); //il  prof può loggarsi
 router.post('/addAppello', ProfController.addAppello); //il prof può aggiungere un appello
 router.put('/chiudiAppello', ProfController.chiudiAppello); //prof può chiudere un appello
 router.put('/editAppello', ProfController.editAppello); //prof può modiciare i dati di un appello
 router.put('/modifyDatiP',  ProfController.modifyDatiP); //il prof può modificare i suoi dati personali
-router.post('/showIscritti',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello DAAAAAAAA FARAEEEEEE PERCHE PRIMA DEVO FARE LO STUDENTE
+router.get('/IscrittiAppello',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello 
 router.post('/deleteAppello', ProfController.deleteAppello); //l'admin può rimuovere un appello 
 router.post('/searchAppello', ProfController.searchAppello);//per trovare quale appello ho preso
 router.get('/viewAppello', ProfController.viewAppello);//per mostrare quel determinato appello
