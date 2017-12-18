@@ -25,13 +25,12 @@ router.post('/ricercaCorso',userController.ricercaCorso); //studente può ricerc
 router.post('/ricercaProf',userController.ricercaProf); //studente può cercare un professore
 router.put('/modifyDati',userController.modifyDati); //lo studente può modificare i suoi dati personali 
 router.put('/iscrivitiAppello', userController.iscrivitiAppello); //lo studente può registrarsi ad un appello
-router.delete('/cancellaPrenotazione',userController.cancellaPrenotazione); //lo studente può cancellare la sua prenotazione all'appello
+router.post('/cancellaPrenotazione',userController.cancellaPrenotazione); //lo studente può cancellare la sua prenotazione all'appello
 router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti gli username dei professori in modo da poterli ricercare in seguito
 router.get('/mostraAppelli', userController.mostraAppelli)//mostra tutti gli appelli del prof 
 router.get('/valori', userController.valori); 
 router.get('/valori2', userController.valori2);
-
-
+router.get('/mostraRisultati', userController.mostraRisultati);
 //route for admin
 router.post('/addProf',adminController.addProf);
 router.get('/showProfileAdmin',adminController.showProfileAdmin);
@@ -49,13 +48,16 @@ router.get('/viewCorso', adminController.viewCorso);//per vedere un determinato 
 
 //ROUTE FOR PROF
 router.get('/showProfileProf',ProfController.showProfileProf);
-
+router.get('/ShowAppelliProf', ProfController.ShowAppelliProf)
+router.post('/searchElenco', ProfController.searchElenco);//per trovare quale appello ho preso
+router.get('/viewElenco', ProfController.viewElenco);//per mostrare quel determinato appello
+router.put('/editElenco', ProfController.editElenco)
 router.post('/loginProf',  ProfController.loginProf); //il  prof può loggarsi
 router.post('/addAppello', ProfController.addAppello); //il prof può aggiungere un appello
 router.put('/chiudiAppello', ProfController.chiudiAppello); //prof può chiudere un appello
 router.put('/editAppello', ProfController.editAppello); //prof può modiciare i dati di un appello
 router.put('/modifyDatiP',  ProfController.modifyDatiP); //il prof può modificare i suoi dati personali
-router.post('/showIscritti',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello DAAAAAAAA FARAEEEEEE PERCHE PRIMA DEVO FARE LO STUDENTE
+router.get('/IscrittiAppello',ProfController.iscrittiAppello) //mostra chi si è iscritto all'appello 
 router.post('/deleteAppello', ProfController.deleteAppello); //l'admin può rimuovere un appello 
 router.post('/searchAppello', ProfController.searchAppello);//per trovare quale appello ho preso
 router.get('/viewAppello', ProfController.viewAppello);//per mostrare quel determinato appello

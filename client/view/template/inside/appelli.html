@@ -6,9 +6,11 @@
     <div class="row">
         <div class="col-sm-6 form-group">
 
-
             <label>Esame</label>
-            <input type="text" name="nome" ng-model="newappello.esame" placeholder="Enter the name of course Here.." class="form-control">
+            <!-- <select ng-model="corso" class = "form-control">
+                <option ng-model="newappello.esame" ng-repeat= "corsi in corso " value="{{corsi.nome}}"  >{{corsi.nome}}</option>
+            </select>
+ -->            <input type="text" name="nome" ng-model="newappello.esame" placeholder="Enter the name of course Here.." class="form-control">
         </div>
         <div class="col-sm-6 form-group">
             <label>Data</label>
@@ -44,7 +46,7 @@
             <input type="text" ng-model="apello" placeholder="stai cercando..." />
         </div>
     </div>
-
+    <button type="button" style="float:right;" id="mostraApp" class="btn btn-info " ng-click="MostraAppelli(appellos)">Mostra Appelli</button>
 
     <table id="mytable" class="table table-bordered well">
         <thead>

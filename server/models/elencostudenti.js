@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Prof=require('./professore')
 var Appello =require('./appello');
+var Student= require('./student')
 var ElencoSchema = new Schema({
 
 
@@ -39,5 +41,5 @@ var ElencoSchema = new Schema({
    },
    
     });
-
-module.exports = mongoose.model('Elenco', ElencoSchema);
+    var Elenco = mongoose.model('Elenco', ElencoSchema);
+    module.exports = Elenco;
