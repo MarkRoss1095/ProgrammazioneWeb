@@ -917,7 +917,19 @@ $scope.showIscritti=function(currentappello){
                 function success(appello) {
                  if (appello){
                     $scope.appello = appello.data.msg
+
                  }
+                 $http.get('/mostraRisultati').then(success, error);
+                 function success(risultati) {
+                  if (risultati){
+                     $scope.risultati = risultati.data.msg
+                     console.log($scope.risultati)
+                  }
+                 }
+                 function error(appello) {
+                     $window.alert(error)
+         
+                 };
                 }
                 function error(appello) {
                     $window.alert(error)

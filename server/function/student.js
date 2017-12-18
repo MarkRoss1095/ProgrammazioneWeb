@@ -624,7 +624,7 @@ exports.mostraRisultati = function (req, res) {
                 return res.json({ success: false, msg: 'profilo di ' + decoded.name + 'non trovato.' });
             } else {
                 Elenco.find({
-                    account_id: currentaccount.account_id,
+                    accountid:currentaccount.matricola,
                     conferma: false
                 }).exec(function (err, result) {
                     if (err)
@@ -649,7 +649,7 @@ exports.confermaVoto = function (req, res) {
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
         Student.findOne({
-            account_id: decoded._id
+        _id: decoded._id
         }).exec(function (err, currentaccount) {
             if (err) {
                 return res.json({ success: false, msg: 'non sei autorizzato' });
@@ -658,7 +658,7 @@ exports.confermaVoto = function (req, res) {
                 return res.json({ success: false, msg: 'profilo di ' + decoded.name + 'non trovato.' });
             } else {
                 Appello.findOne({
-                    _id: req.body.id,
+                    _id: req.body._id,
                 }).exec(function (err, appello) {
                     if (err)
                         return res.json({ success: false, msg: 'errore durante la ricerca dell\'appello' });
@@ -666,8 +666,8 @@ exports.confermaVoto = function (req, res) {
                         return res.json({ success: false, msg: 'appello non trovato' });
                     if (appello)
                         Elenco.findOne({
-                            account_id: currentaccount.account_id,
-                            appello_id: appello._id
+                            accountid: currentaccount.matricola,
+                            appelloid: appello._id
                         }).exec(function (err, elenco) {
                             if (err)
                                 return res.json({ success: false, msg: 'errore durante la ricerca dell\'elenco' });
@@ -680,8 +680,8 @@ exports.confermaVoto = function (req, res) {
                                     return res.json({ success: false, msg: 'non è ancora stato caricato nessun voto' });
                                 if (voto == false) {
                                     Elenco.findOneAndUpdate({
-                                        account_id: currentaccount.account_id,
-                                        appello_id: appello._id,
+                                        accountid: currentaccount.matricola,
+                                        appelloid: appello._id,
                                         conferma: false,
                                         accettato: false,
                                     }, {
