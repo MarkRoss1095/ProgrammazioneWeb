@@ -118,6 +118,11 @@ app.config(function ($stateProvider, $urlRouterProvider ,$locationProvider) {
                 templateUrl: '../view/template/inside/editElenco.html',
                 controller:'IscrittiCtrl'
             })
+            .state('/inside_andamento', {
+                url: '/andamento',
+                templateUrl: '../view/template/inside/andamento.html',
+                controller: 'AndamentoCtrl'
+            })
 
     });
 

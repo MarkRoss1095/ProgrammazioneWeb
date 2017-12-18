@@ -641,6 +641,88 @@ exports.mostraRisultati = function (req, res) {
     }
 }
 
+exports.valori = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, stu) {
+            if (err)
+                return res.json({ success: false, msg: 'non è stato possibile trovare il profilo dello studente' });
+            if (!stu)
+                return res.json({ success: false, msg: 'appello non trovato' });
+            if (stu) {
+
+                var a = stu.esamifatti;
+
+                var tuttiivoti = new Array()
+                if (a.esito !== "null") {
+                    //qui ci sono gli esami che lo studente ha passato
+                    var b = stu.esamifatti.length //vedo quanti sono
+                    var sommacfu = 0;
+                    var sommavoti = 0;
+                    var mediapond = 0;
+                    var i = 0
+                    var etichette = new Array()
+                    var eccoli = new Array()
+
+                    for (i = 0; i < 4; i++) {
+                     eccoli[i+3] = stu.esamifatti[i].esito //è un array in cui dall'elemento 3 ci sono tutti i voti dello studente agli esami 
+                      //  etichette[i] = stu.esamifatti[i].nome
+                        sommacfu  = sommacfu  + stu.esamifatti[i].cfu; //LA SOMMA DEI CFU CHE LO STUDENTE HA
+                        sommavoti = sommavoti + stu.esamifatti[i].esito //QUESTI SONO I SINGOLI VOTI
+                        mediapond = mediapond + stu.esamifatti[i].cfu * stu.esamifatti[i].esito
+                    }
+                    var j = 0
+                    var finale = new Array(b)
+                    var media = sommavoti / b; //QUESTA È LA MEDIA ARITMETICA DEI VOTI 
+                    var media2 = mediapond / sommacfu; //MEDIA PONDERATA FINALE DEI VOTI
+
+                    eccoli[0] = media, eccoli[1] = media2, eccoli[2] = sommacfu
+                    return res.json({success: true, msg: eccoli})
+                }
+            }
+        })
+    }
+}
+
+exports.valori2 = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, stu) {
+            if (err)
+                return res.json({ success: false, msg: 'non è stato possibile trovare il profilo dello studente' });
+            if (!stu)
+                return res.json({ success: false, msg: 'appello non trovato' });
+            if (stu) {
+
+                var a = stu.esamifatti;
+
+                var tuttiivoti = new Array()
+                if (a.esito !== "null") {
+                    //qui ci sono gli esami che lo studente ha passato
+                    var b = stu.esamifatti.length //vedo quanti sono
+                    var i = 0
+                    var etichet = new Array()
+                   
+
+                    for (i = 0; i < b; i++) {
+                         etichet[i] = stu.esamifatti[i].nome
+                    
+                    }
+            console.log(etichet)
+                    return res.json({ success: true, msg:etichet })
+                }
+            }
+        })
+    }
+}
+
+
 //C'È  DA FINIRE LA FUNZIONE AGGIORNANDO
 //IL MODELLO DEGLI ESAMI PASSATI DELLO STUDENTE
 //CON QUELLO CHE HA APPENA VERBALIZZATO
