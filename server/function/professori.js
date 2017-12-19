@@ -753,6 +753,7 @@ exports.iscrittiAppello = function (req,res){
                   
                             Appello.findOne({
                              _id:currentappello._id
+                            
                             }).exec(function(err,appello){
                                 if(err)
                                     return res.json({success:false,msg:'errore durante la riceca dell\'appello'});

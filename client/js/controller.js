@@ -648,7 +648,7 @@ $scope.newappello.esame=currentcorsoNome
                 $http.post("/addAppello", newappello).then(success, err)
 
                 function success(success) {
-                    $window.alert(success.data.msg)
+                    $window.alert('Appello Creato correttamente')
                     $window.history.back()
 
                 }
@@ -944,6 +944,13 @@ $scope.newappello.esame=currentcorsoNome
 
 
         }
+        $scope.currentvoto={
+            voto_provvisorio:'',
+            conferma:'',
+            accettato:'',
+            voto_definitivo:'',
+
+        }
 
         $scope.logout = function () {
             AuthService.logout();
@@ -1048,7 +1055,10 @@ $scope.newappello.esame=currentcorsoNome
 
         }
 
-
+        $scope.confermavoto = function(currentvoto)
+        {
+            
+        }
 
     })
     ////////////////////////////////////////////////////////
