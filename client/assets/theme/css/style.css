@@ -2174,3 +2174,9 @@ html.is-builder .article .lead:not([data-app-remove-it]) + div .btn {
 	top: 0;
 	left: -2400px;
 }
+
+.barr {
+  box-sizing: 40px, 40px;
+  border: 1px solid black;
+  
+}

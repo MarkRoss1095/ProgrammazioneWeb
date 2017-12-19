@@ -23,6 +23,9 @@
     }
 
  */
+.grafici{
+    background-color: rgba(255, 255, 255.0,3);
+} 
 
 
  html, body {  height: 100%; }
@@ -35,7 +38,7 @@
  }
  
  .footer, #push {
-     background-color: grey;
+     background-color: rgb(128, 128, 128);
      height: 100px; 
  }
 

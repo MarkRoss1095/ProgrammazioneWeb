@@ -28,6 +28,8 @@ router.put('/iscrivitiAppello', userController.iscrivitiAppello); //lo studente 
 router.post('/cancellaPrenotazione',userController.cancellaPrenotazione); //lo studente può cancellare la sua prenotazione all'appello
 router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti gli username dei professori in modo da poterli ricercare in seguito
 router.get('/mostraAppelli', userController.mostraAppelli)//mostra tutti gli appelli del prof 
+router.get('/valori', userController.valori); 
+router.get('/valori2', userController.valori2);
 router.get('/mostraRisultati', userController.mostraRisultati);
 router.get('/valori', userController.valori); 
 router.get('/valori2', userController.valori2);

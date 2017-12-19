@@ -1076,9 +1076,75 @@ angular.module('ProgWeb')
             function error(currentaccount) {
                 $window.alert('profilo non trovato, rifare il login')
                 $state.go('/login')
+                }}})
+                
+                .controller('RicercheCtrl', function ($scope, $http, AuthService, $state, $window, ) {
+                    
+                      $scope.logout = function () {
+                          AuthService.logout();
+                          $window.alert('logout effettuato')
+                          $state.go('/');
+                      };
+      
+                      $scope.showProfile = function () {
+                          $http.get('/showProfile').then(success, error);
+                          function success(currentaccount) {
+              
+                              if (currentaccount.data.msg == 'student') {
+                                  $state.go('/profiloStudente')
+                              }
+                              if (currentaccount.data.msg == 'admin') {
+                                  $state.go('/profiloAdmin')
+                              }
+                              if (currentaccount.data.msg == 'prof') {
+                                  $state.go('/profiloProf')
+                              }
+                          }
+                          function error(currentaccount) {
+                              $window.alert('profilo non trovato, rifare il login')
+                              $state.go('/login')
+                              AuthService.logout();
+                          };
+                      }
+                     
+                      $scope.mostraProf = function () {
+                        
+                      $http.get('/showUsernameProf').then(success, error);
+                      function success(pr) {
+                      
+                          $scope.pr = pr.data.msg
+                        document.getElementById("prof").disabled=true
+                         }
+                      
+                      function error(usernameProf) {
+                          $window.alert(error)
+              
+                      };
+                    
+                    }
+                    $scope.mostraCorsi = function () {
+                       
+                      $http.get('/mostraCorsi').then(success, error);
+                      function success(corso) {
+                       
+                          $scope.corso =corso.data.msg
+                         document.getElementById("corso").disabled=true
+                      
+                      }
+                      function error(corso) {
+                          $window.alert(error)
+              
+                      };
+                                        }
+
+                                        
+                    })
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        .controller('AndamentoCtrl', function ($scope, $http, $filter, AuthService, $state, $window) {
+            $scope.logout = function () {
                 AuthService.logout();
             };
-        }
+        
 
 
         $http.post('/PianoDiStudi').then(success, error);
