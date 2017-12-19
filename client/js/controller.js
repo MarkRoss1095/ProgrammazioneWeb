@@ -569,20 +569,7 @@ angular.module('ProgWeb')
                 };
             }
 
-            $scope.addAppello = function(newappello) {
-                /* funzione per aggiunger il corso */
-                $http.post("/addAppello", newappello).then(success, err)
-                console.log(newappello)
-                function success(success) {
-                    $window.alert(success.data.msg)
-                    $window.location.reload()
-
-                }
-                function err(err) {
-                    $window.alert(err)
-                }
-
-            }
+           
 
             $scope.deleteAppello = function (currentelenco) {
                 $http.post("/deleteAppello", currentelenco).then(success, err)
@@ -654,6 +641,21 @@ angular.module('ProgWeb')
                     $state.go('/login')
                     AuthService.logout();
                 };
+            }
+            $scope.addAppello = function(currentcorsoNome,newappello) {
+$scope.newappello.esame=currentcorsoNome
+
+                $http.post("/addAppello", newappello).then(success, err)
+
+                function success(success) {
+                    $window.alert(success.data.msg)
+                    $window.history.back()
+
+                }
+                function err(err) {
+                    $window.alert(err)
+                }
+
             }
     
         })

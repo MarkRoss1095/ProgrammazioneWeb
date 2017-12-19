@@ -1,4 +1,5 @@
 <div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
+<div class="container">
 <h1 class="ciao">Add a new Appello</h1>
 
 <div id="add" class="row">
@@ -24,9 +25,10 @@
 
 </div>
 <div class="col-sm-6 ">
-    <button type="submit" class=" btn btn-lg btn-info" ng-click="addAppello(newappello)"> Submit </button>
+    <button type="submit" class=" btn btn-lg btn-info" ng-click="addAppello(currentcorso.nome,newappello)"> Submit </button>
 </div>
 </div>
 
 
+</div>
 </div>
