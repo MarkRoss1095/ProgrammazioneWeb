@@ -263,7 +263,7 @@ exports.searchCorsoForProf = function (req, res) {
                     if (!corso)
                         return res.json({ success: false, msg: 'corso non trovato47856' });
                     if (corso)
-                        currentcorso = corso;
+                      currentcorso = corso;
                     return res.json({ success: false, msg: 'corso trovato' });
 
                 })

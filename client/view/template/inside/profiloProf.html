@@ -4,90 +4,104 @@
 
 
 <section class="mbr-section mbr-section__container article" id="header3-1" data-rv-view="3" style=" padding-top: 20px; padding-bottom: 20px;">
-    
+
+    <div class="row">
         <div class="row">
+            <br>
             <div class="col-xs-12">
                 <h1 class="mbr-section-title display-1">Benvenuto</h1>
                 <h3 class="mbr-section-title display-2">{{currentprof.username}}</h3>
             </div>
+            <br>
+            <br>
+            <div class="immagine2">
+                <center>
+                    <img src="https://www.shareicon.net/download/2016/08/18/815158_man_512x512.png" width="100px" text-align="center">
+                </center>
+                <br> </div>
+            <div class="spiegazione">
+                <p>Hai eseguito l'accesso come Professore.
+                    <br>
+                    <br>In seguito troverai tutti i tuoi dati personali inseriti in fase di registrazione. Cliccando sul bottone
+                    Save, dopo aver modificato i dati, puoi salvarli.</p>
+                <strong>Ti ricordiamo di utilizzare con attenzione la sezione sottostante, in quanto vi sono dati personali.</strong>
+                <p>Nella barra di inizio pagina, alla sezione Appelli, puoi gestire gli appelli dei tuoi corsi di insegnamento.</div>
         </div>
-   
+    </div>
+
 </section>
 <hr>
 <div class="container">
-    <h1 class="well">I miei Dati</h1>
+    <h1 class="well">I miei Dati Personali</h1>
     <div class="col-lg-12 well">
         <div class="row">
-            <form class="register">
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-6 form-group">
-                        <label>First Name</label>
-                        <input disabled type="text" name="nameP" id="nameP" ng-model="currentprof.nameP" class="form-control">
+            <form class="register" name="myForm">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label>First Name</label>
+                            <input type="text" name="nameP" id="nameP" ng-model="currentprof.nameP" required class="form-control">
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="surname" id="surname" ng-model="currentprof.surname" required class="form-control">
+                        </div>
                     </div>
-                    <div class="col-sm-6 form-group">
-                        <label>Last Name</label>
-                        <input disabled type="text" name="surname" id="surname" ng-model="currentprof.surname" class="form-control">
-                    </div>
-                </div>
-                <!--  <div class="col-sm-4 form-group">
+                    <!--  <div class="col-sm-4 form-group">
                     <label>Date of Birth</label>
                     <input disabled type="text" name="bod" id="bod" ng-model="currentprof.bod" class="form-control">
                 </div> -->
 
-                <div class=" col-sm-4 form-group">
-                    <label>Facolta</label>
-
-                    <select disabled id="CodFacolta" class="form-control" ng-model="currentprof.codFacolta">
-                        <option value="L31">Informatica</option>
-                        <option value="L35">Matematica</option>
-                        <option value="L27">Chimica</option>
-                        <option selected value="">Scegli...</option>
-
-                    </select>
-                </div>
-
-                <div class="row">
-
-
-                    <div class="col-sm-4 form-group">
-                        <label>State</label>
-                        <input disabled type="text" id="state" name="state" ng-model="currentprof.state" class="form-control">
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label>City</label>
-                        <input disabled type="text" id="city" name="city" ng-model="currentprof.city" class="form-control">
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label>Address </label>
-                        <input disabled type="text" id="address" name="address" ng-model="currentprof.address" class="form-control">
-                    </div>
                     <div class=" col-sm-4 form-group">
-                        <label>Gender</label>
+                        <label>Facolta</label>
 
-                        <select disabled class="form-control" id="gender" ng-model="currentprof.gender">
-                            <option value="M">Maschio</option>
-                            <option value="F">Femmina</option>
-                            <option selected value="">Scegli...</option>
+                        <select id="CodFacolta" class="form-control" ng-model="currentprof.codFacolta" required>
+                            <option value="L31">Informatica</option>
+                            <option value="L35">Matematica</option>
+                            <option value="L27">Chimica</option>
+                            <!--         <option selected value="">Scegli...</option> -->
+
                         </select>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 form-group">
-                        <label>Phone Number</label>
-                        <input disabled type="number" name="phone" id="phone" ng-model="currentprof.phone" class="form-control">
+
+                    <div class="row">
+
+
+                        <div class="col-sm-4 form-group">
+                            <label>State</label>
+                            <input type="text" id="state" name="state" ng-model="currentprof.state" required class="form-control">
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label>City</label>
+                            <input type="text" id="city" name="city" ng-model="currentprof.city" required class="form-control">
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label>Address </label>
+                            <input type="text" id="address" name="address" ng-model="currentprof.address" class="form-control" required>
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label>Gender</label>
+
+                            <select disabled class="form-control" id="gender" ng-model="currentprof.gender" required>
+                                <option value="M">Maschio</option>
+                                <option value="F">Femmina</option>
+                                <!--       <option selected value="">Scegli...</option> -->
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-sm-4 form-group">
-                        <label>Email Address</label>
-                        <input disabled type="email" name="email" id="email" ng-model="currentprof.email" class="form-control">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            <label>Phone Number</label>
+                            <input type="number" name="phone" id="phone" ng-model="currentprof.phone" class="form-control" required>
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" id="email" ng-model="currentprof.email" class="form-control" required>
+                        </div>
                     </div>
-
+                    <button type="submit" id="button1" class="btn btn-lg btn-success" ng-click="modifyDatiP(currentprof)"  ng-disabled="myForm.$invalid || myForm.$pristine">Save</button>
+                    <!--   <button type="submit" id="button2" class="btn btn-lg btn-info" ng-click="sblocca()" >Edit</button> -->
                 </div>
-
-                <button type="submit" id="button2" class="btn btn-lg btn-info" ng-click="sblocca()">edit</button>
-                <button disabled type="submit" id="button1" class="btn btn-lg btn-info" ng-click="modifyDatiP(currentprof)">save</button>
-            </div>
-
             </form>
         </div>
     </div>
