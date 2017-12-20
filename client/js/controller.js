@@ -79,7 +79,7 @@ angular.module('ProgWeb')
 
                 if ($scope.user.role == 'student') {
                     AuthService.loginStudent($scope.user).then(function (msg) {
-                        $state.go("/inside_home")
+                        $state.go("/profiloStudente")
                         $window.alert('Login effettuato')
                     }, function (errmsg) {
                         $window.alert(errmsg)
@@ -89,7 +89,7 @@ angular.module('ProgWeb')
             }
             if ($scope.user.role == 'prof') {
                 AuthService.loginProf($scope.user).then(function (msg) {
-                    $state.go("/inside_home")
+                    $state.go("/profiloProf")
                     $window.alert('Login effettuato')
                 }, function (errmsg) {
                     $window.alert(errmsg)
@@ -98,8 +98,8 @@ angular.module('ProgWeb')
             }
             if ($scope.user.role == 'admin') {
                 AuthService.loginAdmin($scope.user).then(function (msg) {
-                    $state.go("/inside_home")
-                    $window.alert('Login effettuato')
+                    $state.go("/profiloAdmin")
+                    $window.alert('Login effettuato. Benvenuto nella tua area privata!')
                 }, function (errmsg) {
                     $window.alert(errmsg)
                     window.location.reload()
@@ -142,12 +142,7 @@ angular.module('ProgWeb')
             password: '',
         };
 
-        /*   $scope.admin = {
-              username: '',
-              password: '',
-          };
-   */
-
+   
 
         $scope.logout = function () {
             AuthService.logout();
@@ -791,7 +786,7 @@ $scope.newappello.esame=currentcorsoNome
         function success(currentelenco) {
             $scope.currentelenco = currentelenco.data.msg
             if ($scope.currentelenco.accettato == false) {
-                document.getElementById("conferma").disabled = true
+                document.getElementById("").disabled = true
             }
             console.log($scope.currentelenco)
         }
@@ -1057,7 +1052,7 @@ $scope.newappello.esame=currentcorsoNome
 
         $scope.confermavoto = function(currentvoto)
         {
-            
+            console.log(currentvoto)
         }
 
     })

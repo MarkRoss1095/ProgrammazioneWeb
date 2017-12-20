@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));     
 
 
-
 //connect to the database mongoose
 var mongoose = require('mongoose');
  mongoose.connect('mongodb://localhost/ProgrammazioneWeb');
@@ -32,7 +31,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
 
 //app.use(express.static(__dirname + '/client')); 
-
 
 // routes for server file 
 app.use(require('./server/routes.js'));

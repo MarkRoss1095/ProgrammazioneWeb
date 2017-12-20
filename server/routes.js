@@ -8,7 +8,6 @@ ProfController=require('./function/professori');
 adminController=require('./function/admin');
 controller=require('./function/controller');
 
-
 module.exports = router;
 
 // ROUTE 

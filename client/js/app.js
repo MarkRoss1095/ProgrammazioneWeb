@@ -1,6 +1,16 @@
 var app = angular.module('ProgWeb', ['ui.router']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    app.directive('back', ['$window', function($window) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    $window.history.back();
+                });
+            }
+        };
+    }]);
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.hashPrefix('');
@@ -128,10 +138,5 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 templateUrl: '../view/template/inside/AddAppello.html',
                 controller:'AddAppCtrl'
             })
-    
-
-      
-
-
 });
 

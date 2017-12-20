@@ -2,6 +2,12 @@
  * Default theme v2 (https://mobirise.com/)
  * Copyright 2016 Mobirise
  */
+ .spiegazione{
+   margin-bottom:20px;
+   text-align: center;
+   font-size: 18px;/* 
+   border:1px solid black; */
+ }
 .container {
   position: relative; }
 
@@ -2178,5 +2184,14 @@ html.is-builder .article .lead:not([data-app-remove-it]) + div .btn {
 .barr {
   box-sizing: 40px, 40px;
   border: 1px solid black;
-  
-}
+  }
+
+
+  .about{
+    height: 80%;
+    border:1px solid black;
+  }
+
+  .button{
+    height: 30%;
+  }

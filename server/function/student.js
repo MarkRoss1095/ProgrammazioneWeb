@@ -446,10 +446,10 @@ exports.iscrivitiAppello = function (req, res) {
                                                 esame: appello.esame,
                                                 data: appello.data,
                                                 ora: appello.ora,
-                                                voto_provvisorio: 'null',
+                                                voto_provvisorio: 'non ancora caricato',
                                                 conferma: false,
                                                 accettato: false,
-                                                voto_definitivo: 'null',
+                                                voto_definitivo: 'non confermato',
                                             })
                                             NewElenco.save(function (err, elenco) {
 
@@ -791,7 +791,7 @@ exports.confermaVoto = function (req, res) {
                                 Elenco.findOneAndUpdate({
                                     accountid: currentaccount.matricola,
                                     appelloid: appello._id,
-                                    voto_provvisorio: !null,
+                                    voto_provvisorio: !"non ancora caricato",
                                     conferma: false,
                                     accettato: false,
                                 }, {

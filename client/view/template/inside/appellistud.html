@@ -14,7 +14,7 @@
         </div>
     
     
-        <table id="mytable" class="table table-bordered well">
+        <table id="mytable" class="table table-bordered well" text-align="center">
             <thead>
     
                 <th style="width:20%;">esame</th>
@@ -29,7 +29,7 @@
             <tbody>
     
     
-                <tr ng-repeat="appellos in appello ">
+                <tr ng-repeat="appellos in appello " text-align="center">
                     <td>{{appellos.esame}}</td>
                     <td>{{appellos.username_prof}}</td>
                     <td>{{appellos.data}}</td>
@@ -39,11 +39,11 @@
     
    
                     <td>
-                        <button id="iscriviti" class="btn btn-primary glyphicon glyphicon-plu" ng-click="iscrivitiAppello(appellos)">iscriviti</button>
+                        <button id="iscriviti" class="btn btn-primary glyphicon glyphicon-plu" ng-click="iscrivitiAppello(appellos)" ng-disabled="appellos.aperto==false" >iscriviti</button>
     
                     </td>
                     <td>
-                        <button  id="cancella" class="btn btn-danger glyphicon glyphicon-remove" ng-click="cancellaIscrizione(appellos)">Remove</button>
+                        <button  id="cancella" class="btn btn-danger glyphicon glyphicon-remove" ng-click="cancellaIscrizione(appellos)" >Remove</button>
     
                     </td>
     
@@ -69,40 +69,42 @@
         </div>
 <!--         <button type="button" style="float:right;" id="mostraApp" class="btn btn-info " ng-click="MostraAppelli(appellos)">Mostra Appelli</button>
  -->    
-        <table id="mytable" class="table table-bordered well">
+        <table id="mytable" class="table table-bordered well" text-align="center">
             <thead>
     
                 <th style="width:20%;">Esame</th>
-                
-            <th style="width:20%;">Nome</th>
+            <th style="width:15%;">Nome</th>
             <th style="width:10%;">Cognome</th>
-            <th style="width:10%;">accountid</th>
-          
-            <th style="width:10%;">voto provvisorio</th>
-            <th style="width:10%;">voto definitivo</th>
-            <th style="width:10%;">accettato</th>
-          
-            <th style="width:5%;">Confermato</th>
+            <th style="width:15%;">Matricola</th>
+            <th style="width:10%;">Data Esame</th>
+            <th style="width:10%;">Ora Esame</th>
+            <th style="width:10%;">Voto provvisorio</th>
+            <th style="width:10%;">Voto definitivo</th>
+      <!--       <th style="width:10%;">accettato</th> -->
+          <!-- 
+            <th style="width:5%;">Confermato</th> -->
             <th style="width:5%;">Conferma</th>
             
         </thead>
         <tbody>
 
                 
-            <tr ng-repeat="appellos in risultati  ">
+            <tr ng-repeat="appellos in risultati  " text-align="center">
                 <td>{{appellos.esame}}</td>
-                
+              
                 <td>{{appellos.nome}}</td>
                 <td>{{appellos.cognome}}</td>
                  <td>{{appellos.accountid}}</td>
+                 <td>{{appellos.data}}</td>
+                 <td>{{appellos.ora}}</td>
                  <td>{{appellos.voto_provvisorio}}</td>
                <td>{{appellos.voto_definitivo}}</td>
-               <td>{{appellos.accettato}}</td> 
-               <td>{{appellos.conferma}}</td> 
+          <!--      <td>{{appellos.accettato}}</td> 
+               <td>{{appellos.conferma}}</td>  -->
     
     
                     <td>
-                        <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="confermavoto(appellos)">Conferma</button>
+                        <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="confermavoto(appellos)"ng-disabled="appellos.voto_provvisorio=='non ancora caricato'">Conferma</button>
     
                     </td>
                    
