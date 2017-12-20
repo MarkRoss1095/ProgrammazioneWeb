@@ -32,6 +32,7 @@ router.get('/valori2', userController.valori2);
 router.get('/mostraRisultati', userController.mostraRisultati);
 router.get('/valori', userController.valori); 
 router.get('/valori2', userController.valori2);
+router.put('/confermaVoto',userController.confermaVoto)
 //route for admin
 router.post('/addProf',adminController.addProf);
 router.get('/showProfileAdmin',adminController.showProfileAdmin);

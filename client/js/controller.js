@@ -769,7 +769,7 @@ angular.module('ProgWeb')
                 $http.get('/IscrittiAppello').then(success, error);
                 function success(iscritti) {
                     $scope.iscritti = iscritti.data.msg
-                    document.getElementById("iscritti").disabled = true
+                    document.getElementById("showiscritti").disabled = true
 
                 }
                 function error(err) {
@@ -801,7 +801,7 @@ angular.module('ProgWeb')
         function success(currentelenco) {
             $scope.currentelenco = currentelenco.data.msg
             if ($scope.currentelenco.accettato == false) {
-                document.getElementById("").disabled = true
+               /*  document.getElementById('').disabled = true; */
             }
             console.log($scope.currentelenco)
         }
@@ -1000,7 +1000,6 @@ angular.module('ProgWeb')
             function success(risultati) {
                 if (risultati) {
                     $scope.risultati = risultati.data.msg
-                    console.log($scope.risultati)
                 }
             }
             function error(appello) {
@@ -1016,7 +1015,6 @@ angular.module('ProgWeb')
 
             $http.post("/searchAppello", currentelenco).then(success, err)
             function success(success) {
-                console.log(currentelenco)
                 $http.put("/iscrivitiAppello", currentelenco).then(success, err)
                 function success(success) {
                     currentelenco = $scope.currentelenco
@@ -1042,7 +1040,6 @@ angular.module('ProgWeb')
 
             $http.post("/searchAppello", currentelenco).then(success, err)
             function success(success) {
-                console.log(currentelenco)
                 $http.post("/cancellaPrenotazione", currentelenco).then(success, err)
                 function success(success) {
                     currentelenco = $scope.currentelenco
@@ -1066,7 +1063,19 @@ angular.module('ProgWeb')
         }
 
         $scope.confermavoto = function (currentvoto) {
-            console.log(currentvoto)
+           console.log(currentvoto)
+            $http.put("/confermaVoto", currentvoto).then(success, err)
+            function success(success) {
+                currentvoto = $scope.currentvoto
+                console.log(currentvoto)
+                $window.alert(success.data.msg)
+
+                /* $window.location.reload() */
+            }
+            function err(err) {
+                $window.alert(err)
+            }
+
         }
 
     })

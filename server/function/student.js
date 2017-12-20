@@ -429,7 +429,8 @@ exports.iscrivitiAppello = function (req, res) {
                                     var appelloid = req.body._id /* ="59e8bed242f6fce9d8b89c20" */
                                     var accountid = student.matricola /* = "093456" */
                                     Elenco.findOne({
-                                        appelloid: req.body._id,
+                                        esame:appello.esame,
+                                       
                                         accountid: student.matricola,
                                         accettato: false
                                     }).exec(function (err, elenco) {
@@ -590,12 +591,6 @@ exports.cancellaPrenotazione = function (req, res) {
                                                     return res.json({ success: true, msg: 'cancellazione riuscita con successo!' });
                                             })
 
-
-
-
-
-
-
                                     }
 
                                 }
@@ -752,11 +747,113 @@ exports.valori2 = function (req, res) {
     }
 }
 
+exports.confermaVoto = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, student) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!student)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (student)
+
+                Elenco.findOne({
+                    _id: req.body._id
+                }).exec(function (err, elenco) {
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca dell elenco' });
+                    }
+                    if (!elenco)
+                  
+                        return res.json({ success: false, msg: req.body._id });
+                    if (elenco)
+                        Appello.findOne({
+                            _id: elenco.appelloid
+                        }).exec(function (err, appello) {
+                            if (err)
+                              
+                            return res.json({ success: false, msg: 'errore durante la ricerca dell\'appello' });
+                            if (!appello)
+                              
+                            return res.json({ success: false, msg: 'appello non trovato' });
+                            if (appello) {
+                               
+
+                                Corso.findOne({
+                                    nome: appello.esame
+                                }).exec(function (err, corso) {
+                                    if (err)
+                                        
+                                    return res.json({ success: false, msg: 'errore durante la ricerca dell\'elenco' });
+                                    if (!corso)
+                                        
+
+                                    return res.json({ success: false, msg: 'iscrizione non trovato' });
+
+                                    if (corso) {
+                                        
+                                        Elenco.findOneAndUpdate({
+                                            accountid: student.matricola,
+                                            appelloid: appello._id,
+                                            voto_provvisorio: !"non ancora caricato",
+                                            conferma: false,
+                                            accettato: false,
+                                        }, {
+                                                $set: {
+                                                    voto_definitivo: elenco.voto_provvisorio,
+                                                    conferma: true,
+                                                    accettato: true,
+                                                }
+                                            }, { new: true }, function (err, doc) {
+                                                if (err)
+                                                    return res.json({ success: false, msg: 'errore durante la conferma del voto' });
+                                               if (!doc)
+                                               console.log(appello._id)
+                                               console.log(student.matricola)
+                                               console.log(elenco.conferma)
+                                               return res.json({ success: false, msg:'elenco non trovato'  });
+                                                    if (doc) {
+
+
+                                                    var NewExamPassed = new ExamPassed({
+                                                        nome: appello.esame,
+                                                        data: elenco.data,
+                                                        esito: elenco.voto_definitivo,
+                                                        codCorso:corso.codCorso,
+                                                        cfu: appello.cfu,
+                                                        matricolastud: elenco.accoutid,
+                                                    })
+                                                    ExamPassed.save(function (err, exam) {
+
+                                                        if (err) {
+                                                            return res.json({ success: false, msg: 'errore durante l\'iscrizione' });
+                                                        }
+
+                                                        if (!exam)
+                                                            return res.json({ success: true, msg: 'voto salvato' });
+                                                    })
+
+                                                }
+                                            })
+                                    }
+                                })
+                    
+                }
+             })
+    })
+})
+    } else {
+    return res.json({ success: false, msg: 'token non valido' })
+}
+}
 
 //C'È  DA FINIRE LA FUNZIONE AGGIORNANDO
 //IL MODELLO DEGLI ESAMI PASSATI DELLO STUDENTE
 //CON QUELLO CHE HA APPENA VERBALIZZATO
-exports.confermaVoto = function (req, res) {
+/* exports.confermaVoto = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
@@ -770,24 +867,34 @@ exports.confermaVoto = function (req, res) {
                 return res.json({ success: false, msg: 'profilo di ' + decoded.name + 'non trovato.' });
             } else {
                 Appello.findOne({
-                    _id: req.body._id,
+                   _id:req.body.appelloid
                 }).exec(function (err, appello) {
                     if (err)
+                    console.log('ciaoo')
                         return res.json({ success: false, msg: 'errore durante la ricerca dell\'appello' });
                     if (!appello)
+                    console.log('ciaoo1')
+                    
                         return res.json({ success: false, msg: 'appello non trovato' });
-                    if (appello)
+                    if (appello){
+                    console.log('ciaoo2')
+                    
                         Elenco.findOne({
                             accountid: currentaccount.matricola,
                             appelloid: appello._id
                         }).exec(function (err, elenco) {
                             if (err)
+                            console.log('ciaoo3')
+                            
                                 return res.json({ success: false, msg: 'errore durante la ricerca dell\'elenco' });
                             if (!elenco)
+                            console.log('ciaoo4')
+                            
                                 return res.json({ success: false, msg: 'iscrizione non trovato' });
 
                             if (elenco) {
-
+                                console.log('ciaoo5')
+                                
                                 Elenco.findOneAndUpdate({
                                     accountid: currentaccount.matricola,
                                     appelloid: appello._id,
@@ -811,21 +918,27 @@ exports.confermaVoto = function (req, res) {
                                                 accettato: false
                                             }).exec(function (err, elenco) {
                                                 if (err)
+                                                console.log('ciaoo6')
+                                                
                                                     return res.json({ success: false, msg: 'errore durante la ricerca' });
                                                 if (elenco)
+                                                console.log('ciaoo7')
+                                                
                                                     return res.json({ success: false, msg: 'hai gia sostenuto questo esame' });
                                                 if (!elenco) {
                                                     var NewExamPassed = new ExamPassed({
-                                                       
+                                                     nome:appello.esame,
+                                                     data:elenco.data,
+                                                     esito:elenco.voto_definitivo,
+                                                     cfu:appello.cfu,
+                                                     matricolastud:elenco.accoutid,
                                                     })
                                                     ExamPassed.save(function (err, exam) {
 
                                                         if (err) {
-                                                            // deleteElenco(elenco._id)
-                                                            return res.json({ success: false, msg: 'errore durante l\'iscrizione' });
+                                                                                                                       return res.json({ success: false, msg: 'errore durante l\'iscrizione' });
                                                         }
-                                                       /*  if (exam)
-                                                            return res.json({ success: false, msg: 'hai gia dato questo esame ' }); */
+                                                     
                                                         if (!exam)
                                                             return res.json({ success: true, msg: 'voto salvato' });
                                                     })
@@ -847,7 +960,7 @@ exports.confermaVoto = function (req, res) {
             }
         })
     }
-}
+} */
 
 exports.showProfileStudent = function (req, res) {
     var token = getToken(req.headers);
