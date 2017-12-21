@@ -678,8 +678,10 @@ angular.module('ProgWeb')
             $scope.currentappello = currentappello.data.msg
             if ($scope.currentappello.aperto == false) {
                 document.getElementById("chiudi").disabled = true;
+                document.getElementById("submit").disabled = true;
+                document.getElementById("ora").disabled = true;
+                document.getElementById("dataApp").disabled = true;       
             }
-
         }
         function error(err) {
             $window.alert(err)

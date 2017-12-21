@@ -1,96 +1,117 @@
 <div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
-
-<div class="container">
-    <h1 class="ciao">Edit Appello</h1>
-
-    <div class="row">
-        <div class="col-sm-6 form-group">
+<form name=form>
+    <div class="container">
+        <center>
+            <h1 class="ciao">Edit Appello</h1>
 
 
-            <label>Esame</label>
-            <input type="text" name="nome" ng-model="currentappello.esame" placeholder="Enter the name of course Here.." class="form-control">
-        </div>
-        <div class="col-sm-2 form-group">
+
+            <h4>In questa sezione puoi modificare l'appello che hai selezionato o decidere di chiuderlo .
+                <br> Inoltre puoi vedere quanti studenti sono iscritti per questo appello.
+            </h4>
+        </center>
+        <br>
+        <hr>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6 form-group">
+
+
+                <label>Esame</label>
+                <input type="text" name="nome" disabled required ng-model="currentappello.esame" placeholder="Enter the name of course Here.."
+                    class="form-control">
+            </div>
+            <!-- <div class="col-sm-2 form-group">
             <label>Data</label>
-            <input type="text" name="data" ng-model="currentappello.data" placeholder="Enter the date of the exam Here.." class="form-control">
-        </div>   
-    </div>
-    <div class="row">
-        <div class="col-sm-2 ">
-            <label>Ora</label>
-            <input type="text" name="ora" ng-model="currentappello.ora" placeholder="Enter the time of the exam Here.." class="form-control">
-        </div>
-        <div class="col-sm-4 ">
+            <input type="text" name="dataApp" required  ng-model="currentappello.dataApp" placeholder="Enter the date of the exam Here.." class="form-control">
+        </div>    -->
+            <div class="col-sm-4 ">
                 <label>stato Appello</label>
-            <input type="text" name="aperto" ng-model="currentappello.aperto" disabled class="form-control">
-
+                <input type="text" name="aperto" required ng-model="currentappello.aperto" disabled class="form-control">
+            </div>
         </div>
-        <div class="col-sm-2 ">
-                <label>Iscritti</label>
-            <input type="text" name="iscritti" ng-model="currentappello.iscritti" disabled class="form-control">
+        <div class="row">
+            <div class="col-sm-2 ">
+                <label>Ora</label>
+                <input type="text" id="ora" required ng-model="currentappello.ora" placeholder="Enter the time of the exam Here.." class="form-control">
+            </div>
+            <!--  <div class="col-sm-4 ">
+                <label>stato Appello</label>
+            <input type="text" name="aperto" required ng-model="currentappello.aperto" disabled class="form-control">
+        </div> -->
+            <div class="col-sm-2 form-group">
+                <label>Data</label>
+                <input type="text" id="dataApp" required ng-model="currentappello.dataApp" placeholder="Enter the date of the exam Here.."
+                    class="form-control">
+            </div>
+            <div class="col-sm-2 ">
+                <label>Numero di Iscritti</label>
+                <input type="text" name="iscritti" required ng-model="currentappello.iscritti" disabled class="form-control">
 
+            </div>
         </div>
+        <br>
+
+        <button type="submit" id="chiudi" class=" btn btn-lg btn-info" ng-click="chiudiappello(currentappello)"> ChiudiAppello </button>
+        <button type="submit" id="submit" class=" btn btn-lg btn-info" ng-click="update(currentappello)" ng-disabled="form.$invalid || form.$pristine">
+            Submit </button>
+
+        <br>
+        <br>
+        <hr>
+
+        <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
+            <div id="testo">
+                <h3>Sei interessato a:</h3>
+            </div>
+            <div id="input">
+                <input type="text" ng-model="apello" placeholder="stai cercando..." />
+            </div>
+        </div>
+        <button type="submit" id="iscritti" class=" btn btn-lg btn-warning" ng-click="showIscritti()"> ShowIscritti </button>
+
+
+        <table id="mytable" class="table table-bordered well">
+            <thead>
+
+                <th style="width:20%;">Nome</th>
+                <th style="width:10%;">Cognome</th>
+                <th style="width:10%;">Matricola</th>
+
+                <!--         <th style="width:10%;">Voto provvisorio</th>
+                <th style="width:10%;">Voto definitivo</th> -->
+                <!--         <th style="width:10%;">Accettato</th> -->
+                <!--   <th style="width:10%;">conferma</th>
+ -->
+                <th style="width:5%;">Edit</th>
+
+            </thead>
+            <tbody>
+
+
+                <tr ng-repeat="appellos in iscritti  ">
+
+                    <td>{{appellos.nome}}</td>
+                    <td>{{appellos.cognome}}</td>
+                    <td>{{appellos.accountid}}</td>
+                    <!--         <td>{{appellos.voto_provvisorio}}</td>
+                    <td>{{appellos.voto_definitivo}}</td> -->
+                    <!--      <td>{{appellos.accettato}}</td> -->
+                    <!--      <td>{{appellos.conferma}}</td> -->
+
+
+
+                    <td>
+                        <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="editElenco(appellos)">Edit</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
     </div>
-    <br>
 
-    <button type="submit" id="chiudi" class=" btn btn-lg btn-info" ng-click="chiudiappello(currentappello)"> ChiudiAppello </button>
-    <button type="submit" id="iscritti" class=" btn btn-lg btn-info" ng-click="showIscritti()"> ShowIscritti </button>
-    <button type="submit" id="submit" class=" btn btn-lg btn-info" ng-click="update(currentappello)"> Submit </button>
-
-
-
-    <br>
-    <br>
-    <hr>
-
-    <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
-        <div id="testo">
-            <h3>Sei interessato a:</h3>
-        </div>
-        <div id="input">
-            <input type="text" ng-model="apello" placeholder="stai cercando..." />
-        </div>
-    </div>
-
-    <table id="mytable" class="table table-bordered well">
-        <thead>
-
-            <th style="width:20%;">Nome</th>
-            <th style="width:10%;">Cognome</th>
-            <th style="width:10%;">accountid</th>
-          
-            <th style="width:10%;">voto provvisorio</th>
-            <th style="width:10%;">voto definitivo</th>
-            <th style="width:10%;">accettato</th>
-            <th style="width:10%;">conferma</th>
-            
-            <th style="width:5%;">Edit</th>
-            
-        </thead>
-        <tbody>
-
-                
-            <tr ng-repeat="appellos in iscritti  ">
-             
-                <td>{{appellos.nome}}</td>
-                <td>{{appellos.cognome}}</td>
-                 <td>{{appellos.accountid}}</td>
-                
-                 <td>{{appellos.voto_provvisorio}}</td>
-               <td>{{appellos.voto_definitivo}}</td>
-               <td>{{appellos.accettato}}</td> 
-               <td>{{appellos.conferma}}</td> 
-               
-
-
-                <td>
-                    <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="editElenco(appellos)">Edit</button>
-
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-  
-
-</div>
+</form>

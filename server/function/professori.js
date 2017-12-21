@@ -9,7 +9,7 @@ var bCrypt = require('bcrypt-nodejs');
 var key = 'test'
 var jwt = require('jwt-simple');
 var moment = require('moment-timezone');
-var a =false;
+var a = false;
 
 // ALTRE FUNZIONI
 /**Funzione per criptare la password nel db */
@@ -100,16 +100,15 @@ exports.addAppello = function (req, res) {
 
                     var today = new Date()
                     console.log(today)
-                   /*  var today= today.toString().substring(0,11) */
+                    /*  var today= today.toString().substring(0,11) */
                     var oggigiorno = parseInt(today.getDate())
                     var oggimese = parseInt(today.getMonth() + 1)
                     var oggianno = parseInt(today.getFullYear())
-                    var today =oggianno+"-"+oggimese+"-"+oggigiorno
-                    
+                    var today = oggianno + "-" + oggimese + "-" + oggigiorno
+
                     Appello.findOne({
                         esame: req.body.esame,
                         dataApp: x,
-                        ora: y
                     }).exec(function (err, verify) {
                         if (!req.body.esame) {
                             return res.json({ state: false, msg: 'esame is required' });
@@ -126,11 +125,11 @@ exports.addAppello = function (req, res) {
                             console.log("controllo: buon esito")
                         }
                         console.log(today)
-                        if (today==x) {
+                        if (today == x) {
                             return res.json({ msg: "Non puoi inserire la data di oggi" })
                         }
 
-                        if (today>x) {
+                        if (today > x) {
                             return res.json({ msg: "la data inserita non è valida. E' precedente a quella corrente" })
                         }
 
@@ -146,12 +145,12 @@ exports.addAppello = function (req, res) {
                                 codFacolta: decoded.codFacolta,
                             })
                             newAppello.save(function (err, appello) {
-                           
+
                                 if (err)
                                     return res.json({ success: false, msg: 'errore durante la creazione dell\'appello' });
                                 if (appello)
-                            
-                                return res.json({ succes: true, msg: 'appello creato correttamente' });
+
+                                    return res.json({ succes: true, msg: 'appello creato correttamente' });
                             })
                         } if (verify)
                             return res.json({ succes: false, msg: 'appello già esistente' });
@@ -233,14 +232,45 @@ exports.editAppello = function (req, res) {
                 if (prof) {
                     if (prof.ruolo == 'prof') {
 
+                        var timestamp = req.body.dataApp;
+                        var date = moment.tz(timestamp, "Europe/Amsterdam");
+                        var date = date.format().toString();
+                        var x = date.substr(0, 10); // THIS IS DATA
+
+                        var ora = req.body.ora;
+                        var time = moment.tz(ora, "Europe/Amsterdam");
+                        var time = time.format().toString();
+                        var y = time.substring(11, 16); //this is ORA 
+                        var today = new Date()
+                        console.log(today)
+
+                        /*  var today= today.toString().substring(0,11) */
+                        var oggigiorno = parseInt(today.getDate())
+                        var oggimese = parseInt(today.getMonth() + 1)
+                        var oggianno = parseInt(today.getFullYear())
+                        var today = oggianno + "-" + oggimese + "-" + oggigiorno
+
+                        if (today < x) {
+                            console.log("controllo: buon esito")
+                        }
+                        console.log(today)
+                        if (today == x) {
+                            return res.json({ msg: "Non puoi inserire la data di oggi" })
+                        }
+
+                        if (today > x) {
+                            return res.json({ msg: "la data inserita non è valida. E' precedente a quella corrente" })
+                        }
+
                         Appello.findOneAndUpdate({
                             _id: req.body._id,
+                            aperto: true
                         },
                             {
                                 $set: {
                                     esame: req.body.esame,
-                                    ora: req.body.ora,
-                                    data: req.body.data,
+                                    ora: y,
+                                    data: x,
                                     iscritti: req.body.iscritti,
                                     aperto: req.body.aperto,
 
@@ -248,11 +278,11 @@ exports.editAppello = function (req, res) {
                             },
                             { new: true },
                             function (err, appello) {
-                                if (err)
-                                    return res.json({ success: false, msg: 'errore durante la riceca del appello' + err });
-                                /*  if (!corso)
-                                     return res.json({ success: false, msg: 'corso non esistente' }); */
-                                if (appello) {
+                                if (err) {
+                                    if (appello.aperto = false) return res.json({ success: false, msg: 'Non puoi modificare un appello chiuso!' + err });
+
+                                    return res.json({ success: false, msg: 'errore durante la riceca del appello.' + err });
+                                } if (appello) {
 
                                     return res.json({ success: true, msg: 'appello modificato' });
 
