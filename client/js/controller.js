@@ -1,3 +1,5 @@
+/* import { CommandCursor } from "../../../../.cache/typescript/2.6/node_modules/@types/mongodb";
+ */
 var a = false
 
 angular.module('ProgWeb')
@@ -608,12 +610,12 @@ angular.module('ProgWeb')
         $http.get('/viewcorso2').then(success, error);
         function success(currentcorso) {
             $scope.currentcorso = currentcorso.data.msg
-            console.log("ciaooooo" + $scope.currentcorso)
+            console.log(currentcorso)
         }
         function error(err) {
             $window.alert('corso non trovato')
-
         };
+
         $scope.logout = function () {
             AuthService.logout();
             $window.alert('logout effettuato')
@@ -638,24 +640,25 @@ angular.module('ProgWeb')
                 $state.go('/login')
                 AuthService.logout();
             };
-        }
+        };
+
         $scope.addAppello = function (currentcorsoNome, newappello) {
             $scope.newappello.esame = currentcorsoNome
-    
-/* console.log($scope.newappello.date) */
+            var err
             $http.post("/addAppello", newappello).then(success, err)
 
             function success(success) {
-                $window.alert('Appello Creato correttamente')
-                $window.history.back()
+                $window.alert(success.data.msg)
+                if (success.data.msg == 'appello creato correttamente')
+                    $window.history.back()
 
-            }
-            function err(err) {
-                $window.alert(err)
+                function err(err) {
+                    console.log(err)
+                }
+
             }
 
         }
-
     })
     ////////////////////////////////////////////////////////////////////////////////        
     .controller('EditAppCtrl', function ($scope, $http, AuthService, $state, $window, ) {

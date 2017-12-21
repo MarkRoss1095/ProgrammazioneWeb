@@ -16,7 +16,7 @@ var AppelloSchema = new Schema({
     esame:{
         type:String,required:true
     },
-    data:{
+    dataApp:{
         type:String,required:true
     },
     ora:{
