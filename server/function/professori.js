@@ -87,21 +87,58 @@ exports.addAppello = function (req, res) {
                         var timestamp=req.body.data;
                         var date=moment.tz(timestamp,"Europe/Amsterdam");
                         var date=date.format().toString();
-                        var x = date.substr(0, 10); // THIS IS DATA
-                      
+                        var x = date.substr(0, 10); // THIS IS DATA DI OGGI, NON DATA PRESA
+
                 var ora=req.body.ora;
                 var time=moment.tz(ora,"Europe/Amsterdam");
                 var time=time.format().toString();
                 var y=time.substring(11,16);
+               console.log(x,y)
 
-                        Appello.findOne({
+                       var anni=x.slice(0,4)
+                        var mesi=x.slice(5,7)
+                        var giorni=x.slice(8,11)
+                        console.log(giorni,mesi,anni)
+ 
+
+
+var today=new Date()
+var oggigiorno= today.getDate()
+var oggimese=today.getMonth()
+var oggianno=today.getFullYear()
+
+if(oggianno==anni){
+    if(oggimese==mesi){
+        if(oggigiorno==giorno){
+            console.log("la data non può essere oggi")
+        }
+    }
+}
+
+
+if(oggianno<anni){
+    console.log("non puoi inserire una data precedente ad oggi")
+}
+
+if(oggianno==anni){
+    if(oggimese>=mesi){
+        if(oggigiorno>giorno){
+            console.log("hai inserito una data corretta")
+        }
+    }
+}
+
+
+
+console.log(oggigiorno,oggimese,oggianno)
+            Appello.findOne({
                   esame : req.body.esame,
                   data:x,
                   ora:y
                   
-                           
+                         
                         }).exec(function(err,verify){
-
+                          
                             if (!req.body.esame) {
                                 return res.json({ state: false, msg: 'esame is required' });
                             }

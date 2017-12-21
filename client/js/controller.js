@@ -641,19 +641,7 @@ angular.module('ProgWeb')
         }
         $scope.addAppello = function (currentcorsoNome, newappello) {
             $scope.newappello.esame = currentcorsoNome
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1; //January is 0!
-            var yyyy = today.getFullYear();
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-
-            today = dd + '/' + mm + '/' + yyyy
-     $scope.newappello.date = document.getElementById("date2").setAttribute("min", today);
+    
 /* console.log($scope.newappello.date) */
             $http.post("/addAppello", newappello).then(success, err)
 

@@ -629,7 +629,6 @@ var prof1 = new Prof({
             nome: 'Programmazione',
             codice: 'I-01',
             codFacolta: informatica.codFacolta,
-         
             cfu: 12,
             anno: 1
         }
@@ -687,7 +686,6 @@ var prof3 = new Prof({
         nome: 'Analisi I',
         codice: 'C-30',
         codFacolta: 'L27',
-     
         cfu: 12,
         anno: 1
     }
@@ -1533,7 +1531,8 @@ Student1.save(function (err) {
         cfu: prg.cfu,
         matricolastud:'0934576'
     },
-    {nome:asd.nome,
+    {
+        nome:asd.nome,
         codCorso: asd.codice,
         data: '2017-09-22',
         esito: 27,
@@ -1574,28 +1573,32 @@ esamifatti: [{
     cfu: analisimath.cfu,
     matricolastud:'093569'
 },
-{nome:geometria.nome,
+{
+    nome:geometria.nome,
     codCorso: geometria.codice,
     data: '2017-02-11',
     esito: 23,
     cfu: geometria.cfu,
     matricolastud:'093569'
 },
-{nome:alg.nome,
+{
+    nome:alg.nome,
     codCorso: alg.codice,
     data: '2016-05-21',
     esito: 22,
     cfu: alg.cfu,
     matricolastud:'093569'
 },
-{nome:geo.nome,
+{
+    nome:geo.nome,
     codCorso: geo.codice,
     data: '2017-09-04',
     esito: 25,
     cfu: geo.cfu,
     matricolastud:'093569'
 },
-{ nome:analisimathII.nome,
+{
+     nome:analisimathII.nome,
     codCorso: analisimathII.codice,
     data: '2017-10-10',
     esito: 21,
@@ -1654,7 +1657,6 @@ var Student4 =new Student({
     },
     {
         nome:fisica.nome,
-        
         codCorso: fisica.codice,
         data: '2015-02-20',
         esito: 29,
@@ -1677,8 +1679,8 @@ var Student4 =new Student({
         cfu: analisi.cfu,
         matricolastud:'093458'
     },
-    {        nome:eco.nome,
-        
+    {       
+         nome:eco.nome,
         codCorso: eco.codice,
         data: '2017-10-14',
         esito: 26,
@@ -1928,6 +1930,7 @@ var Student4 =new Student({
         if (err) throw err;
     });
     var fis = new ExamPassed({
+        nome:fisica.nome,
         codCorso: fisica.codice,
         data: '2015-02-20',
         esito: 29,
@@ -1966,6 +1969,7 @@ var Student4 =new Student({
         if (err) throw err;
     });
     var eco2 = new ExamPassed({
+        nome:eco.nome,
         codCorso: eco.codice,
         data: '2017-10-14',
         esito: 26,
