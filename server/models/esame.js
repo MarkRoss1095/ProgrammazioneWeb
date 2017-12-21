@@ -9,7 +9,7 @@ var esameSchema = new Schema({
     ora: { type: String, required: true },
     aula: { type: String, required: true },
     chiuso: { type: Boolean, default: false },
-    esito: { type: Number }
+
 }, {
         versionKey: false
     });
