@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Esame = require('./esame');
 var Student =require('./student')
 
 var esamisvolti = new Schema({

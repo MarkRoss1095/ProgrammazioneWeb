@@ -26,8 +26,7 @@ var professoreSchema = new Schema({
     city: { type: String, required: true },
     phone: {type: Number, required: true },
     bod: {type: Date, required: true },
-  
-  
+    corsi:[Corsi],
 },
     {
         versionKey: false

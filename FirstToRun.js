@@ -629,9 +629,33 @@ var prof1 = new Prof({
             nome: 'Programmazione',
             codice: 'I-01',
             codFacolta: informatica.codFacolta,
-            cfu: 12,
+            cfu: 12, 
             anno: 1
-        }
+        },
+        {
+            nome: 'Analisi I',
+            codice: 'I-02',
+            codFacolta: 'L31',
+            usernameProf: 'marcello.rosati',
+            cfu: 6,
+            anno: 1
+        },
+        {
+            nome: 'Logica Matematica',
+            codice: 'I-03',
+            codFacolta: 'L31',
+            usernameProf: 'marcello.rosati',
+            cfu: 6,
+            anno: 1
+        },
+        {
+            nome: 'Lingua Inglese (B1 or B2 level)',
+            codice: 'I-04',
+            codFacolta: 'L31',
+            usernameProf: 'marcello.rosati',
+            cfu: 6,
+            anno: 1
+        },
     ]
 });
 prof1.save(function (err) {
