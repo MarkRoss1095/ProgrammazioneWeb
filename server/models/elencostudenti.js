@@ -33,7 +33,7 @@ var ElencoSchema = new Schema({
    voto_definitivo:{
     type:String ,enum: ['non confermato','18','19','20','21','22','23','24','25','26','27','28','29','30','30 e lode'], default:'non confermato',
 },
-   data:{
+   dataApp:{
        type:String
    },
    ora:{

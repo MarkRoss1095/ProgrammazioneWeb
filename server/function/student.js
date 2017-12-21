@@ -277,11 +277,10 @@ exports.valori2 = function (req, res) {
 
 
 //funzionante
-exports.ricercaCorso = function (req, res) {
+/* exports.ricercaCorso = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
-        /** Ricerca dei corsi in base alla facoltà e l'id*/
         Corso.find({
             _id: req.body.id,
             codFacolta: req.body.codFacolta
@@ -298,14 +297,13 @@ exports.ricercaCorso = function (req, res) {
     else {
         return res.json({ msg: 'token non valido' })
     }
-}
+} */
 
 //FUNZIONANTE MA STAMPA TUTTI I DATI DEL PROFESSORE, BISOGNA RIVEDERLA
-exports.ricercaProf = function (req, res) {
+/* exports.ricercaProf = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
-        /** Ricerca dei corsi in base alla facoltà e l'id*/
         Prof.findOne({
             id: decoded.id,
             nameP: req.body.nameP,
@@ -330,7 +328,7 @@ exports.ricercaProf = function (req, res) {
     else {
         return res.json({ msg: 'token non valido' })
     }
-}
+} */
 
 //funzionante
 exports.modifyDati = function (req, res) {
@@ -445,7 +443,7 @@ exports.iscrivitiAppello = function (req, res) {
                                                 nome: student.name,
                                                 cognome: student.surname,
                                                 esame: appello.esame,
-                                                data: appello.data,
+                                                dataApp: appello.dataApp,
                                                 ora: appello.ora,
                                                 voto_provvisorio: 'non ancora caricato',
                                                 conferma: false,
@@ -472,7 +470,7 @@ exports.iscrivitiAppello = function (req, res) {
                                                         }, { new: true }, function (err, appello) {
                                                             if (err) {
                                                                 // deleteElenco(elenco._id)
-                                                                return res.json({ success: false, msg: 'errore durante l\'iscrizione' });
+                                                                return res.json({ success: false, msg: 'errore durante l iscrizione' });
                                                             }
                                                             if (!appello)
                                                                 return res.json({ success: false, msg: 'appello non trovato' });
@@ -797,8 +795,8 @@ exports.confermaVoto = function (req, res) {
                                         
                                         Elenco.findOneAndUpdate({
                                             accountid: student.matricola,
-                                            appelloid: appello._id,
-                                            voto_provvisorio: !"non ancora caricato",
+                                        esame:elenco.esame,
+                                           
                                             conferma: false,
                                             accettato: false,
                                         }, {
@@ -808,32 +806,41 @@ exports.confermaVoto = function (req, res) {
                                                     accettato: true,
                                                 }
                                             }, { new: true }, function (err, doc) {
-                                                if (err)
+                                                if (err){
+                                                   
                                                     return res.json({ success: false, msg: 'errore durante la conferma del voto' });
-                                               if (!doc)
-                                               console.log(appello._id)
-                                               console.log(student.matricola)
-                                               console.log(elenco.conferma)
-                                               return res.json({ success: false, msg:'elenco non trovato'  });
-                                                    if (doc) {
+                                                }
+                                                    if (!doc){
 
+                                             console.log(ciaoo)
+                                               return res.json({ success: false, msg:'elenco non trovato2345'  });
+                                                    }
+                                                    if (doc) {
+                                                        console.log(appello._id)
+                                                        console.log(student.matricola)
+                                                        console.log(elenco.conferma)
 
                                                     var NewExamPassed = new ExamPassed({
                                                         nome: appello.esame,
-                                                        data: elenco.data,
+                                                        dataApp: elenco.dataApp,
                                                         esito: elenco.voto_definitivo,
                                                         codCorso:corso.codCorso,
                                                         cfu: appello.cfu,
                                                         matricolastud: elenco.accoutid,
                                                     })
-                                                    ExamPassed.save(function (err, exam) {
+                                                    NewExamPassed.save(function (err, exam) {
 
-                                                        if (err) {
-                                                            return res.json({ success: false, msg: 'errore durante l\'iscrizione' });
-                                                        }
-
-                                                        if (!exam)
-                                                            return res.json({ success: true, msg: 'voto salvato' });
+                                                        
+                                                if (err){
+                                                return res.json({ success: false, msg: err + 'errore non è stato possibile salvare il nuovo voto' });
+                                                }
+                                                if (!exam) 
+                                                return res.json({ success: false, msg: "voto salvato" })
+                                            
+                                            if (exam) 
+                                                return res.json({ success: false, msg: "hai gia sostenuto l esame" })
+                                                
+                                            
                                                     })
 
                                                 }

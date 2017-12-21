@@ -9,7 +9,7 @@ var Corsi = require('./server/models/corsi');
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost/ProgrammazioneWeb";
-
+var Elenco = require('./server/models/elencostudenti')
 
 /* // FUNZIONE PER CANCELLARE UNA COLLEZIONE
 MongoClient.connect(url, function(err, db) {
@@ -2031,6 +2031,395 @@ var Student4 =new Student({
 });
 mol.save(function (err) {
     if (err) throw err;
+});
+//elenchi
+var dir = new Elenco({
+    esame:diritto.nome,
+ nome:Student1.nome,
+ cognome:Student1.cognome,
+ voto_provvisorio:dir.esito,
+ voto_definitivo:dir.esito,
+ conferma:true,
+ accettato:true,
+ dataApp:,
+ ora:,
+accountid:Student1.matricola
+    
+});
+dir.save(function (err) {
+    if (err) throw err;
+});
+var fond = new Elenco({
+    nome:fondamenti.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student1.matricola
+    
+});
+fond.save(function (err) {
+    if (err) throw err;
+});
+var alg = new Elenco({
+    nome:algebra.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student1.matricola
+    
+});
+alg.save(function (err) {
+    if (err) throw err;
+});
+var anal = new Elenco({
+    nome:analisi.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student1.matricola
+    
+});
+anal.save(function (err) {
+    if (err) throw err;
+});   
+var fond1 = new Elenco({
+    nome:fondamenti.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student2.matricola
+});
+fond1.save(function (err) {
+    if (err) throw err;
+});
+var alg1 = new Elenco({
+    nome:algebra.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student2.matricola
+    
+});
+alg1.save(function (err) {
+    if (err) throw err;
+});
+var anal1 = new Elenco({
+    nome:analisi.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student2.matricola
+    
+});
+anal1.save(function (err) {
+    if (err) throw err;
+});   
+var arch = new Elenco({
+    nome:architettura.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+      matricolastud:Student2.matricola
+    
+});
+
+arch.save(function (err) {
+    if (err) throw err;
+});  
+
+ var prg = new Elenco({
+    nome:prg.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student2.matricola
+    
+});
+prg.save(function (err) {
+    if (err) throw err;
+});   
+var asd = new Elenco({
+    nome:asd.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student2.matricola
+    
+});
+asd.save(function (err) {
+    if (err) throw err;
+});  
+ var analM = new Elenco({
+    nome:analisimath.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student3.matricola
+});
+analM.save(function (err) {
+    if (err) throw err;
+});   
+var geo = new Elenco({
+    nome:geometria.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student3.matricola
+});
+geo.save(function (err) {
+    if (err) throw err;
+});
+var alg3 = new Elenco({
+    nome:alg.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    
+    matricolastud:Student3.matricola
+
+});
+alg3.save(function (err) {
+    if (err) throw err;
+});
+var geog = new Elenco({
+    nome:geo.nome,
+  
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student3.matricola
+});
+geog.save(function (err) {
+    if (err) throw err;
+});
+var analII = new Elenco({
+    nome:analisimathII.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+ 
+    matricolastud:Student3.matricola
+});
+analII.save(function (err) {
+    if (err) throw err;
+});
+var probM = new Elenco({
+    nome:probM.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student3.matricola
+    
+});
+probM.save(function (err) {
+    if (err) throw err;
+});
+var inglM = new Elenco({
+    nome:inglM.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student3.matricola
+});
+inglM.save(function (err) {
+    if (err) throw err;
+});
+var analC = new Elenco({
+    nome:analisiC.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student4.matricola
+});
+analC.save(function (err) {
+    if (err) throw err;
+});
+var fis = new Elenco({
+    nome:fisica.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student4.matricola
+    
+});
+fis.save(function (err) {
+    if (err) throw err;
+});
+var ChimI = new Elenco({
+    nome:chimicaInorganica.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+  
+    matricolastud:Student4.matricola
+    
+});
+ChimI.save(function (err) {
+    if (err) throw err;
+});
+var chimO = new Elenco({
+    nome:chimicaOrganica.nome,
+  
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student4.matricola
+    
+});
+chimO.save(function (err) {
+    if (err) throw err;
+});
+var eco2 = new Elenco({
+    nome:eco.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student4.matricola
+    
+    
+});
+eco2.save(function (err) {
+    if (err) throw err;
+});
+var alim = new Elenco({
+        
+    nome:alimenti.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    matricolastud:Student4.matricola
+    
+    
+});
+alim.save(function (err) {
+    if (err) throw err;
+});
+var mol = new Elenco({
+    
+    esame:molecolare.nome,
+    nome:Student1.nome,
+    cognome:Student1.cognome,
+    voto_provvisorio:dir.esito,
+    voto_definitivo:dir.esito,
+    conferma:true,
+    accettato:true,
+    dataApp:,
+    ora:,
+    accountid:Student4.matricola,
+    
+});
+mol.save(function (err) {
+if (err) throw err;
 });
 //Mi disconnetto dal database
 //mongoose.connection.close();

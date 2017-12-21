@@ -678,8 +678,10 @@ angular.module('ProgWeb')
             $scope.currentappello = currentappello.data.msg
             if ($scope.currentappello.aperto == false) {
                 document.getElementById("chiudi").disabled = true;
+                document.getElementById("submit").disabled = true;
+                document.getElementById("ora").disabled = true;
+                document.getElementById("dataApp").disabled = true;       
             }
-
         }
         function error(err) {
             $window.alert(err)
@@ -760,7 +762,7 @@ angular.module('ProgWeb')
                 $http.get('/IscrittiAppello').then(success, error);
                 function success(iscritti) {
                     $scope.iscritti = iscritti.data.msg
-                    document.getElementById("showiscritti").disabled = true
+                    document.getElementById("iscritti").disabled = true
 
                 }
                 function error(err) {
@@ -1061,7 +1063,7 @@ angular.module('ProgWeb')
                 console.log(currentvoto)
                 $window.alert(success.data.msg)
 
-                /* $window.location.reload() */
+                 $window.location.reload() 
             }
             function err(err) {
                 $window.alert(err)

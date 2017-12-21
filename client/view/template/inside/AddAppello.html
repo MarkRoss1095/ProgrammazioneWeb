@@ -1,7 +1,17 @@
 <div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
 <div class="container">
-    <h1 class="ciao">Add a new Appello</h1>
+ 
+    <center>
+        <h1 class="ciao">Add a new Appello</h1>
 
+        <h4>In questa sezione puoi aggiungere un nuovo appello per il corso di
+            <strong>{{currentcorso.nome}}. </strong>
+        </h4>
+    </center>
+    <br>
+    <hr>
+    <br>
+    <form name=form>
     <div id="add" class="row">
         <div class="col-sm-6 form-group">
 
@@ -13,13 +23,6 @@
         </div>
         <div class="col-sm-6 form-group">
             <label>Data</label>
-           <!--  <div class="input-append date" ng-model="currentcorso.data" class="form-control">
-                <input type="text" class="span2">
-                <span class="add-on">
-                    <i class="icon-th"></i>
-                </span>
-            </div> -->
-
 
            <div class="row">
                     <input type="date" id="dataApp" ng-model="newappello.dataApp"  class="form-control" required />
@@ -39,11 +42,11 @@
 
         </div>
         <div class="col-sm-6 ">
-            <button type="submit" class=" btn btn-lg btn-info" ng-click="addAppello(currentcorso.nome,newappello)"> Submit </button>
+            <button type="submit" class=" btn btn-lg btn-info" ng-click="addAppello(currentcorso.nome,newappello)" ng-disabled="form.$invalid"> Submit </button>
         </div>
     </div>
 
-
+</form>
 </div>
 </div>
 <script>

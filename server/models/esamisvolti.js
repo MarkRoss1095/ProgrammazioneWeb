@@ -5,8 +5,9 @@ var Student =require('./student')
 var esamisvolti = new Schema({
     nome: {type:String},
     codCorso: { type: String },
-    data: { type: String },
-    esito: { type: Number, min: 18, max: 31 },
+    dataApp: { type: String },
+    esito:   {  type:String ,enum: ['non confermato','18','19','20','21','22','23','24','25','26','27','28','29','30','30 e lode'], default:'non confermato'},
+    
     cfu: { type: Number },
     matricolastud: { type: String, ref: 'Student'},
 },
