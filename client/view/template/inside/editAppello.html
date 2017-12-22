@@ -26,9 +26,14 @@
             <label>Data</label>
             <input type="text" name="dataApp" required  ng-model="currentappello.dataApp" placeholder="Enter the date of the exam Here.." class="form-control">
         </div>    -->
-            <div class="col-sm-4 ">
+            <div class="col-sm-2 ">
                 <label>stato Appello</label>
                 <input type="text" name="aperto" required ng-model="currentappello.aperto" disabled class="form-control">
+            </div>
+            <div class="col-sm-2 ">
+                <label>Numero di Iscritti</label>
+                <input type="text" name="iscritti" required ng-model="currentappello.iscritti" disabled class="form-control">
+
             </div>
         </div>
         <div class="row">
@@ -45,17 +50,16 @@
                 <input type="text" id="dataApp" required ng-model="currentappello.dataApp" placeholder="Enter the date of the exam Here.."
                     class="form-control">
             </div>
-            <div class="col-sm-2 ">
-                <label>Numero di Iscritti</label>
-                <input type="text" name="iscritti" required ng-model="currentappello.iscritti" disabled class="form-control">
-
-            </div>
+         
         </div>
         <br>
-
-        <button type="submit" id="chiudi" class=" btn btn-lg btn-info" ng-click="chiudiappello(currentappello)"> ChiudiAppello </button>
+<div class= "col-md-4">
         <button type="submit" id="submit" class=" btn btn-lg btn-info" ng-click="update(currentappello)" ng-disabled="form.$invalid || form.$pristine">
-            Submit </button>
+            Submit </button></div>
+<div class=col-md-4></div>
+
+           <button type="submit" id="chiudi" class=" btn btn-lg btn-danger dx " ng-click="chiudiappello(currentappello)"> ChiudiAppello </button>
+         
 
         <br>
         <br>
@@ -90,7 +94,7 @@
             <tbody>
 
 
-                <tr ng-repeat="appellos in iscritti  ">
+                <tr ng-repeat="appellos in iscritti ">
 
                     <td>{{appellos.nome}}</td>
                     <td>{{appellos.cognome}}</td>

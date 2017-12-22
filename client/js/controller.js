@@ -1105,8 +1105,8 @@ angular.module('ProgWeb')
         $http.get('/Carriera').then(success, error);
         function success(appello) {
            
-                $scope.appello = appello.data.msg
-console.log($scope.appello)
+            $scope.appello = appello.data.msg
+            console.log($scope.appello)
 
 
 
@@ -1256,8 +1256,6 @@ console.log($scope.appello)
 
             };
         }
-
-
     })
     ////////////////////////////////////////////////////////////////////////////////////////////
     .controller('AndamentoCtrl', function ($scope, $http, $filter, AuthService, $state, $window) {
@@ -1294,6 +1292,9 @@ console.log($scope.appello)
             $scope.student = student.data.msg[0]
             $scope.student2 = student.data.msg[1]
             $scope.student3 = student.data.msg[2]
+
+            console.log(student)
+
             $scope.student4 = new Array()
             $scope.lungh = (student.data.msg.length) - 3
             var i;

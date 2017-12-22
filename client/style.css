@@ -37,6 +37,11 @@
      margin: 0 auto -100px; 
  }
  
+ 
+.sx{
+    margin-right: 10px;
+}
+
  .footer, #push {
      background-color: rgb(128, 128, 128);
      height: 100px; 

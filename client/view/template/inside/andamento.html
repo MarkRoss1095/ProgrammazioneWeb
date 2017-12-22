@@ -5,21 +5,47 @@
     <!-- 
 //QUI SI STAMPERA' LA CARRIERA
  -->
+ <center>
+        <h1 class="ciao">Sezione Andamento</h1>
+
+        <h4>In questa sezione puoi visionare tutti gli esami di cui hai già una votazione e visualizzare dei grafici esplicativi.
+        </h4>
+    </center>
+    <br>
+    <hr>
+    <br>
+
+    <!-- METTERE QUI LA TABELLA CON TUTTI GLI ESAMI GIA' PASSATI -->
+
+    <!-- SOTTO LA TABELLA CI VA LA MEDIA CONSEGUITA -->
+
+<div class="row"> 
+ <center> <h4>La tua media ponderata è di: {{student2}}</h4> </center>
+
 
     <button id="prof" type="button" style="float:right;" class="btn btn-success " ng-click="grafico2()">Show graphs</button>
     <br>
+</div>
     <hr>
-    <h3>In questa sezione potrai visualizzare dei grafici realitivi al tuo corso di studi.</h3>
     <!-- //QUI SI STAMPERANNO I GRAFICI -->
     <div class="container">
+            <!-- <center>
+                    <h4> Questo è il grafico esplicativo dell'andamento dei tuoi esami. </h4>
+                </center> -->
         <div class="col-md-9 ">
             <canvas id="myChart2">Grafico andamento degli esami</canvas>
         </div>
         <br>
+      <!--   <center>
+                <h4> Questo è il grafico che mette in relazione tutti i cfu che hai conseguito e quelli ancora da conseguire. </h4>
+            </center> -->
         <div class="col-md-8 ">
             <canvas id="myChart"> Grafico conseguimento CFU </canvas>
         </div>
         <br>
+      <!--   <center>
+                <h4> Questo è il grafico  a torta per tutti gli esami che hai conseguito. </h4>
+            </center> -->
         <div class="col-md-8">
             <canvas id="myChart5">Grafico a torta per tutti gli esami conseguiti</canvas>
         </div>
