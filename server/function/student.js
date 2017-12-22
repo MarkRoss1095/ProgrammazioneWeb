@@ -911,9 +911,9 @@ exports.Carriera = function (req, res) {
             if (!stu)
                 return res.json({ success: false, msg: 'studente  non trovato' });
             if (stu) {
-                Elenco.find({
+                ExamPassed.find({
 
-                    accountid: stu.matricola
+                    matricolastud: stu.matricola
                 }).exec(function (err, elenco) {
                     if (err) {
                         return res.json({ success: false, msg: 'errore durante la ricerca dell elenco' });
