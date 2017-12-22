@@ -17,22 +17,17 @@
     <thead>
 
         <th style="width:20%;">Nome</th>
-        <th style="width:10%;">Codice</th>
-        <th style="width:10%;">cfu</th>
-        <th style="width:10%;">anno</th>
-        <th style="width:10%;">Prof</th>
+        <th style="width:10%;">VOTO</th>
+    
      
     </thead>
     <tbody>
 
       
-        <tr ng-repeat="piano in corso ">
-            <td>{{piano.nome}}</td>
-            <td>{{piano.codice}}</td>
-            <td>{{piano.cfu}}</td>
-            <td>{{piano.anno}}</td>
-            <td>{{piano.usernameProf}}</td>
-
+        <tr ng-repeat="piano in appello ">
+            <td>{{piano.esame}}</td>
+            <td>{{piano.voto_definitivo}}</td>
+            
 
 
         </tr>

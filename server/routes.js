@@ -19,6 +19,8 @@ router.get('/showProfileStudent',userController.showProfileStudent)//da fare
 router.post('/addStudent',userController.addStudent); //lo studente può registrarsi
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login
 router.get('/mostraCorsi',userController.mostraCorsi);  //lo studente può vedere tutti i corsi disponibili
+router.get('/Carriera',userController.Carriera);  //lo studente può vedere tutti i corsi disponibili
+
 router.post('/pianoDiStudi',userController.PianoDiStudi); //studente può visualizzare il suo piano di studi
 /* router.post('/ricercaCorso',userController.ricercaCorso); //studente può ricercare un corso
  *//* router.post('/ricercaProf',userController.ricercaProf); //studente può cercare un professore

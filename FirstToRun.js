@@ -1723,7 +1723,7 @@ var Student4 =new Student({
         nome:molecolare.nome,
         codCorso: molecolare.codice,
         data: '2017-03-31S',
-        esito: 31,
+        esito:'30 e lode',
         cfu: molecolare.cfu,
         matricolastud:'093458'
     }
@@ -2024,7 +2024,7 @@ var Student4 =new Student({
         nome:molecolare.nome,
         codCorso: molecolare.codice,
         data: '2017-03-31S',
-        esito: 31,
+        esito: '30 e lode',
         cfu: molecolare.cfu,
         matricolastud:Student4.matricola
         
@@ -2033,392 +2033,410 @@ mol.save(function (err) {
     if (err) throw err;
 });
 //elenchi
-var dir = new Elenco({
+var dir1 = new Elenco({
+    appelloid:'1',
     esame:diritto.nome,
- nome:Student1.nome,
- cognome:Student1.cognome,
+ nome:Student1.name,
+ cognome:Student1.surname,
  voto_provvisorio:dir.esito,
  voto_definitivo:dir.esito,
  conferma:true,
  accettato:true,
- dataApp:,
- ora:,
+ dataApp:'2018-01-01',
+ ora:'14:00',
 accountid:Student1.matricola
     
 });
-dir.save(function (err) {
+dir1.save(function (err) {
     if (err) throw err;
 });
-var fond = new Elenco({
-    nome:fondamenti.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var fond13 = new Elenco({
+    appelloid:'2',
+    esame:fondamenti.nome,
+    nome:Student1.name,
+    cognome:Student1.surname,
+    voto_provvisorio:fond.esito,
+    voto_definitivo:fond.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student1.matricola
+    dataApp:'2018-01-02',
+    ora:'14:00',
+    accountid:Student1.matricola
     
 });
-fond.save(function (err) {
+fond13.save(function (err) {
     if (err) throw err;
 });
-var alg = new Elenco({
-    nome:algebra.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var alg12 = new Elenco({
+    appelloid:'3',
+    esame:algebra.nome,
+    nome:Student1.name,
+    cognome:Student1.surname,
+    voto_provvisorio:alg.esito,
+    voto_definitivo:alg.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student1.matricola
+    dataApp:'2018-01-03',
+    ora:'14:00',
+    accountid:Student1.matricola
     
 });
-alg.save(function (err) {
+alg12.save(function (err) {
     if (err) throw err;
 });
-var anal = new Elenco({
-    nome:analisi.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var anal13 = new Elenco({
+    appelloid:'4',
+    esame:analisi.nome,
+    nome:Student1.name,
+    cognome:Student1.surname,
+    voto_provvisorio:anal.esito,
+    voto_definitivo:anal.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student1.matricola
+    dataApp:'2018-01-04',
+    ora:'14:00',
+    accountid:Student1.matricola
     
 });
-anal.save(function (err) {
+anal13.save(function (err) {
     if (err) throw err;
 });   
-var fond1 = new Elenco({
-    nome:fondamenti.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var fond11 = new Elenco({
+    appelloid:'5',
+    esame:fondamenti.nome,
+    nome:Student2.name,
+    cognome:Student2.surname,
+    voto_provvisorio:fond1.esito,
+    voto_definitivo:fond1.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student2.matricola
+    dataApp:'2018-01-05',
+    ora:'14:00',
+    accountid:Student2.matricola
 });
-fond1.save(function (err) {
+fond11.save(function (err) {
     if (err) throw err;
 });
-var alg1 = new Elenco({
-    nome:algebra.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var alg11 = new Elenco({
+    appelloid:'6',
+    esame:algebra.nome,
+    nome:Student2.name,
+    cognome:Student2.surname,
+    voto_provvisorio:alg1.esito,
+    voto_definitivo:alg1.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student2.matricola
+    dataApp:'2018-01-06',
+    ora:'14:00',
+    accountid:Student2.matricola
     
 });
-alg1.save(function (err) {
+alg11.save(function (err) {
     if (err) throw err;
 });
-var anal1 = new Elenco({
-    nome:analisi.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var anal11 = new Elenco({
+    appelloid:'7',
+    esame:analisi.nome,
+    nome:Student2.name,
+    cognome:Student2.surname,
+    voto_provvisorio:anal1.esito,
+    voto_definitivo:anal1.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student2.matricola
+    dataApp:'2018-01-07',
+    ora:'14:00',
+    accountid:Student2.matricola
     
 });
-anal1.save(function (err) {
+anal11.save(function (err) {
     if (err) throw err;
 });   
-var arch = new Elenco({
-    nome:architettura.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var arch1 = new Elenco({
+    appelloid:'8',
+    esame:architettura.nome,
+    nome:Student2.name,
+    cognome:Student2.surname,
+    voto_provvisorio:arch.esito,
+    voto_definitivo:arch.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-      matricolastud:Student2.matricola
+    dataApp:'2018-01-08',
+    ora:'14:00',
+    accountid:Student2.matricola
     
 });
 
-arch.save(function (err) {
+arch1.save(function (err) {
     if (err) throw err;
 });  
 
- var prg = new Elenco({
-    nome:prg.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+ var prg1 = new Elenco({
+    appelloid:'9',
+    esame:prg.nome,
+    nome:Student2.name,
+    cognome:Student2.surname,
+    voto_provvisorio:prg.esito,
+    voto_definitivo:prg.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student2.matricola
+    dataApp:'2018-01-09',
+    ora:'14:00',
+    accountid:Student2.matricola
     
 });
-prg.save(function (err) {
+prg1.save(function (err) {
     if (err) throw err;
 });   
-var asd = new Elenco({
-    nome:asd.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var asd1 = new Elenco({
+    appelloid:'10',
+    esame:asd.nome,
+    nome:Student2.name,
+    cognome:Student2.surname,
+    voto_provvisorio:asd.esito,
+    voto_definitivo:asd.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student2.matricola
+    dataApp:'2018-01-10',
+    ora:'14:00',
+    accountid:Student2.matricola
     
 });
-asd.save(function (err) {
+asd1.save(function (err) {
     if (err) throw err;
 });  
- var analM = new Elenco({
-    nome:analisimath.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+ var analM1 = new Elenco({
+    appelloid:'11',
+    esame:analisimath.nome,
+    nome:Student3.name,
+    cognome:Student3.surname,
+    voto_provvisorio:analM.esito,
+    voto_definitivo:analM.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student3.matricola
+    dataApp:'2018-01-11',
+    ora:'14:00',
+    accountid:Student3.matricola
 });
-analM.save(function (err) {
+analM1.save(function (err) {
     if (err) throw err;
 });   
-var geo = new Elenco({
-    nome:geometria.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var geo1 = new Elenco({
+    appelloid:'12',
+    esame:geometria.nome,
+    nome:Student3.name,
+    cognome:Student3.surname,
+    voto_provvisorio:geo.esito,
+    voto_definitivo:geo.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student3.matricola
+    dataApp:'2018-01-12',
+    ora:'14:00',
+    accountid:Student3.matricola
 });
-geo.save(function (err) {
+geo1.save(function (err) {
     if (err) throw err;
 });
-var alg3 = new Elenco({
-    nome:alg.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var alg31 = new Elenco({
+    esame:alg.nome,
+    nome:Student3.name,
+    cognome:Student3.surname,
+    voto_provvisorio:alg3.esito,
+    voto_definitivo:alg3.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    
-    matricolastud:Student3.matricola
+    dataApp:'2018-01-13',
+    ora:'14:00',
+    appelloid:'13',
+    accountid:Student3.matricola
 
 });
-alg3.save(function (err) {
+alg31.save(function (err) {
     if (err) throw err;
 });
-var geog = new Elenco({
-    nome:geo.nome,
-  
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var geog1 = new Elenco({
+    esame:geo.nome,
+    appelloid:'14',
+    nome:Student3.name,
+    cognome:Student3.surname,
+    voto_provvisorio:geog.esito,
+    voto_definitivo:geog.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student3.matricola
+    dataApp:'2018-01-14',
+    ora:'14:00',
+    accountid:Student3.matricola
 });
-geog.save(function (err) {
+geog1.save(function (err) {
     if (err) throw err;
 });
-var analII = new Elenco({
-    nome:analisimathII.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var analII1 = new Elenco({
+    appelloid:'15',
+    esame:analisimathII.nome,
+    nome:Student3.name,
+    cognome:Student3.surname,
+    voto_provvisorio:analII.esito,
+    voto_definitivo:analII.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
+    dataApp:'2018-01-15',
+    ora:'14:00',
  
-    matricolastud:Student3.matricola
+    accountid:Student3.matricola
 });
-analII.save(function (err) {
+analII1.save(function (err) {
     if (err) throw err;
 });
-var probM = new Elenco({
-    nome:probM.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var probM1 = new Elenco({
+    appelloid:'16',
+    esame:probM.nome,
+    nome:Student3.name,
+    cognome:Student3.surname,
+    voto_provvisorio:probM.esito,
+    voto_definitivo:probM.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student3.matricola
+    dataApp:'2018-01-16',
+    ora:'14:00',
+    accountid:Student3.matricola
     
 });
-probM.save(function (err) {
+probM1.save(function (err) {
     if (err) throw err;
 });
-var inglM = new Elenco({
-    nome:inglM.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var inglM1 = new Elenco({
+    appelloid:'17',
+    esame:inglM.nome,
+    nome:Student3.name,
+    cognome:Student3.surname,
+    voto_provvisorio:inglM.esito,
+    voto_definitivo:inglM.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student3.matricola
+    dataApp:'2018-01-17',
+    ora:'14:00',
+    accountid:Student3.matricola
 });
-inglM.save(function (err) {
+inglM1.save(function (err) {
     if (err) throw err;
 });
-var analC = new Elenco({
-    nome:analisiC.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var analC1 = new Elenco({
+    appelloid:'18',
+    esame:analisiC.nome,
+    nome:Student4.name,
+    cognome:Student4.surname,
+    voto_provvisorio:analC.esito,
+    voto_definitivo:analC.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student4.matricola
+    dataApp:'2018-01-18',
+    ora:'14:00',
+    accountid:Student4.matricola
 });
-analC.save(function (err) {
+analC1.save(function (err) {
     if (err) throw err;
 });
-var fis = new Elenco({
-    nome:fisica.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var fis1 = new Elenco({
+    appelloid:'19',
+    esame:fisica.nome,
+    nome:Student4.name,
+    cognome:Student4.surname,
+    voto_provvisorio:fis.esito,
+    voto_definitivo:fis.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student4.matricola
+    dataApp:'2018-01-19',
+    ora:'14:00',
+    accountid:Student4.matricola
     
 });
-fis.save(function (err) {
+fis1.save(function (err) {
     if (err) throw err;
 });
-var ChimI = new Elenco({
-    nome:chimicaInorganica.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var ChimI1 = new Elenco({
+    esame:chimicaInorganica.nome,
+    nome:Student4.name,
+    cognome:Student4.surname,
+    voto_provvisorio:ChimI.esito,
+    voto_definitivo:ChimI.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-  
-    matricolastud:Student4.matricola
+    dataApp:'2018-01-20',
+    ora:'14:00',
+    appelloid:'20',
+    accountid:Student4.matricola
     
 });
-ChimI.save(function (err) {
+ChimI1.save(function (err) {
     if (err) throw err;
 });
-var chimO = new Elenco({
-    nome:chimicaOrganica.nome,
-  
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var chim1O = new Elenco({
+    esame:chimicaOrganica.nome,
+    appelloid:'21',
+    nome:Student4.name,
+    cognome:Student4.surname,
+    voto_provvisorio:chimO.esito,
+    voto_definitivo:chimO.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student4.matricola
+    dataApp:'2018-01-21',
+    ora:'14:00',
+    accountid:Student4.matricola
     
 });
-chimO.save(function (err) {
+chim1O.save(function (err) {
     if (err) throw err;
 });
-var eco2 = new Elenco({
-    nome:eco.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var eco21 = new Elenco({
+    appelloid:'22',
+    esame:eco.nome,
+    nome:Student4.name,
+    cognome:Student4.surname,
+    voto_provvisorio:eco2.esito,
+    voto_definitivo:eco2.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student4.matricola
+    dataApp:'2018-01-22',
+    ora:'14:00',
+    accountid:Student4.matricola
     
     
 });
-eco2.save(function (err) {
+eco21.save(function (err) {
     if (err) throw err;
 });
-var alim = new Elenco({
-        
-    nome:alimenti.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+var alim1 = new Elenco({
+    appelloid:'23',
+    esame:alimenti.nome,
+    nome:Student4.name,
+    cognome:Student4.surname,
+    voto_provvisorio:alim.esito,
+    voto_definitivo:alim.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
-    matricolastud:Student4.matricola
+    dataApp:'2018-01-23',
+    ora:'14:00',
+    accountid:Student4.matricola
     
     
 });
-alim.save(function (err) {
+alim1.save(function (err) {
     if (err) throw err;
 });
-var mol = new Elenco({
-    
+var mol1 = new Elenco({
+    appelloid:'24',
     esame:molecolare.nome,
-    nome:Student1.nome,
-    cognome:Student1.cognome,
-    voto_provvisorio:dir.esito,
-    voto_definitivo:dir.esito,
+    nome:Student4.name,
+    cognome:Student4.surname,
+    voto_provvisorio:mol.esito,
+    voto_definitivo:mol.esito,
     conferma:true,
     accettato:true,
-    dataApp:,
-    ora:,
+    dataApp:'2018-01-24',
+    ora:'14:00',
     accountid:Student4.matricola,
     
 });
-mol.save(function (err) {
+mol1.save(function (err) {
 if (err) throw err;
 });
 //Mi disconnetto dal database

@@ -1101,6 +1101,20 @@ angular.module('ProgWeb')
                 $state.go('/login')
             }
         }
+
+        $http.get('/Carriera').then(success, error);
+        function success(appello) {
+           
+                $scope.appello = appello.data.msg
+console.log($scope.appello)
+
+
+
+        }
+        function error(appello) {
+            $window.alert(error)
+
+        };
     })
 
     .controller('RicercheCtrl', function ($scope, $http, AuthService, $state, $window, ) {
