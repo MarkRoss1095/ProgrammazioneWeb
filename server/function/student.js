@@ -726,7 +726,7 @@ exports.valori = function (req, res) {
                         var etichette = new Array()
                         var eccoli = new Array()
 
-                        for (i = 0; i < 4; i++) {
+                        for (i = 0; i < b; i++) {
                             eccoli[i + 3] = exam[i].esito //è un array in cui dall'elemento 3 ci sono tutti i voti dello studente agli esami 
                             //  etichette[i] = stu.esamifatti[i].nome
                             sommacfu = sommacfu + exam[i].cfu; //LA SOMMA DEI CFU CHE LO STUDENTE HA
@@ -737,7 +737,7 @@ exports.valori = function (req, res) {
                         var finale = new Array(b)
                         var media = sommavoti / b; //QUESTA È LA MEDIA ARITMETICA DEI VOTI 
                         var media2 = mediapond / sommacfu; //MEDIA PONDERATA FINALE DEI VOTI
-
+                        console.log(sommacfu)
                         eccoli[0] = media, eccoli[1] = media2, eccoli[2] = sommacfu
                         return res.json({ success: true, msg: eccoli })
 
