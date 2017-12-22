@@ -1106,9 +1106,7 @@ angular.module('ProgWeb')
            
            
                 $scope.corso = corso.data.msg
-          
-                
-        console.log($scope.corso)
+        
         
         
         
@@ -1286,10 +1284,10 @@ angular.module('ProgWeb')
                     var i;
                     $scope.boh2 = function () {
         
-                        for (i = 0; i < $scope.lungh+1; i++) {
-                            $scope.student4[i] = student.data.msg[i + 2] //QUI HO I SINGOLI VOTI CONSEGUITI 
+                        for (i = 0; i < $scope.lungh; i++) {
+                            $scope.student4[i] = student.data.msg[i + 3] //QUI HO I SINGOLI VOTI CONSEGUITI 
                         }
-        
+        console.log($scope.student4)
                         return $scope.student4
                     }
         
