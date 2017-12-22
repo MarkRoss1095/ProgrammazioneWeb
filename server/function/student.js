@@ -129,7 +129,7 @@ exports.loginStudent = function (req, res) {
         });
 };
 
-exports.mostraCorsiStu  = function (req, res) {
+exports.mostraCorsiStu = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         var decoded = jwt.decode(token, process.env.SECRET);
@@ -141,7 +141,7 @@ exports.mostraCorsiStu  = function (req, res) {
             else if (stu.ruolo == 'student') {
 
                 Corso.find({
-codFacolta:stu.codFacolta
+                    codFacolta: stu.codFacolta
 
                 }, function (err, corso) {
                     if (err) {
@@ -244,7 +244,7 @@ exports.valori = function (req, res) {
                 if (a.esito !== "null") {
                     //qui ci sono gli esami che lo studente ha passato
                     var b = stu.esamifatti.length //vedo quanti sonoù
-                    console.log("sono"+b)
+                    console.log("sono" + b)
                     var sommacfu = 0;
                     var sommavoti = 0;
                     var mediapond = 0;
@@ -252,7 +252,7 @@ exports.valori = function (req, res) {
                     var etichette = new Array()
                     var eccoli = new Array()
 
-                    for (i = 0; i < 4; i++) {
+                    for (i = 0; i < b; i++) {
                         eccoli[i + 3] = stu.esamifatti[i].esito //è un array in cui dall'elemento 3 ci sono tutti i voti dello studente agli esami 
                         //  etichette[i] = stu.esamifatti[i].nome
                         sommacfu = sommacfu + stu.esamifatti[i].cfu; //LA SOMMA DEI CFU CHE LO STUDENTE HA
@@ -265,7 +265,7 @@ exports.valori = function (req, res) {
                     var media2 = mediapond / sommacfu; //MEDIA PONDERATA FINALE DEI VOTI
 
                     eccoli[0] = media, eccoli[1] = media2, eccoli[2] = sommacfu
-                    console.log(media)
+                    console.log(eccoli)
                     return res.json({ success: true, msg: eccoli })
                 }
             }
@@ -456,7 +456,7 @@ exports.iscrivitiAppello = function (req, res) {
                                 if (!appello)
                                     return res.json({ success: false, msg: 'appello non esistente o chiuso.' + err });
                                 if (appello) {
-                                    var ciao =true;
+                                    var ciao = true;
                                     Elenco.findOne({
                                         esame: appello.esame,
 
@@ -709,35 +709,41 @@ exports.valori = function (req, res) {
             if (!stu)
                 return res.json({ success: false, msg: 'appello non trovato' });
             if (stu) {
+                ExamPassed.find({
+                    matricolastud: stu.matricola
+                }).exec(function (err, exam) {
+                    if (exam) {
 
-                var a = stu.esamifatti;
 
-                var tuttiivoti = new Array()
-                if (a.esito !== "null") {
-                    //qui ci sono gli esami che lo studente ha passato
-                    var b = stu.esamifatti.length //vedo quanti sono
-                    var sommacfu = 0;
-                    var sommavoti = 0;
-                    var mediapond = 0;
-                    var i = 0
-                    var etichette = new Array()
-                    var eccoli = new Array()
+                        var tuttiivoti = new Array()
 
-                    for (i = 0; i < 4; i++) {
-                        eccoli[i + 3] = stu.esamifatti[i].esito //è un array in cui dall'elemento 3 ci sono tutti i voti dello studente agli esami 
-                        //  etichette[i] = stu.esamifatti[i].nome
-                        sommacfu = sommacfu + stu.esamifatti[i].cfu; //LA SOMMA DEI CFU CHE LO STUDENTE HA
-                        sommavoti = sommavoti + stu.esamifatti[i].esito //QUESTI SONO I SINGOLI VOTI
-                        mediapond = mediapond + stu.esamifatti[i].cfu * stu.esamifatti[i].esito
+                        //qui ci sono gli esami che lo studente ha passato
+                        var b = exam.length //vedo quanti sono
+                        var sommacfu = 0;
+                        var sommavoti = 0;
+                        var mediapond = 0;
+                        var i = 0
+                        var etichette = new Array()
+                        var eccoli = new Array()
+
+                        for (i = 0; i < 4; i++) {
+                            eccoli[i + 3] = exam[i].esito //è un array in cui dall'elemento 3 ci sono tutti i voti dello studente agli esami 
+                            //  etichette[i] = stu.esamifatti[i].nome
+                            sommacfu = sommacfu + exam[i].cfu; //LA SOMMA DEI CFU CHE LO STUDENTE HA
+                            sommavoti = sommavoti + exam[i].esito //QUESTI SONO I SINGOLI VOTI
+                            mediapond = mediapond + exam[i].cfu * exam[i].esito
+                        }
+                        var j = 0
+                        var finale = new Array(b)
+                        var media = sommavoti / b; //QUESTA È LA MEDIA ARITMETICA DEI VOTI 
+                        var media2 = mediapond / sommacfu; //MEDIA PONDERATA FINALE DEI VOTI
+
+                        eccoli[0] = media, eccoli[1] = media2, eccoli[2] = sommacfu
+                        return res.json({ success: true, msg: eccoli })
+
                     }
-                    var j = 0
-                    var finale = new Array(b)
-                    var media = sommavoti / b; //QUESTA È LA MEDIA ARITMETICA DEI VOTI 
-                    var media2 = mediapond / sommacfu; //MEDIA PONDERATA FINALE DEI VOTI
+                })
 
-                    eccoli[0] = media, eccoli[1] = media2, eccoli[2] = sommacfu
-                    return res.json({ success: true, msg: eccoli })
-                }
             }
         })
     }
@@ -756,23 +762,27 @@ exports.valori2 = function (req, res) {
                 return res.json({ success: false, msg: 'appello non trovato' });
             if (stu) {
 
-                var a = stu.esamifatti;
 
-                var tuttiivoti = new Array()
-                if (a.esito !== "null") {
+                ExamPassed.find({
+                    matricolastud: stu.matricola
+                }).exec(function (err, exam) {
+                    var tuttiivoti = new Array()
+
                     //qui ci sono gli esami che lo studente ha passato
-                    var b = stu.esamifatti.length //vedo quanti sono
+                    var b = exam.length //vedo quanti sono
                     var i = 0
                     var etichet = new Array()
 
 
                     for (i = 0; i < b; i++) {
-                        etichet[i] = stu.esamifatti[i].nome
-
+                        etichet[i] = exam[i].nome
                     }
                     console.log(etichet)
                     return res.json({ success: true, msg: etichet })
-                }
+
+                })
+
+
             }
         })
     }
@@ -901,22 +911,22 @@ exports.Carriera = function (req, res) {
             if (!stu)
                 return res.json({ success: false, msg: 'studente  non trovato' });
             if (stu) {
-                        Elenco.find({
-                            
-                            accountid:stu.matricola
-                        }).exec(function (err, elenco) {
-                            if (err) {
-                                return res.json({ success: false, msg: 'errore durante la ricerca dell elenco' });
-                            }
-                            if (!elenco)
+                Elenco.find({
 
-                                return res.json({ success: false, msg: 'ci sta qualche problema' });
-                            if (elenco)
-                                return res.json({ success: false, msg: elenco })
-                        })
+                    accountid: stu.matricola
+                }).exec(function (err, elenco) {
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca dell elenco' });
+                    }
+                    if (!elenco)
+
+                        return res.json({ success: false, msg: 'ci sta qualche problema' });
+                    if (elenco)
+                        return res.json({ success: false, msg: elenco })
+                })
 
 
-                                  
+
             }
         })
     } else {
@@ -924,35 +934,35 @@ exports.Carriera = function (req, res) {
     }
 }
 
-                exports.showProfileStudent = function (req, res) {
-                    var token = getToken(req.headers);
+exports.showProfileStudent = function (req, res) {
+    var token = getToken(req.headers);
 
-                    if (token) {
-                        var decoded = jwt.decode(token, process.env.SECRET);
-                        Student.findOne({
-                            _id: decoded._id,
-                        }).exec(function (err, student) {
-                            if (err)
-                                return res.json({ success: false, msg: 'il token non è valido' });
-                            if (!student)
-                                return res.json({ succes: false, msg: 'account non trovato' });
-                            if (student)
-                                return res.json({ student })
-                        })
-                    } else {
-                        return res.json({ success: false, msg: 'token non valido' })
-                    }
-                }
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, student) {
+            if (err)
+                return res.json({ success: false, msg: 'il token non è valido' });
+            if (!student)
+                return res.json({ succes: false, msg: 'account non trovato' });
+            if (student)
+                return res.json({ student })
+        })
+    } else {
+        return res.json({ success: false, msg: 'token non valido' })
+    }
+}
 
 
 
-                //funzioni secondarie
-                removeEl = function (elenco) {
-                    Elenco.remove({
-                        _id: elenco
-                    }, function (err) {
-                        if (err)
-                            res.status(400).send({ success: false, msg: 'errore durante la cancellazione dell\'elenco, contattare un amministratore' });
+//funzioni secondarie
+removeEl = function (elenco) {
+    Elenco.remove({
+        _id: elenco
+    }, function (err) {
+        if (err)
+            res.status(400).send({ success: false, msg: 'errore durante la cancellazione dell\'elenco, contattare un amministratore' });
 
-                    })
-                }
+    })
+}

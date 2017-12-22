@@ -1286,7 +1286,7 @@ angular.module('ProgWeb')
                     var i;
                     $scope.boh2 = function () {
         
-                        for (i = 0; i < $scope.lungh; i++) {
+                        for (i = 0; i < $scope.lungh+1; i++) {
                             $scope.student4[i] = student.data.msg[i + 2] //QUI HO I SINGOLI VOTI CONSEGUITI 
                         }
         
