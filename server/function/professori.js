@@ -576,13 +576,14 @@ exports.editElenco = function (req, res) {
                             },
                             { new: true },
                             function (err, elenco) {
+                                console.log(req.body.voto_provvisorio)
                                 if (err)
-                                    return res.json({ success: false, msg: 'errore durante la riceca del appello' + err });
+                                    return res.json({ success: false, msg: 'errore durante la ricerca del appello' + err });
                                 /*  if (!corso)
                                      return res.json({ success: false, msg: 'corso non esistente' }); */
                                 if (elenco) {
 
-                                    return res.json({ success: true, msg: 'appello modificato' });
+                                    return res.json({ success: true, msg: 'voto modificato' });
 
                                 }
                             })
