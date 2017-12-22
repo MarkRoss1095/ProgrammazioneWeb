@@ -456,19 +456,23 @@ exports.iscrivitiAppello = function (req, res) {
                                 if (!appello)
                                     return res.json({ success: false, msg: 'appello non esistente o chiuso.' + err });
                                 if (appello) {
-                                    var appelloid = req.body._id /* ="59e8bed242f6fce9d8b89c20" */
-                                    var accountid = student.matricola /* = "093456" */
+                                    var ciao =true;
                                     Elenco.findOne({
                                         esame: appello.esame,
 
                                         accountid: student.matricola,
-                                        accettato: true
+                                    
+                                        
                                     }).exec(function (err, elenco) {
                                         if (err)
                                             return res.json({ success: false, msg: 'errore durante la ricerca' });
                                         if (elenco)
                                             return res.json({ success: false, msg: 'sei già iscritto o hai gia accettato il voto di questa materia' });
                                         if (!elenco) {
+                                            console.log(accettato)
+                                            console.log(accountid)
+                                            console.log(esame)
+
                                             var NewElenco = new Elenco({
                                                 appelloid: appello.id,
                                                 accountid: student.matricola,
