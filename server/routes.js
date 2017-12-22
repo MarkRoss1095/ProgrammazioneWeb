@@ -20,18 +20,20 @@ router.post('/addStudent',userController.addStudent); //lo studente può registr
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login
 router.get('/mostraCorsi',userController.mostraCorsi);  //lo studente può vedere tutti i corsi disponibili
 router.get('/Carriera',userController.Carriera);  //lo studente può vedere tutti i corsi disponibili
+router.get('/mostraCorsiStu',userController.mostraCorsiStu);  //lo studente può vedere tutti i corsi disponibili
 
-router.post('/pianoDiStudi',userController.PianoDiStudi); //studente può visualizzare il suo piano di studi
-/* router.post('/ricercaCorso',userController.ricercaCorso); //studente può ricercare un corso
+/* router.post('/pianoDiStudi',userController.PianoDiStudi); //studente può visualizzare il suo piano di studi
+ *//* router.post('/ricercaCorso',userController.ricercaCorso); //studente può ricercare un corso
  *//* router.post('/ricercaProf',userController.ricercaProf); //studente può cercare un professore
  */router.put('/modifyDati',userController.modifyDati); //lo studente può modificare i suoi dati personali 
 router.put('/iscrivitiAppello', userController.iscrivitiAppello); //lo studente può registrarsi ad un appello
 router.post('/cancellaPrenotazione',userController.cancellaPrenotazione); //lo studente può cancellare la sua prenotazione all'appello
 router.get('/showUsernameProf',userController.showUsernameProf) //mostra tutti gli username dei professori in modo da poterli ricercare in seguito
 router.get('/mostraAppelli', userController.mostraAppelli)//mostra tutti gli appelli del prof 
-router.get('/valori', userController.valori); 
-router.get('/valori2', userController.valori2);
-router.get('/mostraRisultati', userController.mostraRisultati);
+/* router.get('/valori', userController.valori); 
+ */
+/* router.get('/valori2', userController.valori2);
+ */router.get('/mostraRisultati', userController.mostraRisultati);
 router.get('/valori', userController.valori); 
 router.get('/valori2', userController.valori2);
 router.put('/confermaVoto',userController.confermaVoto)

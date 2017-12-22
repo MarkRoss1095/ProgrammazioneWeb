@@ -129,6 +129,36 @@ exports.loginStudent = function (req, res) {
         });
 };
 
+exports.mostraCorsiStu  = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+        Student.findOne({
+            _id: decoded._id,
+        }).exec(function (err, stu) {
+            if (err)
+                return res.json({ success: false, msg: 'non è stato possibile trovare il profilo dello studente' });
+            else if (stu.ruolo == 'student') {
+
+                Corso.find({
+codFacolta:stu.codFacolta
+
+                }, function (err, corso) {
+                    if (err) {
+
+                        return res.json({ msg: '' + err })
+                    }
+                    else
+
+                        return res.json({ msg: corso })
+                })
+            }
+        }
+            )
+    } else {
+        return res.json({ msg: 'token non valido' })
+    }
+}
 
 
 //DA VERIFICARE
@@ -160,7 +190,7 @@ exports.mostraCorsi = function (req, res) {
     }
 }
 
-//funzionante
+/* //funzionante
 exports.PianoDiStudi = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
@@ -193,7 +223,7 @@ exports.PianoDiStudi = function (req, res) {
         return res.json({ success: false, msg: 'token non valido' })
     }
 }
-
+ */
 exports.valori = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
