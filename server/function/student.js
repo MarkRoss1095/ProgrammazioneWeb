@@ -138,7 +138,7 @@ exports.mostraCorsiStu = function (req, res) {
         }).exec(function (err, stu) {
             if (err)
                 return res.json({ success: false, msg: 'non è stato possibile trovare il profilo dello studente' });
-            else if (stu.ruolo == 'student') {
+          
 
                 Corso.find({
                     codFacolta: stu.codFacolta
@@ -152,7 +152,7 @@ exports.mostraCorsiStu = function (req, res) {
 
                         return res.json({ msg: corso })
                 })
-            }
+            
         }
             )
     } else {

@@ -24,7 +24,7 @@ var studentSchema = new Schema({
     password: { type: String, required: true },
     gender: {type: String, required:true, enum: ['F','M'] }, 
     annoCorso: {type: String, enum: ['1','2','3','FuoriCorso']},
-    esamifatti:[ExamPassed.schema],
+  /*   esamifatti:[ExamPassed.schema], */
     pianoDiStudio:[Corsi.schema],
     ruolo: {
         type: String,

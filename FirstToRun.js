@@ -1456,7 +1456,7 @@ var Student1 = new Student ({
     gender: 'F',
     annoCorso: '1',
     ruolo:'student',
-    esamifatti: [{
+   /*  esamifatti: [{
         nome:diritto.nome,
         codCorso: diritto.codice,
         data: '2017-12-16',
@@ -1491,7 +1491,7 @@ var Student1 = new Student ({
         cfu: analisi.cfu,
         matricolastud:'093456'
         
-    }],
+    }], */
    
 });
 Student1.save(function (err) {
@@ -1514,7 +1514,7 @@ Student1.save(function (err) {
     codFacolta: 'L31',
     matricola: '0934576',
     ruolo:'student',
-    esamifatti: [
+  /*   esamifatti: [
     {
         nome:fondamenti.nome,
         codCorso: fondamenti.codice,
@@ -1563,9 +1563,9 @@ Student1.save(function (err) {
         cfu: asd.cfu,
         matricolastud:'0934576'
     }
+ */
 
-
-],
+/* ], */
 });
 Student2.save(function (err) {
     if (err) throw err;
@@ -1589,7 +1589,7 @@ bod: new Date(2003,11,13),
 annoCorso: '2',
 codFacolta: 'L35',
 matricola: '093569',
-esamifatti: [{
+/* esamifatti: [{
     nome:analisimath.nome,
     codCorso: analisimath.codice,
     data: '2016-12-16',
@@ -1647,7 +1647,7 @@ esamifatti: [{
 
 
 ],
-
+ */
 
 });
 Student3.save(function (err) {
@@ -1671,7 +1671,7 @@ var Student4 =new Student({
     codFacolta: 'L27',
     matricola: '093458',
     ruolo:'student',
-    esamifatti: [{
+  /*   esamifatti: [{
         nome:analisiC.nome,
         codCorso: analisiC.codice,
         data: '2015-12-16',
@@ -1728,7 +1728,7 @@ var Student4 =new Student({
         matricolastud:'093458'
     }
 
-],
+], */
     
     });
     Student4.save(function (err) {
