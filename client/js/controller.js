@@ -1242,8 +1242,6 @@ angular.module('ProgWeb')
 
             };
         }
-
-
     })
     ////////////////////////////////////////////////////////////////////////////////////////////
     .controller('AndamentoCtrl', function ($scope, $http, $filter, AuthService, $state, $window) {

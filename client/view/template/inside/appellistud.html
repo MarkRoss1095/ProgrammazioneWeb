@@ -1,78 +1,92 @@
-
 <div ng-include src="'./view/template/inside/inside_navbar_profile_student.html '">
 </div>
 
 <div class="container">
-    
-        <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
-            <div id="testo">
-                <h3>Sei interessato a:</h3>
-            </div>
-            <div id="input">
-                <input type="text" ng-model="esame" placeholder="stai cercando..." />
-            </div>
+    <center>
+        <h1 class="ciao">Sezione Appelli</h1><br>
+        <p>
+            <font size="4">In questa sezione puoi trovare la lista di tutti gli appelli ai quali puoi iscriverti.
+                <br> Puoi decidere, cliccando su registrati, di registrarti all'appello per il corso di insegnamento selezionato
+                o di rimuovere la tua registrazione.
+
+                <br> Nella barra di ricerca puoi ricercare un appello tramite in suo nome o il suo codice.
+                <br> Puoi inoltre visionare, selezionando mostra appelli, tutti gli appelli ai quali sei iscritto e confermare
+                il voto preso, nel caso in cui è presente.
+
+                <br>
+                <strong>Ricorda!</strong> Ogni aggiunta, modifica o eliminazione è permanente. </center>
+    <hr>
+    <br></font>
+    <center><h3 class="ciao">Lista Appelli</h3></center>
+    <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
+        <div id="testo">
+            <h3>Sei interessato a:</h3>
         </div>
-    
-    
-        <table id="mytable" class="table table-bordered well" text-align="center">
-            <thead>
-    
-                <th style="width:20%;">esame</th>
-                <th style="width:20%;">usernameProf</th>
-                <th style="width:10%;">data</th>
-                <th style="width:10%;">ora</th>
-                <th style="width:10%;">iscritti</th>
-                <th style="width:10%;">aperto</th>
-                <th style="width:5%;">iscriviti</th>
-                <th style="width:5%;">CancellaIscrizione</th>
-            </thead>
-            <tbody>
-    
-    
-                <tr ng-repeat="appellos in appello " text-align="center">
-                    <td>{{appellos.esame}}</td>
-                    <td>{{appellos.username_prof}}</td>
-                    <td>{{appellos.dataApp}}</td>
-                    <td>{{appellos.ora}}</td>
-                    <td>{{appellos.iscritti}}</td>
-                    <td>{{appellos.aperto}}</td>
-    
-   
-                    <td>
-                        <button id="iscriviti" class="btn btn-primary glyphicon glyphicon-plu" ng-click="iscrivitiAppello(appellos)" ng-disabled="appellos.aperto==false" >iscriviti</button>
-    
-                    </td>
-                    <td>
-                        <button  id="cancella" class="btn btn-danger glyphicon glyphicon-remove" ng-click="cancellaIscrizione(appellos)" >Remove</button>
-    
-                    </td>
-    
-                </tr>
-            </tbody>
-        </table>
-
-
-
-        <br>
-        <br>
-        <hr>
-    
-    
-    
-        <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
-            <div id="testo">
-                <h3>Sei interessato a:</h3>
-            </div>
-            <div id="input">
-                <input type="text" ng-model="apello" placeholder="stai cercando..." />
-            </div>
+        <div id="input">
+            <input type="text" ng-model="esame" placeholder="stai cercando..." />
         </div>
-<!--         <button type="button" style="float:right;" id="mostraApp" class="btn btn-info " ng-click="MostraAppelli(appellos)">Mostra Appelli</button>
- -->    
-        <table id="mytable" class="table table-bordered well" text-align="center">
-            <thead>
-    
-                <th style="width:20%;">Esame</th>
+    </div>
+
+
+    <table id="mytable" class="table table-bordered well" text-align="center">
+        <thead>
+
+            <th style="width:20%;">esame</th>
+            <th style="width:20%;">usernameProf</th>
+            <th style="width:10%;">data</th>
+            <th style="width:10%;">ora</th>
+            <th style="width:10%;">iscritti</th>
+            <th style="width:10%;">aperto</th>
+            <th style="width:5%;">iscriviti</th>
+            <th style="width:5%;">CancellaIscrizione</th>
+        </thead>
+        <tbody>
+
+
+            <tr ng-repeat="appellos in appello " text-align="center">
+                <td>{{appellos.esame}}</td>
+                <td>{{appellos.username_prof}}</td>
+                <td>{{appellos.dataApp}}</td>
+                <td>{{appellos.ora}}</td>
+                <td>{{appellos.iscritti}}</td>
+                <td>{{appellos.aperto}}</td>
+
+
+                <td>
+                    <button id="iscriviti" class="btn btn-primary glyphicon glyphicon-plu" ng-click="iscrivitiAppello(appellos)" ng-disabled="appellos.aperto==false">iscriviti</button>
+
+                </td>
+                <td>
+                    <button id="cancella" class="btn btn-danger glyphicon glyphicon-remove" ng-click="cancellaIscrizione(appellos)" ng-disabled="appellos.aperto==false">Remove</button>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <br>
+    <br>
+    <hr>
+
+<center> <h3 class="ciao">Appelli Prenotati</h3></center>
+
+    <div id="ricerca" style="width:100%;height:100px;padding-left:10px;">
+        <div id="testo">
+            <h3>Sei interessato a:</h3>
+        </div>
+        <div id="input">
+            <input type="text" ng-model="apello" placeholder="stai cercando..." />
+        </div>
+    </div>
+    <!--         <button type="button" style="float:right;" id="mostraApp" class="btn btn-info " ng-click="MostraAppelli(appellos)">Mostra Appelli</button>
+ -->
+    <table id="mytable" class="table table-bordered well" text-align="center">
+        <thead>
+
+            <th style="width:20%;">Esame</th>
             <th style="width:15%;">Nome</th>
             <th style="width:10%;">Cognome</th>
             <th style="width:15%;">Matricola</th>
@@ -80,38 +94,38 @@
             <th style="width:10%;">Ora Esame</th>
             <th style="width:10%;">Voto provvisorio</th>
             <th style="width:10%;">Voto definitivo</th>
-      <!--       <th style="width:10%;">accettato</th> -->
-          <!-- 
+            <!--       <th style="width:10%;">accettato</th> -->
+            <!-- 
             <th style="width:5%;">Confermato</th> -->
             <th style="width:5%;">Conferma</th>
-            
+
         </thead>
         <tbody>
 
-                
+
             <tr ng-repeat="appellos in risultati  " text-align="center">
                 <td>{{appellos.esame}}</td>
-              
+
                 <td>{{appellos.nome}}</td>
                 <td>{{appellos.cognome}}</td>
-                 <td>{{appellos.accountid}}</td>
-                 <td>{{appellos.dataApp}}</td>
-                 <td>{{appellos.ora}}</td>
-                 <td>{{appellos.voto_provvisorio}}</td>
-               <td>{{appellos.voto_definitivo}}</td>
-          <!--      <td>{{appellos.accettato}}</td> 
+                <td>{{appellos.accountid}}</td>
+                <td>{{appellos.dataApp}}</td>
+                <td>{{appellos.ora}}</td>
+                <td>{{appellos.voto_provvisorio}}</td>
+                <td>{{appellos.voto_definitivo}}</td>
+                <!--      <td>{{appellos.accettato}}</td> 
                <td>{{appellos.conferma}}</td>  -->
-    
-    
-                    <td>
-                        <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="confermavoto(appellos)"ng-disabled="appellos.voto_provvisorio=='non ancora caricato'">Conferma</button>
-    
-                    </td>
-                   
-    
-                </tr>
-            </tbody>
-        </table>
-    
-    
-    </div>
+
+
+                <td>
+                    <button class="btn btn-primary glyphicon glyphicon-edit" ng-click="confermavoto(appellos)" ng-disabled="appellos.voto_provvisorio=='non ancora caricato'">Conferma</button>
+
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

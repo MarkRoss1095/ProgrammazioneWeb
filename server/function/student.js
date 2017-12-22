@@ -208,6 +208,7 @@ exports.PianoDiStudi = function (req, res) {
                 var use = prof.codFacolta
                 Corso.find({
                     codFacolta: use
+                    
                 }).exec(function (err, corso) {
                     if (err)
                         return res.json({ success: false, msg: 'il token non è valido' });
@@ -242,7 +243,8 @@ exports.valori = function (req, res) {
                 var tuttiivoti = new Array()
                 if (a.esito !== "null") {
                     //qui ci sono gli esami che lo studente ha passato
-                    var b = stu.esamifatti.length //vedo quanti sono
+                    var b = stu.esamifatti.length //vedo quanti sonoù
+                    console.log("sono"+b)
                     var sommacfu = 0;
                     var sommavoti = 0;
                     var mediapond = 0;
@@ -263,6 +265,7 @@ exports.valori = function (req, res) {
                     var media2 = mediapond / sommacfu; //MEDIA PONDERATA FINALE DEI VOTI
 
                     eccoli[0] = media, eccoli[1] = media2, eccoli[2] = sommacfu
+                    console.log(media)
                     return res.json({ success: true, msg: eccoli })
                 }
             }
@@ -297,7 +300,6 @@ exports.valori2 = function (req, res) {
                         etichet[i] = stu.esamifatti[i].nome
 
                     }
-                    console.log(etichet)
                     return res.json({ success: true, msg: etichet })
                 }
             }
