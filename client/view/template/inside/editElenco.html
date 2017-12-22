@@ -1,8 +1,15 @@
 <div ng-include src="'./view/template/inside/inside_navbar_profile_prof.html '"></div>
 
 <div class="container">
-    <h1 class="ciao">Edit ElencoIscritti</h1>
-
+    <center>
+        <h1 class="ciao">Edit ElencoIscritti</h1>
+        <p>
+            <h5>In questa sezione puoi inserire un voto provvisorio per lo studente.</h5>
+        </p>
+        <br>
+        <hr>
+        <br>
+    </center>
     <div class="row">
         <div class="col-sm-6 form-group">
 
@@ -11,48 +18,59 @@
             <input type="text" disabled name="nome" ng-model="currentelenco.esame" class="form-control">
         </div>
         <div class="col-sm-4 ">
-                <label>Voto Provvisorio</label>
-            <input type="text" name="aperto" ng-model="currentelenco.voto_provvisorio"  class="form-control">
+            <label>Voto Provvisorio</label>
+            <!-- <input type="text" name="aperto"  class="form-control">
+ --><select class="form-control" ng-model="currentelenco.voto_provvisorio" input type="text" name="aperto"  >
+        <option  selected value='non confermato' >Non confermato</option>
+     <option value='non suff' >Non sufficiente</option>
+     <option value='18' >18</option>
+     <option value='19' >19
+        <option value='20' >20</option>
+        <option value='21' >21</option>
+        <option value='22' >22</option>
+        <option value='23' >23</option>
+        <option value='24' >24</option>
+        <option value='25' >25</option>
+         <option value='26' >26</option>
+         <option value='27' >27</option>
+         <option value='28' >28</option>
+         <option value='29' >29</option>
+         <option value='30' >30</option>
+         <option value='3o e lode' >30L</option>
+     </option>
+ </select>
+        </div>
 
-        </div>
-        <div class="col-sm-2 ">
-                <label>Voto Definitivo</label>
-            <input type="text" disabled name="iscritti" ng-model="currentelenco.voto_definitivo" disabled class="form-control">
-
-        </div>
-        </div>
+    </div>
     <div class="row">
-            <div class="col-sm-4 form-group">
-                    <label>Nome</label>
-                    <input type="text" disabled name="data" ng-model="currentelenco.nome"  class="form-control">
-                </div>   
+        <div class="col-sm-4 form-group">
+            <label>Nome</label>
+            <input type="text" disabled name="data" ng-model="currentelenco.nome" class="form-control">
+        </div>
 
         <div class="col-sm-4 ">
             <label>Cognome</label>
-            <input type="text" disabled name="ora" ng-model="currentelenco.cognome"  class="form-control">
+            <input type="text" disabled name="ora" ng-model="currentelenco.cognome" class="form-control">
         </div>
-        
-            <div class="col-sm-2 form-group">
+
+        <!-- <div class="col-sm-2 form-group">
                     <label>Accettato</label>
                     <input type="text" disabled name="data" ng-model="currentelenco.accettato"  class="form-control">
-                </div>   
-        <div class="col-sm-2 ">
+                </div>    -->
+        <!--   <div class="col-sm-2 ">
             <label>Confermato</label>
             <input type="text" disabled name="ora" ng-model="currentelenco.conferma"  class="form-control">
-        </div>
-</div>
-        
-        
-   
+        </div> -->
+    </div>
+
+
+
     <br>
 
-<!--     <button type="submit" id="conferma" class=" btn btn-lg btn-info" ng-click="confermaVoto(currentelenco)"> ConfermaVoto </button>
+    <!--     <button type="submit" id="conferma" class=" btn btn-lg btn-info" ng-click="confermaVoto(currentelenco)"> ConfermaVoto </button>
  -->
-    <button type="submit" id="submit" class=" btn btn-lg btn-info" ng-click="updateElenco(currentelenco)"> EditVoto </button>
+    <button type="submit" id="submit" class=" btn btn-lg btn-success" ng-click="updateElenco(currentelenco)"> Inserisci Voto </button>
     <br>
     <br>
     <hr>
 </div>
-
-
-  
