@@ -45,6 +45,7 @@
             <thead>
         
                 <th style="width:20%;">Nome</th>
+                <th style="width:20%;">cfu</th>
                 <th style="width:10%;">VOTO</th>
         
             </thead>
@@ -53,7 +54,8 @@
               
                 <tr ng-repeat="piano in appello | orderBy:'anno' ">
                     <td>{{piano.nome}}</td>
-                
+                    <td>{{piano.cfu}}</td>
+
                     <td>{{piano.esito}}</td>
         
                 </tr>
