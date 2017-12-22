@@ -1270,7 +1270,7 @@ angular.module('ProgWeb')
             };
         }
         $http.get('/Carriera').then(success, error);
-        console.log($scope.appello)
+    
       
         function success(appello) {
                 $scope.appello= appello.data.msg

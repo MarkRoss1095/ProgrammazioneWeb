@@ -461,7 +461,7 @@ exports.iscrivitiAppello = function (req, res) {
                                         esame: appello.esame,
 
                                         accountid: student.matricola,
-
+                                 
 
                                     }).exec(function (err, elenco) {
                                         if (err)
@@ -469,10 +469,7 @@ exports.iscrivitiAppello = function (req, res) {
                                         if (elenco)
                                             return res.json({ success: false, msg: 'sei già iscritto o hai gia accettato il voto di questa materia' });
                                         if (!elenco) {
-                                            console.log(accettato)
-                                            console.log(accountid)
-                                            console.log(esame)
-
+                                           
                                             var NewElenco = new Elenco({
                                                 appelloid: appello.id,
                                                 accountid: student.matricola,
@@ -870,7 +867,7 @@ exports.confermaVoto = function (req, res) {
                                                         dataApp: elenco.dataApp,
                                                         esito: elenco.voto_provvisorio,
                                                         codCorso: corso.codice,
-                                                        cfu: appello.cfu,
+                                                        cfu:  corso.cfu,
                                                         matricolastud: elenco.accountid,
                                                     })
                                                     NewExamPassed.save(function (err, exam) {
@@ -914,9 +911,9 @@ exports.Carriera = function (req, res) {
             if (!stu)
                 return res.json({ success: false, msg: 'studente  non trovato' });
             if (stu) {
-                Elenco.find({
+                ExamPassed.find({
 
-                    accountid: stu.matricola
+                    matricolastud: stu.matricola
                 }).exec(function (err, elenco) {
                     if (err) {
                         return res.json({ success: false, msg: 'errore durante la ricerca dell elenco' });
