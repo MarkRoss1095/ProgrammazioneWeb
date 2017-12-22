@@ -589,8 +589,6 @@ angular.module('ProgWeb')
             $http.post("/searchAppello", search).then(success, err)
             function success(success) {
                 $state.go('editAppello')
-
-
             }
             function err(err) {
                 $window.alert(err)
@@ -718,11 +716,11 @@ angular.module('ProgWeb')
             $http.put("/editAppello", updateappello).then(success, err)
             function success(success) {
                 updateappello = $scope.currentelenco
+
                 $window.alert(success.data.msg)
 
-
-                $window.history.back()
-                /* $state.go('/inside_info') */
+   if (success.data.msg == 'appello modificato')
+                    $window.history.back()
             }
             function err(err) {
                 $window.alert(err)

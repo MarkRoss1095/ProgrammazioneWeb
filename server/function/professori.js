@@ -242,8 +242,9 @@ exports.editAppello = function (req, res) {
                         var time = time.format().toString();
                         var y = time.substring(11, 16); //this is ORA 
                         var today = new Date()
-                       /* 
-                         var today= today.toString().substring(0,11)
+                      
+                     
+                       //  var today= today.toString().substring(0,11)
                         var oggigiorno = today.getDate()
                         oggigiorno = parseInt(oggigiorno)
                         var oggimese = today.getMonth() 
@@ -252,6 +253,11 @@ exports.editAppello = function (req, res) {
                         oggianno = parseInt(oggianno)
                         
                         var today = oggianno + "-" + oggimese + "-" + oggigiorno
+
+                        console.log("ora"+today)
+                        console.log("dopo"+x)
+
+
 
                         if (today < x) {
                             console.log("controllo: buon esito")
@@ -263,7 +269,7 @@ exports.editAppello = function (req, res) {
 
                         if (today > x) {
                             return res.json({ msg: "la data inserita non è valida. E' precedente a quella corrente" })
-                        } */
+                        } 
 
                         Appello.findOneAndUpdate({
                             _id: req.body._id,
