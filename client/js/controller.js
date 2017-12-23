@@ -1054,7 +1054,7 @@ angular.module('ProgWeb')
         }
 
         $scope.confermavoto = function (currentvoto) {
-            if($scope.currentvoto.voto_provvisorio >= 18){
+       
             $http.put("/confermaVoto", currentvoto).then(success, err)
             function success(success) {
               
@@ -1063,13 +1063,14 @@ angular.module('ProgWeb')
                 $window.alert(success.data.msg)
 
                  $window.location.reload() 
+                 } 
+                 function err(err) {
+                    $window.alert(err)
                 }
-                else
-                window.alert('o mio dio non sei passata non puoi accettarlo')
-            }
-            function err(err) {
-                $window.alert(err)
-            }
+                 
+               
+            
+           
 
         }
 
