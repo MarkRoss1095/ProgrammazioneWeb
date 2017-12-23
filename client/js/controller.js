@@ -281,6 +281,7 @@ angular.module('ProgWeb')
         $scope.editCorso = function (search) {
             $http.post("/searchCorso", search).then(success, err)
             function success(success) {
+               
                 $state.go('editcorso')
 
 
@@ -326,6 +327,7 @@ angular.module('ProgWeb')
         function success(currentcorso) {
             $scope.currentcorso = currentcorso.data.msg
 
+console.log("qui"+$scope.currentcorso)
         }
         function error(err) {
             $window.alert('corso non trovato')
@@ -359,6 +361,7 @@ angular.module('ProgWeb')
 
         $scope.update = function (updatecorso) {
             /* funzione per aggiunger il corso */
+
             console.log($scope.currentcorso)
             $http.put("/modifyCorso", updatecorso).then(success, err)
             function success(success) {
