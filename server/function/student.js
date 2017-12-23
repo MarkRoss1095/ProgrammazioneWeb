@@ -867,7 +867,7 @@ exports.confermaVoto = function (req, res) {
                                                         dataApp: elenco.dataApp,
                                                         esito: elenco.voto_provvisorio,
                                                         codCorso: corso.codice,
-                                                        cfu:  corso.cfu,
+                                                        cfu: corso.cfu,
                                                         matricolastud: elenco.accountid,
                                                     })
                                                     NewExamPassed.save(function (err, exam) {

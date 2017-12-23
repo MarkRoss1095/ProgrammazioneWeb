@@ -43,7 +43,7 @@ var createHash = function (password) {
 var informatica = new Facolta({
     nome: 'Informatica',
     codFacolta: 'L31',
-    corsi:  [
+  /*   corsi:  [
         {
             nome: 'Programmazione',
             codice: 'I-01',
@@ -204,7 +204,7 @@ var informatica = new Facolta({
         cfu: 12,
         anno: 3
     },
-]
+] */
 
 });
 informatica.save(function (err,ok) {
@@ -214,7 +214,7 @@ informatica.save(function (err,ok) {
 var matematica = new Facolta({
     nome: 'Matematica',
     codFacolta: 'L35',
-    corsi:
+   /*  corsi:
     [  
       
         {
@@ -385,7 +385,7 @@ var matematica = new Facolta({
         cfu: 6,
         anno: 3
     },
-]
+] */
 
 
 });
@@ -396,7 +396,7 @@ matematica.save(function (err) {
 var chimica = new Facolta({
     nome: 'Chimica',
     codFacolta: 'L27',
-    corsi:  [
+   /*  corsi:  [
         {
             nome: 'Analisi I',
             codice: 'C-30',
@@ -549,7 +549,7 @@ var chimica = new Facolta({
         cfu: 5,
         anno: 3
     },
-]
+] */
 });
 chimica.save(function (err) {
     if (err) throw err;
@@ -624,7 +624,7 @@ var prof1 = new Prof({
     bod:'1994-02-02',
     codFacolta:'L31',
     ruolo:'prof',
-    corsi:[
+   /*  corsi:[
         {
             nome: 'Programmazione',
             codice: 'I-01',
@@ -656,7 +656,7 @@ var prof1 = new Prof({
             cfu: 6,
             anno: 1
         },
-    ]
+    ] */
 });
 prof1.save(function (err) {
     if (err) throw err;
@@ -676,7 +676,7 @@ var prof2 = new Prof({
     bod:'1996-07-29',
     codFacolta:'L35',
     ruolo:'prof',
-    corsi:[
+   /*  corsi:[
         {
             nome: 'Analisi Matematica I',
             codice: 'M-50',
@@ -685,7 +685,7 @@ var prof2 = new Prof({
             cfu: 12,
             anno: 1
         }
-    ]
+    ] */
 });
 prof2.save(function (err) {
     if (err) throw err;
@@ -705,7 +705,7 @@ var prof3 = new Prof({
     bod:'1996-07-29',
     codFacolta:'L27',
     ruolo:'prof',
-    corsi:[
+  /*   corsi:[
     {
         nome: 'Analisi I',
         codice: 'C-30',
@@ -713,7 +713,7 @@ var prof3 = new Prof({
         cfu: 12,
         anno: 1
     }
-]
+] */
 });
 prof3.save(function (err) {
     if (err) throw err;

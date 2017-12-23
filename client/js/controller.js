@@ -1060,18 +1060,23 @@ console.log("qui"+$scope.currentcorso)
         }
 
         $scope.confermavoto = function (currentvoto) {
-           console.log(currentvoto)
+       
             $http.put("/confermaVoto", currentvoto).then(success, err)
             function success(success) {
+              
                 currentvoto = $scope.currentvoto
                 console.log(currentvoto)
                 $window.alert(success.data.msg)
 
                  $window.location.reload() 
-            }
-            function err(err) {
-                $window.alert(err)
-            }
+                 } 
+                 function err(err) {
+                    $window.alert(err)
+                }
+                 
+               
+            
+           
 
         }
 
