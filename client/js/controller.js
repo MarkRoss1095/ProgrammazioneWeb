@@ -157,6 +157,7 @@ angular.module('ProgWeb')
         $scope.addAdmin = function () {
             AuthService.registerAdmin($scope.admin).then(function (msg) {
                 $window.alert('admin creato')
+                $window.location.reload()
             }, function (errMsg) {
                 $window.alert(errMsg)
             })
@@ -167,6 +168,7 @@ angular.module('ProgWeb')
             $http.post("/deleteProf", prof).then(success, err)
             function success(success) {
                 $window.alert(success.data.msg)
+                $window.location.reload()
             }
             function err(err) {
                 $window.alert(err)
@@ -176,6 +178,7 @@ angular.module('ProgWeb')
             $http.post("/deleteStudent", studente).then(success, err)
             function success(success) {
                 $window.alert(success.data.msg)
+                $window.location.reload()
             }
             function err(err) {
                 $window.alert(err)
