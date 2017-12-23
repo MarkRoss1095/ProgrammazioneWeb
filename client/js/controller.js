@@ -281,10 +281,7 @@ angular.module('ProgWeb')
         $scope.editCorso = function (search) {
             $http.post("/searchCorso", search).then(success, err)
             function success(success) {
-               
                 $state.go('editcorso')
-
-
             }
             function err(err) {
                 $window.alert(err)
