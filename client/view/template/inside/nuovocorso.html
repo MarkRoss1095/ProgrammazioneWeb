@@ -23,16 +23,16 @@
                             <input type="text" name="cfu" required ng-model="newcorso.cfu" placeholder="Enter the cfu of course Here.." class="form-control">
                         </div>
 
-                        <div class="col-sm-6 form-group">
+                        <div class=" col-sm-6 form-group">
                             <label>Anno</label>
-                            <!--  <input type="text" name="anno" required ng-model="newcorso.anno" placeholder="Enter the year of course Here.." class="form-control">
-                        -->
-                            <select name="anno" required ng-model="newcorso.anno" placeholder="Enter the year of course Here.." class="form-control">
+    
+                            <select class="form-control" ng-model="newcorso.anno" required>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
+                                  <option selected value="">Scegli...</option>
+     
                             </select>
-
                         </div>
                     </div>
 
@@ -47,8 +47,8 @@
                             <option value="L31">Informatica</option>
                             <option value="L35">Matematica</option>
                             <option value="L27">Chimica</option>
-                            <!--  <option selected value="">Scegli...</option>
- -->
+                             <option selected value="">Scegli...</option>
+
                         </select>
                     </div>
                     <div class="row">

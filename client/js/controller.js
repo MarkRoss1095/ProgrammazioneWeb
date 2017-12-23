@@ -327,7 +327,7 @@ angular.module('ProgWeb')
         function success(currentcorso) {
             $scope.currentcorso = currentcorso.data.msg
 
-console.log("qui"+$scope.currentcorso)
+console.log($scope.currentcorso)
         }
         function error(err) {
             $window.alert('corso non trovato')

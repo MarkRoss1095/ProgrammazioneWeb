@@ -36,15 +36,15 @@
                                 class="form-control" required>
                         </div>
 
-                        <div class="col-sm-6 form-group">
-                            <label>Anno</label>
-                            <!--  <input type="text" 
-                                required> -->
-                            <select name="anno" required ng-model="currentcorso.anno" placeholder="Enter the year of course Here.." class="form-control">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
+                        <div class=" col-sm-6 form-group">
+                            <label>cod Facolta</label>
+        
+                            <select class="form-control"  ng-model="currentcorso.codFacolta"required>
+                                <option value="L31">Informatica</option>
+                                <option value="L35">Matematica</option>
+                                <option value="L27">Chimica</option>
+                             
+                            </select> 
                         </div>
                     </div>
 
@@ -53,17 +53,16 @@
                         <input type="text" name="state" required disabled ng-model="currentcorso.usernameProf" placeholder="Enter the username prof  Here.."
                             class="form-control" required>
                     </div>
-                    <!--   <div class=" col-sm-6 form-group">
-                    <label>Codice facolta</label>
-
-                    <select class="form-control" ng-model="currentcorso.codFacolta"required>
-                        <option value="L31">Informatica</option>
-                        <option value="L35">Matematica</option>
-                        <option value="L27">Chimica</option>
-                     <option selected value="">Scegli...</option> 
+                     <div class=" col-sm-6 form-group">
+                    <label>Anno</label>
+{{currentcorso.anno}}
+                    <select class="form-control"  ng-model="currentcorso.anno"required>
+                        <option value="1">primo</option>
+                        <option value="2">secondo</option>
+                        <option value="3">terzo</option>
                     </select> 
                 </div>
- -->
+ 
                 </div>
                 <div class="row"></div>
                 <div class="row">
