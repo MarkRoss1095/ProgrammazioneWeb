@@ -38,6 +38,7 @@ router.get('/valori', userController.valori);
 router.get('/valori2', userController.valori2);
 router.put('/confermaVoto',userController.confermaVoto)
 //route for admin
+router.get('/showProf',adminController.showProf); //studente può cercare un professore
 router.post('/addProf',adminController.addProf);
 router.get('/showProfileAdmin',adminController.showProfileAdmin);
 router.post('/searchCorso',adminController.searchCorso);//per vedere quale corso ho preso

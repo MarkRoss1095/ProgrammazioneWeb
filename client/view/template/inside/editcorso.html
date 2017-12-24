@@ -47,15 +47,21 @@
                             </select> 
                         </div>
                     </div>
-
-                    <div class="col-sm-6 form-group">
+                    <div class=" col-sm-6 form-group">
+                        <label>Username Prof</label>
+    
+                        <select class="form-control" ng-model="currentcorso.usernameProf">
+                            <option ng-repeat="profs in prof " value="{{profs.username}}">{{profs.username}}</option>
+                          </select> 
+                    </div>
+                   <!--  <div class="col-sm-6 form-group">
                         <label>Username Prof</label>
                         <input type="text" name="state" required disabled ng-model="currentcorso.usernameProf" placeholder="Enter the username prof  Here.."
                             class="form-control" required>
-                    </div>
+                    </div> -->
                      <div class=" col-sm-6 form-group">
                     <label>Anno</label>
-{{currentcorso.anno}}
+                
                     <select class="form-control"  ng-model="currentcorso.anno"required>
                         <option value="1">primo</option>
                         <option value="2">secondo</option>

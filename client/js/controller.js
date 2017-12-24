@@ -290,11 +290,6 @@ angular.module('ProgWeb')
         }
 
 
-
-
-
-
-
         $scope.deleteCorso = function (corso) {
             $http.post("/deleteCorso", corso).then(success, err)
             function success(success) {
@@ -322,6 +317,16 @@ angular.module('ProgWeb')
         }
         $http.get('/viewCorso').then(success, error);
         function success(currentcorso) {
+            $http.get('/showProf').then(success, error);
+        function success(prof) {
+            
+           $scope.prof= prof.data.msg
+        }
+        function error(err) {
+            $window.alert('prof non trovato')
+
+        };
+
             $scope.currentcorso = currentcorso.data.msg
 
 console.log($scope.currentcorso)
