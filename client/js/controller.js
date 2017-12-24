@@ -46,7 +46,7 @@ angular.module('ProgWeb')
             surname: '',
             state: '',
             city: '',
-            andress: '',
+            address: '',
             bod: '',
             gender: '',
             matricola: '',
@@ -57,6 +57,7 @@ angular.module('ProgWeb')
 
         $scope.addStudent = function () {
             AuthService.registerstudent($scope.user).then(function (msg) {
+                console.log($scope.user)
                 $state.go("/")
                 $window.alert(msg)
             }, function (errMsg) {
