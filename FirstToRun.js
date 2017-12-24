@@ -960,7 +960,7 @@ var analisiC = new Corsi({
     nome: 'Analisi I',
     codice: 'C-30',
     codFacolta: chimica.codFacolta,
-    usernameProf: prof2.username,
+    usernameProf: prof3.username,
     cfu: 12,
     anno: 1
 });
@@ -1190,7 +1190,7 @@ var analisimath = new Corsi({
     nome: 'Analisi Matematica I',
     codice: 'M-50',
     codFacolta: matematica.codFacolta,
-    usernameProf:prof3.username,
+    usernameProf:prof2.username,
     cfu: 12,
     anno: 1
 });

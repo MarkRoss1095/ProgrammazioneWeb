@@ -452,7 +452,51 @@ exports.modifyCorso = function (req, res) {
         })
     }
 }
+exports.showProf = function (req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, process.env.SECRET);
+    Admin.findOne({
+            _id: decoded._id,
+           
+        }).exec(function (err, admin) {
+            
+            if (err)
+                return res.json({ success: false, msg: 'errore durante la ricerca del prof' });
+            if (!admin)
+                return res.json({ success: false, msg: 'prof non esistente' });
+            if (admin) {
+                Corso.findOne({
+                    _id: currentcorso._id
+                }).exec(function (err, corso) {
+                    if (err) {
+                        return res.json({ success: false, msg: 'errore durante la ricerca del corso' });
+                    }
+                    if (!corso)
+                        return res.json({ success: false, msg: 'corso non trovato111111' });
+                    if (corso)
+                       
+             Prof.find({
+codFacolta:corso.codFacolta
+             }).exec(function (err, prof){
+                if (err)
+                return res.json({ success: false, msg: 'errore durante la ricerca del prof' });
+            if (!prof)
+                return res.json({ success: false, msg: 'prof non esistente' });
+            if (prof) 
 
+            return res.json({ success: true, msg: prof });
+
+             })
+               
+            })
+        }
+    })
+}
+    else {
+        return res.json({ msg: 'token non valido' })
+    }
+}
 //funzionante
 exports.deleteCorso = function (req, res) {
     var token = getToken(req.headers);
