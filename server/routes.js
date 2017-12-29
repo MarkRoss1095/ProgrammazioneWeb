@@ -15,7 +15,7 @@ router.get('/showProfile',controller.showProfile);
 router.get('/showCorsi',controller.showCorsi);
 
     //ROUTER FOR USER = studente
-router.get('/showProfileStudent',userController.showProfileStudent)//da fare
+router.get('/showProfileStudent',userController.showProfileStudent)
 router.post('/addStudent',userController.addStudent); //lo studente può registrarsi
 router.post('/loginStudent', userController.loginStudent); //lo studente può fare un login
 router.get('/mostraCorsi',userController.mostraCorsi);  //lo studente può vedere tutti i corsi disponibili
@@ -37,6 +37,8 @@ router.get('/mostraAppelli', userController.mostraAppelli)//mostra tutti gli app
 router.get('/valori', userController.valori); 
 router.get('/valori2', userController.valori2);
 router.put('/confermaVoto',userController.confermaVoto)
+
+
 //route for admin
 router.get('/showProf',adminController.showProf); //studente può cercare un professore
 router.post('/addProf',adminController.addProf);

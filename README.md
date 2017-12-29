@@ -44,6 +44,7 @@ https://trello.com/b/AvB0wZyy
 
 Link SlideShare:
 
+https://www.slideshare.net/Arianna1995/presentazioneprogwb-85281353
 
 ########################################################
 Descrizione dell'architettura ed organizzazione dei file:

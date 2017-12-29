@@ -388,7 +388,7 @@ exports.ShowAppelliProf = function (req, res) {
                     usernameProf: use
                 }).exec(function (err, corso) {
                     if (err)
-                        return res.json({ success: false, msg: 'il token non è valido2' });
+                        return res.json({ success: false, msg: 'errore' });
                     if (!corso)
                         return res.json({ success: true, msg: 'admin' });
                     if (corso) {
