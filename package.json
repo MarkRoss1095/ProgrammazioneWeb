@@ -1,7 +1,7 @@
 {
-  "name": "todo",
+  "name": "programmazioneweb",
   "version": "1.0.0",
-  "description": "",
+  "description": "PROGETTO DI PROGRAMMAZIONE WEB  - Fedeli Arianna Matr. 093529 - Rosati Marcello Matr. 093335",
   "main": "server.js",
   "dependencies": {
     "angular-chart.js": "^1.1.1",
@@ -22,6 +22,7 @@
     "multer": "^1.3.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
+    "bcrypt-nodejs": "^0.0.3",
     "passport-jwt": "^2.2.1",
     "path": "^0.12.7",
     "q": "^1.5.0",
@@ -35,8 +36,20 @@
     "supertest": "~1.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "marcelloarianna",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkRoss1095/ProgrammazioneWeb.git"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "bugs": {
+    "url": "https://github.com/MarkRoss1095/ProgrammazioneWeb/issues"
+  },
+  "homepage": "https://github.com/MarkRoss1095/ProgrammazioneWeb#readme"
 }
