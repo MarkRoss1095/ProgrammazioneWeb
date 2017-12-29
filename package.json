@@ -5,10 +5,16 @@
   "main": "server.js",
   "author": "Scotch",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
-    "mongoose": "4.10.8",
     "express": "^4.10.8",
     "method-override": "^2.3.10",
+    "mongoose": "4.10.8",
     "morgan": "^1.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MarkRoss1095/ProgrammazioneWeb.git"
   }
+
 }
