@@ -1,65 +1,31 @@
-# ProgrammazioneWeb
-PROGETTO DI PROGRAMMAZIONE WEB 
-- Fedeli Arianna Matr. 093529
-- Rosati Marcello Matr. 093335
+# Node Todo App
 
+A Node app built with MongoDB and Angular. For demonstration purposes and a tutorial.
 
-#LINK TRELLO
-https://trello.com/b/AvB0wZyy/inizializzare-progetto-prog-web
+Node provides the RESTful API. Angular provides the frontend and accesses the API. MongoDB stores like a hoarder.
 
-#COMANDI DA TERMINALE:
-- posizionarsi all'interno della cartella del progetto
-- digitare :
-    - sudo service mongodb start    //per arrivare il database
-    -node FirstToRun.js  //file necessario per popolare il database
-    -nodemon server.js     //file necessario per runnare il server
+## Requirements
 
-ACCOUNT E PASSWORD:
-ADMIN:
-Nome Utente: arianna.fedeli
-Password: ari
+- [Node and npm](http://nodejs.org)
+- MongoDB: Make sure you have your own local or remote MongoDB database URI configured in `config/database.js`
 
-PROFESSORE:
-Nome Utente: marcello.rosati
-Password: marce
+## Installation
 
-STUDENTE:
-Nome Utente: sara.fedeli
-Password: saretta
-########################################################
+1. Clone the repository: `git clone git@github.com:scotch-io/node-todo`
+2. Install the application: `npm install`
+3. Place your own MongoDB URI in `config/database.js`
+3. Start the server: `node server.js`
+4. View in browser at `http://localhost:8080`
 
-Link della presentazione su youtube:
+## Tutorial Series
 
-########################################################
+This repo corresponds to the Node Todo Tutorial Series on [scotch.io](http://scotch.io)
 
-Link dell'app deployata su Heroku:
+Each branch represents a certain tutorial.
+- tut1-starter: [Creating a Single Page Todo App with Node and Angular](https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular)
+- tut2-organization: [Application Organization and Structure](https://scotch.io/tutorials/node-and-angular-to-do-app-application-organization-and-structure)
+- tut3-services: [Controllers and Services](https://scotch.io/tutorials/node-and-angular-to-do-app-controllers-and-services)
 
-########################################################
+Happy Todo-ing!
 
-Link ToDo list on Trello:
-
-https://trello.com/b/AvB0wZyy
-
-########################################################
-
-Link SlideShare:
-
-https://www.slideshare.net/Arianna1995/presentazioneprogwb-85281353
-
-########################################################
-Descrizione dell'architettura ed organizzazione dei file:
-
-CARTELLA CLIENT:
- - assets : cartella per la gestione del css
- - img: cartella contentente immagini utili al layout del progetto
- - js: cartella contenente tutti i controller e services per il funzionamento lato client
- - view: cartella contente due sottocartelle per i template dell'area riservata(inside) e per la gestione della parte esterna del sito (outside)
- - index.html : file di index per la visualizzazione
- - style.css: foglio di stile
-
- CARTELLA SERVER:
- - function: cartella contenente tutte le funzioni suddivise per tipologia di utente(studente,admin,prof
- - models: cartella contenente tutto lo schema del database
-
-
- -server.js : file per l'inizializzazione del servizio lato server
+![Todo-aholic](http://i.imgur.com/ikyqgrn.png)
