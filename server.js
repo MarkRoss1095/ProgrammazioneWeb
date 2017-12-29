@@ -5,7 +5,7 @@ var express  = require('express');
 var app = express(); 
 var bodyParser = require('body-parser');
 
-
+var port = process.env.PORT || 8080;
 app.use(express.static(__dirname + '/client'));     
 
 
@@ -36,8 +36,6 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(require('./server/routes.js'));
 
 // listen (start app with node server.js) 
-    app.listen(8080,()=>{
-        console.log('\n************************************')
-        console.log('*Server on at http://localhost:' + 8080+'*');
-    })
+    app.listen(port,function(){
+        console.log('Our app is running on http://localhost:' + port);    })
 
