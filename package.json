@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "Simple todo application.",
   "main": "server.js",
-  "author": "Scotch",
+  "author": "arimark",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
@@ -15,6 +19,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/MarkRoss1095/ProgrammazioneWeb.git"
-  }
-
+  },
+  "license": "MIT"
 }
