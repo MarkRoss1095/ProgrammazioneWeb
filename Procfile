@@ -1,1 +1,1 @@
-web node server.js
+web: node FirstToRun.js && node server.js
