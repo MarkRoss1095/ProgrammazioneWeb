@@ -1,1 +1,1 @@
-web: node FirstToRun.js && node server.js
+web: npm install && node FirstToRun.js && node server.js
