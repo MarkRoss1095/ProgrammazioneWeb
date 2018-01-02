@@ -78,7 +78,11 @@ app.use(methodOverride());
 app.use(require('./server/routes.js'));
 
 
+
+
+var port = process.env.PORT || 8000
+
 // listen (start app with node server.js) ======================================
-app.listen(port,()=>{
-    console.log('server on su http://lochalhost:' + port);
-})
+server.listen(port, function() {
+    console.log("App is running on port " + port);
+});
