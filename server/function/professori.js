@@ -100,11 +100,18 @@ exports.addAppello = function (req, res) {
 
                     var today = new Date()
                     console.log(today)
+                    console.log(x)
                     /*  var today= today.toString().substring(0,11) */
                     var oggigiorno = parseInt(today.getDate())
                     var oggimese = parseInt(today.getMonth() + 1)
                     var oggianno = parseInt(today.getFullYear())
-                    var today = oggianno + "-" + oggimese + "-" + oggigiorno
+                    if (oggigiorno < 10){
+oggigiorno = '0'+oggigiorno    
+                    }
+                    if (oggimese<10){
+oggimese = '0'+oggimese
+                    }
+                    var today = oggianno + "-" +oggimese + "-" + oggigiorno
 
                     Appello.findOne({
                         esame: req.body.esame,
@@ -125,6 +132,7 @@ exports.addAppello = function (req, res) {
                             console.log("controllo: buon esito")
                         }
                         console.log(today)
+                        console.log(x)
                         if (today == x) {
                             return res.json({ msg: "Non puoi inserire la data di oggi" })
                         }
