@@ -14,7 +14,7 @@ https://trello.com/b/AvB0wZyy/inizializzare-progetto-prog-web
     -node FirstToRun.js  //file necessario per popolare il database
     -nodemon server.js     //file necessario per runnare il server
     - tramite browser digitare http://localhost:8080/
-    
+
 ACCOUNT E PASSWORD:
 ADMIN:
 Nome Utente: arianna.fedeli
@@ -29,8 +29,8 @@ Nome Utente: sara.fedeli
 Password: saretta
 ########################################################
 
-Link della presentazione su youTube
-https://youtu.be/MM8XwP5gUp0tube:
+Link della presentazione su youTube:
+https://youtu.be/MM8XwP5gUp0
 
 
 ########################################################
