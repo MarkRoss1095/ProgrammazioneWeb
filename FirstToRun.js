@@ -24,7 +24,7 @@ MongoClient.connect(url, function(err, db) {
 // FUNZIONE PER CONNETTERE IL DB
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ProgrammazioneWeb');
+mongoose.connect(process.env.DB_URI);
 var db = mongoose.connection;
 mongoose.connection.on('error', console.error.bind(console, 'errore nella connessione al db'));
 

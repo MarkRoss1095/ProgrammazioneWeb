@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/client'));
 
 //connect to the database mongoose
 var mongoose = require('mongoose');
- mongoose.connect('mongodb://localhost/ProgrammazioneWeb');
+ mongoose.connect(process.env.DB_URI);
 var connect = mongoose.connection;
 
 connect.once('open', function (){
