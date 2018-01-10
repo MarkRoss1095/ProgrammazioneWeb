@@ -78,7 +78,3 @@ app.use(require('./server/routes.js'));
 
 var port = process.env.PORT || 8080
 
-// listen (start app with node server.js) ======================================
-app.listen(port, function() {
-    console.log("App is running on port " + port);
-});
