@@ -52,7 +52,7 @@
             <tbody>
         
               
-                <tr ng-repeat="piano in appello | orderBy:'anno' ">
+                <tr ng-repeat="piano in appello | orderBy:'anno' |filter:apello ">
                     <td>{{piano.nome}}</td>
                     <td>{{piano.cfu}}</td>
 

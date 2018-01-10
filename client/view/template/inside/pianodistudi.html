@@ -10,7 +10,7 @@
             <h3>Sei interessato a:</h3>
         </div>
         <div id="input">
-            <input type="text" ng-model="nome" placeholder="stai cercando..." />
+            <input type="text" ng-model="piano" placeholder="stai cercando..." />
         </div>
     </div>
 
@@ -18,13 +18,7 @@
     <table id="mytable" class="table table-bordered well">
         <thead>
 
-            <th style="width:20%;">Nome</th>
-            <th style="width:10%;">VOTO</th>
-
-
-        </thead>
-        <tbody>
-
+     
 
         <th style="width:20%;">Nome</th>
         <th style="width:10%;">cfu</th>
@@ -35,7 +29,7 @@
     <tbody>
 
       
-        <tr ng-repeat="piano in corso | orderBy:'anno' ">
+        <tr ng-repeat="piano in corso | filter:piano">
             <td>{{piano.nome}}</td>
             <td>{{piano.cfu}}</td>
             <td>{{piano.anno}}</td>

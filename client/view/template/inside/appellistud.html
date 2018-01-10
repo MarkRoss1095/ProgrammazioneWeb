@@ -43,7 +43,7 @@
         <tbody>
 
 
-            <tr ng-repeat="appellos in appello " text-align="center">
+            <tr ng-repeat="appellos in appello |filter:esame" text-align="center">
                 <td>{{appellos.esame}}</td>
                 <td>{{appellos.username_prof}}</td>
                 <td>{{appellos.dataApp}}</td>
