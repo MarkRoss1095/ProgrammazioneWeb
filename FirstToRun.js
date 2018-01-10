@@ -8,7 +8,7 @@ var ExamPassed =require('./server/models/esamisvolti')
 var Corsi = require('./server/models/corsi');
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost/ProgrammazioneWeb";
+
 var Elenco = require('./server/models/elencostudenti')
 
 /* // FUNZIONE PER CANCELLARE UNA COLLEZIONE
@@ -23,15 +23,10 @@ MongoClient.connect(url, function(err, db) {
 
 // FUNZIONE PER CONNETTERE IL DB
 
-mongoose.connect(url);
-var con = mongoose.connection;
-con.on('error', function (err){
-   console.log('errore di connessione', err);
-});
-
-con.once('open', function (){
-console.log('connessione al database TEST riuscita!');
-});
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/ProgrammazioneWeb');
+var db = mongoose.connection;
+mongoose.connection.on('error', console.error.bind(console, 'errore nella connessione al db'));
 
 /**Funzione per criptare la password nel db */
 var bCrypt = require('bcrypt-nodejs');
