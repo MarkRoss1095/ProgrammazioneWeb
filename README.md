@@ -10,6 +10,7 @@ https://trello.com/b/AvB0wZyy/inizializzare-progetto-prog-web
 #COMANDI DA TERMINALE:
 - posizionarsi all'interno della cartella del progetto
 - digitare :
+- npm install (per installare i pacchetti)
     - sudo service mongodb start    //per arrivare il database
     -node FirstToRun.js  //file necessario per popolare il database
     -nodemon server.js     //file necessario per runnare il server
