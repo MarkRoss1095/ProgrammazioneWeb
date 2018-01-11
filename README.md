@@ -37,7 +37,7 @@ https://youtu.be/MM8XwP5gUp0
 ########################################################
 
 Link dell'app deployata su Heroku:
-NON DEPLOYATA PER PROBLEMI TECNICI COME SPECIFICATO NELLA EMAIL
+https://markari.herokuapp.com
 
 ########################################################
 
